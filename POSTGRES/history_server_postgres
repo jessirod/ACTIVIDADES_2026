@@ -1,0 +1,259 @@
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+systemd-coredump:x:999:997:systemd Core Dumper:/:/sbin/nologin
+systemd-resolve:x:193:193:systemd Resolver:/:/sbin/nologin
+tss:x:59:59:Account used for TPM access:/dev/null:/sbin/nologin
+polkitd:x:998:996:User for polkitd:/:/sbin/nologin
+unbound:x:997:994:Unbound DNS resolver:/etc/unbound:/sbin/nologin
+sssd:x:996:993:User for sssd:/:/sbin/nologin
+chrony:x:995:992::/var/lib/chrony:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+administrator:x:1000:1000:administrator:/home/administrator:/bin/bash
+oracle19:x:54323:54329:Usuario oracle19:/home/oracle19:/bin/bash
+grid:x:54322:54327:Usuario Grid:/home/grid:/bin/bash
+postgres:x:54324:54331:User Database Administrator:/home/postgres:/bin/bash
+[root@clgranbd01 ~]# cat .bash_history
+exit
+passwd root
+passwd -x -1 root
+exit
+pwd
+exit
+vi hardening.sh
+chmod 700 hardening.sh
+./hardening.sh
+cd /etc/audit/rules.d/
+ls -ltrah
+service auditd restart
+auditctl -l
+cd
+cat /run/systemd/generator/tmp.mount > /etc/systemd/system/tmp.mount
+echo "Options=defaults,nodev,nosuid" >> /etc/systemd/system/tmp.mount
+echo "#" >> /etc/systemd/system/tmp.mount
+echo "[Install]" >> /etc/systemd/system/tmp.mount
+echo "WantedBy=local-fs.target" >> /etc/systemd/system/tmp.mount
+systemctl daemon-reload
+systemctl enable tmp.mount
+yum install wget openssl-devel pam-devel selinux-policy-devel bzip2 libnsl* -y
+rpm -i http://172.27.64.125/duo_unix-1.12.0-0.el8.x86_64.rpm
+cp /lib64/security/pam_duo.* /lib/security/
+cd /etc/duo/
+sed -i 's/ikey =/ikey=DI1BLMTFQP5T4NE1AA1A/1' pam_duo.conf
+sed -i 's/skey =/skey=fm0JU12uynwiPzKSx7GujnI61ETXtgirLMr0xbdk/1' pam_duo.conf
+sed -i 's/host =/host=api-295abff1.duosecurity.com/1' pam_duo.conf
+echo "http_proxy=http://172.27.66.111:8080" >> /etc/duo/pam_duo.conf
+cd /etc/ssh/
+sed -i 's/ChallengeResponseAuthentication no/ChallengeResponseAuthentication yes/1' sshd_config
+systemctl restart sshd
+cd
+yum install realmd sssd oddjob oddjob-mkhomedir adcli samba-common samba-common-tools krb5-workstation authselect-compat -y
+realm join banvenqa.com -U ad25138
+update-crypto-policies --set DEFAULT
+realm join banvenqa.com -U ad25138
+authselect select sssd
+authselect select sssd with-mkhomedir
+vi /etc/sssd/sssd.conf
+systemctl restart sssd
+echo "auth  required pam_env.so" >> /etc/pam.d/sshd
+echo "auth  sufficient pam_duo.so" >> /etc/pam.d/sshd
+echo "auth  required pam_deny.so" >> /etc/pam.d/sshd
+vi /etc/pam.d/password-auth
+ssh ct25138@localhost
+vi /etc/fstab
+mount -o remount /home
+mount -o remount /tmp
+systemctl daemon-reload
+vi /etc/rsyslog.conf
+ip a
+vgs
+cfdisk
+lsblk
+pvresize /dev/sda3
+vgs
+vgcreate -v post /dev/sdb
+lvcreate -v -L 10G post -n postgres1
+lvcreate -v -L 20G post -n postgres2
+lvcreate -v -L 10G post -n postgres3
+lvcreate -v -L 20G post -n postgres4
+lvcreate -v -l 100%FREE -n post postgres4
+lvcreate -v -l 100%FREE -n postgres4 post
+lvs
+lvremove postgres1
+lvremove /dev/post/postgres1
+lvremove /dev/post/postgres2
+lvremove /dev/post/postgres3
+lvremove /dev/post/postgres4
+history
+lvcreate -v -L 10G post -n postgres_log_SGDC
+lvcreate -v -L 20G post -n postgres_wall_SGDC
+lvcreate -v -L 10G post -n postgres_binarios
+lvcreate -v -l 100%FREE -n postgres_backups post
+lvs
+lvdisplay
+mkfs.xfs -f /dev/post/postgres_log_SGDC
+mkfs.xfs -f /dev/post/postgres_wall_SGDC
+mkfs.xfs -f /dev/post/postgres_binarios
+mkfs.xfs -f /dev/post/postgres_backups
+mkdir -p /postgres/log/SGDC
+mkdir -p /postgres/wall/SGDC
+mkdir -p /postgres/binarios
+mkdir -p /postgres/backups
+blkid
+vi /etc/fstab
+mount -a
+systemctl daemon-reload
+mount -a
+df -h
+timedatectl
+ip a
+vi /etc/hosts
+ip a
+yum update
+vi /etc/yum.repos.d/redhat.repo
+yum update
+vi /etc/chrony.conf
+ip a
+df -h
+groupadd -g 54321 oinstall
+groupadd -g 54322 dba
+groupadd -g 54323 oper
+groupadd -g 54324 backupdba
+groupadd -g 54325 dgdba
+groupadd -g 54326 kmdba
+groupadd -g 54327 asmdba
+groupadd -g 54328 asmoper
+groupadd -g 54329 asmadmin
+groupadd -g 54330 racdba
+useradd -u 54323 -g 54329 -c "Usuario oracle19" -d /home/oracle19 -m -s /bin/bash oracle19
+useradd -u 54322 -g 54327 -c "Usuario Grid" -d /home/grid -m -s /bin/bash grid
+vi /etc/group
+uname -r
+grubby --info=ALL | grep ^kernel
+more /etc/group
+df -h
+ip a
+history
+exit
+ifconfig -a
+ip a
+nmcli dev con
+nmcli con
+nmcli dev ens33
+nmcli dev
+nmcli dev --help
+nmcli dev show ens33
+df -h
+df -h | grep -i postgres
+cat /etc/fstab
+df -h
+more /etc/fstab
+vgs
+lvs
+lsblk -f
+lsblk
+cfdisk
+lsscsi
+lsblk
+for i in `seq 0 32`; do echo "- - -" | sudo tee /sys/class/scsi_host/host$i/scan; ls /dev/sd* ; done
+lsblk
+for host in /sys/class/scsi_host/*; do echo "- - -" | sudo tee $host/scan; ls /dev/sd* ; done
+lsblk
+echo "1" > /sys/class/block/sdb/device/rescan
+lsblk
+vgs
+pvresize /dev/sdb
+vgs
+lvcreate -v -l 100%FREE -n post postgres_data_SGDC
+lvcreate -v -l 100%FREE -n postgres_data_SGDC post
+vgs
+lvs
+pwd
+cd /postgres/
+ls
+mkdir -p data/SGDC
+more /etc/fstab
+mkfs.xfs -f /dev/post/postgres_data_SGDC
+blkid |grep -i data
+vi /etc/fstab
+mount /postgres/data/SGDC
+systemctl daemon-reload
+mount /postgres/data/SGDC
+df -h
+df -h /postgres/data/SGDC
+df -h
+df -h | grep -i postgres
+cd /postgres/log/SGDC
+ls -ltr
+cd /postgres/wall/SGDC
+ls -ltr
+cd /postgres/binarios
+ls -ltr
+cd /postgres/backups
+ls -ltr
+cd /postgres/data/SGDC
+ls -ltr
+cp -p /home/administrator/postgresql-17.7.tar.gz /postgres/binarios/
+cd
+groupadd postgres
+useradd --help
+useradd -m -c "User Database Administrator" -s /bin/bash postgres
+useradd -m -g postrges -c "User Database Administrator" -s /bin/bash postgres
+useradd -m -g postgres -c "User Database Administrator" -s /bin/bash postgres
+su - postgres
+cd /postgres/binarios/
+ls -ltr
+tar -xvf postgresql-17.7.tar.gz
+ls -ltr
+cd postgresql-17.7
+ls -ltr
+./configure --help
+pwd
+./configure -prefix=/postgres/binarios/postgresql-17.7
+cat /etc/*-release
+yum install -y gcc cc make htop gzip gunzip zip unzip compress uncompress
+yum install -y gcc
+yum install -y make
+yum install -y libreadline-dev
+./configure -prefix=/postgres/binarios/postgresql-17.7
+./configure -prefix=/postgres/binarios/postgresql-17.7  --without-icu
+yum install -y bison
+./configure -prefix=/postgres/binarios/postgresql-17.7  --without-icu
+yum install -y flex
+./configure -prefix=/postgres/binarios/postgresql-17.7  --without-icu
+yum install -y perl
+./configure -prefix=/postgres/binarios/postgresql-17.7  --without-icu
+yum install -y readline
+yum install -y readline-dev
+yum search readline
+yum install -y readline-devel.x86_64
+./configure -prefix=/postgres/binarios/postgresql-17.7  --without-icu
+make
+make install
+ls -ltyr
+ls -ltr
+cd bin/
+ls -ltr
+df -h | grep -i postgres
+./initdb -D /postgres/data/SGDC -X /postgres/wall/SGDC
+chown -R postgres:postgres /postgres
+passwd postrges
+passwd postgres
+su - postgres
+yum install -y nmon
+nmon
+su - postgres
+cat /etc/hosts
+su - postgres
+sudo su - postgres
