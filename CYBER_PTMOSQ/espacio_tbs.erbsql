@@ -1,0 +1,99 @@
+
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+DATA_QPA                                        3,072       3,072      0
+INDX_QPA                                        1,024       1,024      0
+SYSTEM                                            800         426     46
+SYSAUX                                          2,048         689     66
+QUEST                                             150          46     69
+DATA01                                         73,728      21,139     71
+INDX                                          278,528      68,837     75
+RCVRY                                         479,225     109,792     77
+UNDO                                           18,432       3,367     81
+TEMP  **TEMP**                                 33,792           0    100
+
+
+DATA01
+
+FILE_NAME                                      FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+--------------------------------------------- -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberdata3/data01i_CYBER.dbf                       51 DATA01                                    8192           51 NO  AVAILABLE
+/cyberdata/data01c_CYBER.dbf                        14 DATA01                                    8192           14 NO  AVAILABLE
+/cyberdata/data01b_CYBER.dbf                        11 DATA01                                    8192           11 NO  AVAILABLE
+/cyberdata/data01a_CYBER.dbf                         6 DATA01                                    8192            6 NO  AVAILABLE
+/cyberdata2/data01d_CYBER.dbf                        7 DATA01                                    8192            7 NO  AVAILABLE
+/cyberdata2/data01e_CYBER.dbf                       32 DATA01                                    8192           32 NO  AVAILABLE
+/cyberdata3/data01f_CYBER.dbf                       38 DATA01                                    8192           38 NO  AVAILABLE
+/cyberdata2/data01g_CYBER.dbf                       41 DATA01                                    8192           41 NO  AVAILABLE
+/cyberdata2/data01h_CYBER.dbf                       45 DATA01                                    8192           45 NO  AVAILABLE
+
+
+INDX
+FILE_NAME                                               FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+------------------------------------------------------ -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberindx/indx03_CYBER.dbf                                  15 INDX                                     16384           15 NO  AVAILABLE
+/cyberindx/indx02_CYBER.dbf                                  12 INDX                                     17408           12 NO  AVAILABLE
+/cyberindx/indx01_CYBER.dbf                                   5 INDX                                     17408            5 NO  AVAILABLE
+/cyberindx/indx04_CYBER.dbf                                  18 INDX                                     16384           18 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx05_CYBER.dbf                   20 INDX                                     18432           20 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx06_CYBER.dbf                   24 INDX                                     18432           24 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx07_CYBER.dbf                   27 INDX                                     17408           27 NO  AVAILABLE
+/cyberindx/indx08_CYBER.dbf                                  30 INDX                                     15360           30 NO  AVAILABLE
+/cyberindx/indx09_CYBER.dbf                                  31 INDX                                     15360           31 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx10_CYBER.dbf                   33 INDX                                     17408           33 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx11_CYBER.dbf                   36 INDX                                     15360           36 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx12_CYBER.dbf                   39 INDX                                     15360           39 NO  AVAILABLE
+/cyberindx/indx13_CYBER.dbf                                  40 INDX                                     15360           40 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx14_CYBER.dbf                   42 INDX                                     15360           42 NO  AVAILABLE
+/cyberindx/indx15_CYBER.dbf                                  43 INDX                                     15360           43 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx16_CYBER.dbf                   44 INDX                                     15360           44 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx17_CYBER.dbf                   47 INDX                                     16384           47 NO  AVAILABLE
+
+
+
+RCVRY
+
+FILE_NAME                                             FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+---------------------------------------------------- -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberdata/rcvry01c_CYBER.dbf                              10 RCVRY                                    30720           10 NO  AVAILABLE
+/cyberdata/rcvry01b_CYBER.dbf                               9 RCVRY                                    26624            9 NO  AVAILABLE
+/cyberdata/rcvry01a_CYBER.dbf                               4 RCVRY                                    30720            4 NO  AVAILABLE
+/cyberdata2/rcvry01d_CYBER.dbf                             19 RCVRY                                    22528           19 NO  AVAILABLE
+/cyberdata2/rcvry01e_CYBER.dbf                             21 RCVRY                                    25600           21 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01f_CYBER.dbf                 22 RCVRY                                    22528           22 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01g_CYBER.dbf                 23 RCVRY                                    22528           23 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01h_CYBER.dbf                 25 RCVRY                                    22528           25 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01i_CYBER.dbf                 26 RCVRY                                    25600           26 NO  AVAILABLE
+/cyberdata3/rcvry01j_CYBER.dbf                             29 RCVRY                                    32767           29 NO  AVAILABLE
+/cyberdata3/rcvry01k_CYBER.dbf                             34 RCVRY                                    32767           34 NO  AVAILABLE
+/cyberdata/rcvry01l_CYBER.dbf                              35 RCVRY                                    20480           35 NO  AVAILABLE
+/cyberdata3/rcvry01m_CYBER.dbf                             37 RCVRY                                    32767           37 NO  AVAILABLE
+/cyberdata2/rcvry01n_CYBER.dbf                             46 RCVRY                                    32767           46 NO  AVAILABLE
+/cyberdata4/rcvry01o_CYBER.dbf                             48 RCVRY                                    32767           48 NO  AVAILABLE
+/cyberdata4/rcvry01p_CYBER.dbf                             49 RCVRY                                    32767           49 NO  AVAILABLE
+/cyberdata4/rcvry01q_CYBER.dbf                             50 RCVRY                                    32767           50 NO  AVAILABLE
+
+
+

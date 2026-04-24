@@ -181,8 +181,6 @@ CONFIGURE CONTROLFILE AUTOBACKUP ON;
 CONFIGURE SNAPSHOT CONTROLFILE NAME TO '+FRA_RORAIMA/snapcf_RORAIMA.f';
 
 
-
-
 ******************************************************************************************************
 CONFIGURAR_ORACHK
 ******************************************************************************************************

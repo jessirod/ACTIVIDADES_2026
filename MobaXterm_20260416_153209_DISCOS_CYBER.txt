@@ -1,0 +1,767 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:0.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-04-15 ? ? 09:14.55 ? ? /home/mobaxterm ? ssh grid19@cloraspbd01.banvenqa.com
+grid19@cloraspbd01.banvenqa.com's password:
+grid19@cloraspbd01.banvenqa.com's password:
+
+                                                                                                              ?
+
+ ? 2026-04-15 ? ? 15:46.57 ? ? /home/mobaxterm ? ssh oracle11@cloraspbd01.banvenqa.com
+oracle11@cloraspbd01.banvenqa.com's password:
+oracle11@cloraspbd01.banvenqa.com's password:
+
+                                                                                                              ?
+
+ ? 2026-04-15 ? ? 15:47.20 ? ? /home/mobaxterm ? telnet bdvaix03
+Trying 180.183.194.163...
+Connected to bdvaix03.
+Escape character is '^]'.
+
+
+telnet (bdvaix03)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AIX Version 5
+(C) Copyrights by IBM and by others 1982, 2007.
+login: oracle9i
+oracle9i's Password:
+3004-007 You entered an invalid login name or password.
+login: oracle10
+oracle10's Password:
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*  Welcome to AIX Version 5.2!                                                *
+*                                                                             *
+*                                                                             *
+*  Please see the README file in /usr/lpp/bos for information pertinent to    *
+*  this release of the AIX Operating System.                                  *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+Last unsuccessful login: Sun Mar  8 14:06:24 VET 2026 on /dev/pts/1 from 172.18.68.156
+Last login: Wed Apr  8 01:52:15 VET 2026 on /dev/pts/2 from 172.18.68.157
+
+************************* Espacio de los FileSystem *************************
+*
+*   Mounted  %Used
+*   /archive  13%
+*   /oracle  83%
+*   /exportdb  56%
+*
+*****************************************************************************
+
+INSTANCE_NAME    STATUS
+---------------- ------------
+CYBER            OPEN
+
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -h
+df: Not a recognized flag: h
+Usage: df  [-P] | [-IMitv] [-gkm] [-s] [filesystem ...] [file ...]
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ s
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ bash
+ksh: bash:  not found.
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ ^R
+oracle10@bdvaix03:/10.2.0$ df -h
+df: Not a recognized flag: h
+Usage: df  [-P] | [-IMitv] [-gkm] [-s] [filesystem ...] [file ...]
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df /h
+df: 0506-003 Cannot find or open file system /h.
+oracle10@bdvaix03:/10.2.0$ df -k
+Filesystem    1024-blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4           262144    179008   32%     2856     3% /
+/dev/hd2         10485760   1717648   84%    58602     3% /usr
+/dev/hd9var       5242880    225208   96%    16138     2% /var
+/dev/hd3          5242880    702304   87%      880     1% /tmp
+/dev/hd1          1048576    506616   52%      436     1% /home
+/proc                   -         -    -         -     -  /proc
+/dev/hd10opt      4194304   1273200   70%     2802     1% /opt
+/dev/cics_serverslv1     1048576   1048000    1%       36     1% /var/cics_servers
+/dev/cics_archivelv1     1048576   1048056    1%        8     1% /var/cics_servers/archives
+/dev/cics_backupslv1     1048576   1048088    1%        4     1% /var/cics_servers/backups
+/dev/cics_regionslv1    10485760   4870332   54%    76415     7% /var/cics_regions
+/dev/dbdata31lv1   120586240  25146864   80%       10     1% /dbdata31
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/archivelv1   136314880 119694748   13%       14     1% /archive
+/dev/aplicacion5lv1     2097152   1270312   40%       70     1% /aplicacion5
+/dev/aplicacion3lv1    23068672  17951300   23%    25982     1% /aplicacion3
+/dev/exportdblv1    62914560  27752932   56%       45     1% /exportdb
+/dev/oraclelv1    15728640   2801600   83%   117162    16% /oracle
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/tmplv       31457280  19733948   38%        5     1% /oraarc_tmp
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/fslv00     104857600 104818676    1%       98     1% /TEMPOFS
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+cpprlnwbr:/nfs_veritas/bdvaix03 10364456608 3754073664   64%    57762     1% /bdvaix03
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ ^R
+ksh: ^R:  not found.
+oracle10@bdvaix03:/10.2.0$ bash
+ksh: bash:  not found.
+oracle10@bdvaix03:/10.2.0$ sqlplus / as sysdba
+
+SQL*Plus: Release 10.2.0.2.0 - Production on Thu Apr 16 10:00:29 2026
+
+Copyright (c) 1982, 2005, Oracle.  All Rights Reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+
+SQL> show parameter name
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_file_name_convert                 string
+db_name                              string      CYBER
+db_unique_name                       string      CYBER
+global_names                         boolean     FALSE
+instance_name                        string      CYBER
+lock_name_space                      string
+log_file_name_convert                string
+service_names                        string      CYBER.BDVAIX03.BANVENEZ.COM
+SQL>
+SQL>
+SQL>
+SQL> Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+You have mail in /usr/spool/mail/oracle10
+oracle10@bdvaix03:/10.2.0$ df -h
+df: Not a recognized flag: h
+Usage: df  [-P] | [-IMitv] [-gkm] [-s] [filesystem ...] [file ...]
+oracle10@bdvaix03:/10.2.0$ sqlplus / as sysdba
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k
+Filesystem    1024-blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4           262144    179008   32%     2856     3% /
+/dev/hd2         10485760   1717648   84%    58602     3% /usr
+/dev/hd9var       5242880    225196   96%    16139     2% /var
+/dev/hd3          5242880    702300   87%      881     1% /tmp
+/dev/hd1          1048576    506616   52%      436     1% /home
+/proc                   -         -    -         -     -  /proc
+/dev/hd10opt      4194304   1273200   70%     2802     1% /opt
+/dev/cics_serverslv1     1048576   1048000    1%       36     1% /var/cics_servers
+/dev/cics_archivelv1     1048576   1048056    1%        8     1% /var/cics_servers/archives
+/dev/cics_backupslv1     1048576   1048088    1%        4     1% /var/cics_servers/backups
+/dev/cics_regionslv1    10485760   4870332   54%    76415     7% /var/cics_regions
+/dev/dbdata31lv1   120586240  25146864   80%       10     1% /dbdata31
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/archivelv1   136314880 103094064   25%       22     1% /archive
+/dev/aplicacion5lv1     2097152   1270312   40%       70     1% /aplicacion5
+/dev/aplicacion3lv1    23068672  17951296   23%    25986     1% /aplicacion3
+/dev/exportdblv1    62914560  27752932   56%       45     1% /exportdb
+/dev/oraclelv1    15728640   2801576   83%   117166    16% /oracle
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/tmplv       31457280  19733948   38%        5     1% /oraarc_tmp
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/fslv00     104857600 104818676    1%       98     1% /TEMPOFS
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+cpprlnwbr:/nfs_veritas/bdvaix03 10364456608 3754073664   64%    57762     1% /bdvaix03
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep data
+/dev/dbdata31lv1   120586240  25146864   80%       10     1% /dbdata31
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ sqlplus / as sysdba
+
+SQL*Plus: Release 10.2.0.2.0 - Production on Thu Apr 16 10:49:45 2026
+
+Copyright (c) 1982, 2005, Oracle.  All Rights Reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+
+SQL> SET PAGES 999
+COL TABLESPACE_NAME FORMAT A40
+COL "SIZE MB" FORMASQL> SQL> T 999,999,999
+COL "FREE MB" FORMAT 99,999,999
+COL "% USED" FORMAT 999
+SELECT     TSU.TABLESPACE_SQL> SQL> SQL> NAME, CEIL(TSU.USED_MB) "SIZE MB"
+,    DECODE(CEIL(TSF.FREE_MB),  2   NULL,0,CEIL(TSF.FREE_MB)) "FREE MB"
+,    DECODE(100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100), NULL,   3  100,
+               100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100)) "%   4  USED"
+FROM    (SELECT TABLESPACE  5  _NAME, SUM(BYTES)/1024/1024 USED_MB
+    FROM     DBA_DATA_FILES   6  GROUP BY TABLESPACE_NAME UNION ALL
+    SELECT     TABLESPACE_NAM  7  E || '  **TEMP**'
+    ,    SUM(B  8  YTES)/1024/1024 USED_MB
+    FROM     DBA_TEMP_FILES GROUP BY TAB  9  LESPACE_NAME) TSU
+,    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/ 10  1024 FREE_MB
+    FROM     DBA_FR 11  EE_SPACE GROUP BY TABLESPACE_NAME) TSF
+WHERE    TSU.TABLESPACE_N 12  AME = TSF.TABLESPACE_NAME (+)
+--and TSU.TABLESPACE_NAME = 'DATA_IDENTITY_LOG'
+ORDER    BY 4
+/ 13   14   15
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+DATA_QPA                                        3,072       3,072      0
+INDX_QPA                                        1,024       1,024      0
+SYSTEM                                            800         426     46
+SYSAUX                                          2,048         689     66
+QUEST                                             150          46     69
+DATA01                                         73,728      21,139     71
+INDX                                          278,528      68,837     75
+RCVRY                                         479,225     109,792     77
+UNDO                                           18,432       3,367     81
+TEMP  **TEMP**                                 33,792           0    100
+
+10 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> set linesize 4000
+set pages 999
+col FILE_NAME format a70
+col FILE_ID format 999,990
+col TABLESPASQL> SQL> SQL> SQL> CE_NAME format a35
+col RELATIVE_FNO format 9999
+select FILE_NAMESQL> SQL> ,FILE_ID,TABLESPACE_NAME, bytes/1024/1024 MB, RELATIVE_FNO,AUTOEXTENSIBLE, status
+from dba_data  2  _files
+where TABLESPACE_NAME in ('DATA01')
+/  3    4
+
+FILE_NAME                                                               FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+---------------------------------------------------------------------- -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberdata3/data01i_CYBER.dbf                                                51 DATA01                                    8192           51 NO  AVAILABLE
+/cyberdata/data01c_CYBER.dbf                                                 14 DATA01                                    8192           14 NO  AVAILABLE
+/cyberdata/data01b_CYBER.dbf                                                 11 DATA01                                    8192           11 NO  AVAILABLE
+/cyberdata/data01a_CYBER.dbf                                                  6 DATA01                                    8192            6 NO  AVAILABLE
+/cyberdata2/data01d_CYBER.dbf                                                 7 DATA01                                    8192            7 NO  AVAILABLE
+/cyberdata2/data01e_CYBER.dbf                                                32 DATA01                                    8192           32 NO  AVAILABLE
+/cyberdata3/data01f_CYBER.dbf                                                38 DATA01                                    8192           38 NO  AVAILABLE
+/cyberdata2/data01g_CYBER.dbf                                                41 DATA01                                    8192           41 NO  AVAILABLE
+/cyberdata2/data01h_CYBER.dbf                                                45 DATA01                                    8192           45 NO  AVAILABLE
+
+9 rows selected.
+
+SQL> set linesize 4000
+set pages 999
+col FILE_NAME format a70
+col FILE_ID format 999,990
+col TABLESPASQL> SQL> SQL> SQL> CE_NAME format a35
+col RELATIVE_FNO format 9999
+select FILE_NAMESQL> SQL> ,FILE_ID,TABLESPACE_NAME, bytes/1024/1024 MB, RELATIVE_FNO,AUTOEXTENSIBLE, status
+from dba_data  2  _files
+where TABLESPACE_NAME in ('RCVRY')
+/  3    4
+
+FILE_NAME                                                               FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+---------------------------------------------------------------------- -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberdata/rcvry01c_CYBER.dbf                                                10 RCVRY                                    30720           10 NO  AVAILABLE
+/cyberdata/rcvry01b_CYBER.dbf                                                 9 RCVRY                                    26624            9 NO  AVAILABLE
+/cyberdata/rcvry01a_CYBER.dbf                                                 4 RCVRY                                    30720            4 NO  AVAILABLE
+/cyberdata2/rcvry01d_CYBER.dbf                                               19 RCVRY                                    22528           19 NO  AVAILABLE
+/cyberdata2/rcvry01e_CYBER.dbf                                               21 RCVRY                                    25600           21 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01f_CYBER.dbf                                   22 RCVRY                                    22528           22 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01g_CYBER.dbf                                   23 RCVRY                                    22528           23 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01h_CYBER.dbf                                   25 RCVRY                                    22528           25 NO  AVAILABLE
+/dbdata31/oradata/CYBER/rcvry01i_CYBER.dbf                                   26 RCVRY                                    25600           26 NO  AVAILABLE
+/cyberdata3/rcvry01j_CYBER.dbf                                               29 RCVRY                                    32767           29 NO  AVAILABLE
+/cyberdata3/rcvry01k_CYBER.dbf                                               34 RCVRY                                    32767           34 NO  AVAILABLE
+/cyberdata/rcvry01l_CYBER.dbf                                                35 RCVRY                                    20480           35 NO  AVAILABLE
+/cyberdata3/rcvry01m_CYBER.dbf                                               37 RCVRY                                    32767           37 NO  AVAILABLE
+/cyberdata2/rcvry01n_CYBER.dbf                                               46 RCVRY                                    32767           46 NO  AVAILABLE
+/cyberdata4/rcvry01o_CYBER.dbf                                               48 RCVRY                                    32767           48 NO  AVAILABLE
+/cyberdata4/rcvry01p_CYBER.dbf                                               49 RCVRY                                    32767           49 NO  AVAILABLE
+/cyberdata4/rcvry01q_CYBER.dbf                                               50 RCVRY                                    32767           50 NO  AVAILABLE
+
+17 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> set linesize 4000
+set pages 999
+col FILE_NAME format a70
+col FILSQL> SQL> SQL> E_ID format 999,990
+col TABLESPASQL> CE_NAME format a35
+col RELATIVE_FNO format 9999
+select FILE_NAMESQL> SQL> ,FILE_ID,TABLESPACE_NAME, bytes/1024/1024 MB, RELATIVE_FNO,AUTOEXTENSIBLE, status
+from dba_data  2  _files
+where TABLESPACE_NAME in ('INDX')
+/  3    4
+
+FILE_NAME                                                               FILE_ID TABLESPACE_NAME                             MB RELATIVE_FNO AUT STATUS
+---------------------------------------------------------------------- -------- ----------------------------------- ---------- ------------ --- ---------
+/cyberindx/indx03_CYBER.dbf                                                  15 INDX                                     16384           15 NO  AVAILABLE
+/cyberindx/indx02_CYBER.dbf                                                  12 INDX                                     17408           12 NO  AVAILABLE
+/cyberindx/indx01_CYBER.dbf                                                   5 INDX                                     17408            5 NO  AVAILABLE
+/cyberindx/indx04_CYBER.dbf                                                  18 INDX                                     16384           18 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx05_CYBER.dbf                                   20 INDX                                     18432           20 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx06_CYBER.dbf                                   24 INDX                                     18432           24 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx07_CYBER.dbf                                   27 INDX                                     17408           27 NO  AVAILABLE
+/cyberindx/indx08_CYBER.dbf                                                  30 INDX                                     15360           30 NO  AVAILABLE
+/cyberindx/indx09_CYBER.dbf                                                  31 INDX                                     15360           31 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx10_CYBER.dbf                                   33 INDX                                     17408           33 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx11_CYBER.dbf                                   36 INDX                                     15360           36 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx12_CYBER.dbf                                   39 INDX                                     15360           39 NO  AVAILABLE
+/cyberindx/indx13_CYBER.dbf                                                  40 INDX                                     15360           40 NO  AVAILABLE
+/cyberindx2/oradata/CYBER/indx14_CYBER.dbf                                   42 INDX                                     15360           42 NO  AVAILABLE
+/cyberindx/indx15_CYBER.dbf                                                  43 INDX                                     15360           43 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx16_CYBER.dbf                                   44 INDX                                     15360           44 NO  AVAILABLE
+/cyberindx3/oradata/CYBER/indx17_CYBER.dbf                                   47 INDX                                     16384           47 NO  AVAILABLE
+
+17 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+oracle10@bdvaix03:/10.2.0$ df -k | grep CYBER
+oracle10@bdvaix03:/10.2.0$ df -k
+Filesystem    1024-blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4           262144    179008   32%     2856     3% /
+/dev/hd2         10485760   1717648   84%    58602     3% /usr
+/dev/hd9var       5242880    225192   96%    16138     2% /var
+/dev/hd3          5242880    702304   87%      880     1% /tmp
+/dev/hd1          1048576    506616   52%      436     1% /home
+/proc                   -         -    -         -     -  /proc
+/dev/hd10opt      4194304   1273200   70%     2802     1% /opt
+/dev/cics_serverslv1     1048576   1048000    1%       36     1% /var/cics_servers
+/dev/cics_archivelv1     1048576   1048056    1%        8     1% /var/cics_servers/archives
+/dev/cics_backupslv1     1048576   1048088    1%        4     1% /var/cics_servers/backups
+/dev/cics_regionslv1    10485760   4870332   54%    76415     7% /var/cics_regions
+/dev/dbdata31lv1   120586240  25146864   80%       10     1% /dbdata31
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/archivelv1   136314880 101019480   26%       23     1% /archive
+/dev/aplicacion5lv1     2097152   1270312   40%       70     1% /aplicacion5
+/dev/aplicacion3lv1    23068672  17951308   23%    25982     1% /aplicacion3
+/dev/exportdblv1    62914560  27752932   56%       45     1% /exportdb
+/dev/oraclelv1    15728640   2801572   83%   117166    16% /oracle
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/tmplv       31457280  19733948   38%        5     1% /oraarc_tmp
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/fslv00     104857600 104818676    1%       98     1% /TEMPOFS
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+cpprlnwbr:/nfs_veritas/bdvaix03 10364456608 3754073664   64%    57762     1% /bdvaix03
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -h  | grep -i CYBER
+df: Not a recognized flag: h
+Usage: df  [-P] | [-IMitv] [-gkm] [-s] [filesystem ...] [file ...]
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$  df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  35471092   80%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$  df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  32325364   82%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 213864140   33%        7     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+You have mail in /usr/spool/mail/oracle10
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 146757288   54%        9     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+You have mail in /usr/spool/mail/oracle10
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  37729000   71%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 113203860   65%       10     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+You have mail in /usr/spool/mail/oracle10
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  34583272   73%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  40867520   77%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 113203860   65%       10     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  30388964   76%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  34576060   81%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  23054644   75%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 113203860   65%       10     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ df -k | grep -i CYBER
+/dev/dbdata32lv1   131072000  11514756   92%       14     1% /cyberdata2
+/dev/dbdata33lv1   125829120  30388964   76%       12     1% /cyberindx2
+/dev/cyberctrl01lv1     1048576   1035688    2%        5     1% /cybercontrol01
+/dev/cyberctrl02lv1     1048576   1035688    2%        5     1% /cybercontrol02
+/dev/cyberredologal1    20971520  10940936   48%       12     1% /cyberredologa
+/dev/cyberredologbl1    20971520  10940800   48%       14     1% /cyberredologb
+/dev/cybersystemlv1     2097152   1277284   40%        6     1% /cybersystem
+/dev/cybertmplv1    28311552  10482108   63%        6     1% /cybertmp
+/dev/cyberundolv1    20971520   2093580   91%        5     1% /cyberundo
+/dev/cyberindxlv1   173015040  34576060   81%       13     1% /cyberindx
+/dev/cyberdatalv1   173015040  26033908   85%       13     1% /cyberdata
+/dev/cybertemplv4   523239424  43878608   92%       54     1% /cybertemp
+/dev/cyberdata3lv3   152043520  27243232   83%       12     1% /cyberdata3
+/dev/cyberindx3lv3    89128960  13617460   85%       10     1% /cyberindx3
+/dev/cyberundolv3    15728640   5241044   67%        5     1% /cyberundo2
+/dev/cyberdata3lv4   314572800 113203860   65%       10     1% /cyberdata4
+/dev/cyberindx3lv4   209715200 209682848    1%        4     1% /cyberindx4
+/dev/cyberundolv4    41943040  41936308    1%        4     1% /cyberundo4
+/dev/cybertmplv4    41943040  41936308    1%        4     1% /cybertmp4
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$
+oracle10@bdvaix03:/10.2.0$ sqlplus / as sysdba
+
+SQL*Plus: Release 10.2.0.2.0 - Production on Thu Apr 16 11:46:46 2026
+
+Copyright (c) 1982, 2005, Oracle.  All Rights Reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+
+SQL> SET PAGES 999
+COL TABLESPACE_NAME FORMAT A40
+COL "SIZE MB" FORMAT 999,999,999
+COL "FREE MB" FORMAT 99,999,999
+COL "% USED" FORMASQL> SQL> SQL> SQL> T 999
+SELECT     TSU.TABLESPACE_NAME, CEIL(TSU.USED_MB) "SIZE MB"
+,    DECODE(CEIL(TSF.FREE_MB),SQL>   2   NULL,0,CEIL(TSF.FREE_MB)) "FREE MB"
+,    DECODE(100 - CEIL(TSF.  3  FREE_MB/TSU.USED_MB*100), NULL, 100,
+               100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100)) "%   4  USED"
+FROM    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/1024 USED  5  _MB
+    FROM     DBA_DATA_FILES   6  GROUP BY TABLESPACE_NAME UNION ALL
+    SELECT     TABLESPACE_NAM  7  E || '  **TEMP**'
+    ,    SUM(BYTES)/1024/1024 USED_MB
+    FROM     DBA_TEMP_FILES GROUP BY TAB  8    9  LESPACE_NAME) TSU
+,    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/ 10  1024 FREE_MB
+    FROM     DBA_FR 11  EE_SPACE GROUP BY TABLESPACE_NAME) TSF
+WHERE    TSU.TABLESPACE_N 12  AME = TSF.TABLESPACE_NAME (+)
+--and TSU.TABLESPACE_NAME = 'DATA_ 13  IDENTITY_LOG'
+ORDER    BY 4
+/ 14   15
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+DATA_QPA                                        3,072       3,072      0
+INDX_QPA                                        1,024       1,024      0
+SYSTEM                                            800         426     46
+DATA01                                         82,944      30,355     63
+RCVRY                                         577,526     208,257     63
+SYSAUX                                          2,048         688     66
+INDX                                          301,056      95,506     68
+QUEST                                             150          46     69
+UNDO                                           18,432       3,359     81
+TEMP  **TEMP**                                 33,792           0    100
+
+10 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.2.0 - 64bit Production
+With the Partitioning and Data Mining options
+You have mail in /usr/spool/mail/oracle10
+oracle10@bdvaix03:/10.2.0$
+Connection closed by foreign host.
+                                                                                                                                                                                                ?
+
+ ? 2026-04-16 ? ? 15:31.56 ? ? /home/mobaxterm ?

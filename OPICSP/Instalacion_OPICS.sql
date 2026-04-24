@@ -381,3 +381,12 @@ Modificar LOCAL_LISTENER
 
 ALTER SYSTEM SET LOCAL_LISTENER='(ADDRESS = (PROTOCOL = TCP)(HOST = plbdopc01)(PORT = 1560))' SCOPE=BOTH;
 ALTER SYSTEM REGISTER;
+
+
+
+
+****
+
+
+ALTER SYSTEM SET processes=8000 SCOPE=SPFILE;
+alter system set session_cached_cursors=1200 Comment='Recomendation AHF' scope=spfile;
