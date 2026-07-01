@@ -146,17 +146,18 @@ Setearse a rman y buscar los controlfile del dia especifico que quieras restaura
 --Seteo
 rman target / catalog rmanp/rmanexport@RMAN12
 set dbid 2447070573
+export NLS_DATE_FORMAT='DD-MON-RRRR HH24:MI:SS';
 ---Sirven para listar todos los backups
 list backup summary;
 list backup;
 ---Se le especifica el rango de la fecha.
 --list backup summary completed between "to_date('01/03/2023','DD/MM/YYYY')" and "to_date('20/04/2023','DD/MM/YYYY')";
-list backup of database completed between "to_date('05/03/2025','DD/MM/YYYY')" and "to_date('07/03/2025','DD/MM/YYYY')";
-LIST BACKUP OF CONTROLFILE COMPLETED BETWEEN  "to_date('05/03/2025','DD/MM/YYYY')" AND "to_date('07/04/2025','DD/MM/YYYY')";
+list backup of database completed between "to_date('01/03/2026','DD/MM/YYYY')" and "to_date('30/03/2026','DD/MM/YYYY')";
+LIST BACKUP OF CONTROLFILE COMPLETED BETWEEN  "to_date('01/03/2026','DD/MM/YYYY')" AND "to_date('30/03/2026','DD/MM/YYYY')";
 ---Identificar la fecha y el control mas reciente de ese para que la BD pueda abrir sin problemas.
 
 
-export NLS_DATE_FORMAT='DD-MON-RRRR HH24:MI:SS';
+
 
 ********************************************************************************************************************************************
 ********************************************************************************************************************************************

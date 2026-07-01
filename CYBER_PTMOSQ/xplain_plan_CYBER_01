@@ -1,0 +1,137 @@
+explain plan for SELECT DISTINCT
+    TRIM (CC.CON_CEDULA)
+        sem_cedula,
+    TRIM (CC.CON_TIPO_DOC)
+        sem_tipo_doc,
+    SUBSTR (TRIM (CC.CON_CEDULA), 2, 10)
+        sem_num_doc,
+    TRIM (CC.CON_COD_AREA_TELF) || TRIM (CC.CON_NUM_TELF)
+        sem_telefono,
+    TRIM (CC.CON_COD_AREA_TELF)
+        sem_cod_area_tlf,
+    TRIM (CC.CON_NUM_TELF)
+        sem_num_tlf,
+    CASE CC.CON_MARCA_CONT
+        WHEN ' ' THEN ' '
+        WHEN '1' THEN ' '
+        ELSE CC.CON_MARCA_CONT
+    END
+        sem_marca_contacto,
+    CC.CON_ORIGEN_CONTACTO
+        sem_origen,
+    CASE CC.CON_ORIGEN_CONTACTO
+        WHEN 'CMO' THEN 3
+        WHEN 'ALT' THEN 4
+        ELSE 5
+    END
+        sem_prioridad,
+    CC.CON_FECHA_SIST
+        sem_fecha_registro,
+    ROW_NUMBER ()
+        OVER (
+            PARTITION BY con_CEDULA,
+                            TRIM (CC.CON_COD_AREA_TELF)
+                         || TRIM (CC.CON_NUM_TELF)
+            ORDER BY con_CEDULA DESC)
+        AS sem_rn
+               FROM CYB_REN_CONTACTO CC
+              WHERE CC.CON_ORIGEN_CONTACTO <> 'MDP';
+
+
+
+
+
+select PLAN_TABLE_OUTPUT from table(dbms_xplan.display);
+
+SQL> select PLAN_TABLE_OUTPUT from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 1371998829
+
+------------------------------------------------------------------------------------------------
+| Id  | Operation           | Name             | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
+------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |                  |   107M|  6334M|       |  4672K (10)| 01:24:49 |
+|   1 |  SORT UNIQUE        |                  |   107M|  6334M|    16G|  4672K (10)| 01:24:49 |
+|   2 |   WINDOW SORT       |                  |   107M|  6334M|    16G|  4672K (10)| 01:24:49 |
+|*  3 |    TABLE ACCESS FULL| CYB_REN_CONTACTO |   107M|  6334M|       |  1133K (10)| 00:20:35 |
+------------------------------------------------------------------------------------------------
+
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("CC"."CON_ORIGEN_CONTACTO"<>'MDP')
+
+15 rows selected.
+
+
+
+
+CYB_REN_CONTACTO
+
+CYBRENCONT_FILTRO_SEMANAL
+
+CYBRENCONT_FILTRO
+
+
+
+explain plan for
+SELECT ROWID cod_id, a.*
+       FROM RCVRY.CYBRENCONT_FILTRO_SEMANAL a
+      WHERE ROWID IN (  SELECT MIN (ROWID)
+                          FROM RCVRY.CYBRENCONT_FILTRO_SEMANAL x
+                         WHERE x.sem_cedula = a.sem_cedula
+                      GROUP BY x.sem_cedula, x.sem_telefono);
+
+
+select PLAN_TABLE_OUTPUT from table(dbms_xplan.display);
+
+
+SQL> select PLAN_TABLE_OUTPUT from table(dbms_xplan.display);
+
+PLAN_TABLE_OUTPUT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Plan hash value: 19820850
+
+------------------------------------------------------------------------------------------------------------
+| Id  | Operation                      | Name                      | Rows  | Bytes | Cost (%CPU)| Time     |
+------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT               |                           |     1 |    92 |    23T  (2)|999:59:59 |
+|*  1 |  FILTER                        |                           |       |       |            |          |
+|   2 |   TABLE ACCESS FULL            | CYBRENCONT_FILTRO_SEMANAL |   118M|    10G|   409K (15)| 00:07:27 |
+|*  3 |   FILTER                       |                           |       |       |            |          |
+|   4 |    SORT GROUP BY               |                           |  1180K|    30M|   197K  (2)| 00:03:35 |
+|   5 |     TABLE ACCESS BY INDEX ROWID| CYBRENCONT_FILTRO_SEMANAL |  1180K|    30M|   196K  (1)| 00:03:34 |
+|*  6 |      INDEX RANGE SCAN          | INDX_CRC_SEMCEDULA        |   472K|       |    99  (96)| 00:00:01 |
+------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter( EXISTS (SELECT /*+ */ 0 FROM "RCVRY"."CYBRENCONT_FILTRO_SEMANAL" "X" WHERE
+              "X"."SEM_CEDULA"=:B1 GROUP BY "X"."SEM_CEDULA","X"."SEM_TELEFONO" HAVING MIN(ROWID)=:B2))
+   3 - filter(MIN(ROWID)=:B1)
+   6 - access("X"."SEM_CEDULA"=:B1)
+
+Note
+-----
+   - dynamic sampling used for this statement
+
+25 rows selected.
+
+
+explain plan for 
+SELECT ROWID cod_id, a.*
+FROM RCVRY.CYBRENCONT_FILTRO_SEMANAL a
+WHERE ROWID IN (
+    SELECT MIN(ROWID)
+    FROM RCVRY.CYBRENCONT_FILTRO_SEMANAL
+    GROUP BY sem_cedula, sem_telefono
+);
+
+
+select PLAN_TABLE_OUTPUT from table(dbms_xplan.display);

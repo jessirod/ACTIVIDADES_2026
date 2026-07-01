@@ -1,0 +1,290 @@
+;;; 
+Import: Release 19.0.0.0.0 - Production on Thu May 7 14:06:13 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+07-MAY-26 14:06:13.947: ;;; **************************************************************************
+07-MAY-26 14:06:13.948: ;;; Parfile values:
+07-MAY-26 14:06:13.949: ;;;  parfile:  logtime=ALL
+07-MAY-26 14:06:13.949: ;;;  parfile:  parallel=4
+07-MAY-26 14:06:13.950: ;;;  parfile:  dumpfile=EXPORT_PCP_20260427_%L.dmp
+07-MAY-26 14:06:13.951: ;;;  parfile:  logfile=IMP_SCHEMA_PCP.LOG
+07-MAY-26 14:06:13.952: ;;;  parfile:  schemas=PCP
+07-MAY-26 14:06:13.952: ;;;  parfile:  directory=MIGRACION
+07-MAY-26 14:06:13.953: ;;; **************************************************************************
+07-MAY-26 14:06:14.932: Master table "SYSTEM"."SYS_IMPORT_SCHEMA_01" successfully loaded/unloaded
+07-MAY-26 14:06:15.261: Starting "SYSTEM"."SYS_IMPORT_SCHEMA_01":  SYSTEM/******** PARFILE=IMP_SCHEMA_PCP.par 
+07-MAY-26 14:06:15.301: Processing object type SCHEMA_EXPORT/USER
+07-MAY-26 14:06:15.410: ORA-31684: Object type USER:"PCP" already exists
+07-MAY-26 14:06:15.465: Processing object type SCHEMA_EXPORT/SYSTEM_GRANT
+07-MAY-26 14:06:15.621: Processing object type SCHEMA_EXPORT/DEFAULT_ROLE
+07-MAY-26 14:06:15.732: Processing object type SCHEMA_EXPORT/PASSWORD_HISTORY
+07-MAY-26 14:06:15.782: ORA-39111: Dependent object type PASSWORD_HISTORY:"PCP" skipped, base object type USER:"PCP" already exists
+07-MAY-26 14:06:15.824: Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+07-MAY-26 14:06:16.016: Processing object type SCHEMA_EXPORT/TYPE/TYPE_SPEC
+07-MAY-26 14:06:17.752: Processing object type SCHEMA_EXPORT/SEQUENCE/SEQUENCE
+07-MAY-26 14:06:17.940: Processing object type SCHEMA_EXPORT/TABLE/TABLE
+07-MAY-26 14:06:24.845: Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+07-MAY-26 14:06:25.065: . . imported "PCP"."W_GROUP_PERMISSIONS"                 8.039 KB      24 rows
+07-MAY-26 14:06:25.066: . . imported "PCP"."W_OAUTH2_RESOURCES"                  10.51 KB      38 rows
+07-MAY-26 14:06:25.145: . . imported "PCP"."MQ_INOUT_HOST_12_08_2020"            750.1 KB    6917 rows
+07-MAY-26 14:06:25.191: . . imported "PCP"."W_PRODUCTS"                          6.921 KB      15 rows
+07-MAY-26 14:06:25.254: . . imported "PCP"."BANKING"                             6.046 KB       5 rows
+07-MAY-26 14:06:25.272: . . imported "PCP"."W_APPLICATIONS"                      6.578 KB       4 rows
+07-MAY-26 14:06:54.449: . . imported "PCP"."MESSAGES"                            541.4 MB 7647956 rows
+07-MAY-26 14:06:54.495: . . imported "PCP"."W_AUTHORIZATION_TOKEN"                   0 KB       0 rows
+07-MAY-26 14:06:54.512: . . imported "PCP"."CREDITS_CREDITO_INMEDIATO"           559.4 MB 5205064 rows
+07-MAY-26 14:06:54.521: . . imported "PCP"."PROCESS_DICTIONARY"                  7.656 KB      17 rows
+07-MAY-26 14:06:55.018: . . imported "PCP"."ENTERPRISE3107202BK"                 12.87 MB  162450 rows
+07-MAY-26 14:06:55.182: . . imported "PCP"."BUSINESS_RULES_TEMP"                 32.71 KB       5 rows
+07-MAY-26 14:06:55.264: . . imported "PCP"."STATUS_CONVERSION"                   20.97 KB     107 rows
+07-MAY-26 14:06:55.285: . . imported "PCP"."W_OPTIONS_MENU"                      8.953 KB      17 rows
+07-MAY-26 14:06:55.303: . . imported "PCP"."SEGMENTS"                            6.914 KB      12 rows
+07-MAY-26 14:06:55.304: . . imported "PCP"."EXCLUSIVE_CHANNEL_REG"                   0 KB       0 rows
+07-MAY-26 14:06:55.304: . . imported "PCP"."DOMIC_CREDITS":"P2019"                   0 KB       0 rows
+07-MAY-26 14:06:55.305: . . imported "PCP"."DOMIC_CREDITS":"P2020"                   0 KB       0 rows
+07-MAY-26 14:06:55.305: . . imported "PCP"."DOMIC_CREDITS":"P2024"                   0 KB       0 rows
+07-MAY-26 14:06:55.306: . . imported "PCP"."DOMIC_CREDITS":"P2023"                   0 KB       0 rows
+07-MAY-26 14:06:55.306: . . imported "PCP"."DOMIC_CREDITS":"P2022"                   0 KB       0 rows
+07-MAY-26 14:06:55.307: . . imported "PCP"."DOMIC_CREDITS":"P2021"                   0 KB       0 rows
+07-MAY-26 14:06:55.307: . . imported "PCP"."DOMIC_CREDITS":"P2025"                   0 KB       0 rows
+07-MAY-26 14:06:55.448: . . imported "PCP"."BUSINESS_RULES_19_07_2020"           276.2 MB   76944 rows
+07-MAY-26 14:06:58.403: . . imported "PCP"."PCP_WEB_HISTORIAL"                   59.29 MB  332650 rows
+07-MAY-26 14:06:58.784: . . imported "PCP"."ENTERPRISE_17072020"                 5.685 MB   72233 rows
+07-MAY-26 14:07:01.717: . . imported "PCP"."BUSINESS_RULES_31072020"             338.4 MB   70771 rows
+07-MAY-26 14:07:01.761: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD7"            0 KB       0 rows
+07-MAY-26 14:07:04.280: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD1"        47.62 MB 1999759 rows
+07-MAY-26 14:07:04.327: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD9"            0 KB       0 rows
+07-MAY-26 14:07:04.327: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD10"           0 KB       0 rows
+07-MAY-26 14:07:04.328: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD11"           0 KB       0 rows
+07-MAY-26 14:07:04.328: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD24"           0 KB       0 rows
+07-MAY-26 14:07:04.329: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD8"            0 KB       0 rows
+07-MAY-26 14:07:04.881: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD2"        7.925 MB  319609 rows
+07-MAY-26 14:07:04.882: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD3"            0 KB       0 rows
+07-MAY-26 14:07:04.882: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD4"            0 KB       0 rows
+07-MAY-26 14:07:04.883: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD5"            0 KB       0 rows
+07-MAY-26 14:07:04.883: . . imported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD6"            0 KB       0 rows
+07-MAY-26 14:07:04.911: . . imported "PCP"."W_ROL_MENUS"                         6.703 KB       9 rows
+07-MAY-26 14:07:04.999: . . imported "PCP"."MIX_NUMBER_ACCOUNTS"                 203.0 KB    2320 rows
+07-MAY-26 14:07:05.000: . . imported "PCP"."ORDEN_REPROCESS"                         0 KB       0 rows
+07-MAY-26 14:07:05.043: . . imported "PCP"."CORRECT_NUMBER_ACCOUNTS"             160.0 KB    4524 rows
+07-MAY-26 14:07:05.061: . . imported "PCP"."BANCA_SEGMENTO_COMI"                 6.328 KB      28 rows
+07-MAY-26 14:07:05.075: . . imported "PCP"."TMP_ENTERPRISEG"                     7.843 KB     203 rows
+07-MAY-26 14:07:05.135: . . imported "PCP"."TMP_CTAS_COMISION_C"                 109.8 KB    2656 rows
+07-MAY-26 14:07:05.690: . . imported "PCP"."ENTERPRISE_BACKUP_17_08_2020"        7.298 MB   95373 rows
+07-MAY-26 14:07:06.194: . . imported "PCP"."BENEF"                               255.9 MB 1823943 rows
+07-MAY-26 14:07:06.515: . . imported "PCP"."BUSINESS_RULES_CP"                   6.031 MB  181701 rows
+07-MAY-26 14:07:26.952: . . imported "PCP"."BUSINESS_RULES_05082020"             263.5 MB   73353 rows
+07-MAY-26 14:07:27.037: . . imported "PCP"."TORDEN_ALTA"                         256.4 KB     790 rows
+07-MAY-26 14:07:30.384: . . imported "PCP"."DEBITS_EXTRAS_D"                     44.92 MB 2442005 rows
+07-MAY-26 14:07:30.509: . . imported "PCP"."W_ROLES_USERS"                       5.695 KB      12 rows
+07-MAY-26 14:07:30.541: . . imported "PCP"."OPS_PLANIFICATION"                   20.27 KB      30 rows
+07-MAY-26 14:07:30.572: . . imported "PCP"."STATUS_DICTIONARY"                   44.00 KB     607 rows
+07-MAY-26 14:07:31.043: . . imported "PCP"."MQ_INOUT_HOST"                       6.008 MB   56145 rows
+07-MAY-26 14:07:31.147: . . imported "PCP"."STG_PROVIDER":"P3"                   362.3 KB    1432 rows
+07-MAY-26 14:07:31.167: . . imported "PCP"."STG_PROVIDER":"P2"                   398.6 KB    1596 rows
+07-MAY-26 14:07:31.198: . . imported "PCP"."STG_PROVIDER":"P1"                   395.8 KB    1553 rows
+07-MAY-26 14:07:31.269: . . imported "PCP"."STG_PROVIDER":"P4"                   328.9 KB    1265 rows
+07-MAY-26 14:07:31.286: . . imported "PCP"."STG_PROVIDER":"P8"                   319.0 KB    1253 rows
+07-MAY-26 14:07:31.316: . . imported "PCP"."STG_PROVIDER":"P7"                   578.5 KB    2326 rows
+07-MAY-26 14:07:31.378: . . imported "PCP"."STG_PROVIDER":"P6"                   959.1 KB    3930 rows
+07-MAY-26 14:07:31.395: . . imported "PCP"."STG_PROVIDER":"P5"                   320.9 KB    1225 rows
+07-MAY-26 14:07:33.339: . . imported "PCP"."ENTERPRISE_DETAIL"                   41.00 MB  191354 rows
+07-MAY-26 14:07:53.435: . . imported "PCP"."BUSINESS_RULES_21_07_2020"           263.6 MB   73355 rows
+07-MAY-26 14:07:53.750: . . imported "PCP"."TOAD_PLAN_TABLE"                     958.6 KB    1508 rows
+07-MAY-26 14:08:03.885: . . imported "PCP"."CREDITS":"CR7"                       205.8 MB 1999943 rows
+07-MAY-26 14:08:05.655: . . imported "PCP"."BUSINESS_RULES"                      764.0 MB  206652 rows
+07-MAY-26 14:08:13.497: . . imported "PCP"."CREDITS":"CR6"                       186.5 MB 1999915 rows
+07-MAY-26 14:08:16.845: . . imported "PCP"."CREDITS":"CR9"                       206.3 MB 2000000 rows
+07-MAY-26 14:08:24.900: . . imported "PCP"."CREDITS":"CR10"                      209.1 MB 2000000 rows
+07-MAY-26 14:08:27.992: . . imported "PCP"."CREDITS":"CR11"                      223.2 MB 2000000 rows
+07-MAY-26 14:09:15.137: . . imported "PCP"."ORDEN_DETAIL"                        3.432 GB 27898665 rows
+07-MAY-26 14:14:10.200: . . imported "PCP"."TRACK_ORDEN"                         9.111 GB 158886926 rows
+07-MAY-26 14:14:20.649: . . imported "PCP"."CREDITS":"CR8"                       208.0 MB 1996704 rows
+07-MAY-26 14:14:30.703: . . imported "PCP"."CREDITS":"CR5"                       183.0 MB 1999982 rows
+07-MAY-26 14:14:41.040: . . imported "PCP"."CREDITS":"CR4"                       183.0 MB 2000000 rows
+07-MAY-26 14:14:50.674: . . imported "PCP"."CREDITS":"CR3"                       183.0 MB 2000000 rows
+07-MAY-26 14:15:01.215: . . imported "PCP"."CREDITS":"CR2"                       183.0 MB 2000000 rows
+07-MAY-26 14:15:11.170: . . imported "PCP"."CREDITS":"CR1"                       183.1 MB 1999858 rows
+07-MAY-26 14:15:11.615: . . imported "PCP"."ENTERPRISE_14_08_2020"               7.256 MB   94853 rows
+07-MAY-26 14:15:11.718: . . imported "PCP"."ROLES_USERS"                         5.593 KB       2 rows
+07-MAY-26 14:15:11.846: . . imported "PCP"."TMP_CTAS_COMISION_G"                 54.69 KB    1427 rows
+07-MAY-26 14:15:11.928: . . imported "PCP"."OPS_CONTROL_MASTER_TDA"              7.882 KB       2 rows
+07-MAY-26 14:15:11.943: . . imported "PCP"."PERMISOS_ROLES"                      5.937 KB      37 rows
+07-MAY-26 14:15:11.967: . . imported "PCP"."TRANSFER_ACCOUNTS"                   108.2 KB     680 rows
+07-MAY-26 14:15:11.983: . . imported "PCP"."PARAMETROS_PCP"                          8 KB      10 rows
+07-MAY-26 14:15:12.010: . . imported "PCP"."PRODUCTS"                            6.945 KB       4 rows
+07-MAY-26 14:15:12.357: . . imported "PCP"."TORDEN_DETAIL_ALTA"                  4.432 MB   24058 rows
+07-MAY-26 14:15:12.423: . . imported "PCP"."W_PERMISOS_ROLES"                    6.375 KB      80 rows
+07-MAY-26 14:15:12.424: . . imported "PCP"."W_MENU_UI"                               0 KB       0 rows
+07-MAY-26 14:15:12.493: . . imported "PCP"."BANCOS_SWIFT"                        9.070 KB      60 rows
+07-MAY-26 14:15:12.570: . . imported "PCP"."ORDEN_DETAIL_COPY"                   34.92 KB      77 rows
+07-MAY-26 14:18:49.460: . . imported "PCP"."ORDEN"                               4.291 GB 27898665 rows
+07-MAY-26 14:18:57.401: . . imported "PCP"."DEBITS_COMMISSIONS"                  163.5 MB 2442005 rows
+07-MAY-26 14:18:57.699: . . imported "PCP"."CREDITS_DOCS_D":"CRD7"               4.648 MB  152175 rows
+07-MAY-26 14:18:57.720: . . imported "PCP"."CREDITS_DOCS_D":"CRD1"               8.312 KB      18 rows
+07-MAY-26 14:18:58.168: . . imported "PCP"."CREDITS_DOCS_D":"CRD9"               5.941 MB  194576 rows
+07-MAY-26 14:18:58.383: . . imported "PCP"."CREDITS_DOCS_D":"CRD10"              3.755 MB  122879 rows
+07-MAY-26 14:18:58.657: . . imported "PCP"."CREDITS_DOCS_D":"CRD11"              4.825 MB  157985 rows
+07-MAY-26 14:19:01.231: . . imported "PCP"."CREDITS_DOCS_D":"CRD24"              48.06 MB 1534599 rows
+07-MAY-26 14:19:01.612: . . imported "PCP"."CREDITS_DOCS_D":"CRD8"               3.680 MB  120420 rows
+07-MAY-26 14:19:01.613: . . imported "PCP"."CREDITS_DOCS_D":"CRD2"                   0 KB       0 rows
+07-MAY-26 14:19:01.613: . . imported "PCP"."CREDITS_DOCS_D":"CRD3"                   0 KB       0 rows
+07-MAY-26 14:19:01.686: . . imported "PCP"."CREDITS_DOCS_D":"CRD4"               9.234 KB      48 rows
+07-MAY-26 14:19:01.686: . . imported "PCP"."CREDITS_DOCS_D":"CRD5"                   0 KB       0 rows
+07-MAY-26 14:19:01.811: . . imported "PCP"."CREDITS_DOCS_D":"CRD6"               1.116 MB   36668 rows
+07-MAY-26 14:19:02.299: . . imported "PCP"."ENTERPRISE_18_08_2020"               7.211 MB   94308 rows
+07-MAY-26 14:19:02.877: . . imported "PCP"."ENTERPRISE_DETAIL_BACKUP"            9.694 MB   67226 rows
+07-MAY-26 14:19:02.895: . . imported "PCP"."MONITOR_CHECK"                       11.82 KB      31 rows
+07-MAY-26 14:19:02.895: . . imported "PCP"."OPS_DEBITS_TYPE"                         0 KB       0 rows
+07-MAY-26 14:19:03.090: . . imported "PCP"."TORDEN"                              1.968 MB    7069 rows
+07-MAY-26 14:19:03.108: . . imported "PCP"."MONITOR_CONF"                        6.523 KB       1 rows
+07-MAY-26 14:19:03.384: . . imported "PCP"."ENTERPRISE_BK"                       4.889 MB   58921 rows
+07-MAY-26 14:19:05.600: . . imported "PCP"."TORDEN_DETAIL":"TORDEN_DETAIL_P0"    43.36 MB  572266 rows
+07-MAY-26 14:19:05.667: . . imported "PCP"."AUTH_PCP"                            6.796 KB       1 rows
+07-MAY-26 14:19:05.687: . . imported "PCP"."OPS_CONTROL_MASTER"                  7.960 KB       4 rows
+07-MAY-26 14:19:05.704: . . imported "PCP"."MAPA_EDI"                            7.125 KB      59 rows
+07-MAY-26 14:19:05.705: . . imported "PCP"."OPS_CRED_TYPE"                           0 KB       0 rows
+07-MAY-26 14:19:05.722: . . imported "PCP"."PROCESS_CONTROL"                     7.039 KB       6 rows
+07-MAY-26 14:19:06.149: . . imported "PCP"."ENTERPRISE_16_08_2020"               7.211 MB   94308 rows
+07-MAY-26 14:19:06.149: . . imported "PCP"."COMMISSIONS"                             0 KB       0 rows
+07-MAY-26 14:19:06.466: . . imported "PCP"."ENTERPRISE_BACKUP_16"                7.211 MB   94308 rows
+07-MAY-26 14:19:07.612: . . imported "PCP"."ENTERPRISE"                          19.63 MB  218782 rows
+07-MAY-26 14:19:08.034: . . imported "PCP"."ENTERPRISE_10_08_2020"               7.254 MB   94822 rows
+07-MAY-26 14:19:29.856: . . imported "PCP"."BUSINESS_RULES_30_7_2020"            263.5 MB   73353 rows
+07-MAY-26 14:19:29.926: . . imported "PCP"."COMMISSION_CONF"                     8.882 KB      12 rows
+07-MAY-26 14:19:30.401: . . imported "PCP"."ENTERPRISE_DETAIL_PROD"              9.694 MB   67226 rows
+07-MAY-26 14:19:30.420: . . imported "PCP"."W_ROLES"                             7.234 KB       9 rows
+07-MAY-26 14:19:31.116: . . imported "PCP"."CONTACTOS_BUSINESS_RULES"            10.85 MB   77156 rows
+07-MAY-26 14:19:31.181: . . imported "PCP"."TMP_ENTERPRISE_L"                    7.773 KB     198 rows
+07-MAY-26 14:19:31.198: . . imported "PCP"."CHANNELS"                            6.218 KB      11 rows
+07-MAY-26 14:19:31.199: . . imported "PCP"."LOG_CCE"                                 0 KB       0 rows
+07-MAY-26 14:19:32.867: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE7"             32.29 MB 1999938 rows
+07-MAY-26 14:19:34.528: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE8"             32.22 MB 1996702 rows
+07-MAY-26 14:19:36.226: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE9"             33.74 MB 1999999 rows
+07-MAY-26 14:19:37.941: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE10"            32.73 MB 2000000 rows
+07-MAY-26 14:19:39.622: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE11"            33.58 MB 1999998 rows
+07-MAY-26 14:19:41.227: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE1"             29.79 MB 1999858 rows
+07-MAY-26 14:19:42.759: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE6"             30.91 MB 1999915 rows
+07-MAY-26 14:19:44.288: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE5"             30.48 MB 1999982 rows
+07-MAY-26 14:19:45.722: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE4"             30.48 MB 2000000 rows
+07-MAY-26 14:19:47.207: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE3"             30.48 MB 2000000 rows
+07-MAY-26 14:19:48.600: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE2"             30.48 MB 2000000 rows
+07-MAY-26 14:20:06.126: . . imported "PCP"."CREDITS_EXTRAS_D":"CRE24"            365.4 MB 22303705 rows
+07-MAY-26 14:20:06.463: . . imported "PCP"."DEBITS_PAYROLLS_D"                   6.485 MB  316926 rows
+07-MAY-26 14:20:06.482: . . imported "PCP"."W_USERS"                             7.703 KB      10 rows
+07-MAY-26 14:20:29.124: . . imported "PCP"."BUSINESS_RULES_09_08_2020"           263.7 MB   73353 rows
+07-MAY-26 14:20:51.139: . . imported "PCP"."BUSINESS_RULES_19_082020"            263.8 MB   73383 rows
+07-MAY-26 14:20:51.185: . . imported "PCP"."COMMISSION_PROFILE"                      0 KB       0 rows
+07-MAY-26 14:20:51.436: . . imported "PCP"."TRACK_LOTE"                          6.350 MB   99991 rows
+07-MAY-26 14:20:51.454: . . imported "PCP"."BANCA_SEGMENTO"                      11.04 KB     207 rows
+07-MAY-26 14:20:51.475: . . imported "PCP"."STATUS_CREDITO_INMEDIATO"            6.109 KB      57 rows
+07-MAY-26 14:20:52.180: . . imported "PCP"."MQ_INOUT_HOST_DETAIL"                14.35 MB  720527 rows
+07-MAY-26 14:20:55.441: . . imported "PCP"."PREV_MQ_INOUT_HOST"                  64.64 MB  945340 rows
+07-MAY-26 14:20:55.944: . . imported "PCP"."ENTERPRISE_31072020"                 7.238 MB   94605 rows
+07-MAY-26 14:20:55.961: . . imported "PCP"."TMP_ENTERPRISE"                      18.74 KB    1000 rows
+07-MAY-26 14:20:56.067: . . imported "PCP"."TMP_EMPRESA_MIGRA"                   37.60 KB    1690 rows
+07-MAY-26 14:20:58.372: . . imported "PCP"."CREDITS_CHECKS_D":"CRC7"             41.57 MB 1998036 rows
+07-MAY-26 14:21:00.271: . . imported "PCP"."CREDITS_CHECKS_D":"CRC1"             39.99 MB 1999816 rows
+07-MAY-26 14:21:02.280: . . imported "PCP"."CREDITS_CHECKS_D":"CRC9"             41.46 MB 1996818 rows
+07-MAY-26 14:21:04.297: . . imported "PCP"."CREDITS_CHECKS_D":"CRC10"            41.60 MB 1997080 rows
+07-MAY-26 14:21:06.367: . . imported "PCP"."CREDITS_CHECKS_D":"CRC11"            41.54 MB 1997318 rows
+07-MAY-26 14:21:34.766: . . imported "PCP"."CREDITS_CHECKS_D":"CRC24"            463.3 MB 22262994 rows
+07-MAY-26 14:21:36.795: . . imported "PCP"."CREDITS_CHECKS_D":"CRC8"             41.53 MB 1993735 rows
+07-MAY-26 14:21:38.931: . . imported "PCP"."CREDITS_CHECKS_D":"CRC2"             41.92 MB 1999999 rows
+07-MAY-26 14:21:40.936: . . imported "PCP"."CREDITS_CHECKS_D":"CRC3"             41.92 MB 1999999 rows
+07-MAY-26 14:21:43.021: . . imported "PCP"."CREDITS_CHECKS_D":"CRC4"             41.92 MB 1999996 rows
+07-MAY-26 14:21:45.118: . . imported "PCP"."CREDITS_CHECKS_D":"CRC5"             41.92 MB 1999976 rows
+07-MAY-26 14:21:47.270: . . imported "PCP"."CREDITS_CHECKS_D":"CRC6"             41.83 MB 1999517 rows
+07-MAY-26 14:21:47.338: . . imported "PCP"."PROCESS_PLANIFICATION"               16.15 KB       3 rows
+07-MAY-26 14:21:47.386: . . imported "PCP"."STG_PAYROLL":"PR3"                   153.5 KB     645 rows
+07-MAY-26 14:21:47.436: . . imported "PCP"."STG_PAYROLL":"PR2"                   203.2 KB     867 rows
+07-MAY-26 14:21:47.502: . . imported "PCP"."STG_PAYROLL":"PR1"                   720.2 KB    3442 rows
+07-MAY-26 14:21:47.527: . . imported "PCP"."STG_PAYROLL":"PR4"                   639.9 KB    2950 rows
+07-MAY-26 14:21:47.548: . . imported "PCP"."STG_PAYROLL":"PR5"                   862.6 KB    3770 rows
+07-MAY-26 14:21:47.619: . . imported "PCP"."STG_PAYROLL":"PR6"                   2.372 MB   11242 rows
+07-MAY-26 14:21:47.636: . . imported "PCP"."STG_PAYROLL":"PR7"                   473.4 KB    2193 rows
+07-MAY-26 14:21:47.654: . . imported "PCP"."STG_PAYROLL":"PR8"                   839.3 KB    3884 rows
+07-MAY-26 14:21:47.679: . . imported "PCP"."EXECUTIVE"                           125.6 KB    1299 rows
+07-MAY-26 14:21:47.697: . . imported "PCP"."MENSAGES_RECHAZO_EDI"                12.59 KB      30 rows
+07-MAY-26 14:30:28.964: . . imported "PCP"."DEBITS"                              10.45 GB 81238152 rows
+07-MAY-26 14:30:29.037: . . imported "PCP"."TSITES_EMPRESAS"                     9.007 KB      15 rows
+07-MAY-26 14:30:29.181: . . imported "PCP"."RESP_DEBITS_CCEDONE"                 1.597 MB   18367 rows
+07-MAY-26 14:30:29.200: . . imported "PCP"."W_PERMISSIONS"                       9.335 KB      45 rows
+07-MAY-26 14:30:29.253: . . imported "PCP"."TEMPORAL_BANCA_2"                    94.01 KB    2666 rows
+07-MAY-26 14:35:16.766: . . imported "PCP"."CREDITS":"CR24"                      91.26 GB 741426520 rows
+07-MAY-26 14:35:16.834: Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+07-MAY-26 14:35:17.018: Processing object type SCHEMA_EXPORT/TABLE/COMMENT
+07-MAY-26 14:35:17.101: ORA-39346: data loss in character set conversion for object COMMENT:"PCP"."NUMERO_TICKET"
+07-MAY-26 14:35:17.102: ORA-39346: data loss in character set conversion for object COMMENT:"PCP"."BANCA_SEGMENTO_COMI"
+07-MAY-26 14:35:17.102: ORA-39346: data loss in character set conversion for object COMMENT:"PCP"."GEN_CLAVE"
+07-MAY-26 14:35:17.102: ORA-39346: data loss in character set conversion for object COMMENT:"PCP"."COMISION_CONF_ID"
+07-MAY-26 14:35:17.102: ORA-39346: data loss in character set conversion for object COMMENT:"PCP"."TORDEN_DETAIL_ALTA"
+07-MAY-26 14:35:17.260: Processing object type SCHEMA_EXPORT/TABLE/IDENTITY_COLUMN
+07-MAY-26 14:50:48.620: Processing object type SCHEMA_EXPORT/PACKAGE/PACKAGE_SPEC
+07-MAY-26 14:50:48.936: Processing object type SCHEMA_EXPORT/FUNCTION/FUNCTION
+07-MAY-26 14:50:49.309: Processing object type SCHEMA_EXPORT/PROCEDURE/PROCEDURE
+07-MAY-26 14:50:49.458: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GEN_DATA_CCE_BAJO_VALOR"
+07-MAY-26 14:50:49.458: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."ADD_NEGOTIATION_XML_TEMP_FROM_EMPRESA"
+07-MAY-26 14:50:49.458: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."N_VERIFICAR_EXISTA_BUSINEES_RULES"
+07-MAY-26 14:50:49.458: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GET_ACCOUNTS_BOLPRIAVEN"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GET_PAYROLL_FROM_EMPRESA"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GET_ORDEN_AND_AROUNDX_V2"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GET_ORDEN_AND_AROUNDX"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."GET_CREDITS_ALL"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."APROBAR_DESAFILIACION_SUPERNOMINA_BUSINESS_RULES"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."UPDATE_ENTERPRISE_FROM_EMP"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."ANULAR_DESAFILIACION_SUPERNOMINA_BUSINESS_RULES"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."UPDATE_NEGOTIATION_XML_TEMP_FROM_EMPRESA"
+07-MAY-26 14:50:49.459: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."ANULAR_APROBACION_SUPERNOMINA_FROM_EMPRESA"
+07-MAY-26 14:50:49.460: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."SP_ATOMO37"
+07-MAY-26 14:50:49.898: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."DESAFFILIATION_SUPERNOMINA_BUSINESS_RULES"
+07-MAY-26 14:50:49.924: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."APROBAR_UPDAT_SUPERNOMINA_FROM_EMP"
+07-MAY-26 14:50:49.924: ORA-39346: data loss in character set conversion for object PROCEDURE:"PCP"."APROBAR_SUPERNOMINA_FROM_EMPRESA"
+07-MAY-26 14:50:50.980: Processing object type SCHEMA_EXPORT/PACKAGE/COMPILE_PACKAGE/PACKAGE_SPEC/ALTER_PACKAGE_SPEC
+07-MAY-26 14:50:51.260: Processing object type SCHEMA_EXPORT/FUNCTION/ALTER_FUNCTION
+07-MAY-26 14:50:52.053: Processing object type SCHEMA_EXPORT/PROCEDURE/ALTER_PROCEDURE
+07-MAY-26 14:50:54.119: Processing object type SCHEMA_EXPORT/PACKAGE/PACKAGE_BODY
+07-MAY-26 14:50:54.180: ORA-39346: data loss in character set conversion for object PACKAGE_BODY:"PCP"."GEN_FILES_ALTA_TDA_TCP"
+07-MAY-26 14:50:54.341: ORA-39346: data loss in character set conversion for object PACKAGE_BODY:"PCP"."REPORTES_PCP_WEB"
+07-MAY-26 14:50:54.413: ORA-39346: data loss in character set conversion for object PACKAGE_BODY:"PCP"."CONSULTAS_TLOTES_EMISION_PKG"
+07-MAY-26 14:50:54.430: ORA-39346: data loss in character set conversion for object PACKAGE_BODY:"PCP"."PKG_REVIEW"
+07-MAY-26 14:50:54.916: Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+07-MAY-26 16:02:12.953: Processing object type SCHEMA_EXPORT/TABLE/INDEX/FUNCTIONAL_INDEX/INDEX
+07-MAY-26 16:03:03.832: Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+07-MAY-26 17:20:18.593: Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+07-MAY-26 17:37:55.750: Processing object type SCHEMA_EXPORT/TABLE/INDEX/BITMAP_INDEX/INDEX
+07-MAY-26 17:37:56.023: Processing object type SCHEMA_EXPORT/TABLE/TRIGGER
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUNT_NUMBER_PP_COMISION" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_STATUS_BY_ORDER" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."GEN_FILES_OPS" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PAYROLL_TO_TXMODEL_C" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."GEN_FILES_OPS_DIVISA" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."RETRY_COMMISSION_FORHOST" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PAYROLL_TO_TXMODEL" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUNT_NUMBER_PP_COMISION_2" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PROVIDER_TO_TXMODEL_C" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."ADD_ORDEN_FROM_FRONT_3" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PROVIDER_TO_TXMODEL_EDI" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."CAMBIO_SERIAL_REINTEGRO" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PROVIDER_TO_TXMODEL_FIDEC" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUN_NUM_PP_COMISION_2" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."CANCEL_ORDEN_DATE_VALUE" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_RESP_CCE_V2" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."GEN_FILES_OPS_EXCLUSIVA" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PROVIDER_TO_TXMODEL" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUNT_NUMBER_PN_COMISION" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PROVIDER_TO_TXMODEL_ZTE" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."ADD_AUDI_PROGRAM" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUNT_NUMBER_PP_COMISION" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_STATUS_BY_ORDER" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."GEN_FILES_OPS" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PAYROLL_TO_TXMODEL_C" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."GEN_FILES_OPS_DIVISA" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."RETRY_COMMISSION_FORHOST" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."MOVE_PAYROLL_TO_TXMODEL" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PROCEDURE:"PCP"."UPDATE_ACOUNT_NUMBER_PP_COMISION_2" created with compilation warnings
+07-MAY-26 17:37:57.124: ORA-39082: Object type PACKAGE BODY:"PCP"."PKG_OPS_MANAGEMENT" created with compilation warnings
+07-MAY-26 17:37:57.195: Job "SYSTEM"."SYS_IMPORT_SCHEMA_01" completed with 58 error(s) at Thu May 7 17:37:57 2026 elapsed 0 03:31:44

@@ -1,0 +1,79 @@
+CREATE OR REPLACE PROCEDURE BDVEMPP.PR_CONSULTA_SEMILLA_APP (
+   P_SEMILLA_ID   IN     VARCHAR2,
+   CURSOR_DATA       OUT SYS_REFCURSOR,
+   COD_RET           OUT VARCHAR2,
+   DE_CODRET          OUT VARCHAR2)
+AS
+   EXISTE_SEED     INTEGER;
+   EXISTE_USU      INTEGER;
+   NO_EXISTE_USU   EXCEPTION;
+   V_STATUS_A      VARCHAR2(1) := 'A';
+   V_STATUS_1      NUMBER := 1;
+BEGIN
+    
+   SELECT COUNT (1)
+     INTO EXISTE_SEED
+     FROM EMP_SEMILLA_APP
+    WHERE ID_SEMILLA = P_SEMILLA_ID AND ESTATUS = V_STATUS_A;
+
+
+   IF EXISTE_SEED > 0
+   THEN
+      COD_RET := '1000';
+      DE_CODRET := 'Consulta exitosa';
+   ELSE
+      COD_RET := '1001';
+      DE_CODRET := 'No se encuentra la semilla activa';
+   END IF;
+
+
+   SELECT COUNT (1)
+     INTO EXISTE_USU
+     FROM    EMP_SEMILLA_APP SP
+          INNER JOIN
+             USUARIO_EMPRESA UE
+          ON SP.USUARIO = UE.USUARIO
+    WHERE     SP.ID_SEMILLA = P_SEMILLA_ID
+          AND UE.ESTATUS = V_STATUS_1;
+
+   IF EXISTE_USU = 0
+   THEN
+      RAISE NO_EXISTE_USU;
+   END IF;
+
+   OPEN CURSOR_DATA FOR
+        SELECT  USU.NOMBRE AS NOMBRE,
+                USU.GENERO AS GENERO,
+                USU.FECHA_ULTIMA_SESION AS FECHA_SESION,
+                SUBSTR(USU.CEDULA,0,1) AS TP_DCTO,
+                SUBSTR(USU.CEDULA,2) AS NRO_DCTO
+          FROM EMP_SEMILLA_APP SAPP INNER JOIN USUARIOS USU ON USU.CEDULA = SAPP.CEDULA
+         WHERE ID_SEMILLA = P_SEMILLA_ID
+      ORDER BY FECHA_REGISTRO DESC;
+EXCEPTION
+   WHEN NO_EXISTE_USU
+   THEN
+      COD_RET := '1003';
+      DE_CODRET := 'Usuario inactivo para la empresa, debes contactar a tu ejecutivo de negocios';
+
+      OPEN CURSOR_DATA FOR
+         SELECT '' AS NOMBRE,
+                '' AS GENERO,
+                '' AS FECHA_SESION,
+                '' AS TP_DCTO,
+                '' AS NRO_DCTO
+           FROM DUAL;
+   WHEN OTHERS
+   THEN
+      COD_RET := '' || SQLCODE;
+      DE_CODRET := 'Error en PR_CONSULTA_SEMILLA_APP: ' || SQLERRM;
+
+      OPEN CURSOR_DATA FOR
+         SELECT '' AS NOMBRE,
+                '' AS GENERO,
+                '' AS FECHA_SESION,
+                '' AS TP_DCTO,
+                '' AS NRO_DCTO
+           FROM DUAL;
+END PR_CONSULTA_SEMILLA_APP;
+/

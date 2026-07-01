@@ -1,0 +1,23 @@
+  278  2026-04-27T10:55:40 yum install realmd sssd oddjob oddjob-mkhomedir adcli samba-common samba-common-tools krb5-workstation authselect-compat -y
+  279  2026-04-27T10:56:47 sed -i '/^\[libdefaults\]/a \    allow_weak_crypto = true' /etc/krb5.conf
+  280  2026-04-27T10:56:47 update-crypto-policies --set DEFAULT:AD-SUPPORT
+  281  2026-04-27T11:01:39 realm join banvenqa.com -U nm25492
+  282  2026-04-27T11:15:53 authselect select sssd
+  283  2026-04-27T11:15:53 authselect select sssd with-mkhomedir
+  284  2026-04-27T11:16:10 sed -i '/services = nss, pam/a default_domain_suffix = banvenqa.com' /etc/sssd/sssd.conf
+  285  2026-04-27T11:16:10 sed -i '/\[domain\/banvenqa.com\]/i \[nss\]\nhomedir_substring = /home\n' /etc/sssd/sssd.conf
+  286  2026-04-27T11:16:10 sed -i '/account.*pam_sss\.so/ s/^/# /' /etc/pam.d/password-auth
+  287  2026-04-27T11:16:24 systemctl restart sssd
+  288  2026-04-27T11:16:38 update-crypto-policies --set DEFAULT
+  289  2026-04-27T11:16:53 echo "180.183.199.15 banvenqa.com" >> /etc/hosts
+  290  2026-04-27T11:17:05 echo "nameserver 180.183.199.15" >> /etc/resolv.conf
+  291  2026-04-27T11:17:20 echo "auth  required pam_env.so" >> /etc/pam.d/sshd
+  292  2026-04-27T11:17:20 echo "auth  sufficient pam_duo.so" >> /etc/pam.d/sshd
+  293  2026-04-27T11:17:20 echo "auth  required pam_deny.so" >> /etc/pam.d/sshd
+  294  2026-04-27T11:17:36 cat /run/systemd/generator/tmp.mount > /etc/systemd/system/tmp.mount
+  295  2026-04-27T11:17:36 echo "Options=defaults,nodev,nosuid,noexex" >> /etc/systemd/system/tmp.mount
+  296  2026-04-27T11:17:36 echo "#" >> /etc/systemd/system/tmp.mount
+  297  2026-04-27T11:17:36 echo "[Install]" >> /etc/systemd/system/tmp.mount
+  298  2026-04-27T11:17:36 echo "WantedBy=local-fs.target" >> /etc/systemd/system/tmp.mount
+  299  2026-04-27T11:17:36 systemctl daemon-reload
+  300  2026-04-27T11:17:36 systemctl enable tmp.mount
