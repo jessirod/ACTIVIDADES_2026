@@ -1,0 +1,64 @@
+API_CONC_MOV_HIST_BNPL 
+
+
+
+
+
+
+CREATE TABLE PICBDV.API_CONC_MOV_HIST_BNPL
+(
+  CEDULA_PAGADOR    VARCHAR2(10 BYTE),
+  TELEFONO_PAGADOR  VARCHAR2(12 BYTE),
+  TELEFONO_DESTINO  VARCHAR2(12 BYTE),
+  REFERENCIA        VARCHAR2(12 BYTE),
+  FECHA_PAGO        VARCHAR2(20 BYTE),
+  IMPORTE           VARCHAR2(20 BYTE),
+  BANCO_ORIGEN      VARCHAR2(4 BYTE),
+  COD_RETORNO       VARCHAR2(4 BYTE),
+  DESCRIP_RETORNO   VARCHAR2(100 BYTE),
+  JSON_ENTRADA      VARCHAR2(500 BYTE),
+  JSON_SALIDA       VARCHAR2(500 BYTE),
+  API_KEY           VARCHAR2(60 BYTE),
+  BANCO_DESTINO     VARCHAR2(4 BYTE),
+  FECHA             DATE
+)
+TABLESPACE DATA_PICBDV
+PARTITION BY RANGE (FECHA)
+(
+  PARTITION P20260101 VALUES LESS THAN (TO_DATE('02-JUN-2026', 'DD-MON-YYYY')) TABLESPACE DATA_PICBDV,
+  PARTITION P20260102 VALUES LESS THAN (TO_DATE('03-JUN-2026', 'DD-MON-YYYY')) TABLESPACE DATA_PICBDV,
+  PARTITION P20260103 VALUES LESS THAN (TO_DATE('04-JUN-2026', 'DD-MON-YYYY')) TABLESPACE DATA_PICBDV,
+  PARTITION P20260104 VALUES LESS THAN (TO_DATE('05-JUN-2026', 'DD-MON-YYYY')) TABLESPACE DATA_PICBDV,
+  PARTITION P20260105 VALUES LESS THAN (TO_DATE('06-JUN-2026', 'DD-MON-YYYY')) TABLESPACE DATA_PICBDV
+);
+
+
+SET SERVEROUTPUT ON;
+DECLARE v_name_partition    VARCHAR2(30);
+        v_date_partition    VARCHAR2(30);
+        v_tablespace_name   VARCHAR2(50);
+        v_ini_date          DATE;
+        v_end_date          DATE;
+        v_sentence          VARCHAR2(500);
+
+BEGIN
+    v_ini_date := TO_DATE('07-06-2026', 'DD-MM-SYYYY');
+    v_end_date := TO_DATE('31-12-2026', 'DD-MM-SYYYY');
+    v_tablespace_name := 'DATA_PICBDV';
+
+    WHILE v_ini_date <= v_end_date
+    LOOP
+        v_name_partition := 'P' || TO_CHAR(v_ini_date, 'YYYYMMDD');
+        v_date_partition := TO_CHAR(v_ini_date + 1, 'DD-MON-YYYY');
+
+        v_sentence := 'ALTER TABLE "PICBDV"."API_CONC_MOV_HIST_BNPL" ADD PARTITION ' || v_name_partition
+                        || ' VALUES LESS THAN (TO_DATE(' || CHR(39) || v_date_partition || CHR(39)
+                        || ', ' || CHR(39)
+                        || 'DD-MON-YYYY' || CHR(39) || ')) TABLESPACE ' || v_tablespace_name;
+
+        DBMS_OUTPUT.PUT_LINE(v_sentence);
+        EXECUTE IMMEDIATE v_sentence;
+        v_ini_date := v_ini_date + 1;
+    END LOOP;
+END;
+/
