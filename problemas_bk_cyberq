@@ -1,0 +1,106 @@
+
+run {
+  allocate channel d1 device type Disk;
+  crosscheck archivelog all;
+  delete archive log all;
+  release channel d1;
+}
+
+
+
+*******************************************************************
+
+
+#!/bin/sh
+#SETEAR VARIABLES
+export ORACLE_SID=CYBER
+export ORACLE_HOME=/oracle/app/oracle/product/10.2.0
+export TNS_ADMIN=$ORACLE_HOME/network/admin
+export PATH=/oracle/app/oracle/product/10.2.0/bin:/usr/bin:/etc:/usr/sbin:/usr/ucb:/oracle/app/oracle/product/10.2.0/bin:/usr/bin/X11:/sbin:/opt/nmon:.
+export ORACLE_BASE=/oracle/app/oracle
+echo RESPALDO DE BASES DE DATOS $ORACLE_SID - AMBIENTE PRODUCCION - SERVIDOR BDVAIX03
+B=`date +%y%m%d_%H%M%S_rman_archives_$ORACLE_SID.log`
+export B
+
+
+#ELIMINAR RESPALDOS
+rm -f /bdvaix03/bdvaix03/CYBER/rman/archs/al*
+rm -f /bdvaix03/bdvaix03/CYBER/rman/archs/*.log
+
+#Backup rman full
+$ORACLE_HOME/bin/rman catalog  rman/rmanexport@RMAN11 target / cmdfile=$ORACLE_HOME/util/cyber/backup/b_archive_disk.cmd LOG=/bdvaix03/bdvaix03/CYBER/rman/archs/$B
+
+
+
+#Envia mail
+resultado=`/bin/grep "Recovery Manager complete." /bdvaix03/bdvaix03/CYBER/rman/archs/$B`
+export resultado
+
+if  [ "$resultado" ]
+  then
+    exit
+  else
+    mailx -s " ERROR en Respaldo full rman $ORACLE_SID  "  basedatos <  tail -20 /bdvaix03/bdvaix03/CYBER/rman/archs/$B
+exit
+fi
+
+
+
+
+
+
+
+
+cat b_archive_disk.cmd
+# INSTANCE=CYBER
+# Retencion en dias
+# 1, 15, 30, 90, 365, 1825, 3650
+# RET=183
+
+RUN {
+  # Paralelismo a nivel de media layer
+  # Para el caso de networker se debe eliminar los parametros
+  ALLOCATE CHANNEL D1 TYPE DISK FORMAT '/bdvaix03/bdvaix03/CYBER/rman/archs/al_%s_%p_%t';
+  ALLOCATE CHANNEL D2 TYPE DISK FORMAT '/bdvaix03/bdvaix03/CYBER/rman/archs/al_%s_%p_%t';
+  ALLOCATE CHANNEL D3 TYPE DISK FORMAT '/bdvaix03/bdvaix03/CYBER/rman/archs/al_%s_%p_%t';
+  ALLOCATE CHANNEL D4 TYPE DISK FORMAT '/bdvaix03/bdvaix03/CYBER/rman/archs/al_%s_%p_%t';
+
+  SET COMMAND ID TO 'CYBER_ARCHIVES_DISK';
+
+  # Se limita el numero de archivos
+  # para forzar liberacion rapida
+  BACKUP ARCHIVELOG ALL
+  TAG CYBER_ARCHIVES_DISK
+  FILESPERSET 1
+
+  # Si se desea tener redundancia de backups
+  NOT BACKED UP 2 TIMES
+
+  DELETE INPUT;
+
+  RELEASE CHANNEL D1;
+  RELEASE CHANNEL D2;
+  RELEASE CHANNEL D3;
+  RELEASE CHANNEL D4;
+
+  RESYNC CATALOG;
+}
+
+
+
+
+alter system set log_archive_dest_1='LOCATION=USE_DB_RECOVERY_FILE_DEST valid_for=(ALL_LOGFILES,ALL_ROLES) MAX_FAILURE=1 REOPEN=5 DB_UNIQUE_NAME=OPICSP ALTERNATE=LOG_ARCHIVE_DEST_10';
+alter system set log_archive_dest_10='location=+DATA_OPICS valid_for=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=OPICSP ALTERNATE=LOG_ARCHIVE_DEST_1';
+
+alter system set log_archive_dest_state_1='ENABLE';
+
+
+
+ALTER SYSTEM SET log_archive_dest_2='LOCATION=/cyberindx4/prueba';
+alter system switch logfile;
+
+
+ALTER SYSTEM SET log_archive_dest='LOCATION=/cyberindx4/prueba';
+
+
+/cyberindx4

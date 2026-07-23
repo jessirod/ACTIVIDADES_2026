@@ -1,7 +1,7 @@
-CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
+CREATE OR REPLACE PROCEDURE PCPH.RENOMBRAR_PARTICIONES_HIST IS
     /*
     Propósito: Renombra automáticamente las particiones con nombres genéricos (SYS_Pxxxx)
-    de las tablas especificadas en el esquema PCP.
+    de las tablas especificadas en el esquema PCPH.
     
     Tablas procesadas:
       - CREDITS_HIST (fecha mensual por PROCESS_DATE)
@@ -11,12 +11,12 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
       - DEBITS_HIST (fecha mensual por PROCESS_DATE)
       - TRACK_ORDEN_HIST (numérico por ID_TRACK_ORDEN - intervalo 100,000)
       - DATOS_MOVIMIENTOS_HIST (fecha mensual por FECHA_REGISTRO)
-      - LOGS_RESP_PROC_PCP1_HIST (fecha mensual por FECHA_REGISTRO)
-      - TORDEN_HIST (fecha mensual por DATE_VALUE)             
-      - TORDEN_ALTA_HIST (fecha mensual por RECORD_ENTRY_DATE) 
-      - TORDEN_DETAIL_HIST (numérico por ID_TDETAIL)           
-      - TORDEN_DETAIL_ALTA_HIST (numérico por ID_TDETAIL)      
-      - TRACK_LOTE_HIST (numérico por ID_TRACK)                
+      - LOGS_RESP_PROC_PCPH1_HIST (fecha mensual por FECHA_REGISTRO)
+      - TORDEN_HIST (fecha mensual por DATE_VALUE)             -- NUEVA
+      - TORDEN_ALTA_HIST (fecha mensual por RECORD_ENTRY_DATE) -- NUEVA
+      - TORDEN_DETAIL_HIST (numérico por ID_TDETAIL)           -- NUEVA
+      - TORDEN_DETAIL_ALTA_HIST (numérico por ID_TDETAIL)      -- NUEVA
+      - TRACK_LOTE_HIST (numérico por ID_TRACK)                -- NUEVA
     */
     
     TYPE t_tables IS TABLE OF VARCHAR2(35);
@@ -27,7 +27,8 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
                                    'DEBITS_HIST',
                                    'TRACK_ORDEN_HIST',
                                    'DATOS_MOVIMIENTOS_HIST',
-                                   'LOGS_RESP_PROC_PCP1_HIST',
+                                   'LOGS_RESP_PROC_PCPH1_HIST',
+                                   -- Nuevas tablas históricas
                                    'TORDEN_HIST',
                                    'TORDEN_ALTA_HIST',
                                    'TORDEN_DETAIL_HIST',
@@ -73,109 +74,112 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
         v_fecha_str  VARCHAR2(200);
         v_pos        NUMBER;
         v_date_part  VARCHAR2(20);
+        v_tipo       VARCHAR2(20);
     BEGIN
         IF p_high_value IS NULL THEN
             RETURN NULL;
         END IF;
 
-        -- Buscar TO_DATE (insensible a mayúsculas)
-        v_pos := INSTR(UPPER(p_high_value), 'TO_DATE');
-        IF v_pos > 0 THEN
-            -- Extraer la cadena entre las primeras comillas simples después de TO_DATE
+        -- Detectar si es TO_DATE o TIMESTAMP
+        v_tipo := UPPER(REGEXP_SUBSTR(p_high_value, '^(TO_DATE|TIMESTAMP)'));
+        
+        IF v_tipo IN ('TO_DATE', 'TIMESTAMP') THEN
+            -- Extraer la cadena entre comillas simples
             v_pos := INSTR(p_high_value, '''');
             IF v_pos > 0 THEN
                 v_fecha_str := SUBSTR(p_high_value, v_pos + 1);
                 v_pos := INSTR(v_fecha_str, '''');
                 IF v_pos > 0 THEN
                     v_fecha_str := SUBSTR(v_fecha_str, 1, v_pos - 1);
-
-                    -- 1) Intentar extraer solo la parte de fecha (YYYY-MM-DD)
+                    
+                    -- Intentar extraer solo la parte de fecha (YYYY-MM-DD)
                     v_date_part := REGEXP_SUBSTR(v_fecha_str, '^\d{4}-\d{2}-\d{2}');
                     IF v_date_part IS NOT NULL THEN
                         BEGIN
                             v_fecha := TO_DATE(v_date_part, 'YYYY-MM-DD');
                             RETURN v_fecha;
-                        EXCEPTION
-                            WHEN OTHERS THEN
-                                NULL; -- seguir con otros formatos
+                        EXCEPTION WHEN OTHERS THEN NULL;
                         END;
                     END IF;
 
-                    -- 2) Intentar con formato completo (YYYY-MM-DD HH24:MI:SS)
+                    -- Intentar con formato completo (YYYY-MM-DD HH24:MI:SS)
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'YYYY-MM-DD HH24:MI:SS');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
 
-                    -- 3) Intentar con DD-MM-YYYY (sin hora)
+                    -- Intentar con DD-MM-YYYY
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'DD-MM-YYYY');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
 
-                    -- 4) Intentar con DD/MM/YYYY
+                    -- Intentar con DD/MM/YYYY
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'DD/MM/YYYY');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            RETURN NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
+
+                    -- Si tiene formato TIMESTAMP con hora y zona, intentamos quitar la zona
+                    IF v_tipo = 'TIMESTAMP' THEN
+                        -- Intentar extraer 'YYYY-MM-DD HH24:MI:SS' de un TIMESTAMP
+                        BEGIN
+                            v_fecha := TO_DATE(REGEXP_SUBSTR(v_fecha_str, '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'), 'YYYY-MM-DD HH24:MI:SS');
+                            RETURN v_fecha;
+                        EXCEPTION WHEN OTHERS THEN NULL;
+                        END;
+                    END IF;
                 END IF;
             END IF;
         END IF;
 
-        -- Si no hay TO_DATE, intentar convertir directamente como fecha
+        -- Fallback: intentar convertir directamente
         BEGIN
             v_fecha := TO_DATE(p_high_value, 'YYYY-MM-DD');
             RETURN v_fecha;
-        EXCEPTION
-            WHEN OTHERS THEN
-                RETURN NULL;
+        EXCEPTION WHEN OTHERS THEN
+            RETURN NULL;
         END;
     END extraer_fecha_from_high_value;
     
     -- Función para extraer valor numérico del HIGH_VALUE
     FUNCTION extraer_numero_from_high_value(p_high_value VARCHAR2) RETURN NUMBER IS
-        v_num_str   VARCHAR2(100);
-        v_pos       NUMBER;
-        v_clean_num VARCHAR2(100);
+        v_num_str VARCHAR2(100);
+        v_pos NUMBER;
+        v_num NUMBER;
     BEGIN
         IF p_high_value IS NULL THEN
             RETURN NULL;
         END IF;
-
+        
         v_num_str := TRIM(p_high_value);
-
-        -- Caso 1: TO_NUMBER('123456')
-        v_pos := INSTR(UPPER(v_num_str), 'TO_NUMBER(');
+        
+        -- 1) Si es TO_NUMBER('123456') o TO_NUMBER(123456)
+        v_pos := INSTR(UPPER(v_num_str), 'TO_NUMBER');
         IF v_pos > 0 THEN
-            v_pos := INSTR(v_num_str, '''');
-            IF v_pos > 0 THEN
-                v_num_str := SUBSTR(v_num_str, v_pos + 1);
-                v_pos := INSTR(v_num_str, '''');
-                IF v_pos > 0 THEN
-                    v_num_str := SUBSTR(v_num_str, 1, v_pos - 1);
-                    RETURN TO_NUMBER(v_num_str);
-                END IF;
+            -- Buscar el primer número dentro de TO_NUMBER
+            v_num_str := REGEXP_SUBSTR(v_num_str, '[0-9]+');
+            IF v_num_str IS NOT NULL THEN
+                RETURN TO_NUMBER(v_num_str);
             END IF;
         END IF;
-
-        -- Caso 2: Número directo (ej: '1000000', '-5000')
-        -- Elimina TODO excepto dígitos y el signo menos (al inicio)
-        v_clean_num := REGEXP_REPLACE(v_num_str, '[^0-9\-]', '');
         
-        -- Evitar que devuelva un string vacío o solo '-'
-        IF v_clean_num IS NOT NULL AND v_clean_num NOT IN ('-', '') THEN
-            RETURN TO_NUMBER(v_clean_num);
+        -- 2) Si es número directo (puede tener comillas o no)
+        -- Elimina todo excepto dígitos y signo menos
+        v_num_str := REGEXP_REPLACE(v_num_str, '[^0-9\-]', '');
+        IF v_num_str IS NOT NULL AND v_num_str NOT IN ('-', '') THEN
+            RETURN TO_NUMBER(v_num_str);
         END IF;
-
+        
+        -- 3) Fallback: buscar cualquier número en la cadena
+        v_num_str := REGEXP_SUBSTR(p_high_value, '[0-9]+');
+        IF v_num_str IS NOT NULL THEN
+            RETURN TO_NUMBER(v_num_str);
+        END IF;
+        
         RETURN NULL;
     EXCEPTION
         WHEN OTHERS THEN
@@ -191,13 +195,15 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
                             'ORDEN_HIST', 
                             'DEBITS_HIST',
                             'DATOS_MOVIMIENTOS_HIST',
-                            'LOGS_RESP_PROC_PCP1_HIST',
+                            'LOGS_RESP_PROC_PCPH1_HIST',
+                            -- Nuevas tablas por fecha
                             'TORDEN_HIST',
                             'TORDEN_ALTA_HIST') THEN
             RETURN TRUE;
         -- Tablas particionadas por NÚMERO
         ELSIF p_table_name IN ('ORDEN_DETAIL_HIST', 
                                'TRACK_ORDEN_HIST',
+                               -- Nuevas tablas por número
                                'TORDEN_DETAIL_HIST',
                                'TORDEN_DETAIL_ALTA_HIST',
                                'TRACK_LOTE_HIST') THEN
@@ -208,9 +214,9 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES_HIST IS
     END es_tabla_fecha;
     
 BEGIN
-    DBMS_OUTPUT.PUT_LINE('=== INICIANDO RENOMBRADO DE PARTICIONES (PCP) ===');
+    DBMS_OUTPUT.PUT_LINE('=== INICIANDO RENOMBRADO DE PARTICIONES (PCPH) ===');
     DBMS_OUTPUT.PUT_LINE('Fecha/Hora: ' || TO_CHAR(SYSTIMESTAMP, 'YYYY-MM-DD HH24:MI:SS'));
-    DBMS_OUTPUT.PUT_LINE('Esquema: PCP');
+    DBMS_OUTPUT.PUT_LINE('Esquema: PCPH');
     DBMS_OUTPUT.PUT_LINE('----------------------------------------');
     
     FOR i IN 1..v_tables.COUNT LOOP
@@ -261,7 +267,7 @@ BEGIN
                 
                 -- Renombrar partición
                 IF part.PARTITION_NAME != v_nuevo_nombre THEN
-                    EXECUTE IMMEDIATE 'ALTER TABLE PCP.' || v_tables(i) || 
+                    EXECUTE IMMEDIATE 'ALTER TABLE PCPH.' || v_tables(i) || 
                                       ' RENAME PARTITION ' || part.PARTITION_NAME || 
                                       ' TO ' || v_nuevo_nombre;
                     

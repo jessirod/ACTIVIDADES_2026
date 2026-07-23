@@ -28,7 +28,7 @@ BEGIN
                 -- ============================================================
                 DBMS_OUTPUT.PUT_LINE(''=== INICIO MIGRACIÓN UNIFICADA (ORDEN + TORDEN) ==='');
                 PCP.MANTENIMIENTO_TABLAS_PCP_HIST_PKG.MANTENIMIENTO_PCP_HIST_DIARIO(
-                    P_MONTHS_RETENTION_H   => 28,
+                    P_MONTHS_RETENTION_H   => 15,
                     P_OUT_DATA             => v_out,
                     P_ID_ORDEN             => NULL,
                     P_START_DATE           => NULL,

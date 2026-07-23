@@ -1,20 +1,7 @@
 CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES IS
     /*
-    Propósito: Renombra automáticamente las particiones con nombres genéricos (SYS_Pxxxx)
-    de las tablas especificadas en el esquema PCP.
-    
-    Tablas procesadas (principales):
-      - CREDITS (numérica)
-      - CREDITS_CREDITO_INMEDIATO (fecha mensual por FECHA_REGISTRO)
-      - ORDEN_DETAIL (numérica, intervalo 1,000,000)
-      - ORDEN (fecha mensual por DATE_VALUE)
-      - DEBITS (fecha mensual por PROCESS_DATE)
-      - TRACK_ORDEN (numérica, intervalo 100,000)
-      - TORDEN (fecha mensual por DATE_VALUE)
-      - TORDEN_ALTA (fecha mensual por RECORD_ENTRY_DATE)
-      - TORDEN_DETAIL (numérica)
-      - TORDEN_DETAIL_ALTA (numérica)
-      - TRACK_LOTE (numérica)
+    Propósito: Renombra automáticamente las particiones SYS_Pxxxx de las tablas principales.
+    Ahora con extracción robusta de HIGH_VALUE para fechas (TO_DATE y TIMESTAMP) y números.
     */
     
     TYPE t_tables IS TABLE OF VARCHAR2(30);
@@ -63,81 +50,88 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES IS
             RETURN NULL;
     END get_high_value;
     
-    -- Función para extraer fecha del HIGH_VALUE (maneja múltiples formatos)
+    -- =====================================================
+    -- FUNCIÓN MEJORADA PARA EXTRAER FECHA (TO_DATE y TIMESTAMP)
+    -- =====================================================
     FUNCTION extraer_fecha_from_high_value(p_high_value VARCHAR2) RETURN DATE IS
         v_fecha      DATE;
         v_fecha_str  VARCHAR2(200);
         v_pos        NUMBER;
         v_date_part  VARCHAR2(20);
+        v_tipo       VARCHAR2(20);
     BEGIN
         IF p_high_value IS NULL THEN
             RETURN NULL;
         END IF;
 
-        -- Buscar TO_DATE (insensible a mayúsculas)
-        v_pos := INSTR(UPPER(p_high_value), 'TO_DATE');
-        IF v_pos > 0 THEN
-            -- Extraer la cadena entre las primeras comillas simples después de TO_DATE
+        -- Detectar si es TO_DATE o TIMESTAMP
+        v_tipo := UPPER(REGEXP_SUBSTR(p_high_value, '^(TO_DATE|TIMESTAMP)'));
+        
+        IF v_tipo IN ('TO_DATE', 'TIMESTAMP') THEN
+            -- Extraer la cadena entre comillas simples
             v_pos := INSTR(p_high_value, '''');
             IF v_pos > 0 THEN
                 v_fecha_str := SUBSTR(p_high_value, v_pos + 1);
                 v_pos := INSTR(v_fecha_str, '''');
                 IF v_pos > 0 THEN
                     v_fecha_str := SUBSTR(v_fecha_str, 1, v_pos - 1);
-
-                    -- 1) Intentar extraer solo la parte de fecha (YYYY-MM-DD)
+                    
+                    -- Intentar extraer solo la parte de fecha (YYYY-MM-DD)
                     v_date_part := REGEXP_SUBSTR(v_fecha_str, '^\d{4}-\d{2}-\d{2}');
                     IF v_date_part IS NOT NULL THEN
                         BEGIN
                             v_fecha := TO_DATE(v_date_part, 'YYYY-MM-DD');
                             RETURN v_fecha;
-                        EXCEPTION
-                            WHEN OTHERS THEN
-                                NULL; -- seguir con otros formatos
+                        EXCEPTION WHEN OTHERS THEN NULL;
                         END;
                     END IF;
 
-                    -- 2) Intentar con formato completo (YYYY-MM-DD HH24:MI:SS)
+                    -- Intentar con formato completo (YYYY-MM-DD HH24:MI:SS)
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'YYYY-MM-DD HH24:MI:SS');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
 
-                    -- 3) Intentar con DD-MM-YYYY (sin hora)
+                    -- Intentar con DD-MM-YYYY
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'DD-MM-YYYY');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
 
-                    -- 4) Intentar con DD/MM/YYYY
+                    -- Intentar con DD/MM/YYYY
                     BEGIN
                         v_fecha := TO_DATE(v_fecha_str, 'DD/MM/YYYY');
                         RETURN v_fecha;
-                    EXCEPTION
-                        WHEN OTHERS THEN
-                            RETURN NULL;
+                    EXCEPTION WHEN OTHERS THEN NULL;
                     END;
+
+                    -- Si es TIMESTAMP, extraer la parte de fecha/hora sin zona
+                    IF v_tipo = 'TIMESTAMP' THEN
+                        BEGIN
+                            v_fecha := TO_DATE(REGEXP_SUBSTR(v_fecha_str, '\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'), 'YYYY-MM-DD HH24:MI:SS');
+                            RETURN v_fecha;
+                        EXCEPTION WHEN OTHERS THEN NULL;
+                        END;
+                    END IF;
                 END IF;
             END IF;
         END IF;
 
-        -- Si no hay TO_DATE, intentar convertir directamente como fecha
+        -- Fallback: intentar convertir directamente
         BEGIN
             v_fecha := TO_DATE(p_high_value, 'YYYY-MM-DD');
             RETURN v_fecha;
-        EXCEPTION
-            WHEN OTHERS THEN
-                RETURN NULL;
+        EXCEPTION WHEN OTHERS THEN
+            RETURN NULL;
         END;
     END extraer_fecha_from_high_value;
-    
-    -- Función para extraer valor numérico del HIGH_VALUE (maneja TO_NUMBER y números directos)
+    -- =====================================================
+
+    -- =====================================================
+    -- FUNCIÓN MEJORADA PARA EXTRAER NÚMERO (robusta)
+    -- =====================================================
     FUNCTION extraer_numero_from_high_value(p_high_value VARCHAR2) RETURN NUMBER IS
         v_num_str   VARCHAR2(100);
         v_pos       NUMBER;
@@ -149,27 +143,26 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES IS
 
         v_num_str := TRIM(p_high_value);
 
-        -- Caso 1: TO_NUMBER('123456')
-        v_pos := INSTR(UPPER(v_num_str), 'TO_NUMBER(');
+        -- 1) TO_NUMBER('123456') o TO_NUMBER(123456)
+        v_pos := INSTR(UPPER(v_num_str), 'TO_NUMBER');
         IF v_pos > 0 THEN
-            v_pos := INSTR(v_num_str, '''');
-            IF v_pos > 0 THEN
-                v_num_str := SUBSTR(v_num_str, v_pos + 1);
-                v_pos := INSTR(v_num_str, '''');
-                IF v_pos > 0 THEN
-                    v_num_str := SUBSTR(v_num_str, 1, v_pos - 1);
-                    RETURN TO_NUMBER(v_num_str);
-                END IF;
+            -- Buscar el primer número dentro
+            v_num_str := REGEXP_SUBSTR(v_num_str, '[0-9]+');
+            IF v_num_str IS NOT NULL THEN
+                RETURN TO_NUMBER(v_num_str);
             END IF;
         END IF;
 
-        -- Caso 2: Número directo (ej: '1000000', '-5000')
-        -- Elimina TODO excepto dígitos y el signo menos (al inicio)
+        -- 2) Número directo (puede tener comillas o no)
         v_clean_num := REGEXP_REPLACE(v_num_str, '[^0-9\-]', '');
-        
-        -- Evitar que devuelva un string vacío o solo '-'
         IF v_clean_num IS NOT NULL AND v_clean_num NOT IN ('-', '') THEN
             RETURN TO_NUMBER(v_clean_num);
+        END IF;
+
+        -- 3) Fallback: cualquier número en la cadena
+        v_num_str := REGEXP_SUBSTR(p_high_value, '[0-9]+');
+        IF v_num_str IS NOT NULL THEN
+            RETURN TO_NUMBER(v_num_str);
         END IF;
 
         RETURN NULL;
@@ -177,18 +170,17 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES IS
         WHEN OTHERS THEN
             RETURN NULL;
     END extraer_numero_from_high_value;
-    
+    -- =====================================================
+
     -- Función para determinar si la tabla es por fecha o por número
     FUNCTION es_tabla_fecha(p_table_name VARCHAR2) RETURN BOOLEAN IS
     BEGIN
-        -- Tablas particionadas por FECHA
         IF p_table_name IN ('CREDITS_CREDITO_INMEDIATO',
                             'ORDEN',
                             'DEBITS',
                             'TORDEN',
                             'TORDEN_ALTA') THEN
             RETURN TRUE;
-        -- Tablas particionadas por NÚMERO
         ELSIF p_table_name IN ('CREDITS',
                                'ORDEN_DETAIL',
                                'TRACK_ORDEN',
@@ -197,7 +189,7 @@ CREATE OR REPLACE PROCEDURE PCP.RENOMBRAR_PARTICIONES IS
                                'TRACK_LOTE') THEN
             RETURN FALSE;
         ELSE
-            RETURN TRUE; -- Por defecto asumir fecha
+            RETURN TRUE;
         END IF;
     END es_tabla_fecha;
     
@@ -211,7 +203,6 @@ BEGIN
         v_contador_tabla := 0;
         DBMS_OUTPUT.PUT_LINE('Procesando tabla: ' || v_tables(i));
         
-        -- Para cada partición SYS_P% de la tabla
         FOR part IN (SELECT PARTITION_NAME, PARTITION_POSITION
                      FROM USER_TAB_PARTITIONS
                      WHERE TABLE_NAME = v_tables(i)
@@ -219,41 +210,35 @@ BEGIN
                      ORDER BY PARTITION_POSITION) LOOP
             
             BEGIN
-                -- Obtener HIGH_VALUE
                 v_high_value := get_high_value(v_tables(i), part.PARTITION_NAME);
                 
                 IF es_tabla_fecha(v_tables(i)) THEN
-                    -- Tabla por FECHA: extraer fecha y formatear como YYYYMM
                     v_fecha := extraer_fecha_from_high_value(v_high_value);
-                    
                     IF v_fecha IS NOT NULL THEN
                         v_nuevo_nombre := v_tables(i) || '_' || TO_CHAR(v_fecha, 'YYYYMM');
                     ELSE
-                        -- Fallback: usar posición
                         v_nuevo_nombre := v_tables(i) || '_' || part.PARTITION_POSITION;
+                        -- Mensaje de depuración si falla
+                        DBMS_OUTPUT.PUT_LINE('  ⚠ No se pudo extraer fecha de ' || part.PARTITION_NAME || 
+                                             ' (HIGH_VALUE: ' || NVL(v_high_value, 'NULL') || '), usando posición.');
                     END IF;
                 ELSE
-                    -- Tabla por NÚMERO: extraer valor numérico
                     v_valor_numerico := extraer_numero_from_high_value(v_high_value);
-                    
                     IF v_valor_numerico IS NOT NULL THEN
-                        -- Para tablas con intervalo conocido, restar el límite inferior
                         IF v_tables(i) = 'ORDEN_DETAIL' THEN
                             v_nuevo_nombre := v_tables(i) || '_' || TO_CHAR(v_valor_numerico - 1000000);
                         ELSIF v_tables(i) = 'TRACK_ORDEN' THEN
                             v_nuevo_nombre := v_tables(i) || '_' || TO_CHAR(v_valor_numerico - 100000);
                         ELSE
-                            -- Para CREDITS, TORDEN_DETAIL, TORDEN_DETAIL_ALTA, TRACK_LOTE
-                            -- se usa el valor directamente (sin restar)
                             v_nuevo_nombre := v_tables(i) || '_' || TO_CHAR(v_valor_numerico);
                         END IF;
                     ELSE
-                        -- Fallback: usar posición
                         v_nuevo_nombre := v_tables(i) || '_' || part.PARTITION_POSITION;
+                        DBMS_OUTPUT.PUT_LINE('  ⚠ No se pudo extraer número de ' || part.PARTITION_NAME || 
+                                             ' (HIGH_VALUE: ' || NVL(v_high_value, 'NULL') || '), usando posición.');
                     END IF;
                 END IF;
                 
-                -- Renombrar partición
                 IF part.PARTITION_NAME != v_nuevo_nombre THEN
                     EXECUTE IMMEDIATE 'ALTER TABLE PCP.' || v_tables(i) || 
                                       ' RENAME PARTITION ' || part.PARTITION_NAME || 

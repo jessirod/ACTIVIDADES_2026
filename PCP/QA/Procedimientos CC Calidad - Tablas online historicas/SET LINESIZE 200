@@ -1,0 +1,47 @@
+SET LINESIZE 200
+SET PAGESIZE 100
+SET FEEDBACK ON
+SET DEFINE OFF
+
+COL tipo_objeto  FORMAT A20
+COL particionado FORMAT A12
+COL logging      FORMAT A8
+COL cant         FORMAT 999,999
+
+PROMPT === RESUMEN NOLOGGING por tipo y particionado ===
+
+SELECT tipo_objeto,
+       particionado,
+       logging,
+       COUNT(*) AS cant
+  FROM (
+        SELECT 'TABLE' AS tipo_objeto,
+               TO_CHAR(partitioned) AS particionado,
+               logging
+          FROM dba_tables
+         WHERE logging = 'NO'
+           AND owner NOT IN ('SYS','SYSTEM','OUTLN','DBSNMP','XDB','WMSYS','MDSYS','CTXSYS','ORDSYS','OLAPSYS','EXFSYS','ORDDATA')
+        UNION ALL
+        SELECT 'TABLE PARTITION',
+               'YES',
+               logging
+          FROM dba_tab_partitions
+         WHERE logging = 'NO'
+           AND table_owner NOT IN ('SYS','SYSTEM','OUTLN','DBSNMP','XDB','WMSYS','MDSYS','CTXSYS','ORDSYS','OLAPSYS','EXFSYS','ORDDATA')
+        UNION ALL
+        SELECT 'INDEX',
+               TO_CHAR(partitioned),
+               logging
+          FROM dba_indexes
+         WHERE logging = 'NO'
+           AND owner NOT IN ('SYS','SYSTEM','OUTLN','DBSNMP','XDB','WMSYS','MDSYS','CTXSYS','ORDSYS','OLAPSYS','EXFSYS','ORDDATA')
+        UNION ALL
+        SELECT 'INDEX PARTITION',
+               'YES',
+               logging
+          FROM dba_ind_partitions
+         WHERE logging = 'NO'
+           AND index_owner NOT IN ('SYS','SYSTEM','OUTLN','DBSNMP','XDB','WMSYS','MDSYS','CTXSYS','ORDSYS','OLAPSYS','EXFSYS','ORDDATA')
+       )
+ GROUP BY tipo_objeto, particionado, logging
+ ORDER BY tipo_objeto, particionado, logging;
