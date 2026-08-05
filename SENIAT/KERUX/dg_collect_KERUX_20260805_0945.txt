@@ -1,0 +1,300 @@
+============================================================================
+1. INSTANCIA, VERSION Y ROL
+============================================================================
+
+INSTANCE_NAM HOST_NAME                 VERSION      STATUS       STARTUP_TIME
+------------ ------------------------- ------------ ------------ --------------------
+KERUX        s02apker01                10.2.0.4.0   OPEN         14-FEB-2026 10:19:17
+Elapsed: 00:00:00.00
+
+NAME         DATABASE_ROLE      PROTECTION_MODE        PROTECTION_LEVEL       OPEN_MODE            FORCE_
+------------ ------------------ ---------------------- ---------------------- -------------------- ------
+KERUX        PRIMARY            MAXIMUM PERFORMANCE    MAXIMUM PERFORMANCE    READ WRITE           YES
+Elapsed: 00:00:00.01
+FLASHBACK_ON      : NO
+SWITCHOVER_STATUS : SESSIONS ACTIVE
+Elapsed: 00:00:00.05
+CDB (multitenant) : N/A (< 12c)
+Elapsed: 00:00:00.00
+
+============================================================================
+2. PARAMETROS DE DATA GUARD
+============================================================================
+
+PNAME                            PVALUE
+-------------------------------- ----------------------------------------------------------------------------------------------------------------------------------
+archive_lag_target               0
+db_file_name_convert
+db_unique_name                   KERUX
+dg_broker_config_file1           /oracle1/app/10.2.0/dbs/dr1KERUX.dat
+dg_broker_config_file2           /oracle1/app/10.2.0/dbs/dr2KERUX.dat
+dg_broker_start                  TRUE
+fal_client                       (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=s02apker01)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=KERUX_XPT)(INSTANCE_NA
+                                 ME=KERUX)(SERVER=dedicated)))
+
+fal_server                       (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=kerux_drs)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=KERUXDRS_XPT)(SERVER=de
+                                 dicated)))
+
+log_archive_config               DG_CONFIG=(KERUX,KERUXDRS)
+log_archive_dest_1               location="/oradata/KERUX/oraarch1/", valid_for=(ONLINE_LOGFILE,ALL_ROLES)
+log_archive_dest_3               service="(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=kerux_drs)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=KERUXDRS_XPT)(
+                                 INSTANCE_NAME=KERUX)(SERVER=dedicated)))",    LGWR ASYNC NOAFFIRM delay=0 OPTIONAL max_failure=0 max_connections=1   reopen=300
+                                 db_unique_name="KERUXDRS" register net_timeout=180  valid_for=(online_logfile,primary_role)
+
+log_archive_dest_state_1         ENABLE
+log_archive_dest_state_2         ENABLE
+log_archive_dest_state_3         ENABLE
+log_archive_dest_state_4         enable
+log_archive_dest_state_5         enable
+log_archive_dest_state_6         enable
+log_archive_dest_state_7         enable
+log_archive_dest_state_8         enable
+log_archive_dest_state_9         enable
+log_archive_max_processes        2
+log_archive_min_succeed_dest     1
+log_file_name_convert
+remote_login_passwordfile        EXCLUSIVE
+standby_file_management          AUTO
+Elapsed: 00:00:00.01
+
+============================================================================
+3. DESTINOS DE ARCHIVADO Y ERRORES DE TRANSPORTE
+============================================================================
+
+   DEST_ID DEST_NAME            STATUS    TYPE           DATABASE_MODE   RECOVERY_MODE           ERROR
+---------- -------------------- --------- -------------- --------------- ----------------------- --------------------------------------------------
+         1 LOG_ARCHIVE_DEST_1   VALID     LOCAL          OPEN            IDLE
+         3 LOG_ARCHIVE_DEST_3   VALID     PHYSICAL       MOUNTED-STANDBY MANAGED REAL TIME APPLY
+Elapsed: 00:00:00.01
+
+   DEST_ID STATUS    TARGET  ARCHIVER   TRANSMIT_MOD AFF ERROR
+---------- --------- ------- ---------- ------------ --- --------------------------------------------------
+         3 VALID     STANDBY LGWR       ASYNCHRONOUS NO
+Elapsed: 00:00:00.01
+
+============================================================================
+4. SECUENCIAS: ARCHIVADAS Y APLICADAS (por thread)
+============================================================================
+--- Ultima secuencia archivada:
+
+   THREAD# ULTIMA_ARCHIVADA
+---------- ----------------
+         1            67290
+Elapsed: 00:00:00.08
+--- Ultima secuencia con APPLIED='YES':
+
+   THREAD# ULTIMA_APLICADA
+---------- ---------------
+         1           67290
+Elapsed: 00:00:00.01
+--- Secuencia actual del redo online:
+
+   THREAD# SECUENCIA_ACTUAL
+---------- ----------------
+         1            67291
+Elapsed: 00:00:00.03
+--- v$archive_gap:
+Elapsed: 00:00:00.32
+
+============================================================================
+5. PROCESOS DE TRANSPORTE Y APLICACION
+============================================================================
+--- v$managed_standby:
+
+PROCESS   STATUS       CLIENT_PRO    THREAD#  SEQUENCE#     BLOCK#
+--------- ------------ ---------- ---------- ---------- ----------
+ARCH      CLOSING      ARCH                1      67289     983041
+ARCH      CLOSING      ARCH                1      67290     987137
+LNS       WRITING      LNS                 1      67291     858566
+Elapsed: 00:00:00.01
+--- v$dataguard_process (solo 12.2+):
+N/A (version < 12.2)
+Elapsed: 00:00:00.00
+
+============================================================================
+6. LAG DE TRANSPORTE Y APLICACION (v$dataguard_stats, 10g+)
+============================================================================
+(sin filas)
+Elapsed: 00:00:00.02
+
+============================================================================
+7. ONLINE REDO LOGS Y STANDBY REDO LOGS
+============================================================================
+--- Online redo logs:
+
+   THREAD#     GROUP#         MB    MEMBERS STATUS
+---------- ---------- ---------- ---------- ----------------
+         1          1        512          2 INACTIVE
+         1          2        512          2 CURRENT
+         1          3        512          2 INACTIVE
+Elapsed: 00:00:00.01
+--- Standby redo logs:
+
+   THREAD#     GROUP#         MB STATUS           USED
+---------- ---------- ---------- ---------- ----------
+         0          6        512 UNASSIGNED        512
+         1          4        512 UNASSIGNED        512
+         1          5        512 UNASSIGNED        512
+Elapsed: 00:00:00.00
+
+============================================================================
+8. SWITCHES DE REDO POR HORA (ultimas 48h)
+============================================================================
+
+HORA                                                                                                          SWITCHES
+----------------------------------------------------------------------------------------------------------- ----------
+03-AUG 10:00                                                                                                         8
+03-AUG 11:00                                                                                                        13
+03-AUG 12:00                                                                                                         7
+03-AUG 13:00                                                                                                         4
+03-AUG 14:00                                                                                                         3
+03-AUG 15:00                                                                                                         5
+03-AUG 16:00                                                                                                         4
+03-AUG 17:00                                                                                                        11
+03-AUG 22:00                                                                                                         1
+04-AUG 08:00                                                                                                         5
+04-AUG 09:00                                                                                                         4
+04-AUG 10:00                                                                                                         7
+04-AUG 11:00                                                                                                         5
+04-AUG 12:00                                                                                                         4
+04-AUG 14:00                                                                                                         8
+04-AUG 15:00                                                                                                         1
+04-AUG 16:00                                                                                                         4
+05-AUG 08:00                                                                                                         1
+05-AUG 09:00                                                                                                         1
+Elapsed: 00:00:00.01
+
+============================================================================
+9. MENSAJES DE DATA GUARD ULTIMOS 3 DIAS (v$dataguard_status)
+============================================================================
+
+TIMESTAMP            SEVERITY      ERROR_CODE MESSAGE
+-------------------- ------------- ---------- ------------------------------------------------------------------------------------------------------------------------
+02-AUG-2026 12:05:04 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67169 for destination LOG_ARCHIVE_DEST_3
+02-AUG-2026 12:05:06 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67170 for destination LOG_ARCHIVE_DEST_3
+02-AUG-2026 12:05:11 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67172 for destination LOG_ARCHIVE_DEST_3
+02-AUG-2026 12:05:12 Informational          0 Redo Shipping Client Connected as PUBLIC
+02-AUG-2026 12:05:12 Informational          0 -- Connected User is Valid
+02-AUG-2026 12:05:42 Informational          0 Redo Shipping Client Connected as PUBLIC
+02-AUG-2026 12:05:42 Informational          0 -- Connected User is Valid
+02-AUG-2026 12:06:08 Warning                0 ARC1: Standby redo logfile selected for thread 1 sequence 67171 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 07:54:45 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67173 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 07:56:50 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67174 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 07:59:29 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67175 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:02:15 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67176 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:03:59 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67177 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:17:38 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67178 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:25:43 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67179 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:34:39 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67180 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:36:35 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67181 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:38:22 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67182 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:40:19 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67183 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:55:08 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67184 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 08:59:29 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67185 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:04:48 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67186 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:07:34 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67187 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:11:35 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67188 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:14:57 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67189 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:16:24 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67190 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:18:17 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67191 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:24:55 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67192 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:33:01 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67193 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 09:34:56 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67194 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:24:07 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67195 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:27:54 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67196 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:30:45 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67197 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:35:03 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67198 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:37:36 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67199 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:40:30 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67200 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:50:11 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67201 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 10:51:58 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67202 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:06:52 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67203 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:08:50 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67204 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:25:12 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67205 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:27:13 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67206 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:29:47 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67207 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:31:46 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67208 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:45:23 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67209 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:47:29 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67210 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:48:47 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67211 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:52:31 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67212 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:56:32 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67213 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:57:19 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67214 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 11:58:58 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67215 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:00:04 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67216 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:05:04 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67217 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:05:09 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67218 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:05:13 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67219 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:05:14 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67220 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:24:06 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67221 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 12:25:39 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67222 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 13:28:00 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67223 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 13:29:24 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67224 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 13:31:19 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67225 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 13:50:07 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67226 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 14:02:16 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67227 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 14:05:20 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67228 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 14:35:39 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67229 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 15:02:07 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67230 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 15:04:46 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67231 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 15:23:03 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67232 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 15:24:57 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67233 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 15:26:58 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67234 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 16:04:36 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67235 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 16:06:08 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67236 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 16:49:21 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67237 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 16:54:54 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67238 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:06:33 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67239 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:13:19 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67240 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:14:21 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67241 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:15:48 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67242 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:29:58 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67243 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:31:41 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67244 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:37:16 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67245 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:38:22 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67246 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:40:00 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67247 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:43:45 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67248 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 17:45:25 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67249 for destination LOG_ARCHIVE_DEST_3
+03-AUG-2026 22:32:44 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67250 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 08:31:36 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67251 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 08:33:33 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67252 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 08:40:37 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67253 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 08:57:15 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67254 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 08:58:45 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67255 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 09:15:29 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67256 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 09:25:10 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67257 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 09:54:35 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67258 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 09:59:24 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67259 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:00:45 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67260 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:17:15 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67261 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:38:28 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67262 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:39:55 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67263 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:49:01 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67264 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:50:37 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67265 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 10:52:33 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67266 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 11:08:21 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67267 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 11:10:12 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67268 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 11:25:21 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67269 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 11:26:51 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67270 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 11:28:54 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67271 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 12:05:05 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67272 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 12:05:06 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67273 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 12:05:18 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67274 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 12:05:19 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67275 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:17:54 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67276 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:20:46 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67277 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:22:37 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67278 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:25:23 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67279 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:27:14 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67280 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:39:26 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67281 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:41:08 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67282 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 14:43:00 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67283 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 15:58:06 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67284 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 16:01:04 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67285 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 16:04:17 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67286 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 16:05:43 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67287 for destination LOG_ARCHIVE_DEST_3
+04-AUG-2026 16:07:22 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67288 for destination LOG_ARCHIVE_DEST_3
+05-AUG-2026 08:41:09 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67289 for destination LOG_ARCHIVE_DEST_3
+05-AUG-2026 09:17:40 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67290 for destination LOG_ARCHIVE_DEST_3
+05-AUG-2026 09:19:43 Warning                0 LNS: Standby redo logfile selected for thread 1 sequence 67291 for destination LOG_ARCHIVE_DEST_3
+Elapsed: 00:00:00.02
