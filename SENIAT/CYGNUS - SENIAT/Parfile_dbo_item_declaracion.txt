@@ -1,0 +1,49 @@
+***********************************************************************
+EXPORT
+***********************************************************************
+
+vi exp_item_declaracion_202607.par
+
+DIRECTORY=EXPORT_BDTEMP
+LOGFILE=EXP_DBO_202607.log
+DUMPFILE=EXP_DBO_ITM_202607_%U.dmp
+METRICS=Y
+EXCLUDE=INDEX,CONSTRAINT,PROCACT_SYSTEM,STATISTICS
+CONTENT=DATA_ONLY
+CLUSTER=N
+PARALLEL=5
+TABLES=DBO.ITEM_DECLARACION:P202607
+
+
+
+nohup expdp JRODRIGUEZ/Moneda5* parfile=exp_item_declaracion_202607.par &
+expdp JRODRIGUEZ/Moneda5* ATTACH=SYS_EXPORT_TABLE_01
+
+
+sqlplus JRODRIGUEZ/Moneda5*@SENIAT
+
+
+
+***********************************************************************
+IMPORT
+***********************************************************************
+
+vi imp_item_declaracion_202607.par
+
+DIRECTORY=IMPORT
+LOGFILE=IMP_DBO_202607.log
+DUMPFILE=EXP_DBO_ITM_202607_%U.dmp
+METRICS=Y
+CONTENT=DATA_ONLY
+CLUSTER=N
+PARALLEL=5
+TABLES=DBO.ITEM_DECLARACION:P202607
+TABLE_EXISTS_ACTION=APPEND
+
+
+nohup impdp \' / as sysdba \' parfile=imp_item_declaracion_202607.par &
+tail -1000f nohup.out
+
+impdp \' / as sysdba \'  ATTACH=SYS_IMPORT_TABLE_01
+
+S

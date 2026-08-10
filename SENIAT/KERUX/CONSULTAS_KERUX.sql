@@ -160,13 +160,13 @@ DECLARE
 l_sql_tune_task_id VARCHAR2(100);
 BEGIN
 l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
---begin_snap => 20613, 
---end_snap => 20616,
-sql_id => '8dk7wgsyym712',
+begin_snap => 153068, 
+end_snap => 153069,
+sql_id => 'a3jhjn8gnfqz4',
 scope => DBMS_SQLTUNE.scope_comprehensive,
 time_limit => 20000,
-task_name => '8dk7wgsyym712_tuning_task01',
-description => 'Tuning task1 for statement 8dk7wgsyym712');
+task_name => 'a3jhjn8gnfqz4_tuning_task01',
+description => 'Tuning task1 for statement a3jhjn8gnfqz4');
 DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
 END;
 /
@@ -174,7 +174,7 @@ END;
 
 2. EJECUTAR EL TUNING TASK
 
-EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => '8dk7wgsyym712_tuning_task01');
+EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => 'a3jhjn8gnfqz4_tuning_task01');
 
 
 3. OBTENER EL REPORTE DEL TUNING ADVISOR
@@ -183,7 +183,7 @@ set long 65536
 set longchunksize 65536
 set linesize 240
 set pagesize 500
-select dbms_sqltune.report_tuning_task('8dk7wgsyym712_tuning_task01') from dual;
+select dbms_sqltune.report_tuning_task('a3jhjn8gnfqz4_tuning_task01') from dual;
 
 
 
