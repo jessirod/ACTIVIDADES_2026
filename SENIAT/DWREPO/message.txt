@@ -1,0 +1,163 @@
+Finding 6: I/O Throughput
+Impact is .04 active sessions, 8.37% of total activity.
+-------------------------------------------------------
+The throughput of the I/O subsystem was significantly lower than expected.
+
+   Recommendation 1: Host Configuration
+   Estimated benefit is .04 active sessions, 8.37% of total activity.
+   ------------------------------------------------------------------
+   Action
+      Consider increasing the throughput of the I/O subsystem. Oracle's
+      recommended solution is to stripe all data files using the SAME
+      methodology. You might also need to increase the number of disks for
+      better performance.
+   Rationale
+      During the analysis period, the average data files' I/O throughput was
+      20 M per second for reads and 9.2 M per second for writes. The average
+      response time for single block reads was 23 milliseconds.
+
+   Recommendation 2: Host Configuration
+   Estimated benefit is .04 active sessions, 8.37% of total activity.
+   ------------------------------------------------------------------
+   Action
+      The performance of some data and temp files was significantly worse than
+      others. If striping all files using the SAME methodology is not
+      possible, consider striping these file over multiple disks.
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.271.1199018275, the average
+      response time for single block reads was 333 milliseconds, and the total
+      excess I/O wait was 74 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.271.1199018275"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.275.1201213791, the average
+      response time for single block reads was 237 milliseconds, and the total
+      excess I/O wait was 68 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.275.1201213791"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.270.1199018273, the average
+      response time for single block reads was 338 milliseconds, and the total
+      excess I/O wait was 68 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.270.1199018273"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.268.1199018271, the average
+      response time for single block reads was 227 milliseconds, and the total
+      excess I/O wait was 65 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.268.1199018271"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.277.1201861837, the average
+      response time for single block reads was 226 milliseconds, and the total
+      excess I/O wait was 64 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.277.1201861837"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_index.315.1223133463, the average
+      response time for single block reads was 142 milliseconds, and the total
+      excess I/O wait was 48 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_index.315.1223133463"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.278.1202120827, the average
+      response time for single block reads was 244 milliseconds, and the total
+      excess I/O wait was 45 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.278.1202120827"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.291.1203680703, the average
+      response time for single block reads was 230 milliseconds, and the total
+      excess I/O wait was 30 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.291.1203680703"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_index.266.1198600115, the average
+      response time for single block reads was 18 milliseconds, and the total
+      excess I/O wait was 19 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_index.266.1198600115"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.309.1214066307, the average
+      response time for single block reads was 139 milliseconds, and the total
+      excess I/O wait was 10 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.309.1214066307"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.279.1203507845, the average
+      response time for single block reads was 187 milliseconds, and the total
+      excess I/O wait was 8 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.279.1203507845"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.320.1223210971, the average
+      response time for single block reads was 95 milliseconds, and the total
+      excess I/O wait was 8 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.320.1223210971"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.280.1203507873, the average
+      response time for single block reads was 234 milliseconds, and the total
+      excess I/O wait was 8 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.280.1203507873"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_index.324.1229335159, the average
+      response time for single block reads was 229 milliseconds, and the total
+      excess I/O wait was 7 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_index.324.1229335159"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.312.1223133179, the average
+      response time for single block reads was 144 milliseconds, and the total
+      excess I/O wait was 7 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.312.1223133179"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/system.265.1198589705, the average
+      response time for single block reads was 70 milliseconds, and the total
+      excess I/O wait was 7 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/system.265.1198589705"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.281.1203507881, the average
+      response time for single block reads was 110 milliseconds, and the total
+      excess I/O wait was 6 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.281.1203507881"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data_part.313.1223133239, the average
+      response time for single block reads was 56 milliseconds, and the total
+      excess I/O wait was 6 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data_part.313.1223133239"
+   Rationale
+      For file +DATA/DWREPO/DATAFILE/ts_data.323.1229331687, the average
+      response time for single block reads was 517 milliseconds, and the total
+      excess I/O wait was 6 seconds.
+      Related Object
+         Database file
+         "+DATA/DWREPO/DATAFILE/ts_data.323.1229331687"
+
+   Symptoms That Led to the Finding:
+   ---------------------------------
+      Wait class "User I/O" was consuming significant database time.
+      Impact is .26 active sessions, 49.38% of total activity.
