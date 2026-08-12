@@ -1,0 +1,7 @@
+Creacion de Columna
+
+ALTER TABLE PICBDV.SUB_APICONCI
+ADD (
+    SIGLAS               VARCHAR2(3 BYTE),
+    CLASE_TRANSFERENCIA  CHAR(1 BYTE)
+);

@@ -1,0 +1,58 @@
+CREATE OR REPLACE PROCEDURE PICBDV.PR_MERCHANT_REGISTER (
+    p_nacionalidad        IN MERCHANT_OPERADOR.NACIONALIDAD%TYPE,
+    p_cedula_rif          IN MERCHANT_OPERADOR.CEDULA_RIF%TYPE,
+    p_nombre_merchant     IN MERCHANT_OPERADOR.NOMBRE_MERCHANT%TYPE,
+    p_telefono_cliente    IN MERCHANT_OPERADOR.TELEFONO_CLIENTE%TYPE,
+    p_numero_cuenta       IN MERCHANT_OPERADOR.NUMERO_CUENTA%TYPE,
+    p_api_key             IN MERCHANT_OPERADOR.API_KEY%TYPE,
+    p_producto            IN MERCHANT_OPERADOR.PRODUCTO%TYPE,
+    p_uuid                IN MERCHANT_OPERADOR.UUID%TYPE,
+    COD_RET               OUT VARCHAR2,
+    DE_CODRET             OUT VARCHAR2
+) IS
+    v_count_active NUMBER;
+    v_count_inactive NUMBER;
+    v_codigo_status  NUMBER := 1;
+BEGIN
+    -- Verificar si el API_KEY ya existe
+    SELECT COUNT(1) INTO v_count_active
+    FROM MERCHANT_OPERADOR
+    WHERE API_KEY = p_api_key;
+
+    IF v_count_active > 0 THEN
+        COD_RET := '01';
+        DE_CODRET := 'Registro duplicado';
+    ELSE
+        -- Verificar si el registro con NACIONALIDAD, CEDULA_RIF y PRODUCTO ya existe y est¿¿ activo
+        SELECT COUNT(1) INTO v_count_active
+        FROM MERCHANT_OPERADOR
+        WHERE NACIONALIDAD = p_nacionalidad
+          AND CEDULA_RIF = p_cedula_rif
+          AND PRODUCTO = p_producto
+          AND CODIGO_STATUS = v_codigo_status;
+
+        IF v_count_active > 0 THEN
+            COD_RET := '01';
+            DE_CODRET := 'Registro duplicado';
+        ELSE
+            -- Insertar el nuevo registro con fecha de creaci¿¿n y estado por defecto
+            INSERT INTO MERCHANT_OPERADOR (
+                NACIONALIDAD, CEDULA_RIF, NOMBRE_MERCHANT, TELEFONO_CLIENTE, NUMERO_CUENTA, PRODUCTO, FECHA_CREACION, API_KEY, CODIGO_STATUS, UUID
+            ) VALUES (
+                p_nacionalidad, p_cedula_rif, p_nombre_merchant, p_telefono_cliente, p_numero_cuenta, p_producto, SYSDATE, p_api_key, v_codigo_status, p_uuid
+            );
+            COMMIT;
+
+            COD_RET := '00';
+            DE_CODRET := 'Registro realizado exitosamente';
+        END IF;
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        COD_RET := '99';
+        DE_CODRET := SQLERRM;
+        ROLLBACK;
+END pr_merchant_register;
+
+/

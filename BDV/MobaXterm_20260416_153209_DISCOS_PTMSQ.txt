@@ -1,0 +1,717 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:0.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-04-16 ? ? 09:59.26 ? ? /home/mobaxterm ? ssh -legacy oracle9i@bdvsun02
+Last login: Wed Apr  8 01:40:13 2026 from 172.18.68.159
+Oracle Corporation      SunOS 5.10      Generic Patch   January 2005
+You have new mail.
+
+######################################################################
+.profile PROVISTO PARA LA INSTANCIA DE BASE DE DATOS EN VERSION 9.2.0.8
+                B.D.   64 bits   ver. 9.2.0.8
+######################################################################
+
+************************* Espacio de los FileSystem *************************
+***
+***   Mounted  capacity
+***
+***   /archive  57%
+***   /ARCHIVE/RENTA  1%
+***   /export2  44%
+***   /oracle  56%
+***
+*****************************************************************************
+oracle9i@bdvsun02.banvenez.com:/db_1$ ps -fea ^H|^C
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ bash
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ ps -ef | grep -i pmon
+oracle9i  1594     1   0   Jun 09 ?         499:49 ora_pmon_PTMOSQ
+oracle10  2625     1   0   Jun 09 ?         505:03 ora_pmon_BVSOL
+oracle10  2143     1   0   Jun 09 ?         173:56 ora_pmon_FISAACP
+oracle10  2748     1   0   Jun 09 ?         277:12 ora_pmon_BDRE
+oracle9i 29835     1   0   Mar 08 ?          35:15 ora_pmon_RENTA
+oracle9i 26566 26564   0 09:59:15 pts/5       0:00 grep -i pmon
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h
+Filesystem             size   used  avail capacity  Mounted on
+rpool/ROOT/s10s_u11wos_24a
+                        98G    46G    28G    63%    /
+/devices                 0K     0K     0K     0%    /devices
+ctfs                     0K     0K     0K     0%    /system/contract
+proc                     0K     0K     0K     0%    /proc
+mnttab                   0K     0K     0K     0%    /etc/mnttab
+swap                   102G   472K   102G     1%    /etc/svc/volatile
+objfs                    0K     0K     0K     0%    /system/object
+sharefs                  0K     0K     0K     0%    /etc/dfs/sharetab
+/platform/sun4v/lib/libc_psr/libc_psr_hwcap3.so.1
+                        74G    46G    28G    63%    /platform/sun4v/lib/libc_psr.so.1
+/platform/sun4v/lib/sparcv9/libc_psr/libc_psr_hwcap3.so.1
+                        74G    46G    28G    63%    /platform/sun4v/lib/sparcv9/libc_psr.so.1
+fd                       0K     0K     0K     0%    /dev/fd
+swap                   102G    10M   102G     1%    /tmp
+swap                   102G    88K   102G     1%    /var/run
+APLICACION             851G    20K   376G     1%    /APLICACION
+APLICACION2_EMC         31G    31K   7.6G     1%    /APLICACION2_EMC
+ARCHIVE                392G    35K   392G     1%    /ARCHIVE
+ARCHIVE/RENTA          392G    31K   392G     1%    /ARCHIVE/RENTA
+ARCHIVE/ROCA           392G    31K   392G     1%    /ARCHIVE/ROCA
+ARCHIVE_NEW            294G    31K   128G     1%    /ARCHIVE_NEW
+BDRE                   546G    24K   135G     1%    /BDRE
+BDRE/data              546G   333G   135G    72%    /BDRE/data
+BDRE/index             546G    56G   135G    30%    /BDRE/index
+BDRE/system            546G    22G   135G    14%    /BDRE/system
+CTLEXP                 343G    24K   132G     1%    /CTLEXP
+CTLEXP/data            343G    63G   132G    33%    /CTLEXP/data
+CTLEXP/index           343G   123G   132G    49%    /CTLEXP/index
+CTLEXP/system          343G    24G   132G    16%    /CTLEXP/system
+CTLEXPINDX              88G    32K    88G     1%    /CTLEXPINDX
+CTLEXPINDX/indx         88G    31K    88G     1%    /CTLEXPINDX/indx
+CTLEXPTEMP              20G    32K    20G     1%    /CTLEXPTEMP
+CTLEXPTEMP/temp         20G    31K    20G     1%    /CTLEXPTEMP/temp
+CTLEXPUNDO              20G    32K    20G     1%    /CTLEXPUNDO
+CTLEXPUNDO/undo         20G    31K    20G     1%    /CTLEXPUNDO/undo
+DBDATA2232_EMC          90G    14G    23G    38%    /DBDATA2232_EMC
+DBDATA2233_EMC          63G    31K    13G     1%    /DBDATA2233_EMC
+DBDATA2243_EMC          49G    31K   9.5G     1%    /DBDATA2243_EMC
+EXPORT2_NEW            294G    31K   165G     1%    /EXPORT2_NEW
+EXPORTDB               637G    31K   384G     1%    /EXPORTDB
+FISAACP                 29G    24K    12G     1%    /FISAACP
+FISAACP/data            29G    11G    12G    50%    /FISAACP/data
+FISAACP/index           29G   5.1G    12G    31%    /FISAACP/index
+FISAACP/system          29G   1.5G    12G    12%    /FISAACP/system
+ORACLE_BIN              98G    31K    44G     1%    /ORACLE_BIN
+PTMOSQ                 277G    24K   120G     1%    /PTMOSQ
+PTMOSQ/data            277G   107G   120G    48%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   120G    12%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   120G    23%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+RENTA                  5.2T    25K   656G     1%    /RENTA
+RENTA/data             5.2T   3.4T   656G    85%    /RENTA/data
+RENTA/index            5.2T   1.0T   656G    62%    /RENTA/index
+RENTA/system           5.2T   146G   656G    19%    /RENTA/system
+RENTATMP2/temporal     1.1T   1.1T    83G    93%    /RENTA/temporal
+RENTACONTROL01         980M    21K   968M     1%    /RENTACONTROL01
+RENTACONTROL01/control01
+                       980M    12M   968M     2%    /RENTACONTROL01/control01
+RENTACONTROL02         980M    21K   968M     1%    /RENTACONTROL02
+RENTACONTROL02/control02
+                       980M    12M   968M     2%    /RENTACONTROL02/control02
+RENTADATA              5.0T    23K   173G     1%    /RENTADATA
+RENTADATA/data         5.0T   4.8T   173G    97%    /RENTADATA/data
+RENTADATA01            3.0T    23K   313G     1%    /RENTADATA01
+RENTADATA01/data       3.0T   2.7T   313G    90%    /RENTADATA01/data
+RENTADATA01/index      3.0T   9.5G   313G     3%    /RENTADATA01/index
+RENTADATA02            2.5T    21K   341G     1%    /RENTADATA02
+RENTADATA02/data       2.5T   2.1T   341G    87%    /RENTADATA02/data
+RENTADATA03            2.8T    32K   521G     1%    /RENTADATA03
+RENTADATA03/data       2.8T   2.3T   521G    82%    /RENTADATA03/data
+RENTADRP               1.2T    35K   1.2T     1%    /RENTADRP
+RENTADRP/data          1.2T    81G   1.2T     7%    /RENTADRP/data
+RENTADRP/index         1.2T    31K   1.2T     1%    /RENTADRP/index
+RENTADRP/system        1.2T   159K   1.2T     1%    /RENTADRP/system
+RENTAINDEX             1.9T    21K   369G     1%    /RENTAINDEX
+RENTAINDEX/index       1.9T   1.5T   369G    81%    /RENTAINDEX/index
+RENTAINDEX01           1.4T   1.3T   134G    91%    /RENTAINDEX01
+RENTAINDEX02           1.6T    32K   529G     1%    /RENTAINDEX02
+RENTAINDEX02/index     1.6T   1.1T   529G    69%    /RENTAINDEX02/index
+RENTAREDOA              20G    32K    20G     1%    /RENTAREDOA
+RENTAREDOA/rentaredoa
+                        20G    31K    20G     1%    /RENTAREDOA/rentaredoa
+RENTAREDOB              20G    32K    20G     1%    /RENTAREDOB
+RENTAREDOB/rentaredob
+                        20G    31K    20G     1%    /RENTAREDOB/rentaredob
+RENTAREDOC              20G    32K    20G     1%    /RENTAREDOC
+RENTAREDOC/rentaredoc
+                        20G    31K    20G     1%    /RENTAREDOC/rentaredoc
+RENTAREDOLOGA           29G    21K    14G     1%    /RENTAREDOLOGA
+RENTAREDOLOGA/loga      29G    15G    14G    52%    /RENTAREDOLOGA/loga
+RENTAREDOLOGB           29G    21K    14G     1%    /RENTAREDOLOGB
+RENTAREDOLOGB/logb      29G    15G    14G    52%    /RENTAREDOLOGB/logb
+RENTASYSTEM             12G    21K   9.7G     1%    /RENTASYSTEM
+RENTASYSTEM/system      12G   2.1G   9.7G    18%    /RENTASYSTEM/system
+RENTATMP2              1.1T    31K    83G     1%    /RENTATMP2
+RENTAUNDO              348G    21K   348G     1%    /RENTAUNDO
+RENTAUNDO/undo         348G    20K   348G     1%    /RENTAUNDO/undo
+RENTAUNDO01            588G    32K   267G     1%    /RENTAUNDO01
+RENTAUNDO01/undo       588G   320G   267G    55%    /RENTAUNDO01/undo
+RENTA_SDO              254G    31K   244G     1%    /RENTA_SDO
+APLICACION2_EMC/aplicacion2
+                        31G    24G   7.6G    76%    /aplicacion2
+RENTA_SDO/sdo          254G    10G   244G     4%    /aplicacion2/renta/sdo
+ARCHIVE_NEW/archive    294G   166G   128G    57%    /archive
+DBDATA2232_EMC/dbdata2232
+                        90G    53G    23G    70%    /dbdata2232
+DBDATA2233_EMC/dbdata2233
+                        63G    50G    13G    80%    /dbdata2233
+DBDATA2243_EMC/dbdata2243
+                        49G    39G   9.5G    81%    /dbdata2243
+rpool/export            98G    32K    28G     1%    /export
+rpool/export/home       98G   5.2G    28G    16%    /export/home
+EXPORT2_NEW/export2    294G   129G   165G    44%    /export2
+EXPORTDB/exportdb      637G   252G   384G    40%    /exportdb
+APLICACION/ftp2        851G   475G   376G    56%    /ftp2
+ORACLE_BIN/oracle       98G    54G    44G    56%    /oracle
+rpool                   98G   106K    28G     1%    /rpool
+EMAGENT                 29G    31K    29G     1%    /EMAGENT
+EMAGENT/emagent         29G    31K    29G     1%    /emagent
+oracle9i@bdvsun02.banvenez.com:/db_1$
+You have new mail in /var/mail//oracle9i
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ sqlplus / as sysdba
+Usage: SQLPLUS [ [<option>] [<logon>] [<start>] ]
+where <option> ::= -H | -V | [ [-L] [-M <o>] [-R <n>] [-S] ]
+      <logon>  ::= <username>[/<password>][@<connect_string>] | / | /NOLOG
+      <start>  ::= @<URI>|<filename>[.<ext>] [<parameter> ...]
+        "-H" displays the SQL*Plus version banner and usage syntax
+        "-V" displays the SQL*Plus version banner
+        "-L" attempts log on just once
+        "-M <o>" uses HTML markup options <o>
+        "-R <n>" uses restricted mode <n>
+        "-S" uses silent mode
+oracle9i@bdvsun02.banvenez.com:/db_1$ sqlplus  " / as sysdba "
+
+SQL*Plus: Release 9.2.0.7.0 - Production on Thu Apr 16 10:00:55 2026
+
+Copyright (c) 1982, 2002, Oracle Corporation.  All rights reserved.
+
+Connected.
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> show parameter bame
+
+SQL> show parameter name
+ORA-01034: ORACLE not available
+
+
+SQL> show parameter name
+ORA-01034: ORACLE not available
+
+
+SQL> Disconnected
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ ps -fea | grep pmon
+oracle9i  1594     1   0   Jun 09 ?         499:49 ora_pmon_PTMOSQ
+oracle10  2625     1   0   Jun 09 ?         505:04 ora_pmon_BVSOL
+oracle10  2143     1   0   Jun 09 ?         173:57 ora_pmon_FISAACP
+oracle10  2748     1   0   Jun 09 ?         277:12 ora_pmon_BDRE
+oracle9i 29835     1   0   Mar 08 ?          35:15 ora_pmon_RENTA
+oracle9i 28552 26564   0 10:01:30 pts/5       0:00 grep pmon
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ . oraenv
+ORACLE_SID = [oracle9i] ? PTMOSQ
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ sqlplus  " / as sysdba "
+
+SQL*Plus: Release 9.2.0.7.0 - Production on Thu Apr 16 10:01:46 2026
+
+Copyright (c) 1982, 2002, Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> show parameter name
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_file_name_convert                 string
+db_name                              string      PTMOSQ
+global_names                         boolean     FALSE
+instance_name                        string      PTMOSQ
+lock_name_space                      string
+log_file_name_convert                string
+oracle_trace_collection_name         string
+oracle_trace_facility_name           string      oracled
+plsql_native_make_file_name          string
+service_names                        string      PTMOSQ
+SQL>
+SQL>
+SQL>
+SQL> Disconnected from Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+You have new mail in /var/mail//oracle9i
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h
+Filesystem             size   used  avail capacity  Mounted on
+rpool/ROOT/s10s_u11wos_24a
+                        98G    46G    28G    63%    /
+/devices                 0K     0K     0K     0%    /devices
+ctfs                     0K     0K     0K     0%    /system/contract
+proc                     0K     0K     0K     0%    /proc
+mnttab                   0K     0K     0K     0%    /etc/mnttab
+swap                   102G   472K   102G     1%    /etc/svc/volatile
+objfs                    0K     0K     0K     0%    /system/object
+sharefs                  0K     0K     0K     0%    /etc/dfs/sharetab
+/platform/sun4v/lib/libc_psr/libc_psr_hwcap3.so.1
+                        74G    46G    28G    63%    /platform/sun4v/lib/libc_psr.so.1
+/platform/sun4v/lib/sparcv9/libc_psr/libc_psr_hwcap3.so.1
+                        74G    46G    28G    63%    /platform/sun4v/lib/sparcv9/libc_psr.so.1
+fd                       0K     0K     0K     0%    /dev/fd
+swap                   102G    10M   102G     1%    /tmp
+swap                   102G    88K   102G     1%    /var/run
+APLICACION             851G    20K   383G     1%    /APLICACION
+APLICACION2_EMC         31G    31K   7.6G     1%    /APLICACION2_EMC
+ARCHIVE                392G    35K   392G     1%    /ARCHIVE
+ARCHIVE/RENTA          392G    31K   392G     1%    /ARCHIVE/RENTA
+ARCHIVE/ROCA           392G    31K   392G     1%    /ARCHIVE/ROCA
+ARCHIVE_NEW            294G    31K   128G     1%    /ARCHIVE_NEW
+BDRE                   546G    24K   135G     1%    /BDRE
+BDRE/data              546G   333G   135G    72%    /BDRE/data
+BDRE/index             546G    56G   135G    30%    /BDRE/index
+BDRE/system            546G    22G   135G    14%    /BDRE/system
+CTLEXP                 343G    24K   132G     1%    /CTLEXP
+CTLEXP/data            343G    63G   132G    33%    /CTLEXP/data
+CTLEXP/index           343G   123G   132G    49%    /CTLEXP/index
+CTLEXP/system          343G    24G   132G    16%    /CTLEXP/system
+CTLEXPINDX              88G    32K    88G     1%    /CTLEXPINDX
+CTLEXPINDX/indx         88G    31K    88G     1%    /CTLEXPINDX/indx
+CTLEXPTEMP              20G    32K    20G     1%    /CTLEXPTEMP
+CTLEXPTEMP/temp         20G    31K    20G     1%    /CTLEXPTEMP/temp
+CTLEXPUNDO              20G    32K    20G     1%    /CTLEXPUNDO
+CTLEXPUNDO/undo         20G    31K    20G     1%    /CTLEXPUNDO/undo
+DBDATA2232_EMC          90G    14G    23G    38%    /DBDATA2232_EMC
+DBDATA2233_EMC          63G    31K    13G     1%    /DBDATA2233_EMC
+DBDATA2243_EMC          49G    31K   9.5G     1%    /DBDATA2243_EMC
+EXPORT2_NEW            294G    31K   165G     1%    /EXPORT2_NEW
+EXPORTDB               637G    31K   384G     1%    /EXPORTDB
+FISAACP                 29G    24K    12G     1%    /FISAACP
+FISAACP/data            29G    11G    12G    50%    /FISAACP/data
+FISAACP/index           29G   5.1G    12G    31%    /FISAACP/index
+FISAACP/system          29G   1.5G    12G    12%    /FISAACP/system
+ORACLE_BIN              98G    31K    44G     1%    /ORACLE_BIN
+PTMOSQ                 277G    24K   120G     1%    /PTMOSQ
+PTMOSQ/data            277G   107G   120G    48%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   120G    12%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   120G    23%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+RENTA                  5.2T    25K   656G     1%    /RENTA
+RENTA/data             5.2T   3.4T   656G    85%    /RENTA/data
+RENTA/index            5.2T   1.0T   656G    62%    /RENTA/index
+RENTA/system           5.2T   146G   656G    19%    /RENTA/system
+RENTATMP2/temporal     1.1T   1.1T    83G    93%    /RENTA/temporal
+RENTACONTROL01         980M    21K   968M     1%    /RENTACONTROL01
+RENTACONTROL01/control01
+                       980M    12M   968M     2%    /RENTACONTROL01/control01
+RENTACONTROL02         980M    21K   968M     1%    /RENTACONTROL02
+RENTACONTROL02/control02
+                       980M    12M   968M     2%    /RENTACONTROL02/control02
+RENTADATA              5.0T    23K   173G     1%    /RENTADATA
+RENTADATA/data         5.0T   4.8T   173G    97%    /RENTADATA/data
+RENTADATA01            3.0T    23K   313G     1%    /RENTADATA01
+RENTADATA01/data       3.0T   2.7T   313G    90%    /RENTADATA01/data
+RENTADATA01/index      3.0T   9.5G   313G     3%    /RENTADATA01/index
+RENTADATA02            2.5T    21K   341G     1%    /RENTADATA02
+RENTADATA02/data       2.5T   2.1T   341G    87%    /RENTADATA02/data
+RENTADATA03            2.8T    32K   521G     1%    /RENTADATA03
+RENTADATA03/data       2.8T   2.3T   521G    82%    /RENTADATA03/data
+RENTADRP               1.2T    35K   1.2T     1%    /RENTADRP
+RENTADRP/data          1.2T    81G   1.2T     7%    /RENTADRP/data
+RENTADRP/index         1.2T    31K   1.2T     1%    /RENTADRP/index
+RENTADRP/system        1.2T   159K   1.2T     1%    /RENTADRP/system
+RENTAINDEX             1.9T    21K   369G     1%    /RENTAINDEX
+RENTAINDEX/index       1.9T   1.5T   369G    81%    /RENTAINDEX/index
+RENTAINDEX01           1.4T   1.3T   134G    91%    /RENTAINDEX01
+RENTAINDEX02           1.6T    32K   529G     1%    /RENTAINDEX02
+RENTAINDEX02/index     1.6T   1.1T   529G    69%    /RENTAINDEX02/index
+RENTAREDOA              20G    32K    20G     1%    /RENTAREDOA
+RENTAREDOA/rentaredoa
+                        20G    31K    20G     1%    /RENTAREDOA/rentaredoa
+RENTAREDOB              20G    32K    20G     1%    /RENTAREDOB
+RENTAREDOB/rentaredob
+                        20G    31K    20G     1%    /RENTAREDOB/rentaredob
+RENTAREDOC              20G    32K    20G     1%    /RENTAREDOC
+RENTAREDOC/rentaredoc
+                        20G    31K    20G     1%    /RENTAREDOC/rentaredoc
+RENTAREDOLOGA           29G    21K    14G     1%    /RENTAREDOLOGA
+RENTAREDOLOGA/loga      29G    15G    14G    52%    /RENTAREDOLOGA/loga
+RENTAREDOLOGB           29G    21K    14G     1%    /RENTAREDOLOGB
+RENTAREDOLOGB/logb      29G    15G    14G    52%    /RENTAREDOLOGB/logb
+RENTASYSTEM             12G    21K   9.7G     1%    /RENTASYSTEM
+RENTASYSTEM/system      12G   2.1G   9.7G    18%    /RENTASYSTEM/system
+RENTATMP2              1.1T    31K    83G     1%    /RENTATMP2
+RENTAUNDO              348G    21K   348G     1%    /RENTAUNDO
+RENTAUNDO/undo         348G    20K   348G     1%    /RENTAUNDO/undo
+RENTAUNDO01            588G    32K   267G     1%    /RENTAUNDO01
+RENTAUNDO01/undo       588G   320G   267G    55%    /RENTAUNDO01/undo
+RENTA_SDO              254G    31K   244G     1%    /RENTA_SDO
+APLICACION2_EMC/aplicacion2
+                        31G    24G   7.6G    76%    /aplicacion2
+RENTA_SDO/sdo          254G    10G   244G     4%    /aplicacion2/renta/sdo
+ARCHIVE_NEW/archive    294G   166G   128G    57%    /archive
+DBDATA2232_EMC/dbdata2232
+                        90G    53G    23G    70%    /dbdata2232
+DBDATA2233_EMC/dbdata2233
+                        63G    50G    13G    80%    /dbdata2233
+DBDATA2243_EMC/dbdata2243
+                        49G    39G   9.5G    81%    /dbdata2243
+rpool/export            98G    32K    28G     1%    /export
+rpool/export/home       98G   5.2G    28G    16%    /export/home
+EXPORT2_NEW/export2    294G   129G   165G    44%    /export2
+EXPORTDB/exportdb      637G   252G   384G    40%    /exportdb
+APLICACION/ftp2        851G   468G   383G    55%    /ftp2
+ORACLE_BIN/oracle       98G    54G    44G    56%    /oracle
+rpool                   98G   106K    28G     1%    /rpool
+EMAGENT                 29G    31K    29G     1%    /EMAGENT
+EMAGENT/emagent         29G    31K    29G     1%    /emagent
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h | grep RENTA
+ARCHIVE/RENTA          392G    31K   392G     1%    /ARCHIVE/RENTA
+RENTA                  5.2T    25K   656G     1%    /RENTA
+RENTA/data             5.2T   3.4T   656G    85%    /RENTA/data
+RENTA/index            5.2T   1.0T   656G    62%    /RENTA/index
+RENTA/system           5.2T   146G   656G    19%    /RENTA/system
+RENTATMP2/temporal     1.1T   1.1T    83G    93%    /RENTA/temporal
+RENTACONTROL01         980M    21K   968M     1%    /RENTACONTROL01
+RENTACONTROL01/control01   980M    12M   968M     2%    /RENTACONTROL01/control01
+RENTACONTROL02         980M    21K   968M     1%    /RENTACONTROL02
+RENTACONTROL02/control02   980M    12M   968M     2%    /RENTACONTROL02/control02
+RENTADATA              5.0T    23K   173G     1%    /RENTADATA
+RENTADATA/data         5.0T   4.8T   173G    97%    /RENTADATA/data
+RENTADATA01            3.0T    23K   313G     1%    /RENTADATA01
+RENTADATA01/data       3.0T   2.7T   313G    90%    /RENTADATA01/data
+RENTADATA01/index      3.0T   9.5G   313G     3%    /RENTADATA01/index
+RENTADATA02            2.5T    21K   341G     1%    /RENTADATA02
+RENTADATA02/data       2.5T   2.1T   341G    87%    /RENTADATA02/data
+RENTADATA03            2.8T    32K   521G     1%    /RENTADATA03
+RENTADATA03/data       2.8T   2.3T   521G    82%    /RENTADATA03/data
+RENTADRP               1.2T    35K   1.2T     1%    /RENTADRP
+RENTADRP/data          1.2T    81G   1.2T     7%    /RENTADRP/data
+RENTADRP/index         1.2T    31K   1.2T     1%    /RENTADRP/index
+RENTADRP/system        1.2T   159K   1.2T     1%    /RENTADRP/system
+RENTAINDEX             1.9T    21K   369G     1%    /RENTAINDEX
+RENTAINDEX/index       1.9T   1.5T   369G    81%    /RENTAINDEX/index
+RENTAINDEX01           1.4T   1.3T   134G    91%    /RENTAINDEX01
+RENTAINDEX02           1.6T    32K   529G     1%    /RENTAINDEX02
+RENTAINDEX02/index     1.6T   1.1T   529G    69%    /RENTAINDEX02/index
+RENTAREDOA              20G    32K    20G     1%    /RENTAREDOA
+RENTAREDOA/rentaredoa    20G    31K    20G     1%    /RENTAREDOA/rentaredoa
+RENTAREDOB              20G    32K    20G     1%    /RENTAREDOB
+RENTAREDOB/rentaredob    20G    31K    20G     1%    /RENTAREDOB/rentaredob
+RENTAREDOC              20G    32K    20G     1%    /RENTAREDOC
+RENTAREDOC/rentaredoc    20G    31K    20G     1%    /RENTAREDOC/rentaredoc
+RENTAREDOLOGA           29G    21K    14G     1%    /RENTAREDOLOGA
+RENTAREDOLOGA/loga      29G    15G    14G    52%    /RENTAREDOLOGA/loga
+RENTAREDOLOGB           29G    21K    14G     1%    /RENTAREDOLOGB
+RENTAREDOLOGB/logb      29G    15G    14G    52%    /RENTAREDOLOGB/logb
+RENTASYSTEM             12G    21K   9.7G     1%    /RENTASYSTEM
+RENTASYSTEM/system      12G   2.1G   9.7G    18%    /RENTASYSTEM/system
+RENTATMP2              1.1T    31K    83G     1%    /RENTATMP2
+RENTAUNDO              348G    21K   348G     1%    /RENTAUNDO
+RENTAUNDO/undo         348G    20K   348G     1%    /RENTAUNDO/undo
+RENTAUNDO01            588G    32K   267G     1%    /RENTAUNDO01
+RENTAUNDO01/undo       588G   320G   267G    55%    /RENTAUNDO01/undo
+RENTA_SDO              254G    31K   244G     1%    /RENTA_SDO
+RENTA_SDO/sdo          254G    10G   244G     4%    /aplicacion2/renta/sdo
+oracle9i@bdvsun02.banvenez.com:/db_1$
+You have new mail in /var/mail//oracle9i
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h | grep -i PTMOSQ
+PTMOSQ                 277G    24K   120G     1%    /PTMOSQ
+PTMOSQ/data            277G   107G   120G    48%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   120G    12%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   120G    23%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ sqlplus  " / as sysdba "
+
+SQL*Plus: Release 9.2.0.7.0 - Production on Thu Apr 16 11:52:31 2026
+
+Copyright (c) 1982, 2002, Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+
+SQL> SET PAGES 999
+COL TABLESPACE_NAME FORMAT A40
+COL "SIZE MB" FORMASQL> SQL> T 999,999,999
+COL "FREE MB" FORMAT 99,999,999
+COL "% USED" FORMAT 999
+SELECT     TSU.TABLESPACE_SQL> SQL> SQL> NAME, CEIL(TSU.USED_MB) "SIZE MB"
+,    DECODE(CEIL(TSF.FREE_MB),  2   NULL,0,CEIL(TSF.FREE_MB)) "FREE MB"
+,    DECODE(100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100), NULL,   3  100,
+               100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100)) "%   4  USED"
+FROM    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/1024 USED_MB
+    FROM     DBA_DATA_FILES   5    6  GROUP BY TABLESPACE_NAME UNION ALL
+    SELECT     TABLESPACE_NAM  7  E || '  **TEMP**'
+    ,    SUM(BYTES)/1024/1024 USED_MB
+    FROM     DBA_TEMP_FILES GROUP BY TABLESPACE_NAME) TSU
+,    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/  8    9   10  1024 FREE_MB
+    FROM     DBA_FREE_SPACE GROUP BY TABLESPACE_NAM 11  E) TSF
+WHERE    TSU.TABLESPACE_NAME = TSF.TABLESPACE_NAME (+)
+--and TSU.TABLESPACE_NAME = 'DATA_ 12   13  IDENTITY_LOG'
+ORDER    BY 4
+/ 14   15
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+EUL                                             1,024         851     16
+STATSPACK                                         384         262     31
+QUEST                                             256         151     41
+UNDO                                           30,720      16,007     47
+SYSTEM                                            512         244     52
+DATA                                          184,320      86,482     53
+INDX                                           46,080      18,449     59
+TEMP01  **TEMP**                                                0    100
+TEMP  **TEMP**                                  8,392           0    100
+
+9 rows selected.
+
+SQL> Disconnected from Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h | grep -i PTMOSQ
+PTMOSQ                 277G    24K   120G     1%    /PTMOSQ
+PTMOSQ/data            277G   107G   120G    48%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   120G    12%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   120G    23%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h | grep -i PTMOSQ
+PTMOSQ                 277G    24K   115G     1%    /PTMOSQ
+PTMOSQ/data            277G   112G   115G    50%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   115G    13%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   115G    24%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ df -h | grep -i PTMOSQ
+PTMOSQ                 277G    24K   106G     1%    /PTMOSQ
+PTMOSQ/data            277G   120G   106G    54%    /PTMOSQ/data
+PTMOSQ/index           277G    16G   106G    14%    /PTMOSQ/index
+PTMOSQ/system          277G    35G   106G    25%    /PTMOSQ/system
+PTMOSQ_DATA             98G    32K    23G     1%    /PTMOSQ_DATA
+PTMOSQ_DATA/data        98G    75G    23G    77%    /PTMOSQ_DATA/data
+PTMOSQ_INDX             57G    32K    27G     1%    /PTMOSQ_INDX
+PTMOSQ_INDX/index       57G    30G    27G    53%    /PTMOSQ_INDX/index
+PTMOSQ_REDO1           4.9G    32K   2.7G     1%    /PTMOSQ_REDO1
+PTMOSQ_REDO1/redo1     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO1/redo1
+PTMOSQ_REDO2           4.9G    32K   2.7G     1%    /PTMOSQ_REDO2
+PTMOSQ_REDO2/redo2     4.9G   2.2G   2.7G    45%    /PTMOSQ_REDO2/redo2
+PTMOSQ_REDO3           4.9G    32K   4.9G     1%    /PTMOSQ_REDO3
+PTMOSQ_REDO3/redo3     4.9G    31K   4.9G     1%    /PTMOSQ_REDO3/redo3
+PTMOSQ_TEMP             23G    32K    14G     1%    /PTMOSQ_TEMP
+PTMOSQ_TEMP/temp        23G   8.2G    14G    37%    /PTMOSQ_TEMP/temp
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$
+oracle9i@bdvsun02.banvenez.com:/db_1$ sqlplus  " / as sysdba "
+
+SQL*Plus: Release 9.2.0.7.0 - Production on Thu Apr 16 11:59:12 2026
+
+Copyright (c) 1982, 2002, Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+
+SQL> SET PAGES 999
+COL TABLESPACE_NAME FORMAT A40
+COL "SIZE MB" FORMASQL> SQL> T 999,999,999
+COL "FREE MB" FORMAT 99,999,999
+COL "% USED" FORMAT 999
+SELECT     TSU.TABLESPACE_SQL> SQL> SQL> NAME, CEIL(TSU.USED_MB) "SIZE MB"
+,    DECODE(CEIL(TSF.FREE_MB),  2   NULL,0,CEIL(TSF.FREE_MB)) "FREE MB"
+,    DECODE(100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100), NULL,   3  100,
+               100 - CEIL(TSF.FREE_MB/TSU.USED_MB*100)) "%   4  USED"
+FROM    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/1024 USED_MB
+    FROM     DBA_DATA_FILES   5    6  GROUP BY TABLESPACE_NAME UNION ALL
+    SELECT     TABLESPACE_NAM  7  E || '  **TEMP**'
+    ,    SUM(BYTES)/1024/1024 USED_MB
+    FROM  8    9       DBA_TEMP_FILES GROUP BY TABLESPACE_NAME) TSU
+,    (SELECT TABLESPACE_NAME, SUM(BYTES)/1024/ 10  1024 FREE_MB
+    FROM     DBA_FREE_SPACE GROUP BY TABLESPACE_NAME) TSF
+WHERE    TSU.TABLESPACE_N 11   12  AME = TSF.TABLESPACE_NAME (+)
+--and TSU.TABLESPACE_NAME = 'DATA_ 13  IDENTITY_LOG'
+ORDER    BY 4
+/ 14   15
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+EUL                                             1,024         851     16
+STATSPACK                                         384         262     31
+QUEST                                             256         151     41
+UNDO                                           30,720      15,687     48
+DATA                                          199,680     101,749     49
+INDX                                           56,320      28,574     49
+SYSTEM                                            512         244     52
+TEMP01  **TEMP**                                                0    100
+TEMP  **TEMP**                                  8,392           0    100
+
+9 rows selected.
+
+SQL>
+SQL>
+SQL> /
+
+TABLESPACE_NAME                               SIZE MB     FREE MB % USED
+---------------------------------------- ------------ ----------- ------
+EUL                                             1,024         851     16
+STATSPACK                                         384         262     31
+QUEST                                             256         151     41
+DATA                                          199,680      99,314     50
+SYSTEM                                            512         244     52
+INDX                                           56,320      24,023     57
+UNDO                                           30,720       4,419     85
+TEMP01  **TEMP**                                                0    100
+TEMP  **TEMP**                                  8,392           0    100
+
+9 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> Disconnected from Oracle9i Enterprise Edition Release 9.2.0.7.0 - 64bit Production
+With the Partitioning, OLAP and Oracle Data Mining options
+JServer Release 9.2.0.7.0 - Production
+You have new mail in /var/mail//oracle9i
+oracle9i@bdvsun02.banvenez.com:/db_1$ exit
+you have mail in /var/mail//oracle9i
+oracle9i@bdvsun02.banvenez.com:/db_1$ ^D
+Connection to bdvsun02 closed.
+                                                                                                                                                                                                ?
+
+ ? 2026-04-16 ? ? 15:31.59 ? ? /home/mobaxterm ?

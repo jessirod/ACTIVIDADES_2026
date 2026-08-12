@@ -1,0 +1,1030 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:0.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-04-12 ? ? 18:40.59 ? ? /home/mobaxterm ?  ssh grid@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Sun Apr 12 18:37:29 2026 from 172.18.68.161
+Ultimo login al Sistema: grid     pts/6        172.18.68.161    Sun Apr 12 18:40   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+[grid@plbdtrz01 ~]$ echo $ORACLE_HOME
+/oracle/app/product/19c/grid
+[grid@plbdtrz01 ~]$ timed out waiting for input: auto-logout
+Connection to plbdtrz01 closed.
+
+
+ ? 2026-04-12 ? ? 18:56.28 ? ? /home/mobaxterm ?  ssh grid@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Sun Apr 12 18:40:33 2026 from 172.18.68.161
+Ultimo login al Sistema: grid     pts/6        172.18.68.161    Sun Apr 12 19:03   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz01                169.254.17.172 192.1
+                                                             68.244.1,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Started,STABLE
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz01                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.trzsp.db
+      1        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$ timed out waiting for input: auto-logout
+Connection to plbdtrz01 closed.
+                                                                                                                     ?
+
+ ? 2026-04-12 ? ? 19:19.43 ? ? /home/mobaxterm ?
+                                                                                                                     ?
+
+ ? 2026-04-12 ? ? 20:05.09 ? ? /home/mobaxterm ?  ssh grid@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Mon Apr 13 19:23:05 2026 from 172.18.68.161
+Ultimo login al Sistema: grid     pts/3        172.18.68.161    Mon Apr 13 19:25   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+[grid@plbdtrz01 ~]$ timed out waiting for input: auto-logout
+Connection to plbdtrz01 closed.
+                                                                                                                                                                                                                          ?
+
+ ? 2026-04-13 ? ? 19:41.17 ? ? /home/mobaxterm ?  ssh grid@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Mon Apr 13 19:25:42 2026 from 172.18.68.161
+Ultimo login al Sistema: grid     pts/7        172.18.68.161    Mon Apr 13 20:14   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz01                169.254.17.172 192.1
+                                                             68.244.1,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Started,STABLE
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz01                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.trzsp.db
+      1        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+CRS-4535: Cannot communicate with Cluster Ready Services
+CRS-4000: Command Status failed, or completed with errors.
+[grid@plbdtrz01 ~]$ Connection to plbdtrz01 closed by remote host.
+Connection to plbdtrz01 closed.
+                                                                                                                                                                                                                          ?
+
+ ? 2026-04-13 ? ? 20:19.20 ? ? /home/mobaxterm ? ping -t plbdtrz01
+
+Pinging plbdtrz01.banvenez.corp [172.27.70.66] with 32 bytes of data:
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+                                                                                                                                                                                                                          ?
+
+ ? 2026-04-13 ? ? 22:02.43 ? ? /home/mobaxterm ?  ssh grid@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Mon Apr 13 22:02:15 2026
+Ultimo login al Sistema: grid     pts/3        172.18.68.161    Mon Apr 13 22:02   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz03                169.254.11.53 192.16
+                                                             8.244.3,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  OFFLINE      plbdtrz01                Instance Shutdown,ST
+                                                             ARTING
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  OFFLINE                               Instance Shutdown,ST
+                                                             ABLE
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz03                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.trzsp.db
+      1        ONLINE  OFFLINE                               Instance Shutdown,ST
+                                                             ABLE
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz03                169.254.11.53 192.16
+                                                             8.244.3,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        OFFLINE OFFLINE                               STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Started,STABLE
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  OFFLINE      plbdtrz01                Instance Shutdown,ST
+                                                             ARTING
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz03                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.trzsp.db
+      1        ONLINE  OFFLINE      plbdtrz01                Instance Shutdown,ST
+                                                             ARTING
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz03                169.254.11.53 192.16
+                                                             8.244.3,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Started,STABLE
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz03                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.trzsp.db
+      1        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$ crsctl stat res -t
+--------------------------------------------------------------------------------
+Name           Target  State        Server                   State details
+--------------------------------------------------------------------------------
+Local Resources
+--------------------------------------------------------------------------------
+ora.LISTENER.lsnr
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.chad
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.net1.network
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+ora.ons
+               ONLINE  ONLINE       plbdtrz01                STABLE
+               ONLINE  ONLINE       plbdtrz02                STABLE
+               ONLINE  ONLINE       plbdtrz03                STABLE
+--------------------------------------------------------------------------------
+Cluster Resources
+--------------------------------------------------------------------------------
+ora.ASMNET1LSNR_ASM.lsnr(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.DATA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.FRA_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN1.lsnr
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.LISTENER_SCAN2.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.LISTENER_SCAN3.lsnr
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.LISTENER_SCAN4.lsnr
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.MGMT.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.MGMTLSNR
+      1        ONLINE  ONLINE       plbdtrz03                169.254.11.53 192.16
+                                                             8.244.3,STABLE
+ora.OCRVOTE.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO01_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_DCSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.REDO02_TRZSP.dg(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.asm(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                Started,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Started,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Started,STABLE
+ora.asmnet1.asmnetwork(ora.asmgroup)
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+      3        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.cvu
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.dcsp.db
+      1        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.dcsp.dcsp_ap.svc
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.mgmtdb
+      1        ONLINE  ONLINE       plbdtrz03                Open,STABLE
+ora.plbdtrz01.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.plbdtrz02.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.plbdtrz03.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.qosmserver
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan1.vip
+      1        ONLINE  ONLINE       plbdtrz01                STABLE
+ora.scan2.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.scan3.vip
+      1        ONLINE  ONLINE       plbdtrz02                STABLE
+ora.scan4.vip
+      1        ONLINE  ONLINE       plbdtrz03                STABLE
+ora.trzsp.db
+      1        ONLINE  ONLINE       plbdtrz01                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      2        ONLINE  ONLINE       plbdtrz02                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+      3        ONLINE  ONLINE       plbdtrz03                Open,HOME=/oracle/ap
+                                                             p/oracle/product/19c
+                                                             /db1,STABLE
+ora.trzsp.trzsp_ap.svc
+      2        ONLINE  ONLINE       plbdtrz02                STABLE
+--------------------------------------------------------------------------------
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$ ps -fea | grep pmon
+grid       58907       1  0 22:02 ?        00:00:00 asm_pmon_+ASM1
+oracle19   62967       1  0 22:02 ?        00:00:00 ora_pmon_DCSP1
+oracle19   63112       1  0 22:02 ?        00:00:00 ora_pmon_TRZSP1
+grid       80661   60260  0 22:03 pts/3    00:00:00 grep --color=auto pmon
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$
+[grid@plbdtrz01 ~]$

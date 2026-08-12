@@ -1,0 +1,252 @@
+;;; 
+Export: Release 12.2.0.1.0 - Production on Mon Apr 27 12:18:25 2026
+
+Copyright (c) 1982, 2017, Oracle and/or its affiliates.  All rights reserved.
+;;; 
+Connected to: Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+27-APR-26 12:18:26.740: ;;; **************************************************************************
+27-APR-26 12:18:26.742: ;;; Parfile values:
+27-APR-26 12:18:26.745: ;;;  parfile:  exclude=TABLE:"IN ('LOG', 'AUDI_PROGRAMS')",STATISTICS
+27-APR-26 12:18:26.747: ;;;  parfile:  logtime=ALL
+27-APR-26 12:18:26.749: ;;;  parfile:  parallel=10
+27-APR-26 12:18:26.752: ;;;  parfile:  cluster=N
+27-APR-26 12:18:26.754: ;;;  parfile:  dumpfile=EXPORT_PCP_%T_%L.dmp
+27-APR-26 12:18:26.756: ;;;  parfile:  logfile=EXPORT_PCP.log
+27-APR-26 12:18:26.759: ;;;  parfile:  schemas=PCP
+27-APR-26 12:18:26.761: ;;;  parfile:  directory=MIGRACION
+27-APR-26 12:18:26.763: ;;; **************************************************************************
+27-APR-26 12:18:28.234: Starting "SYSTEM"."SYS_EXPORT_SCHEMA_01":  SYSTEM/******** PARFILE=EXP_SCHEMA_PCP.par 
+27-APR-26 12:18:35.940: Processing object type SCHEMA_EXPORT/USER
+27-APR-26 12:18:35.966: Processing object type SCHEMA_EXPORT/SYSTEM_GRANT
+27-APR-26 12:18:36.042: Processing object type SCHEMA_EXPORT/TABLE/TABLE_DATA
+27-APR-26 12:18:36.044: Processing object type SCHEMA_EXPORT/PACKAGE/PACKAGE_BODY
+27-APR-26 12:18:36.183: Processing object type SCHEMA_EXPORT/DEFAULT_ROLE
+27-APR-26 12:18:36.419: Processing object type SCHEMA_EXPORT/PASSWORD_HISTORY
+27-APR-26 12:18:36.438: Processing object type SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA
+27-APR-26 12:18:37.468: Processing object type SCHEMA_EXPORT/SEQUENCE/SEQUENCE
+27-APR-26 12:18:37.730: Processing object type SCHEMA_EXPORT/TYPE/TYPE_SPEC
+27-APR-26 12:18:38.003: Processing object type SCHEMA_EXPORT/TABLE/TABLE
+27-APR-26 12:18:38.768: Processing object type SCHEMA_EXPORT/TABLE/IDENTITY_COLUMN
+27-APR-26 12:18:39.105: Processing object type SCHEMA_EXPORT/PACKAGE/PACKAGE_SPEC
+27-APR-26 12:18:39.887: Processing object type SCHEMA_EXPORT/FUNCTION/FUNCTION
+27-APR-26 12:18:40.460: Processing object type SCHEMA_EXPORT/PACKAGE/COMPILE_PACKAGE/PACKAGE_SPEC/ALTER_PACKAGE_SPEC
+27-APR-26 12:18:40.462: Processing object type SCHEMA_EXPORT/TABLE/GRANT/OWNER_GRANT/OBJECT_GRANT
+27-APR-26 12:18:40.638: Processing object type SCHEMA_EXPORT/FUNCTION/ALTER_FUNCTION
+27-APR-26 12:18:40.851: Processing object type SCHEMA_EXPORT/PROCEDURE/ALTER_PROCEDURE
+27-APR-26 12:18:41.485: Processing object type SCHEMA_EXPORT/PROCEDURE/PROCEDURE
+27-APR-26 12:18:41.487: Processing object type SCHEMA_EXPORT/TABLE/INDEX/FUNCTIONAL_INDEX/INDEX
+27-APR-26 12:18:42.886: Processing object type SCHEMA_EXPORT/TABLE/COMMENT
+27-APR-26 12:18:43.894: Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/REF_CONSTRAINT
+27-APR-26 12:18:43.896: Processing object type SCHEMA_EXPORT/TABLE/INDEX/BITMAP_INDEX/INDEX
+27-APR-26 12:18:43.955: Processing object type SCHEMA_EXPORT/TABLE/TRIGGER
+27-APR-26 12:18:44.129: Processing object type SCHEMA_EXPORT/TABLE/CONSTRAINT/CONSTRAINT
+27-APR-26 12:18:44.192: Processing object type SCHEMA_EXPORT/TABLE/INDEX/INDEX
+27-APR-26 12:21:15.133: . . exported "PCP"."TRACK_ORDEN"                         9.111 GB 158886926 rows
+27-APR-26 12:23:29.500: . . exported "PCP"."ORDEN"                               4.291 GB 27898665 rows
+27-APR-26 12:23:30.589: . . exported "PCP"."CREDITS":"CR24"                      91.26 GB 741426520 rows
+27-APR-26 12:23:33.881: . . exported "PCP"."CREDITS":"CR10"                      209.1 MB 2000000 rows
+27-APR-26 12:23:36.225: . . exported "PCP"."CREDITS_CHECKS_D":"CRC24"            463.3 MB 22262994 rows
+27-APR-26 12:23:36.574: . . exported "PCP"."BENEF"                               255.9 MB 1823943 rows
+27-APR-26 12:23:37.362: . . exported "PCP"."CREDITS":"CR8"                       208.0 MB 1996704 rows
+27-APR-26 12:23:38.502: . . exported "PCP"."MESSAGES"                            541.4 MB 7647956 rows
+27-APR-26 12:23:38.720: . . exported "PCP"."CREDITS":"CR9"                       206.3 MB 2000000 rows
+27-APR-26 12:23:38.882: . . exported "PCP"."CREDITS":"CR11"                      223.2 MB 2000000 rows
+27-APR-26 12:23:39.805: . . exported "PCP"."CREDITS":"CR7"                       205.8 MB 1999943 rows
+27-APR-26 12:23:40.304: . . exported "PCP"."CREDITS":"CR6"                       186.5 MB 1999915 rows
+27-APR-26 12:23:40.753: . . exported "PCP"."CREDITS":"CR5"                       183.0 MB 1999982 rows
+27-APR-26 12:23:41.494: . . exported "PCP"."CREDITS":"CR2"                       183.0 MB 2000000 rows
+27-APR-26 12:23:41.647: . . exported "PCP"."CREDITS":"CR4"                       183.0 MB 2000000 rows
+27-APR-26 12:23:42.602: . . exported "PCP"."CREDITS":"CR3"                       183.0 MB 2000000 rows
+27-APR-26 12:23:42.833: . . exported "PCP"."CREDITS":"CR1"                       183.1 MB 1999858 rows
+27-APR-26 12:23:45.423: . . exported "PCP"."CREDITS_CREDITO_INMEDIATO"           559.4 MB 5205064 rows
+27-APR-26 12:23:48.588: . . exported "PCP"."DEBITS_COMMISSIONS"                  163.5 MB 2442005 rows
+27-APR-26 12:24:05.775: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE24"            365.4 MB 22303705 rows
+27-APR-26 12:24:21.538: . . exported "PCP"."BUSINESS_RULES_19_082020"            263.8 MB   73383 rows
+27-APR-26 12:24:21.998: . . exported "PCP"."BUSINESS_RULES_09_08_2020"           263.7 MB   73353 rows
+27-APR-26 12:24:22.991: . . exported "PCP"."PREV_MQ_INOUT_HOST"                  64.64 MB  945340 rows
+27-APR-26 12:24:23.343: . . exported "PCP"."BUSINESS_RULES_19_07_2020"           276.2 MB   76944 rows
+27-APR-26 12:24:23.878: . . exported "PCP"."CREDITS_DOCS_D":"CRD24"              48.06 MB 1534599 rows
+27-APR-26 12:24:24.215: . . exported "PCP"."ENTERPRISE_DETAIL"                   41.00 MB  191354 rows
+27-APR-26 12:24:24.758: . . exported "PCP"."TORDEN_DETAIL":"TORDEN_DETAIL_P0"    43.36 MB  572266 rows
+27-APR-26 12:24:25.477: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD1"        47.62 MB 1999759 rows
+27-APR-26 12:24:25.663: . . exported "PCP"."BUSINESS_RULES_21_07_2020"           263.6 MB   73355 rows
+27-APR-26 12:24:25.809: . . exported "PCP"."DEBITS_EXTRAS_D"                     44.92 MB 2442005 rows
+27-APR-26 12:24:26.366: . . exported "PCP"."CREDITS_CHECKS_D":"CRC2"             41.92 MB 1999999 rows
+27-APR-26 12:24:26.562: . . exported "PCP"."CREDITS_CHECKS_D":"CRC4"             41.92 MB 1999996 rows
+27-APR-26 12:24:26.564: . . exported "PCP"."CREDITS_CHECKS_D":"CRC3"             41.92 MB 1999999 rows
+27-APR-26 12:24:27.203: . . exported "PCP"."CREDITS_CHECKS_D":"CRC5"             41.92 MB 1999976 rows
+27-APR-26 12:24:27.418: . . exported "PCP"."CREDITS_CHECKS_D":"CRC6"             41.83 MB 1999517 rows
+27-APR-26 12:24:27.590: . . exported "PCP"."CREDITS_CHECKS_D":"CRC7"             41.57 MB 1998036 rows
+27-APR-26 12:24:28.071: . . exported "PCP"."CREDITS_CHECKS_D":"CRC11"            41.54 MB 1997318 rows
+27-APR-26 12:24:28.266: . . exported "PCP"."CREDITS_CHECKS_D":"CRC10"            41.60 MB 1997080 rows
+27-APR-26 12:24:28.424: . . exported "PCP"."CREDITS_CHECKS_D":"CRC9"             41.46 MB 1996818 rows
+27-APR-26 12:24:28.678: . . exported "PCP"."PCP_WEB_HISTORIAL"                   59.29 MB  332650 rows
+27-APR-26 12:24:28.939: . . exported "PCP"."CREDITS_CHECKS_D":"CRC8"             41.53 MB 1993735 rows
+27-APR-26 12:24:29.000: . . exported "PCP"."BUSINESS_RULES_05082020"             263.5 MB   73353 rows
+27-APR-26 12:24:29.509: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE10"            32.73 MB 2000000 rows
+27-APR-26 12:24:29.841: . . exported "PCP"."CREDITS_CHECKS_D":"CRC1"             39.99 MB 1999816 rows
+27-APR-26 12:24:30.415: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE11"            33.58 MB 1999998 rows
+27-APR-26 12:24:30.604: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE9"             33.74 MB 1999999 rows
+27-APR-26 12:24:30.818: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE8"             32.22 MB 1996702 rows
+27-APR-26 12:24:30.851: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE6"             30.91 MB 1999915 rows
+27-APR-26 12:24:31.242: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE2"             30.48 MB 2000000 rows
+27-APR-26 12:24:31.408: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE3"             30.48 MB 2000000 rows
+27-APR-26 12:24:31.574: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE7"             32.29 MB 1999938 rows
+27-APR-26 12:24:31.858: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE5"             30.48 MB 1999982 rows
+27-APR-26 12:24:31.917: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE1"             29.79 MB 1999858 rows
+27-APR-26 12:24:32.023: . . exported "PCP"."ENTERPRISE3107202BK"                 12.87 MB  162450 rows
+27-APR-26 12:24:32.193: . . exported "PCP"."CREDITS_EXTRAS_D":"CRE4"             30.48 MB 2000000 rows
+27-APR-26 12:24:32.281: . . exported "PCP"."MQ_INOUT_HOST_DETAIL"                14.35 MB  720527 rows
+27-APR-26 12:24:32.338: . . exported "PCP"."ENTERPRISE"                          19.63 MB  218782 rows
+27-APR-26 12:24:32.340: . . exported "PCP"."CONTACTOS_BUSINESS_RULES"            10.85 MB   77156 rows
+27-APR-26 12:24:32.632: . . exported "PCP"."ENTERPRISE_BACKUP_17_08_2020"        7.298 MB   95373 rows
+27-APR-26 12:24:32.856: . . exported "PCP"."ENTERPRISE_10_08_2020"               7.254 MB   94822 rows
+27-APR-26 12:24:32.889: . . exported "PCP"."ENTERPRISE_31072020"                 7.238 MB   94605 rows
+27-APR-26 12:24:33.107: . . exported "PCP"."ENTERPRISE_DETAIL_BACKUP"            9.694 MB   67226 rows
+27-APR-26 12:24:33.110: . . exported "PCP"."ENTERPRISE_14_08_2020"               7.256 MB   94853 rows
+27-APR-26 12:24:33.112: . . exported "PCP"."ENTERPRISE_DETAIL_PROD"              9.694 MB   67226 rows
+27-APR-26 12:24:33.365: . . exported "PCP"."ENTERPRISE_16_08_2020"               7.211 MB   94308 rows
+27-APR-26 12:24:33.367: . . exported "PCP"."DEBITS"                              10.45 GB 81238152 rows
+27-APR-26 12:24:33.537: . . exported "PCP"."ENTERPRISE_18_08_2020"               7.211 MB   94308 rows
+27-APR-26 12:24:33.634: . . exported "PCP"."ENTERPRISE_BACKUP_16"                7.211 MB   94308 rows
+27-APR-26 12:24:33.717: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD2"        7.925 MB  319609 rows
+27-APR-26 12:24:33.719: . . exported "PCP"."TRACK_LOTE"                          6.350 MB   99991 rows
+27-APR-26 12:24:33.867: . . exported "PCP"."MQ_INOUT_HOST"                       6.008 MB   56145 rows
+27-APR-26 12:24:33.939: . . exported "PCP"."BUSINESS_RULES_CP"                   6.031 MB  181701 rows
+27-APR-26 12:24:33.941: . . exported "PCP"."CREDITS_DOCS_D":"CRD9"               5.941 MB  194576 rows
+27-APR-26 12:24:34.107: . . exported "PCP"."DEBITS_PAYROLLS_D"                   6.485 MB  316926 rows
+27-APR-26 12:24:34.109: . . exported "PCP"."ENTERPRISE_17072020"                 5.685 MB   72233 rows
+27-APR-26 12:24:34.173: . . exported "PCP"."CREDITS_DOCS_D":"CRD7"               4.648 MB  152175 rows
+27-APR-26 12:24:34.175: . . exported "PCP"."TORDEN_DETAIL_ALTA"                  4.432 MB   24058 rows
+27-APR-26 12:24:34.177: . . exported "PCP"."ENTERPRISE_BK"                       4.889 MB   58921 rows
+27-APR-26 12:24:34.179: . . exported "PCP"."CREDITS_DOCS_D":"CRD8"               3.680 MB  120420 rows
+27-APR-26 12:24:34.265: . . exported "PCP"."STG_PROVIDER":"P6"                   959.1 KB    3930 rows
+27-APR-26 12:24:34.267: . . exported "PCP"."CREDITS_DOCS_D":"CRD11"              4.825 MB  157985 rows
+27-APR-26 12:24:34.268: . . exported "PCP"."CREDITS_DOCS_D":"CRD10"              3.755 MB  122879 rows
+27-APR-26 12:24:34.462: . . exported "PCP"."TORDEN"                              1.968 MB    7069 rows
+27-APR-26 12:24:34.464: . . exported "PCP"."TORDEN_ALTA"                         256.4 KB     790 rows
+27-APR-26 12:24:34.466: . . exported "PCP"."TMP_ENTERPRISE"                      18.74 KB    1000 rows
+27-APR-26 12:24:34.468: . . exported "PCP"."PROCESS_PLANIFICATION"               16.15 KB       3 rows
+27-APR-26 12:24:34.469: . . exported "PCP"."STG_PROVIDER":"P8"                   319.0 KB    1253 rows
+27-APR-26 12:24:34.471: . . exported "PCP"."RESP_DEBITS_CCEDONE"                 1.597 MB   18367 rows
+27-APR-26 12:24:34.473: . . exported "PCP"."W_OAUTH2_RESOURCES"                  10.51 KB      38 rows
+27-APR-26 12:24:34.480: . . exported "PCP"."MIX_NUMBER_ACCOUNTS"                 203.0 KB    2320 rows
+27-APR-26 12:24:34.524: . . exported "PCP"."CREDITS_DOCS_D":"CRD6"               1.116 MB   36668 rows
+27-APR-26 12:24:34.537: . . exported "PCP"."W_PRODUCTS"                          6.921 KB      15 rows
+27-APR-26 12:24:34.542: . . exported "PCP"."MENSAGES_RECHAZO_EDI"                12.59 KB      30 rows
+27-APR-26 12:24:34.563: . . exported "PCP"."STG_PROVIDER":"P5"                   320.9 KB    1225 rows
+27-APR-26 12:24:34.599: . . exported "PCP"."AUTH_PCP"                            6.796 KB       1 rows
+27-APR-26 12:24:34.608: . . exported "PCP"."MONITOR_CHECK"                       11.82 KB      31 rows
+27-APR-26 12:24:34.616: . . exported "PCP"."MQ_INOUT_HOST_12_08_2020"            750.1 KB    6917 rows
+27-APR-26 12:24:34.662: . . exported "PCP"."STG_PROVIDER":"P2"                   398.6 KB    1596 rows
+27-APR-26 12:24:34.669: . . exported "PCP"."W_APPLICATIONS"                      6.578 KB       4 rows
+27-APR-26 12:24:34.676: . . exported "PCP"."BANCA_SEGMENTO"                      11.04 KB     207 rows
+27-APR-26 12:24:34.721: . . exported "PCP"."BUSINESS_RULES_TEMP"                 32.71 KB       5 rows
+27-APR-26 12:24:34.743: . . exported "PCP"."W_PERMISSIONS"                       9.335 KB      45 rows
+27-APR-26 12:24:34.745: . . exported "PCP"."MONITOR_CONF"                        6.523 KB       1 rows
+27-APR-26 12:24:34.747: . . exported "PCP"."CORRECT_NUMBER_ACCOUNTS"             160.0 KB    4524 rows
+27-APR-26 12:24:34.769: . . exported "PCP"."TOAD_PLAN_TABLE"                     958.6 KB    1508 rows
+27-APR-26 12:24:34.882: . . exported "PCP"."BANCOS_SWIFT"                        9.070 KB      60 rows
+27-APR-26 12:24:34.884: . . exported "PCP"."BANCA_SEGMENTO_COMI"                 6.328 KB      28 rows
+27-APR-26 12:24:34.887: . . exported "PCP"."STG_PROVIDER":"P7"                   578.5 KB    2326 rows
+27-APR-26 12:24:34.889: . . exported "PCP"."STG_PROVIDER":"P1"                   395.8 KB    1553 rows
+27-APR-26 12:24:34.891: . . exported "PCP"."CREDITS_DOCS_D":"CRD4"               9.234 KB      48 rows
+27-APR-26 12:24:34.892: . . exported "PCP"."CHANNELS"                            6.218 KB      11 rows
+27-APR-26 12:24:34.912: . . exported "PCP"."EXECUTIVE"                           125.6 KB    1299 rows
+27-APR-26 12:24:34.945: . . exported "PCP"."BANKING"                             6.046 KB       5 rows
+27-APR-26 12:24:34.955: . . exported "PCP"."STG_PROVIDER":"P3"                   362.3 KB    1432 rows
+27-APR-26 12:24:34.957: . . exported "PCP"."PRODUCTS"                            6.945 KB       4 rows
+27-APR-26 12:24:34.959: . . exported "PCP"."TSITES_EMPRESAS"                     9.007 KB      15 rows
+27-APR-26 12:24:34.994: . . exported "PCP"."TRANSFER_ACCOUNTS"                   108.2 KB     680 rows
+27-APR-26 12:24:35.013: . . exported "PCP"."COMMISSION_CONF"                     8.882 KB      12 rows
+27-APR-26 12:24:35.024: . . exported "PCP"."W_PERMISOS_ROLES"                    6.375 KB      80 rows
+27-APR-26 12:24:35.186: . . exported "PCP"."TMP_CTAS_COMISION_C"                 109.8 KB    2656 rows
+27-APR-26 12:24:35.188: . . exported "PCP"."W_OPTIONS_MENU"                      8.953 KB      17 rows
+27-APR-26 12:24:35.190: . . exported "PCP"."STATUS_CREDITO_INMEDIATO"            6.109 KB      57 rows
+27-APR-26 12:24:35.192: . . exported "PCP"."STG_PAYROLL":"PR7"                   473.4 KB    2193 rows
+27-APR-26 12:24:35.193: . . exported "PCP"."PERMISOS_ROLES"                      5.937 KB      37 rows
+27-APR-26 12:24:35.200: . . exported "PCP"."CREDITS_DOCS_D":"CRD1"               8.312 KB      18 rows
+27-APR-26 12:24:35.210: . . exported "PCP"."TEMPORAL_BANCA_2"                    94.01 KB    2666 rows
+27-APR-26 12:24:35.227: . . exported "PCP"."W_ROLES_USERS"                       5.695 KB      12 rows
+27-APR-26 12:24:35.265: . . exported "PCP"."PARAMETROS_PCP"                          8 KB      10 rows
+27-APR-26 12:24:35.283: . . exported "PCP"."ROLES_USERS"                         5.593 KB       2 rows
+27-APR-26 12:24:35.288: . . exported "PCP"."COMMISSIONS"                             0 KB       0 rows
+27-APR-26 12:24:35.290: . . exported "PCP"."STG_PAYROLL":"PR1"                   720.2 KB    3442 rows
+27-APR-26 12:24:35.293: . . exported "PCP"."COMMISSION_PROFILE"                      0 KB       0 rows
+27-APR-26 12:24:35.299: . . exported "PCP"."CREDITS_DOCS_D":"CRD2"                   0 KB       0 rows
+27-APR-26 12:24:35.304: . . exported "PCP"."CREDITS_DOCS_D":"CRD3"                   0 KB       0 rows
+27-APR-26 12:24:35.309: . . exported "PCP"."CREDITS_DOCS_D":"CRD5"                   0 KB       0 rows
+27-APR-26 12:24:35.314: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD10"           0 KB       0 rows
+27-APR-26 12:24:35.319: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD11"           0 KB       0 rows
+27-APR-26 12:24:35.324: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD24"           0 KB       0 rows
+27-APR-26 12:24:35.329: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD3"            0 KB       0 rows
+27-APR-26 12:24:35.333: . . exported "PCP"."W_GROUP_PERMISSIONS"                 8.039 KB      24 rows
+27-APR-26 12:24:35.334: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD4"            0 KB       0 rows
+27-APR-26 12:24:35.339: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD5"            0 KB       0 rows
+27-APR-26 12:24:35.343: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD6"            0 KB       0 rows
+27-APR-26 12:24:35.348: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD7"            0 KB       0 rows
+27-APR-26 12:24:35.353: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD8"            0 KB       0 rows
+27-APR-26 12:24:35.358: . . exported "PCP"."CREDITS_DOCS_D_AJUST":"CRDD9"            0 KB       0 rows
+27-APR-26 12:24:35.362: . . exported "PCP"."DOMIC_CREDITS":"P2019"                   0 KB       0 rows
+27-APR-26 12:24:35.367: . . exported "PCP"."DOMIC_CREDITS":"P2020"                   0 KB       0 rows
+27-APR-26 12:24:35.372: . . exported "PCP"."DOMIC_CREDITS":"P2021"                   0 KB       0 rows
+27-APR-26 12:24:35.377: . . exported "PCP"."DOMIC_CREDITS":"P2022"                   0 KB       0 rows
+27-APR-26 12:24:35.382: . . exported "PCP"."DOMIC_CREDITS":"P2023"                   0 KB       0 rows
+27-APR-26 12:24:35.385: . . exported "PCP"."STG_PAYROLL":"PR6"                   2.372 MB   11242 rows
+27-APR-26 12:24:35.387: . . exported "PCP"."OPS_CONTROL_MASTER"                  7.960 KB       4 rows
+27-APR-26 12:24:35.389: . . exported "PCP"."DOMIC_CREDITS":"P2024"                   0 KB       0 rows
+27-APR-26 12:24:35.392: . . exported "PCP"."DOMIC_CREDITS":"P2025"                   0 KB       0 rows
+27-APR-26 12:24:35.397: . . exported "PCP"."EXCLUSIVE_CHANNEL_REG"                   0 KB       0 rows
+27-APR-26 12:24:35.401: . . exported "PCP"."LOG_CCE"                                 0 KB       0 rows
+27-APR-26 12:24:35.406: . . exported "PCP"."OPS_CRED_TYPE"                           0 KB       0 rows
+27-APR-26 12:24:35.410: . . exported "PCP"."OPS_DEBITS_TYPE"                         0 KB       0 rows
+27-APR-26 12:24:35.415: . . exported "PCP"."ORDEN_REPROCESS"                         0 KB       0 rows
+27-APR-26 12:24:35.419: . . exported "PCP"."W_AUTHORIZATION_TOKEN"                   0 KB       0 rows
+27-APR-26 12:24:35.424: . . exported "PCP"."W_MENU_UI"                               0 KB       0 rows
+27-APR-26 12:24:35.447: . . exported "PCP"."W_ROL_MENUS"                         6.703 KB       9 rows
+27-APR-26 12:24:35.452: . . exported "PCP"."STG_PROVIDER":"P4"                   328.9 KB    1265 rows
+27-APR-26 12:24:35.593: . . exported "PCP"."OPS_CONTROL_MASTER_TDA"              7.882 KB       2 rows
+27-APR-26 12:24:35.596: . . exported "PCP"."TMP_CTAS_COMISION_G"                 54.69 KB    1427 rows
+27-APR-26 12:24:35.598: . . exported "PCP"."PROCESS_DICTIONARY"                  7.656 KB      17 rows
+27-APR-26 12:24:35.603: . . exported "PCP"."STG_PAYROLL":"PR3"                   153.5 KB     645 rows
+27-APR-26 12:24:35.653: . . exported "PCP"."W_USERS"                             7.703 KB      10 rows
+27-APR-26 12:24:35.688: . . exported "PCP"."STG_PAYROLL":"PR5"                   862.6 KB    3770 rows
+27-APR-26 12:24:35.712: . . exported "PCP"."TMP_ENTERPRISEG"                     7.843 KB     203 rows
+27-APR-26 12:24:35.765: . . exported "PCP"."STG_PAYROLL":"PR2"                   203.2 KB     867 rows
+27-APR-26 12:24:35.773: . . exported "PCP"."TMP_ENTERPRISE_L"                    7.773 KB     198 rows
+27-APR-26 12:24:35.834: . . exported "PCP"."W_ROLES"                             7.234 KB       9 rows
+27-APR-26 12:24:35.859: . . exported "PCP"."STG_PAYROLL":"PR4"                   639.9 KB    2950 rows
+27-APR-26 12:24:35.901: . . exported "PCP"."PROCESS_CONTROL"                     7.039 KB       6 rows
+27-APR-26 12:24:35.939: . . exported "PCP"."STG_PAYROLL":"PR8"                   839.3 KB    3884 rows
+27-APR-26 12:24:35.981: . . exported "PCP"."MAPA_EDI"                            7.125 KB      59 rows
+27-APR-26 12:24:35.993: . . exported "PCP"."STATUS_DICTIONARY"                   44.00 KB     607 rows
+27-APR-26 12:24:36.041: . . exported "PCP"."SEGMENTS"                            6.914 KB      12 rows
+27-APR-26 12:24:36.078: . . exported "PCP"."TMP_EMPRESA_MIGRA"                   37.60 KB    1690 rows
+27-APR-26 12:24:36.211: . . exported "PCP"."ORDEN_DETAIL_COPY"                   34.92 KB      77 rows
+27-APR-26 12:24:36.231: . . exported "PCP"."STATUS_CONVERSION"                   20.97 KB     107 rows
+27-APR-26 12:24:36.298: . . exported "PCP"."OPS_PLANIFICATION"                   20.27 KB      30 rows
+27-APR-26 12:24:40.912: . . exported "PCP"."BUSINESS_RULES_31072020"             338.4 MB   70771 rows
+27-APR-26 12:24:42.073: . . exported "PCP"."BUSINESS_RULES_30_7_2020"            263.5 MB   73353 rows
+27-APR-26 12:24:58.667: . . exported "PCP"."ORDEN_DETAIL"                        3.432 GB 27898665 rows
+27-APR-26 12:25:12.797: . . exported "PCP"."BUSINESS_RULES"                      764.0 MB  206652 rows
+27-APR-26 12:25:15.558: Master table "SYSTEM"."SYS_EXPORT_SCHEMA_01" successfully loaded/unloaded
+27-APR-26 12:25:15.646: ******************************************************************************
+27-APR-26 12:25:15.647: Dump file set for SYSTEM.SYS_EXPORT_SCHEMA_01 is:
+27-APR-26 12:25:15.651:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_01.dmp
+27-APR-26 12:25:15.652:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_02.dmp
+27-APR-26 12:25:15.652:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_03.dmp
+27-APR-26 12:25:15.653:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_04.dmp
+27-APR-26 12:25:15.654:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_05.dmp
+27-APR-26 12:25:15.655:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_06.dmp
+27-APR-26 12:25:15.655:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_07.dmp
+27-APR-26 12:25:15.656:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_08.dmp
+27-APR-26 12:25:15.657:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_09.dmp
+27-APR-26 12:25:15.658:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_10.dmp
+27-APR-26 12:25:15.658:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_11.dmp
+27-APR-26 12:25:15.659:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_12.dmp
+27-APR-26 12:25:15.660:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_13.dmp
+27-APR-26 12:25:15.661:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_14.dmp
+27-APR-26 12:25:15.661:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_15.dmp
+27-APR-26 12:25:15.662:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_16.dmp
+27-APR-26 12:25:15.663:   /migracion2/PCP_restore2025/EXPORT_PCP_20260427_17.dmp
+27-APR-26 12:25:15.808: Job "SYSTEM"."SYS_EXPORT_SCHEMA_01" successfully completed at Mon Apr 27 12:25:15 2026 elapsed 0 00:06:50

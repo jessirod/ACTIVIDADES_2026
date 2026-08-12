@@ -1,0 +1,9 @@
+ALTER SESSION SET CURRENT_SCHEMA = INTTEGRIOBDV;
+
+update TCOMPANIATRANSACCIONESPRODUCTO a set a.montomaximo = 10000 where a.CPERSONA_COMPANIA = 2 and a.CSUBSISTEMA_TRANSACCION = '03' and a.CTRANSACCION = '6406' and a.VERSIONTRANSACCION = '01' and a.cmoneda = 'VES';
+update troleshorario a set a.montomaximo = 10000 where a.CPERSONA_COMPANIA = 2 and a.CSUBSISTEMA_TRANSACCION = '03' and a.CTRANSACCION = '6406' and a.VERSIONTRANSACCION = '01' and a.Fhasta = Timestamp '2999-12-31 00:00:00.0' and a.cmoneda = 'VES';
+update TCOMPANIATRANSACCIONESPRODUCTO a set a.montomaximo = 10000000000 where a.CPERSONA_COMPANIA = 2 and a.CSUBSISTEMA_TRANSACCION = '03' and a.CTRANSACCION = '6406' and a.VERSIONTRANSACCION = '01' and a.cmoneda = 'VEF';
+update troleshorario a set a.montomaximo = 10000000000 where a.CPERSONA_COMPANIA = 2 and a.CSUBSISTEMA_TRANSACCION = '03' and a.CTRANSACCION = '6406' and a.VERSIONTRANSACCION = '01' and a.Fhasta = Timestamp '2999-12-31 00:00:00.0' and a.cmoneda = 'VEF';
+
+commit;
+
