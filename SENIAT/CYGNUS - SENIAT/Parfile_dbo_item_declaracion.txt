@@ -2,22 +2,22 @@
 EXPORT
 ***********************************************************************
 
-vi exp_item_declaracion_202607.par
+vi exp_item_declaracion_202605.par
 
 DIRECTORY=EXPORT_BDTEMP
-LOGFILE=EXP_DBO_202607.log
-DUMPFILE=EXP_DBO_ITM_202607_%U.dmp
+LOGFILE=EXP_DBO_202605.log
+DUMPFILE=EXP_DBO_ITM_202605_%U.dmp
 METRICS=Y
 EXCLUDE=INDEX,CONSTRAINT,PROCACT_SYSTEM,STATISTICS
 CONTENT=DATA_ONLY
 CLUSTER=N
 PARALLEL=5
-TABLES=DBO.ITEM_DECLARACION:P202607
+TABLES=DBO.ITEM_DECLARACION:P202605
 
 
 
-nohup expdp JRODRIGUEZ/Moneda5* parfile=exp_item_declaracion_202607.par &
-expdp JRODRIGUEZ/Moneda5* ATTACH=SYS_EXPORT_TABLE_01
+nohup expdp \' / as sysdba \' parfile=exp_item_declaracion_202601.par &
+expdp \' / as sysdba \' ATTACH=SYS_EXPORT_TABLE_01
 
 
 sqlplus JRODRIGUEZ/Moneda5*@SENIAT
@@ -46,4 +46,30 @@ tail -1000f nohup.out
 
 impdp \' / as sysdba \'  ATTACH=SYS_IMPORT_TABLE_01
 
-S
+
+********************************************
+BACKUP de las tablas
+********************************************
+select /*+PARALLEL (8) */  count(1)
+from 
+dbo.item_declaracion partition (P202605);
+
+
+CREATE TABLE dbo.item_declaracion_05 AS 
+SELECT *
+FROM dbo.item_declaracion 
+partition (P202605);
+
+
+select /*+PARALLEL (8) */  count(1)
+from 
+dbo.item_declaracion_05;
+
+
+ALTER TABLE dbo.item_declaracion TRUNCATE PARTITION P202605 UPDATE GLOBAL INDEXES;
+
+32108693
+32108693
+
+%s/\r//g
+%s/^M//g
