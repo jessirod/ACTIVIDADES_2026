@@ -23,3 +23,94 @@ ALTER SESSION ENABLE PARALLEL DDL; ALTER SESSION FORCE PARALLEL DDL PARALLEL 16;
 Con esto creamos la VM con refresh FAST
 
 CREATE MATERIALIZED VIEW DBO.MV_DECLARACION_BASE TABLESPACE TS_D_MEDIUM NOLOGGING NOCACHE NOCOMPRESS BUILD IMMEDIATE REFRESH FAST ON DEMAND AS SELECT d.ID_CONTRIBUYENTE CONTRIBUYENTE, d.IMPUESTO_DECLARACION IMPUESTO, d.PERIODO_DECLARACION PERIODO, COUNT(*) CNT FROM DBO.DECLARACION d WHERE d.IMPUESTO_DECLARACION IN ('25','26','30') AND d.SITUACION_DECLARACION NOT IN ('00','31') GROUP BY d.ID_CONTRIBUYENTE, d.IMPUESTO_DECLARACION, d.PERIODO_DECLARACION;
+
+
+CREATE UNIQUE INDEX DBO.MV_DECLARACION_BASE_U1 ON DBO.MV_DECLARACION_BASE (CONTRIBUYENTE, IMPUESTO, PERIODO) TABLESPACE TS_I_MEDIUM NOLOGGING PARALLEL 8;
+
+ALTER MATERIALIZED VIEW DBO.MV_DECLARACION_BASE NOPARALLEL LOGGING; 
+
+ 
+
+ALTER INDEX DBO.MV_DECLARACION_BASE_U1 NOPARALLEL LOGGING;
+
+
+BEGIN DBMS_STATS.GATHER_TABLE_STATS('DBO','MV_DECLARACION_BASE', estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE, method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade => TRUE, degree => 8); END; /
+
+ALTER SYSTEM SET parallel_max_servers = 16 SCOPE = MEMORY;
+
+
+*****************************************
+
+SELECT owner, mview_name FROM ALL_BASE_TABLE_MVIEWS WHERE master = 'DECLARACION';
+.
+.
+.
+
+SELECT owner, mview_name, refresh_mode, refresh_method,
+       last_refresh_type, last_refresh_date, staleness
+  FROM ALL_MVIEWS
+ WHERE owner = 'DBO' AND mview_name LIKE 'MV_DECLARACION%';
+.
+.
+.
+
+SELECT table_name, num_rows, blocks, last_analyzed
+  FROM DBA_TABLES
+ WHERE owner = 'DBO' AND table_name IN ('MV_DECLARACION_BASE','DECLARACION');
+
+SELECT index_name, num_rows, distinct_keys, clustering_factor, status, last_analyzed
+  FROM DBA_INDEXES
+ WHERE owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE';
+.
+.
+.
+
+SELECT snapid, mowner, master, snapshot, snaptime
+  FROM SYS.SLOG$ WHERE master = 'DECLARACION';
+
+
+
+
+  *********************************************
+  **************************************************************
+
+
+
+  Pablo Vivas, [12/08/2026 at 09:40:17]:
+
+SELECT table_name, degree, num_rows, blocks, last_analyzed
+
+  FROM DBA_TABLES
+
+ WHERE owner = 'DBO' AND table_name IN ('MV_DECLARACION_BASE','DECLARACION');
+
+ 
+
+SELECT index_name, degree, status, num_rows, distinct_keys,
+
+       clustering_factor, last_analyzed
+
+  FROM DBA_INDEXES
+
+ WHERE owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE';
+
+ 
+
+SELECT sql_id, child_number, ROUND(elapsed_time/1e6,2) SEG,
+
+       buffer_gets, disk_reads, SUBSTR(sql_text,1,150) TXT
+
+  FROM V$SQL
+
+ WHERE UPPER(sql_text) LIKE '%MV_DECLARACION_BASE%'
+
+   AND UPPER(sql_text) NOT LIKE '%V$SQL%'
+
+ ORDER BY last_active_time DESC;
+
+ 
+
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('&sql_id', &child_number, 'ALLSTATS LAST'));
+
+
+

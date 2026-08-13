@@ -28,20 +28,20 @@ sqlplus JRODRIGUEZ/Moneda5*@SENIAT
 IMPORT
 ***********************************************************************
 
-vi imp_item_declaracion_202607.par
+vi imp_item_declaracion_202605.par
 
 DIRECTORY=IMPORT
-LOGFILE=IMP_DBO_202607.log
-DUMPFILE=EXP_DBO_ITM_202607_%U.dmp
+LOGFILE=IMP_DBO_202605.log
+DUMPFILE=EXP_DBO_ITM_202605_%U.dmp
 METRICS=Y
 CONTENT=DATA_ONLY
 CLUSTER=N
 PARALLEL=5
-TABLES=DBO.ITEM_DECLARACION:P202607
+TABLES=DBO.ITEM_DECLARACION:P202605
 TABLE_EXISTS_ACTION=APPEND
 
 
-nohup impdp \' / as sysdba \' parfile=imp_item_declaracion_202607.par &
+nohup impdp \' / as sysdba \' parfile=imp_item_declaracion_202605.par &
 tail -1000f nohup.out
 
 impdp \' / as sysdba \'  ATTACH=SYS_IMPORT_TABLE_01

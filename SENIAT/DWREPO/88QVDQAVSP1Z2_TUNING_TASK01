@@ -1,0 +1,129 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('88QVDQAVSP1Z2_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : 88qvdqavsp1z2_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/13/2026 15:21:41
+Completed at       : 08/13/2026 15:21:49
+
+-------------------------------------------------------------------------------
+Schema Name: SYS
+SQL ID     : 43znmm5m6zbu5
+SQL Text   : SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION"
+             "TIPO_DECLARACION" FROM "DBO"."DECLARACION" GROUP BY
+             "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY
+             "DBO"."DECLARACION"."TIPO_DECLARACION" ASC) WHERE rownum <= 1000
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (1 finding)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 93.11%)
+  ------------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            '88qvdqavsp1z2_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 16 will improve its response time
+  93.12% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 10.13% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- The optimizer could not merge the view at line ID 2 of the execution plan.
+  The optimizer cannot merge a view that contains an "ORDER BY" clause unless
+  the statement is a "DELETE" or an "UPDATE" and the parent query is the top
+  most query in the statement.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 2737773618
+
+-------------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name        | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+-------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |             |    10 |    40 |   509K  (5)| 00:00:20 |       |       |
+|*  1 |  COUNT STOPKEY          |             |       |       |            |          |       |       |
+|   2 |   VIEW                  |             |    10 |    40 |   509K  (5)| 00:00:20 |       |       |
+|*  3 |    SORT GROUP BY STOPKEY|             |    10 |    50 |   509K  (5)| 00:00:20 |       |       |
+|   4 |     PARTITION LIST ALL  |             |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   288 |
+|   5 |      TABLE ACCESS FULL  | DECLARACION |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   288 |
+-------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+   3 - filter(ROWNUM<=1000)
+
+2- Using Parallel Execution
+---------------------------
+Plan hash value: 3662262070
+
+----------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                   | Name        | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |    TQ  |IN-OUT| PQ Distrib |
+----------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT            |             |    10 |    40 | 35061   (4)| 00:00:02 |       |       |        |      |            |
+|*  1 |  COUNT STOPKEY              |             |       |       |            |          |       |       |        |      |            |
+|   2 |   PX COORDINATOR            |             |       |       |            |          |       |       |        |      |            |
+|   3 |    PX SEND QC (ORDER)       | :TQ10001    |    10 |    40 | 35061   (4)| 00:00:02 |       |       |  Q1,01 | P->S | QC (ORDER) |
+|*  4 |     COUNT STOPKEY           |             |       |       |            |          |       |       |  Q1,01 | PCWC |            |
+|   5 |      VIEW                   |             |    10 |    40 | 35061   (4)| 00:00:02 |       |       |  Q1,01 | PCWP |            |
+|*  6 |       SORT GROUP BY STOPKEY |             |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,01 | PCWP |            |
+|   7 |        PX RECEIVE           |             |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,01 | PCWP |            |
+|   8 |         PX SEND RANGE       | :TQ10000    |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,00 | P->P | RANGE      |
+|   9 |          HASH GROUP BY      |             |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,00 | PCWP |            |
+|  10 |           PX BLOCK ITERATOR |             |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   288 |  Q1,00 | PCWC |            |
+|  11 |            TABLE ACCESS FULL| DECLARACION |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   288 |  Q1,00 | PCWP |            |
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+   4 - filter(ROWNUM<=1000)
+   6 - filter(ROWNUM<=1000)
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  PARALLEL
+
+-------------------------------------------------------------------------------
+
+

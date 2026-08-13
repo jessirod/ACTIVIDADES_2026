@@ -1,0 +1,169 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('B8WKUM6P420ZZ_TUNING_TASK01')
+----------------------------------------------------------------------------------------------------------------                                                                                                                        ----------------------------------------------------------------------------------------------------------------                                                                                                                        ----------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : b8wkum6p420zz_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/13/2026 15:16:07
+Completed at       : 08/13/2026 15:16:43
+
+-------------------------------------------------------------------------------
+Schema Name: METABASE
+SQL ID     : b8wkum6p420zz
+SQL Text   : -- Metabase:: userID: 286 queryType: MBQL queryHash:
+             10566d8d20084eb538ffc71da055ea0296ff14baa891bd30cc9c37e5ae3a040d
+             SELECT COUNT(*) "count" FROM "DBO"."COMPROMISOS_PAGOS_GLOBAL"
+             LEFT JOIN "DBO"."IMPUESTO" "Impuesto - Impuesto Comp Pago" ON
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO" =
+             "Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO" WHERE
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE" = :1 )
+             AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."REGION" = :2 ) AND
+             (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :3 )
+             OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :4
+             ))
+Bind Variables :
+ 1 -  (VARCHAR2(128)):CONTRIBUYENTE ORDINARIO
+ 2 -  (VARCHAR2(128)):REGION NOR ORIENTAL
+ 3 -  (VARCHAR2(2000)):PENDIENTE DE CANCELACION - SIN VENCER
+ 4 -  (VARCHAR2(2000)):PENDIENTE DE CANCELACION - VENCIDO
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (2 findings)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 81.55%)
+  ------------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            'b8wkum6p420zz_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 6 will improve its response time
+  81.56% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 10.66% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+2- Index Finding (see explain plans section below)
+--------------------------------------------------
+  The execution plan of this statement can be improved by creating one or more
+  indices.
+
+  Recommendation (estimated benefit: 99.26%)
+  ------------------------------------------
+  - Consider running the Access Advisor to improve the physical schema design
+    or creating the recommended index.
+    create index DBO.IDX$$_34ED0001 on DBO.COMPROMISOS_PAGOS_GLOBAL("REGION","S
+    ITUACION_COMPROMISO","TIPO_CONTRIBUYENTE");
+
+  Rationale
+  ---------
+    Creating the recommended indices significantly improves the execution plan
+    of this statement. However, it might be preferable to run "Access Advisor"
+    using a representative SQL workload as opposed to a single statement. This
+    will allow to get comprehensive index recommendations which takes into
+    account index maintenance overhead and additional space consumption.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 1466829750
+
+--------------------------------------------------------------------------------------------------
+| Id  | Operation             | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT      |                          |     1 |    66 |   234K  (2)| 00:00:10 |
+|   1 |  SORT AGGREGATE       |                          |     1 |    66 |            |          |
+|*  2 |   MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL |   153K|  9877K|   234K  (2)| 00:00:10 |
+--------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:4))
+
+2- Using New Indices
+--------------------
+Plan hash value: 3784722682
+
+-------------------------------------------------------------------------------------
+| Id  | Operation          | Name           | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT   |                |     1 |    66 |  1712   (1)| 00:00:01 |
+|   1 |  SORT AGGREGATE    |                |     1 |    66 |            |          |
+|   2 |   INLIST ITERATOR  |                |       |       |            |          |
+|*  3 |    INDEX RANGE SCAN| IDX$$_34ED0001 |   153K|  9877K|  1712   (1)| 00:00:01 |
+-------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:4) AND
+              "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1)
+
+3- Using Parallel Execution
+---------------------------
+Plan hash value: 3763966778
+
+----------------------------------------------------------------------------------------------------------------                                                                                                                        -------------------
+| Id  | Operation                 | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |    TQ  |I                                                                                                                        N-OUT| PQ Distrib |
+----------------------------------------------------------------------------------------------------------------                                                                                                                        -------------------
+|   0 | SELECT STATEMENT          |                          |     1 |    66 | 43257   (1)| 00:00:02 |        |                                                                                                                              |            |
+|   1 |  SORT AGGREGATE           |                          |     1 |    66 |            |          |        |                                                                                                                              |            |
+|   2 |   PX COORDINATOR          |                          |       |       |            |          |        |                                                                                                                              |            |
+|   3 |    PX SEND QC (RANDOM)    | :TQ10000                 |     1 |    66 |            |          |  Q1,00 |                                                                                                                         P->S | QC (RAND)  |
+|   4 |     SORT AGGREGATE        |                          |     1 |    66 |            |          |  Q1,00 |                                                                                                                         PCWP |            |
+|   5 |      PX BLOCK ITERATOR    |                          | 69056 |  4450K| 43257   (1)| 00:00:02 |  Q1,00 |                                                                                                                         PCWC |            |
+|*  6 |       MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL | 69056 |  4450K| 43257   (1)| 00:00:02 |  Q1,00 |                                                                                                                         PCWP |            |
+----------------------------------------------------------------------------------------------------------------                                                                                                                        -------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   6 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COM                                                                                                                        PROMISO"=:4))
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  PARALLEL
+
+-------------------------------------------------------------------------------
+
+
+Elapsed: 00:00:01.25
+15:16:53 SYS@dwrepo>
