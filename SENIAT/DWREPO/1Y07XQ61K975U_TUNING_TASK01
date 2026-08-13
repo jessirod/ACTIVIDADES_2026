@@ -1,0 +1,224 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('1Y07XQ61K975U_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : 1y07xq61k975u_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/13/2026 15:28:25
+Completed at       : 08/13/2026 15:28:37
+
+-------------------------------------------------------------------------------
+Schema Name: METABASE
+SQL ID     : 1y07xq61k975u
+SQL Text   : -- Metabase
+             SELECT * FROM (SELECT "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLA
+             RACION_I_D" "NUMERO_ITEM_DECLARACION_I_D" FROM
+             "DBO"."ITEM_DECLARACION" GROUP BY
+             "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLARACION_I_D" ORDER BY
+             "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLARACION_I_D" ASC)
+             WHERE rownum <= 1000
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (3 findings)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 95.5%)
+  -----------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            '1y07xq61k975u_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 24 will improve its response time
+  95.50% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 7.88% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+2- Index Finding (see explain plans section below)
+--------------------------------------------------
+  The execution plan of this statement can be improved by creating one or more
+  indices.
+
+  Recommendation (estimated benefit: 99.99%)
+  ------------------------------------------
+  - Consider running the Access Advisor to improve the physical schema design
+    or creating the recommended index.
+    create index DBO.IDX$$_34EF0001 on DBO.ITEM_DECLARACION("NUMERO_ITEM_DECLAR
+    ACION_I_D");
+
+  Rationale
+  ---------
+    Creating the recommended indices significantly improves the execution plan
+    of this statement. However, it might be preferable to run "Access Advisor"
+    using a representative SQL workload as opposed to a single statement. This
+    will allow to get comprehensive index recommendations which takes into
+    account index maintenance overhead and additional space consumption.
+
+3- Alternative Plan Finding
+---------------------------
+  Some alternative execution plans for this statement were found by searching
+  the system's real-time and historical performance data.
+
+  The following table lists these plans ranked by their average elapsed time.
+  See section "ALTERNATIVE PLANS SECTION" for detailed information on each
+  plan.
+
+  id plan hash  last seen            elapsed (s)  origin          note
+  -- ---------- -------------------- ------------ --------------- ----------------
+   1 3904644145  2026-08-13/14:37:19     1829.392 Cursor Cache
+
+  Information
+  -----------
+  - Because no execution history for the Original Plan was found, the SQL
+    Tuning Advisor could not determine if any of these execution plans are
+    superior to it.  However, if you know that one alternative plan is better
+    than the Original Plan, you can create a SQL plan baseline for it. This
+    will instruct the Oracle optimizer to pick it over any other choices in
+    the future.
+    execute dbms_sqltune.create_sql_plan_baseline(task_name =>
+            '1y07xq61k975u_tuning_task01', owner_name => 'SYS',
+            plan_hash_value => xxxxxxxx);
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- The optimizer could not merge the view at line ID 2 of the execution plan.
+  The optimizer cannot merge a view that contains an "ORDER BY" clause unless
+  the statement is a "DELETE" or an "UPDATE" and the parent query is the top
+  most query in the statement.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 4077300361
+
+------------------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name             | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |                  |  1000 |  6000 |  3824K (18)| 00:02:30 |       |       |
+|*  1 |  COUNT STOPKEY          |                  |       |       |            |          |       |       |
+|   2 |   VIEW                  |                  |  1183 |  7098 |  3824K (18)| 00:02:30 |       |       |
+|*  3 |    SORT GROUP BY STOPKEY|                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
+|   4 |     PARTITION LIST ALL  |                  |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
+|   5 |      TABLE ACCESS FULL  | ITEM_DECLARACION |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
+------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+   3 - filter(ROWNUM<=1000)
+
+2- Using New Indices
+--------------------
+Plan hash value: 4107716522
+
+-----------------------------------------------------------------------------------------
+| Id  | Operation              | Name           | Rows  | Bytes | Cost (%CPU)| Time     |
+-----------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT       |                |  1000 |  6000 |     6   (0)| 00:00:01 |
+|*  1 |  COUNT STOPKEY         |                |       |       |            |          |
+|   2 |   VIEW                 |                |  1000 |  6000 |     6   (0)| 00:00:01 |
+|   3 |    SORT GROUP BY NOSORT|                |  1000 |  4000 |     6   (0)| 00:00:01 |
+|   4 |     INDEX FULL SCAN    | IDX$$_34EF0001 |  5075M|    18G|     6   (0)| 00:00:01 |
+-----------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+
+3- Using Parallel Execution
+---------------------------
+Plan hash value: 1380218257
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                   | Name             | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |    TQ  |IN-OUT| PQ Distrib |
+---------------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT            |                  |  1000 |  6000 |   171K (15)| 00:00:07 |       |       |        |      |            |
+|*  1 |  COUNT STOPKEY              |                  |       |       |            |          |       |       |        |      |            |
+|   2 |   PX COORDINATOR            |                  |       |       |            |          |       |       |        |      |            |
+|   3 |    PX SEND QC (ORDER)       | :TQ10001         |  1183 |  7098 |   171K (15)| 00:00:07 |       |       |  Q1,01 | P->S | QC (ORDER) |
+|*  4 |     COUNT STOPKEY           |                  |       |       |            |          |       |       |  Q1,01 | PCWC |            |
+|   5 |      VIEW                   |                  |  1183 |  7098 |   171K (15)| 00:00:07 |       |       |  Q1,01 | PCWP |            |
+|*  6 |       SORT GROUP BY STOPKEY |                  |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,01 | PCWP |            |
+|   7 |        PX RECEIVE           |                  |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,01 | PCWP |            |
+|   8 |         PX SEND RANGE       | :TQ10000         |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,00 | P->P | RANGE      |
+|   9 |          HASH GROUP BY      |                  |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,00 | PCWP |            |
+|  10 |           PX BLOCK ITERATOR |                  |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   289 |  Q1,00 | PCWC |            |
+|  11 |            TABLE ACCESS FULL| ITEM_DECLARACION |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   289 |  Q1,00 | PCWP |            |
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+   4 - filter(ROWNUM<=1000)
+   6 - filter(ROWNUM<=1000)
+
+-------------------------------------------------------------------------------
+ALTERNATIVE PLANS SECTION
+-------------------------------------------------------------------------------
+
+Plan 1
+------
+
+  Plan Origin                 :Cursor Cache
+  Plan Hash Value             :3904644145
+  Executions                  :1
+  Elapsed Time                :1829.392 sec
+  CPU Time                    :284.087 sec
+  Buffer Gets                 :22466325
+  Disk Reads                  :22391497
+  Disk Writes                 :0
+
+Notes:
+  1. Statistics shown are averaged over multiple executions.
+
+------------------------------------------------------------------------------------------------------------
+| Id  | Operation               | Name             | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT        |                  |  1000 |  6000 |  3824K (18)| 00:02:30 |       |       |
+|*  1 |  COUNT STOPKEY          |                  |       |       |            |          |       |       |
+|   2 |   VIEW                  |                  |  1183 |  7098 |  3824K (18)| 00:02:30 |       |       |
+|*  3 |    SORT ORDER BY STOPKEY|                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
+|   4 |     HASH GROUP BY       |                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
+|   5 |      PARTITION LIST ALL |                  |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
+|   6 |       TABLE ACCESS FULL | ITEM_DECLARACION |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
+------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=1000)
+   3 - filter(ROWNUM<=1000)
+
+-------------------------------------------------------------------------------

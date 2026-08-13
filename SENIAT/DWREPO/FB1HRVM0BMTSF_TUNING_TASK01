@@ -1,0 +1,269 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('FB1HRVM0BMTSF_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : fb1hrvm0bmtsf_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/13/2026 15:45:27
+Completed at       : 08/13/2026 15:45:29
+
+-------------------------------------------------------------------------------
+Schema Name: METABASE
+SQL ID     : fb1hrvm0bmtsf
+SQL Text   : -- Metabase:: userID: 277 queryType: MBQL queryHash:
+             18620832f6f86f86d04703a79ef6e45f05b48c68ca24c078db618aa52490acff
+             SELECT "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"
+             "TIPO_CONTRIBUYENTE", COUNT(*) "count" FROM
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL" LEFT JOIN "DBO"."IMPUESTO"
+             "Impuesto - Impuesto Comp Pago" ON
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO" =
+             "Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO" WHERE
+             (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" <> :1
+             ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS
+             NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMI
+             SO" <> :2 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPR
+             OMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACIO
+             N_COMPROMISO" <> :3 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUA
+             CION_COMPROMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"
+             ."SITUACION_COMPROMISO" <> :4 ) OR
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS
+             NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMI
+             SO" <> :5 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPR
+             OMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACIO
+             N_COMPROMISO" <> :6 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUA
+             CION_COMPROMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"
+             ."SITUACION_COMPROMISO" <> :7 ) OR
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS
+             NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMI
+             SO" <> :8 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPR
+             OMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACIO
+             N_COMPROMISO" <> :9 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUA
+             CION_COMPROMISO" IS NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"
+             ."SITUACION_COMPROMISO" <> :10 ) OR
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS
+             NULL)) AND (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMI
+             SO" <> :11 ) OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMP
+             ROMISO" IS NULL)) AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CON
+             TRIBUYENTE" = :12 ) AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."REGION
+             " = :13 ) AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA" =
+             :14 ) AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."FLAG_COMPROMISO" =
+             :15 ) GROUP BY "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYEN
+             TE" ORDER BY "count" DESC, "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO
+             _CONTRIBUYENTE" ASC
+Bind Variables :
+ 1 -  (VARCHAR2(2000)):CANCELACION ELECTRONICA - A TIEMPO
+ 2 -  (VARCHAR2(2000)):CANCELACION ELECTRONICA - FUERA DE TIEMPO
+ 3 -  (VARCHAR2(128)):COMPROMISO ANULADO
+ 4 -  (VARCHAR2(2000)):COMPROMISO ANULADO POR CORRECTIVA DE IVA
+ 5 -  (VARCHAR2(2000)):COMPROMISO ANULADO POR ERROR DE PROCESAMIENTO
+ 6 -  (VARCHAR2(2000)):COMPROMISO ANULADO POR LIQUIDACION
+ 7 -  (VARCHAR2(128)):COMPROMISO GARANTIZABLE
+ 8 -  (VARCHAR2(128)):COMPROMISO GARANTIZADO
+ 9 -  (VARCHAR2(128)):COMPROMISO IMPUTABLE
+ 10 -  (VARCHAR2(128)):CONCILIADO - SIN VENCER
+ 11 -  (VARCHAR2(128)):CONCILIADO - VENCIDO
+ 12 -  (VARCHAR2(128)):CONTRIBUYENTE ESPECIAL
+ 13 -  (VARCHAR2(128)):REGION NOR ORIENTAL
+ 15 -  (VARCHAR2(128)):COMPROMISO VENCIDO POR FECHA
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (2 findings)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 81.55%)
+  ------------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            'fb1hrvm0bmtsf_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 6 will improve its response time
+  81.56% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 10.66% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+2- Index Finding (see explain plans section below)
+--------------------------------------------------
+  The execution plan of this statement can be improved by creating one or more
+  indices.
+
+  Recommendation (estimated benefit: 92.21%)
+  ------------------------------------------
+  - Consider running the Access Advisor to improve the physical schema design
+    or creating the recommended index.
+    create index DBO.IDX$$_34F20001 on DBO.COMPROMISOS_PAGOS_GLOBAL("TIPO_CONTR
+    IBUYENTE","DEPENDENCIA","REGION","FLAG_COMPROMISO");
+
+  Rationale
+  ---------
+    Creating the recommended indices significantly improves the execution plan
+    of this statement. However, it might be preferable to run "Access Advisor"
+    using a representative SQL workload as opposed to a single statement. This
+    will allow to get comprehensive index recommendations which takes into
+    account index maintenance overhead and additional space consumption.
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- At least one important bind value was missing for this sql statement. The
+  accuracy of the advisor's analysis may depend on all important bind values
+  being supplied.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 3829995076
+
+---------------------------------------------------------------------------------------------------
+| Id  | Operation              | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+---------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT       |                          |     1 |   146 |   234K  (2)| 00:00:10 |
+|   1 |  SORT ORDER BY         |                          |     1 |   146 |   234K  (2)| 00:00:10 |
+|   2 |   SORT GROUP BY NOSORT |                          |     1 |   146 |   234K  (2)| 00:00:10 |
+|*  3 |    MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL |  3249 |   463K|   234K  (2)| 00:00:10 |
+---------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter("COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA"=:14 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."REGION"=:13 AND "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"
+              =:12 AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:1 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:2 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:4 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:5 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:6 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:7 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:8 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:9 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:10 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:11 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              "COMPROMISOS_PAGOS_GLOBAL"."FLAG_COMPROMISO"=:15)
+
+2- Using New Indices
+--------------------
+Plan hash value: 2774366663
+
+-------------------------------------------------------------------------------------------------------------
+| Id  | Operation                        | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                 |                          |     1 |   146 | 18268   (1)| 00:00:01 |
+|   1 |  SORT ORDER BY                   |                          |     1 |   146 | 18268   (1)| 00:00:01 |
+|   2 |   SORT GROUP BY NOSORT           |                          |     1 |   146 | 18268   (1)| 00:00:01 |
+|*  3 |    MAT_VIEW ACCESS BY INDEX ROWID| COMPROMISOS_PAGOS_GLOBAL |  3249 |   463K| 18267   (1)| 00:00:01 |
+|*  4 |     INDEX RANGE SCAN             | IDX$$_34F20001           | 22148 |       |   425   (1)| 00:00:01 |
+-------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - filter(("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:1 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:2 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:4 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:5 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:6 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:7 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:8 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:9 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:10 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:11 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL))
+   4 - access("COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:12 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA"=:14 AND "COMPROMISOS_PAGOS_GLOBAL"."REGION"=:13 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."FLAG_COMPROMISO"=:15)
+
+3- Using Parallel Execution
+---------------------------
+Plan hash value: 476792533
+
+--------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                    | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |    TQ  |IN-OUT| PQ Distrib |
+--------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT             |                          |     1 |   146 | 43255   (1)| 00:00:02 |        |      |            |
+|   1 |  PX COORDINATOR              |                          |       |       |            |          |        |      |            |
+|   2 |   PX SEND QC (ORDER)         | :TQ10001                 |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,01 | P->S | QC (ORDER) |
+|   3 |    SORT ORDER BY             |                          |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,01 | PCWP |            |
+|   4 |     HASH GROUP BY            |                          |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,01 | PCWP |            |
+|   5 |      PX RECEIVE              |                          |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,01 | PCWP |            |
+|   6 |       PX SEND RANGE          | :TQ10000                 |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,00 | P->P | RANGE      |
+|   7 |        HASH GROUP BY         |                          |     1 |   146 | 43255   (1)| 00:00:02 |  Q1,00 | PCWP |            |
+|   8 |         PX BLOCK ITERATOR    |                          |    76 | 11096 | 43254   (1)| 00:00:02 |  Q1,00 | PCWC |            |
+|*  9 |          MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL |    76 | 11096 | 43254   (1)| 00:00:02 |  Q1,00 | PCWP |            |
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   9 - filter("COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA"=:14 AND "COMPROMISOS_PAGOS_GLOBAL"."REGION"=:13 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:12 AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:1 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:2 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:4 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:5 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:6 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:7 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:8 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:9 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:10 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"<>:11 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" IS NULL) AND "COMPROMISOS_PAGOS_GLOBAL"."FLAG_COMPROMISO"=:15)
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  PARALLEL
+
+-------------------------------------------------------------------------------

@@ -127,3 +127,36 @@ Total hints for statement: 1 (U - Unused (1))
 -------------------------------------------------------------------------------
 
 
+
+
+****************************
+****************************
+
+SELECT sql_id, sql_text
+FROM dba_hist_sqltext
+WHERE sql_id = '88qvdqavsp1z2';
+
+SQL_ID        SQL_TEXT
+------------- ----------------------------------------------------------------------------------------------------
+88qvdqavsp1z2 -- Metabase
+              SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION" "TIPO_DECLARACION" FROM "DBO"."DECLARAC
+              ION" GROUP BY "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY "DBO"."DECLARACION"."TIPO_DECLARACION"
+               ASC) WHERE rownum <= 1000
+
+
+
+
+DECLARE
+  l_sql_tune_task_id VARCHAR2(100);
+BEGIN
+  l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
+    sql_text    => 'SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION" "TIPO_DECLARACION" FROM "DBO"."DECLARACION" GROUP BY "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY "DBO"."DECLARACION"."TIPO_DECLARACION" ASC) WHERE rownum <= 1000',
+    scope       => DBMS_SQLTUNE.scope_comprehensive,
+    time_limit  => 20000,
+    task_name   => '88qvdqavsp1z2_tuning_task01',
+    description => 'Tuning task1 for statement 88qvdqavsp1z2'
+  );
+  
+  DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
+END;
+/
