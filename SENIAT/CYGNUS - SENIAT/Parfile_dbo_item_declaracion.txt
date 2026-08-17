@@ -16,7 +16,7 @@ TABLES=DBO.ITEM_DECLARACION:P202605
 
 
 
-nohup expdp \' / as sysdba \' parfile=exp_item_declaracion_202601.par &
+nohup expdp \' / as sysdba \' parfile=exp_item_declaracion.par &
 expdp \' / as sysdba \' ATTACH=SYS_EXPORT_TABLE_01
 
 
@@ -73,3 +73,18 @@ ALTER TABLE dbo.item_declaracion TRUNCATE PARTITION P202605 UPDATE GLOBAL INDEXE
 
 %s/\r//g
 %s/^M//g
+
+
+
+
+
+vi exp_item_declaracion.par
+
+DIRECTORY=EXPORT_BDTEMP
+LOGFILE=EXP_DBO_ITM_DECL.log
+DUMPFILE=EXP_DBO_ITM_DECL_%U.dmp
+METRICS=Y
+EXCLUDE=PROCACT_SYSTEM,STATISTICS
+CLUSTER=N
+PARALLEL=5
+TABLES=DBO.ITEM_DECLARACION

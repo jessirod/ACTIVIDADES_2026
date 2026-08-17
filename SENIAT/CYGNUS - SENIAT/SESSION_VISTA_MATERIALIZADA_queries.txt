@@ -114,3 +114,134 @@ SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('&sql_id', &child_number, 'ALLSTAT
 
 
 
+********************************
+*
+
+
+
+********************************************************
+**************************************************************************
+
+
+
+SELECT index_name, column_position, column_name
+  FROM DBA_IND_COLUMNS
+ WHERE index_owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE'
+ ORDER BY index_name, column_position;
+.
+.
+BEGIN
+   DBMS_STATS.GATHER_TABLE_STATS ('DBO','MV_DECLARACION_BASE',
+      estimate_percent => 100, method_opt => 'FOR ALL COLUMNS SIZE AUTO',
+      cascade => TRUE, degree => 8, no_invalidate => FALSE);
+END;
+/
+.
+.
+ALTER MATERIALIZED VIEW DBO.MV_DECLARACION_BASE NOPARALLEL;
+
+BEGIN
+   FOR r IN (SELECT index_name FROM USER_INDEXES
+              WHERE table_name = 'MV_DECLARACION_BASE' AND degree <> '1') LOOP
+      EXECUTE IMMEDIATE 'ALTER INDEX ' || r.index_name || ' NOPARALLEL';
+   END LOOP;
+END;
+/
+
+Pablo Vivas 11:22 AM
+.
+.
+SELECT table_name, partitioning_type, partition_count, partitioning_key_count
+  FROM DBA_PART_TABLES WHERE owner = 'DBO' AND table_name = 'DECLARACION';
+
+SELECT name, column_name, column_position
+  FROM DBA_PART_KEY_COLUMNS WHERE owner = 'DBO' AND name = 'DECLARACION';
+
+DELETE FROM MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE';
+COMMIT;
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+
+SELECT capability_name, possible, related_text, SUBSTR(msgtxt,1,80) MSG
+  FROM MV_CAPABILITIES_TABLE
+ WHERE capability_name LIKE '%PCT%' OR capability_name LIKE 'REFRESH_FAST%'
+ ORDER BY capability_name;
+.
+.
+@?/rdbms/admin/utlxmv.sql
+
+Pablo Vivas 11:29 AM
+CREATE TABLE MV_CAPABILITIES_TABLE ( STATEMENT_ID VARCHAR2(30), MVOWNER VARCHAR2(30), MVNAME VARCHAR2(30), CAPABILITY_NAME VARCHAR2(30), POSSIBLE CHAR(1), RELATED_TEXT VARCHAR2(2000), RELATED_NUM NUMBER, MSGNO INTEGER, MSGTXT VARCHAR2(2000), SEQ NUMBER );
+.
+.
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+.
+.
+SELECT capability_name, possible, related_text, SUBSTR(msgtxt,1,100) MSG FROM MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE' ORDER BY capability_name;
+
+Pablo Vivas 11:34 AM
+current_schema=DBO
+
+Pablo Vivas 11:48 AM
+.
+.
+.
+SELECT owner, mview_name, detailobj_name, detail_partition_name, freshness FROM DBA_MVIEW_DETAIL_PARTITION WHERE mview_name = 'MV_DECLARACION_BASE' AND freshness <> 'FRESH';
+.
+.
+SELECT owner, mview_name, detailobj_name, detailobj_pct, num_fresh_pct_partitions, num_stale_pct_partitions FROM DBA_MVIEW_DETAIL_RELATIONS WHERE mview_name = 'MV_DECLARACION_BASE';
+.
+.
+.
+SELECT ' PARTITION ' || partition_name || ' VALUES (' || high_value || '),' FROM DBA_TAB_PARTITIONS WHERE table_owner = 'DBO' AND table_name = 'DECLARACION' ORDER BY partition_position;
+
+Pablo Vivas 12:00 PM
+.
+.
+.
+.
+DROP MATERIALIZED VIEW DBO.MV_DECLARACION_BASE;
+
+Pablo Vivas 12:05 PM
+ALTER SESSION ENABLE PARALLEL DDL; 
+ALTER SESSION FORCE PARALLEL DDL PARALLEL 8; 
+ALTER SESSION FORCE PARALLEL QUERY PARALLEL 8;
+
+ALTER SESSION ENABLE PARALLEL DDL; 
+ALTER SESSION FORCE PARALLEL DDL PARALLEL 8; 
+ALTER SESSION FORCE PARALLEL QUERY PARALLEL 8;
+.
+.
+.
+CREATE MATERIALIZED VIEW DBO.MV_DECLARACION_BASE
+   TABLESPACE TS_D_MEDIUM
+   NOLOGGING NOCACHE NOCOMPRESS
+   BUILD IMMEDIATE
+   REFRESH FAST ON DEMAND
+AS
+   SELECT d.ID_CONTRIBUYENTE      CONTRIBUYENTE,
+          d.IMPUESTO_DECLARACION  IMPUESTO,
+          d.PERIODO_DECLARACION   PERIODO,
+          COUNT(*)                CANTIDAD          
+     FROM DBO.DECLARACION d
+    WHERE d.IMPUESTO_DECLARACION IN ('25','26','30')
+      AND d.SITUACION_DECLARACION NOT IN ('00','31')
+   GROUP BY d.ID_CONTRIBUYENTE,
+            d.IMPUESTO_DECLARACION,
+            d.PERIODO_DECLARACION;
+.
+.
+v$px_session
+
+Pablo Vivas 12:11 PM
+DELETE FROM SYS.MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE'; COMMIT;
+.
+.
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+.
+.
+SELECT capability_name, possible, SUBSTR(msgtxt,1,90) MSG FROM SYS.MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE' AND capability_name LIKE 'REFRESH_FAST%';
+
+Pablo Vivas 12:21 PM
+.
+.
+/*+ FULL(x) PARALLEL(x 16) */
