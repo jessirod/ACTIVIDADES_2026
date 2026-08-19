@@ -1,0 +1,42 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('3DVGAWWUTDS4A_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : 3dvgawwutds4a_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/19/2026 10:25:32
+Completed at       : 08/19/2026 10:25:32
+
+-------------------------------------------------------------------------------
+Schema Name: ETL
+SQL ID     : 3dvgawwutds4a
+SQL Text   : INSERT INTO DBO.MOVIMIENTO_PAGO
+                                     (ID_MOVIMIENTO_PAGO,RIF_CONTRIBUYENTE_PAG
+             O,TIPO_DOCUMENTO_PAGO,ID_CONTRIBUYENTE_PAGO,TIPO_TRANSACCION_PAGO
+             ,NUMERO_DOCUMENTO_PAGO,DEPENDENCIA_PAGO,INDICADOR_SENIAT_PAGO,FEC
+             HA_RECAUDACION_PAGO,CODIGO_FORMA_PAGO,AGENCIA_BANCO_PAGO,BANCO_PA
+             GO,PERIODO_PAGO,CONCILIADO_PAGO,NUMERO_SAFE_PAGO,FECHA_HORA_CONCI
+             LIA_PAGO,CODIGO_SEGURIDAD_BANCO_PAGO,ORIGEN_INFORMACION_PAGO,SITU
+             ACION_PAGO,FECHA_HORA_TX_PAGO,ARCHIVO_BATCH_PAGO,FECHA_HORA_PROCE
+             SO_PAGO,ID_ORIGEN_PAGO,NUMERO_TRANSMISION_PAGO,ANHO_MOVIMIENTO_PA
+             GO,ARCHIVO_ONLINE_PAGO,FECHA_OPERACION_PAGO,IND_ENVIO_SIVIT_PAGO,
+             COD_CONTROL_DOC_ADUANA_PAGO,ID_LOG_TRANSMISION_PAGO,IND_ENVIO_SID
+             UNEA_PAGO,RESPONSE_ENVIO_SIDUNEA_PAGO,COD_ADUANA_ORIGINAL_PAGO,ID
+             _LOG_ONLINE_PAGO,MONTO_PAGO_BONOS_DP_M_P,MONTO_EFECTIVO_PAGO,MONT
+             O_EFECTIVO_PAGO_BS,MONTO_CHEQUE_PAGO,MONTO_CHEQUE_PAGO_BS,MONTO_T
+             OTAL_PAGO,MONTO_TOTAL_PAGO_BS,MONTO_TITULO_PAGO,MONTO_TITULO_PAGO
+             _BS,MONTO_OTROS_PAGO,MONTO_OTROS_PAGO_BS,DEPENDENCIA_SECTOR_PAGO,
+             CREATED_AT,UPDATED_AT)
+                                     VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:1
+             1,:12,:13,:14,:15,:16,:17,:18,:19,:20,:21,:22,:23,:24,:25,:26,:27
+             ,:28,:29,:30,:31,:32,:33,:34,:35,:36,:37,:38,:39,:40,:41,:42,:43,
+             :44,:45,:46,:47,:48)
+
+-------------------------------------------------------------------------------
+There are no recommendations to improve the statement.
+
+-------------------------------------------------------------------------------

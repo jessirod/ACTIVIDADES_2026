@@ -1,0 +1,144 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('B1CUBN44NB8T8_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : b1cubn44nb8t8_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/17/2026 16:16:18
+Completed at       : 08/17/2026 17:09:03
+
+-------------------------------------------------------------------------------
+Schema Name: AIRFLOW
+SQL ID     : b1cubn44nb8t8
+SQL Text   : UPDATE AIRFLOW.CDC_CONTROL_REPLICACION
+                             SET ESTADO=:"SYS_B_0",
+                                 MENSAJE_ERROR=NULL,
+                                 FECHA_PROCESADO=NULL
+                             WHERE TABLA_LOG=:1
+                             AND ESTADO=:"SYS_B_1"
+                             AND FECHA_REGISTRO < SYSDATE-(:2/:"SYS_B_2")
+Bind Variables :
+ 2 -  (VARCHAR2(128)):LOG_USUARIO_INTERNET
+ 3 -  (VARCHAR2(32)):X
+ 4 -  (NUMBER):6
+ 5 -  (NUMBER):1440
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (1 finding)
+-------------------------------------------------------------------------------
+
+1- Alternative Plan Finding
+---------------------------
+  Some alternative execution plans for this statement were found by searching
+  the system's real-time and historical performance data.
+
+  The following table lists these plans ranked by their average elapsed time.
+  See section "ALTERNATIVE PLANS SECTION" for detailed information on each
+  plan.
+
+  id plan hash  last seen            elapsed (s)  origin          note
+  -- ---------- -------------------- ------------ --------------- ----------------
+   1   19363590  2026-08-17/11:46:43        0.018 Cursor Cache    not reproducible
+   2  123123766  2026-08-16/21:00:50       79.722 AWR             not reproducible
+
+  Information
+  -----------
+  - The Original Plan appears to have the best performance, based on the
+    elapsed time per execution.
+  - The plan with id 1 could not be reproduced in the current environment.
+    For this reason, a SQL plan baseline cannot be created to instruct the
+    Oracle optimizer to pick this plan in the future.
+  - The plan with id 2 could not be reproduced in the current environment.
+    For this reason, a SQL plan baseline cannot be created to instruct the
+    Oracle optimizer to pick this plan in the future.
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- SQL Profile "SYS_SQLPROF_01a00e0e688a0000" exists for this statement and
+  was ignored during the tuning process.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 19363590
+
+-------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                           | Name                    | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+-------------------------------------------------------------------------------------------------------------------------------
+|   0 | UPDATE STATEMENT                    |                         |     1 |    51 |     1   (0)| 00:00:01 |       |       |
+|   1 |  UPDATE                             | CDC_CONTROL_REPLICACION |       |       |            |          |       |       |
+|*  2 |   TABLE ACCESS BY GLOBAL INDEX ROWID| CDC_CONTROL_REPLICACION |     1 |    51 |     1   (0)| 00:00:01 | ROWID | ROWID |
+|*  3 |    INDEX RANGE SCAN                 | IDX_CDC_PENDIENTES      |     1 |       |     1   (0)| 00:00:01 |       |       |
+-------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter("FECHA_REGISTRO"<SYSDATE@!-:2/:SYS_B_2)
+   3 - access("TABLA_LOG"=:1 AND "ESTADO"=:SYS_B_1)
+
+-------------------------------------------------------------------------------
+ALTERNATIVE PLANS SECTION
+-------------------------------------------------------------------------------
+
+Plan 1
+------
+
+  Plan Origin                 :Cursor Cache
+  Plan Hash Value             :19363590
+  Executions                  :6
+  Elapsed Time                :0.018 sec
+  CPU Time                    :0.006 sec
+  Buffer Gets                 :1664
+  Disk Reads                  :0
+  Disk Writes                 :0
+
+Notes:
+  1. Statistics shown are averaged over multiple executions.
+  2. The plan matches the original plan.
+  3. The plan with id 1 could not be reproduced in the current environment. For this reason, a SQL plan baseline cannot be created to instruct the Oracle optimizer to pick this plan in the future.
+
+-------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                           | Name                    | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+-------------------------------------------------------------------------------------------------------------------------------
+|   0 | UPDATE STATEMENT                    |                         |       |       |     1 (100)|          |       |       |
+|   1 |  UPDATE                             | CDC_CONTROL_REPLICACION |       |       |            |          |       |       |
+|   2 |   TABLE ACCESS BY GLOBAL INDEX ROWID| CDC_CONTROL_REPLICACION |     1 |    51 |     1   (0)| 00:00:01 |ROW LOC| ROWID |
+|   3 |    INDEX RANGE SCAN                 | IDX_CDC_PENDIENTES      |     1 |       |     1   (0)| 00:00:01 |       |       |
+-------------------------------------------------------------------------------------------------------------------------------
+
+Plan 2
+------
+
+  Plan Origin                 :AWR
+  Plan Hash Value             :123123766
+  Executions                  :300
+  Elapsed Time                :79.722 sec
+  CPU Time                    :12.735 sec
+  Buffer Gets                 :5536776
+  Disk Reads                  :48664
+  Disk Writes                 :0
+
+Notes:
+  1. Statistics shown are averaged over multiple executions.
+  2. The plan with id 2 could not be reproduced in the current environment. For this reason, a SQL plan baseline cannot be created to instruct the Oracle optimizer to pick this plan in the future.
+
+--------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                           | Name                     | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+--------------------------------------------------------------------------------------------------------------------------------
+|   0 | UPDATE STATEMENT                    |                          |       |       | 12383 (100)|          |       |       |
+|   1 |  UPDATE                             | CDC_CONTROL_REPLICACION  |       |       |            |          |       |       |
+|   2 |   PARTITION RANGE ITERATOR          |                          |   423K|    20M| 12383   (1)| 00:02:29 |     1 |   KEY |
+|   3 |    TABLE ACCESS BY LOCAL INDEX ROWID| CDC_CONTROL_REPLICACION  |   423K|    20M| 12383   (1)| 00:02:29 |     1 |   KEY |
+|   4 |     INDEX RANGE SCAN                | IX_CDC_CONTROL_TABLA_LOG |   846K|       |  1558   (1)| 00:00:19 |     1 |   KEY |
+--------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------

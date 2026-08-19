@@ -38,7 +38,7 @@ SELECT * FROM (SELECT "source"."NOMBRE UNICO" "NOMBRE UNICO",  "source"."sum" "s
 --fb1hrvm0bmtsf
 --21h3sfrkr0w75
 
-7p1bv6688y99w
+**7p1bv6688y99w
 f8h1v7rww4m7u
 d0a381y1u2tbd
 d3bqgxshjunxz
@@ -56,13 +56,13 @@ DECLARE
 l_sql_tune_task_id VARCHAR2(100);
 BEGIN
 l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
-begin_snap => 11163, 
-end_snap => 11164,
-sql_id => '21h3sfrkr0w75',
+--begin_snap => 11163, 
+--end_snap => 11164,
+sql_id => 'f8h1v7rww4m7u',
 scope => DBMS_SQLTUNE.scope_comprehensive,
 time_limit => 20000,
-task_name => '21h3sfrkr0w75_tuning_task01',
-description => 'Tuning task1 for statement 21h3sfrkr0w75');
+task_name => 'f8h1v7rww4m7u_tuning_task01',
+description => 'Tuning task1 for statement f8h1v7rww4m7u');
 DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
 END;
 /
@@ -70,7 +70,7 @@ END;
 
 2. EJECUTAR EL TUNING TASK
 
-EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => '21h3sfrkr0w75_tuning_task01');
+EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => 'f8h1v7rww4m7u_tuning_task01');
 
 
 3. OBTENER EL REPORTE DEL TUNING ADVISOR
@@ -79,14 +79,18 @@ set long 65536
 set longchunksize 65536
 set linesize 240
 set pagesize 500
-select dbms_sqltune.report_tuning_task('21h3sfrkr0w75_tuning_task01') from dual;
+select dbms_sqltune.report_tuning_task('f8h1v7rww4m7u_tuning_task01') from dual;
+SELECT sql_id, sql_text
+FROM dba_hist_sqltext
+WHERE sql_id = 'f8h1v7rww4m7u';
 
-
-
+****************************************************
+*****************************************************
+******************************************************
 
 SELECT sql_id, sql_text
 FROM dba_hist_sqltext
-WHERE sql_id = 'dmcfjc6pf9jxf';
+WHERE sql_id = 'f8h1v7rww4m7u';
 
 
 
