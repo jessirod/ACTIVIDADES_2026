@@ -39,38 +39,64 @@ SELECT * FROM (SELECT "source"."NOMBRE UNICO" "NOMBRE UNICO",  "source"."sum" "s
 --21h3sfrkr0w75
 
 **7p1bv6688y99w
-f8h1v7rww4m7u
-d0a381y1u2tbd
-d3bqgxshjunxz
-c5304dwq3uar1
-390492n3fwknq
-bud7rp589vmgq
-ghthcxr379jnh
-6q8fgk876uzft
-gn4frgu8xvgpq
-3dvgawwutds4a
+--f8h1v7rww4m7u
+**d0a381y1u2tbd
+--d3bqgxshjunxz
+--c5304dwq3uar1
+--390492n3fwknq
+--bud7rp589vmgq
+--**ghthcxr379jnh
+--6q8fgk876uzft
+--gn4frgu8xvgpq
+--3dvgawwutds4a
 
 
+
+--CONSQLID
+
+--DECLARE
+--l_sql_tune_task_id VARCHAR2(100);
+--BEGIN
+--l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
+----begin_snap => 11289, 
+----end_snap => 11289,
+--sql_id => '3dvgawwutds4a',
+--scope => DBMS_SQLTUNE.scope_comprehensive,
+--time_limit => 20000,
+--task_name => '3dvgawwutds4a_tuning_task01',
+--description => 'Tuning task1 for statement 3dvgawwutds4a');
+--DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
+--END;
+--/
+
+
+--CONSQLTEXT
 
 DECLARE
-l_sql_tune_task_id VARCHAR2(100);
+  l_sql_tune_task_id VARCHAR2(100);
+  l_query CLOB;
+  l_sql_id VARCHAR2(15) := '3dvgawwutds4a';
 BEGIN
-l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
---begin_snap => 11163, 
---end_snap => 11164,
-sql_id => 'f8h1v7rww4m7u',
-scope => DBMS_SQLTUNE.scope_comprehensive,
-time_limit => 20000,
-task_name => 'f8h1v7rww4m7u_tuning_task01',
-description => 'Tuning task1 for statement f8h1v7rww4m7u');
-DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
+
+  SELECT sql_text
+  INTO l_query
+  FROM dba_hist_sqltext
+  WHERE sql_id = l_sql_id;
+
+  l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
+    sql_text    => l_query,
+    scope       => DBMS_SQLTUNE.scope_comprehensive,
+    time_limit  => 20000,
+    task_name   => '3dvgawwutds4a_tuning_task01',
+    description => 'Tuning task1 for statement 3dvgawwutds4a'
+  );
+  DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
 END;
 /
 
-
 2. EJECUTAR EL TUNING TASK
 
-EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => 'f8h1v7rww4m7u_tuning_task01');
+EXEC DBMS_SQLTUNE.execute_tuning_task(task_name => '3dvgawwutds4a_tuning_task01');
 
 
 3. OBTENER EL REPORTE DEL TUNING ADVISOR
@@ -79,10 +105,16 @@ set long 65536
 set longchunksize 65536
 set linesize 240
 set pagesize 500
-select dbms_sqltune.report_tuning_task('f8h1v7rww4m7u_tuning_task01') from dual;
+select dbms_sqltune.report_tuning_task('3dvgawwutds4a_tuning_task01') from dual;
+
+
+
+
+
+
 SELECT sql_id, sql_text
 FROM dba_hist_sqltext
-WHERE sql_id = 'f8h1v7rww4m7u';
+WHERE sql_id = 'f1kz3sj42cffc';
 
 ****************************************************
 *****************************************************
@@ -90,7 +122,7 @@ WHERE sql_id = 'f8h1v7rww4m7u';
 
 SELECT sql_id, sql_text
 FROM dba_hist_sqltext
-WHERE sql_id = 'f8h1v7rww4m7u';
+WHERE sql_id = 'd3bqgxshjunxz';
 
 
 
@@ -99,5 +131,5 @@ SELECT s.snap_id,
        hs.executions_total
 FROM dba_hist_sqlstat hs
 JOIN dba_hist_snapshot s ON hs.snap_id = s.snap_id
-WHERE hs.sql_id = '52fghafapzfmg'
+WHERE hs.sql_id = 'ghthcxr379jnh'
 ORDER BY s.snap_id DESC;
