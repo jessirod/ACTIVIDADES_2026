@@ -1,0 +1,1594 @@
+PROCEDURE P_GRUPO_ACT_ECO ( C_GRUPOS  OUT CURSOR_GRUPO,
+                            PN_RESULT OUT PLS_INTEGER)
+
+IS
+VN_CANTIDAD NUMBER ;
+
+BEGIN
+
+    BEGIN
+
+      -- SOLO SE HACE UN CONTEO PARA VERIFICAR QUE EXISTE EL CODIGO GRUPO EN LA TABLA DIVISION ACTIVIDAD ECONOMICA, AL NO EXISTIR NO SE AVANZA -----
+
+       SELECT COUNT (*)
+        INTO VN_CANTIDAD
+         FROM GRUPO_ACTIVIDAD_ECONOMICA_C4 GA;
+
+           PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+           WHEN NO_DATA_FOUND THEN
+                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+    END ;
+
+
+     IF VN_CANTIDAD > 0 THEN
+
+             BEGIN
+
+              OPEN C_GRUPOS FOR
+
+                SELECT GA.CODIGO_GRUPO_A_E CODIGO_GRUPO,
+                       GA.DESCRIPCION_GRUPO_A_E DESCRIPCION_GRUPO
+                 FROM GRUPO_ACTIVIDAD_ECONOMICA_C4 GA;
+
+                   PN_RESULT:= PKG_CONSTANTES.OK;
+
+            EXCEPTION
+              WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_GRUPO_ACT_ECO  ',
+                                                             'DESCRIPCION DEL GRUPO DE LA ACTIVIDAD ECONOMICA :', 'CURSOR: C_GRUPOS,  DATOSCONTRIBUYENTE.GRUPO_ACTIVIDAD_ECONOMICA_C
+4',
+
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+          END ;
+
+      END IF;
+
+END P_GRUPO_ACT_ECO;
+
+PROCEDURE P_DIVISION_ACT_ECO ( PC_GRUPO     IN VARCHAR2,
+                               C_DIVISION  OUT CURSOR_DIVISION_AE,
+                               PN_RESULT   OUT PLS_INTEGER)
+IS
+VN_CANTIDAD NUMBER ;
+
+
+BEGIN
+
+  BEGIN
+
+   -- SOLO SE HACE UN CONTEO PARA VERIFICAR QUE EXISTE EL CODIGO GRUPO EN LA TABLA DIVISION ACTIVIDAD ECONOMICA, AL NO EXISTIR NO SE AVANZA -----
+
+    SELECT COUNT (*)
+      INTO VN_CANTIDAD
+      FROM DIVISION_ACT_ECONOMICA_C4 DAE
+     WHERE DAE.GRUPO_DIVISION_A_E = PC_GRUPO  ;
+
+      PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+           WHEN NO_DATA_FOUND THEN
+                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+
+  END ;
+
+
+     IF VN_CANTIDAD > 0 THEN
+
+           BEGIN
+
+            OPEN  C_DIVISION FOR
+
+               SELECT DAE.CODIGO_DIVISION_A_E        CODIGO_DIVISION,
+                      DAE.DESCRIPCION_DIVISION_A_E   DESCRIPCION_DIVISION
+                     FROM DIVISION_ACT_ECONOMICA_C4 DAE
+                     WHERE DAE.GRUPO_DIVISION_A_E = PC_GRUPO  ;
+
+              PN_RESULT:= PKG_CONSTANTES.OK;
+
+           EXCEPTION
+              WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_DIVISION_ACT_ECO  ',
+                                                             'DESCRIPCION DE LA DIVISION  DADO UN GRUPO :'||PC_GRUPO, 'CURSOR: C_DIVISION,  DATOSCONTRIBUYENTE.DIVISION_ACT_ECONOMIC
+A_C4',
+
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+           END ;
+
+      END IF ;
+
+END P_DIVISION_ACT_ECO;
+
+PROCEDURE P_CLASE_ACT_ECO ( PN_COD_DIVISION  IN VARCHAR2,
+                            PC_DES_ACT_ECON  OUT VARCHAR2,
+                            C_CLASE          OUT CURSOR_CLASE_AE,
+                            PN_RESULT        OUT PLS_INTEGER)
+
+IS
+
+VN_LONGITUD_COD NUMBER ;
+VN_CANTIDAD NUMBER ;
+
+ ------  DADA LA DIVISION SE VEERIFICA LA CLASE DE LA ACTIVIDAD ECONOMICA ---
+
+BEGIN
+
+  BEGIN
+
+   -- SOLO SE HACE UN CONTEO PARA VERIFICAR QUE EXISTE EL CODIGO DIVISION EN LA TABLA CLASE ACTIVIDAD ECONOMICA, AL NO EXISTIR NO SE AVANZA -----
+        SELECT COUNT (*)
+          INTO VN_CANTIDAD
+         FROM CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+        WHERE CAE.DIVISION_CLASE_A_E = PN_COD_DIVISION;
+
+      PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+           WHEN NO_DATA_FOUND THEN
+                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+                 PC_DES_ACT_ECON := NULL;
+
+  END ;
+
+IF VN_CANTIDAD >= 0 THEN
+
+     LOOP
+
+       BEGIN --- se verifica si la longitud de la div es de 4, de ser asi es la ACTIVIDAD ECONOMICA DEFINITIVA Y LLEGA HASTA LA CLASE
+
+        SELECT LENGTH (PN_COD_DIVISION)
+        INTO VN_LONGITUD_COD
+        FROM DUAL;
+
+        END ;
+
+        IF VN_LONGITUD_COD = 4 THEN --- si la div es de 4, de ser asi es la ACTIVIDAD ECONOMICA DEFINITIVA
+
+                  BEGIN
+
+                    SELECT DAE.DESCRIPCION_DIVISION_A_E   DESCRIPCION_DIVISION
+                      INTO PC_DES_ACT_ECON
+                     FROM DIVISION_ACT_ECONOMICA_C4 DAE
+                     WHERE DAE.CODIGO_DIVISION_A_E = PN_COD_DIVISION;
+
+                    PN_RESULT:= PKG_CONSTANTES.OK;
+
+
+                   EXCEPTION
+
+                           WHEN NO_DATA_FOUND THEN
+                                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+                                 PC_DES_ACT_ECON := NULL;
+
+                   END ;
+
+           EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK ;
+
+         ELSE --- si no es la actividad economica definitiva, entonces se le envia este cursor con el combo con la clase clase
+
+                 BEGIN
+
+                 OPEN C_CLASE FOR
+
+                    SELECT CAE.CODIGO_CLASE_ACTIVIDAD_E      CODIGO_CLASE_AE,
+                           CAE.DESCRIPCION_CLASE_ACTIVIDAD_E DESCRIPCION_CLASE_AE
+                     FROM CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+                     WHERE CAE.DIVISION_CLASE_A_E = PN_COD_DIVISION;
+
+                    PN_RESULT:= PKG_CONSTANTES.OK;
+                    PC_DES_ACT_ECON := NULL;
+
+                  EXCEPTION
+                          WHEN OTHERS THEN
+                               BEGIN
+                                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CLASE_ACT_ECO  ',
+                                                                         'DESCRIPCION ACTIVIDAD ECONOMICA DADA LA DIVISION  :'||PN_COD_DIVISION, 'CURSOR: C_CLASE,  DATOSCONTRIBUYEN
+TE.CLASE_ACTIVIDAD_ECONOMICA_C4',
+
+                                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                               END;
+
+                  END ;
+
+          EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK ;
+
+          END IF;
+
+      END LOOP;
+
+END IF ;
+
+END P_CLASE_ACT_ECO;
+
+PROCEDURE P_ACT_ECONOMICA ( PN_CLASE                  IN VARCHAR2,
+                            PN_CLASE_DES_ACR_ECO_DEF OUT  VARCHAR,
+                            C_ACTIVIDAD_ECON         OUT CURSOR_ACT_ACONOMICA,
+                            PN_RESULT                OUT PLS_INTEGER)
+IS
+
+VC_LONGITUD_CLASE VARCHAR(4);
+VN_CANTIDAD  NUMBER;
+
+BEGIN
+
+  ---- DADA LA CLASE SE VERIFICA SI ES LA ACTIVIDAD ECONOMICA DEFINITIVA O SI NO SE ENVIA UN COMBO CON LA ACTIVIDAD ECONOMICA
+
+  BEGIN
+
+    --- SOLO SE HACE UN CONTEO PARA VERIFICAR QUE EXISTE LA CLASE EN LA TABLA ACTIVIDAD ECONOMICA, AL NO EXISTIR NO SE AVANZA -----
+
+    SELECT COUNT (*)
+      INTO VN_CANTIDAD
+      FROM ACTIVIDAD_ECONOMICA_C4 AEC
+    WHERE AEC.CLASE_ACTIVIDAD_ECONOMICA = PN_CLASE;
+
+      PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+           WHEN NO_DATA_FOUND THEN
+                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+
+  END ;
+
+    IF VN_CANTIDAD >= 0 THEN
+
+          LOOP
+
+           BEGIN --- se verifica si la longitud de la div es de 4, de ser asi es la ACTIVIDAD ECONOMICA DEFINITIVA Y LLEGA HASTA LA CLASE
+
+            SELECT LENGTH (PN_CLASE )
+            INTO VC_LONGITUD_CLASE
+            FROM DUAL;
+
+            END ;
+
+            IF VC_LONGITUD_CLASE = 4 THEN --- si la div es de 4, de ser asi es la ACTIVIDAD ECONOMICA DEFINITIVA
+
+                      BEGIN
+
+                        SELECT  CAE.DESCRIPCION_CLASE_ACTIVIDAD_E
+                           INTO PN_CLASE_DES_ACR_ECO_DEF
+                        FROM CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+                        WHERE  CAE.CODIGO_CLASE_ACTIVIDAD_E = PN_CLASE;
+
+                        PN_RESULT:= PKG_CONSTANTES.OK;
+
+                         EXCEPTION
+
+                           WHEN NO_DATA_FOUND THEN
+                                 PN_RESULT:= PKG_CONSTANTES.NODATAFOUND;
+
+                       END ;
+
+              EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK OR  PN_RESULT= PKG_CONSTANTES.NODATAFOUND ;
+
+             ELSE --- si no es la actividad economica definitiva, entonces se le envia este cursor con el combo con la clase
+
+                     BEGIN
+
+                          OPEN C_ACTIVIDAD_ECON FOR
+
+                            SELECT AEC.DESC_ACTIVIDAD_ECONOMICA   DESCRIPCION_ACT_ECO,
+                                   AEC.CODIGO_ACTIVIDAD_ECONOMICA CODIGO_ACT_ECO
+                              FROM ACTIVIDAD_ECONOMICA_C4 AEC
+                             WHERE AEC.CLASE_ACTIVIDAD_ECONOMICA = PN_CLASE;
+
+                         PN_RESULT:= PKG_CONSTANTES.OK;
+
+                       EXCEPTION
+                          WHEN OTHERS THEN
+                                   BEGIN
+                                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_ACT_ECONOMICA ',
+                                                                             'DESCRIPCION ACTIVIDAD ECONOMICA DADA LA CLASE  :'||PN_CLASE, 'CURSOR: C_ACTIVIDAD_ECON,  DATOSCONTRIBU
+
+TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+YENTE.ACTIVIDAD_ECONOMICA_C4',
+
+                                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                                   END;
+
+                      END ;
+
+               EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK OR PN_RESULT <> PKG_CONSTANTES.OK ;
+
+              END IF;
+
+          END LOOP;
+
+    END IF ;
+
+END P_ACT_ECONOMICA;
+
+PROCEDURE P_INSERTAR_CUESTIONARIO  ( PN_ID_CONTRIBUYENTE  IN NUMBER,
+                                     PC_RESPUESTA_1       IN VARCHAR2,
+                                     PC_RESPUESTA_2A      IN VARCHAR2,
+                                     PC_RESPUESTA_2B      IN VARCHAR2,
+                                     PC_RESPUESTA_2C      IN VARCHAR2,
+                                     PC_RESPUESTA_3       IN VARCHAR2,
+                                     PN_RESULT             OUT PLS_INTEGER)
+
+IS
+
+VN_CANTIDAD  NUMBER(1);
+
+BEGIN
+
+       BEGIN
+
+
+         SELECT  COUNT(1)
+         INTO   VN_CANTIDAD
+         FROM CUESTIONARIO_ACT_ECONOMICA_C4 CA
+         WHERE CA.ID_CONTRIBUYENTE  = PN_ID_CONTRIBUYENTE  ;
+
+          PN_RESULT:= PKG_CONSTANTES.OK;
+
+           EXCEPTION
+
+              WHEN OTHERS THEN
+                       BEGIN
+                            pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                                 'ID CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE  , 'DATOSCONTRIBUYENTE.P_INSERTAR_CUESTIONARIO',
+                                                                 SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+
+        END ;
+
+ IF VN_CANTIDAD = 0 THEN
+
+     BEGIN
+
+                ---- SE INSERTA EL CUESTIONARIO QUE LLENA EL CONTRIBUYENTE
+
+         Insert into CUESTIONARIO_ACT_ECONOMICA_C4
+               (ID_CUESTIONARIO,
+                ID_CONTRIBUYENTE,
+                RESPUESTA_1,
+                RESPUESTA_2A,
+                RESPUESTA_2B,
+                RESPUESTA_2C,
+                RESPUESTA_3,
+                FECHA_REGISTRO_CUESTIONARIO)
+         Values (ID_CUESTIONARIO.NEXTVAL,
+                PN_ID_CONTRIBUYENTE,
+                PC_RESPUESTA_1,
+                PC_RESPUESTA_2A,
+                PC_RESPUESTA_2B,
+                PC_RESPUESTA_2C,
+                PC_RESPUESTA_3,
+                SYSDATE);
+
+      PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+          WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                             'ID CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE  , 'DATOSCONTRIBUYENTE.P_INSERTAR_CUESTIONARIO',
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+     END ;
+
+
+   ELSE
+
+    P_ACT_CUESTIONARIO_CONTRIB ( PN_ID_CONTRIBUYENTE,PC_RESPUESTA_1,PC_RESPUESTA_2A ,PC_RESPUESTA_2B,PC_RESPUESTA_2C,PC_RESPUESTA_3,PN_RESULT);
+
+ END IF;
+
+ IF PN_RESULT = PKG_CONSTANTES.OK THEN
+                      COMMIT ;
+                   ELSE
+                      ROLLBACK ;
+
+ END IF;
+
+
+END P_INSERTAR_CUESTIONARIO ;
+
+PROCEDURE P_TRASLADA_CUESTIONARIO  ( PN_ID_CONTRIB_TEMP IN NUMBER,
+                                     PN_ID_CONTRIB_DEF  IN NUMBER,
+                                     PN_RESULT             OUT PLS_INTEGER)
+
+IS
+
+BEGIN
+
+  ---- TRASLADA EL CUESTIONARIO DESDE TEMPORAL A DEFINITOIVO
+
+     BEGIN
+
+      Insert into CUESTIONARIO_ACT_ECONOMICA_C4
+               (ID_CUESTIONARIO,
+                ID_CONTRIBUYENTE,
+                RESPUESTA_1,
+                RESPUESTA_2A,
+                RESPUESTA_2B,
+                RESPUESTA_2C,
+                RESPUESTA_3,
+               FECHA_REGISTRO_CUESTIONARIO)
+             ( SELECT  TC.ID_CUESTIONARIO_T,
+                        PN_ID_CONTRIB_DEF,
+                        TC.RESPUESTA_1_T,
+                        TC.RESPUESTA_2A_T,
+                        TC.RESPUESTA_2B_T,
+                        TC.RESPUESTA_2C_T,
+                        TC.RESPUESTA_3_T,
+                        SYSDATE
+                FROM APPSTEMP.T_CUESTIONA_ACT_ECONOMICA_C4 TC
+                where tc.ID_CONTRIBUYENTE_T = PN_ID_CONTRIB_TEMP);
+
+      PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+          WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                             'ID CONTRIBUYENTE :'||PN_ID_CONTRIB_TEMP  , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4',
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+     END ;
+
+     IF PN_RESULT= PKG_CONSTANTES.OK THEN
+
+         BEGIN
+
+          P_ELIMINA_CUESTIONARIO_TEMP (PN_ID_CONTRIB_TEMP, PN_RESULT);
+
+            IF PN_RESULT = PKG_CONSTANTES.OK THEN
+                  COMMIT ;
+               ELSE
+                  ROLLBACK ;
+
+            END IF;
+
+         END;
+
+     END IF ;
+
+ END P_TRASLADA_CUESTIONARIO ;
+
+PROCEDURE P_INSERTAR_ACT_ECON_CONTRIB ( PN_ID_CONTRIBUYENTE  IN NUMBER,
+                                        PN_COD_ACT_ECONOMICA IN VARCHAR2,
+                                        PN_RESULT             OUT PLS_INTEGER)
+
+IS
+
+VN_CORRELATIVO NUMBER ;
+VN_CANT  NUMBER(1);
+VC_DESCRIPCION_AE VARCHAR2(240);
+RESULT  NUMBER;
+
+
+BEGIN
+
+
+   BEGIN
+
+       SELECT COUNT(1)
+       INTO VN_CANT
+       FROM  ACTIVIDAD_ECONOMICA_CONTRIB  AEC
+       WHERE AEC.ID_CONTRIBUYENTE = PN_ID_CONTRIBUYENTE ;
+
+
+   PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+          WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                             'ID CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE  , 'DATOSCONTRIBUYENTE.ACTIVIDAD_ECONOMICA_CONTRIB ',
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+   END ;
+
+
+    ----SE BUSCA LA DESCRIPCION D ELA ACTIVIDAD ECONOMICA PARA HACER UN INSERT
+
+      LOOP
+
+       P_CONSULTAR_DESC_DIV_AE ( TRIM(PN_COD_ACT_ECONOMICA),VC_DESCRIPCION_AE, RESULT );
+
+       EXIT WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK THEN
+
+       P_CONSULTAR_DESC_CLASE_AE (TRIM(PN_COD_ACT_ECONOMICA),VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+
+       EXIT  WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK THEN
+
+         P_CONSULTA_DESC_AE ( TRIM(PN_COD_ACT_ECONOMICA),VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+       EXIT  WHEN RESULT = PKG_CONSTANTES.OK;
+
+       END LOOP;
+
+
+    IF   VN_CANT  = 0  THEN
+
+      --- INSERTA LA ACTIVIDAD ECONOMICA DE UN CONTRIBUYENTE
+
+      BEGIN
+       ---- SE USA UN CORRELATIVO PARA LLEVAR UN CONTROL DE LOS CONTRIBUYENTES QUE REGISTRES SU ACTIVIDAD ECONOMICA
+
+         SELECT LPAD (CORR_CODIGO_CIUU.NEXTVAL,10,0)
+            INTO VN_CORRELATIVO
+            FROM DUAL ;
+      END ;
+
+         BEGIN
+
+           ---- SE INSERTA EL CUESTIONARIO QUE LLENA EL CONTRIBUYENTE
+
+              Insert into ACTIVIDAD_ECONOMICA_CONTRIB
+                         (ID_CONTRIBUYENTE,
+                          CODIGO_ACT_ECONOMICA,
+                          FECHA_REGISTRO_ACT_ECON,
+                          NUMERO_CERTIFICADO,
+                          DESCRIPCION_ACT_ECONOMICA)
+                 Values (PN_ID_CONTRIBUYENTE,
+                         PN_COD_ACT_ECONOMICA,
+                         SYSDATE,
+                         VN_CORRELATIVO,
+                         VC_DESCRIPCION_AE);
+
+          PN_RESULT:= PKG_CONSTANTES.OK;
+           COMMIT;
+           EXCEPTION
+
+              WHEN OTHERS THEN
+                       BEGIN
+                         ROLLBACK;
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                                 'ID CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE  , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4',
+                                                                 SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                       END;
+
+
+
+         END ;
+
+    ELSE
+
+        P_ACT_ECONOM_CONTRIB  (PN_ID_CONTRIBUYENTE,PN_COD_ACT_ECONOMICA,PN_RESULT );
+
+
+     END IF;
+
+
+--  IF PN_RESULT = PKG_CONSTANTES.OK THEN
+--              COMMIT ;
+--
+--           ELSE
+--              ROLLBACK ;
+--  END IF;
+
+END  P_INSERTAR_ACT_ECON_CONTRIB ;
+
+PROCEDURE P_TRASLADA_ACT_ECON_CONTRIB ( PN_ID_CONTRIB_TEMP  IN NUMBER,
+
+TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                        PN_ID_CONTRIB_DEF   IN NUMBER,
+                                        PN_RESULT            OUT PLS_INTEGER)
+
+IS
+
+VN_CORRELATIVO         NUMBER ;
+VN_COD_ACT_ECO         VARCHAR2(4);
+VD_FECHA_REG_AE        DATE;
+VN_NUM_CERTIFICADO_AE  VARCHAR2(30);
+VC_DESCRIPCION_AE      varchar2(300);
+RESULT NUMBER;
+
+BEGIN
+
+   -- TRASLADA LA ACTIVIDAD ECONOMICA QUE SE GERERO EN EL TEMPORAL
+
+      BEGIN
+
+       ---- SE USA UN CORRELATIVO PARA LLEVAR UN CONTROL DE LOS CONTRIBUYENTES QUE REGISTRES SU ACTIVIDAD ECONOMICA
+
+         SELECT LPAD (CORR_CODIGO_CIUU.NEXTVAL,10,0)
+            INTO VN_CORRELATIVO
+            FROM DUAL ;
+
+      END ;
+
+
+       BEGIN
+
+        SELECT TAE.CODIGO_ACT_ECONOMICA_T,
+               TAE.FECHA_REGISTRO_ACT_ECON_T,
+               TAE.NUMERO_CERTIFICADO_T
+         INTO VN_COD_ACT_ECO,
+              VD_FECHA_REG_AE,
+              VN_NUM_CERTIFICADO_AE
+          FROM T_ACTIVIDAD_ECONOMICA_CONTRIB TAE
+          WHERE TAE.ID_CONTRIBUYENTE_T = PN_ID_CONTRIB_TEMP;
+
+        PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+          WHEN OTHERS THEN
+                   BEGIN
+                        pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                             'ID CONTRIBUYENTE :'||PN_ID_CONTRIB_TEMP  , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4',
+                                                             SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                   END;
+
+       END ;
+
+
+       LOOP
+
+       P_CONSULTAR_DESC_DIV_AE ( VN_COD_ACT_ECO,VC_DESCRIPCION_AE, RESULT );
+
+       EXIT WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK THEN
+
+       P_CONSULTAR_DESC_CLASE_AE ( VN_COD_ACT_ECO,VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+
+       EXIT  WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK THEN
+
+         P_CONSULTA_DESC_AE ( VN_COD_ACT_ECO,VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+       EXIT  WHEN RESULT = PKG_CONSTANTES.OK;
+
+       END LOOP;
+
+   IF  PN_RESULT= PKG_CONSTANTES.OK THEN
+
+
+             BEGIN
+
+               ---- SE INSERTA LA ACTIVIDAD ECONOMICA QUE LLENA EL CONTRIBUYENTE
+
+                  Insert into DATOSCONTRIBUYENTE.ACTIVIDAD_ECONOMICA_CONTRIB
+                             (ID_CONTRIBUYENTE,
+                              CODIGO_ACT_ECONOMICA,
+                              FECHA_REGISTRO_ACT_ECON,
+                              NUMERO_CERTIFICADO,
+                              DESCRIPCION_ACT_ECONOMICA)
+                      VALUES (PN_ID_CONTRIB_DEF,
+                              VN_COD_ACT_ECO,
+                              SYSDATE,
+                              VN_NUM_CERTIFICADO_AE ,
+                              VC_DESCRIPCION_AE);
+
+              PN_RESULT:= PKG_CONSTANTES.OK;
+
+               EXCEPTION
+
+                  WHEN OTHERS THEN
+                           BEGIN
+                                pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_ACT_ECONOMICA ',
+                                                                     'ID CONTRIBUYENTE :'||PN_ID_CONTRIB_TEMP  , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4',
+                                                                     SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                           END;
+
+               /*  IF PN_RESULT = PKG_CONSTANTES.OK THEN
+                      COMMIT ;
+
+                   ELSE
+                      ROLLBACK ;
+                END IF; */
+
+             END ;
+
+             ---  LLAMA AL PROCEDIMIENTO P_TRASLADA_CUESTIONARIO Y LLENA EL MISMO
+
+             IF  PN_RESULT = PKG_CONSTANTES.OK THEN
+
+               P_TRASLADA_CUESTIONARIO ( PN_ID_CONTRIB_TEMP,PN_ID_CONTRIB_DEF,PN_RESULT);
+
+             END IF ;
+
+             --- SI SE TRASLADA EL CUESTIONARIO LLAMA AL PROCEDIMIENTO DE ELIMINAR P_ELIMINA_ACT_ECONOMICA_TEMP
+
+              IF PN_RESULT= PKG_CONSTANTES.OK THEN
+
+                 BEGIN
+
+                  P_ELIMINA_ACT_ECONOMICA_TEMP (PN_ID_CONTRIB_TEMP ,PN_RESULT);
+
+                    IF PN_RESULT = PKG_CONSTANTES.OK THEN
+                          COMMIT ;
+                       ELSE
+                          ROLLBACK ;
+
+                    END IF;
+
+                 END;
+
+                ELSE
+
+                 ROLLBACK;
+
+             END IF ;
+
+      ELSE
+
+          PN_RESULT := PKG_CONSTANTES.NODATAFOUND;
+
+
+   END IF;
+
+
+ END P_TRASLADA_ACT_ECON_CONTRIB  ;
+
+PROCEDURE P_CONSUTAR_ACT_ECONO_CONTRIB ( PN_ID_CONTRIBUYENTE           IN NUMBER,
+                                         PC_DESC_ACTIVIDAD_ECONOMICA  OUT VARCHAR2,
+                                         PC_CODIGO_ACT_ECO            OUT VARCHAR2,
+                                         PC_CERTIFICADO               OUT VARCHAR2,
+                                         PD_FECHA_REGISTRO            OUT DATE,
+                                         PN_RESULT                    OUT PLS_INTEGER)
+
+IS
+
+BEGIN
+
+     ---- CONSULTA LA ACTIVIDAD ECONOMICA DE UN CONTRIBUYENTE ------
+
+   LOOP
+
+     BEGIN
+
+
+      SELECT AEC.CODIGO_ACT_ECONOMICA,
+             AEC.NUMERO_CERTIFICADO,
+             AEC.FECHA_REGISTRO_ACT_ECON
+        INTO PC_CODIGO_ACT_ECO,
+             PC_CERTIFICADO,
+             PD_FECHA_REGISTRO
+        FROM ACTIVIDAD_ECONOMICA_CONTRIB AEC
+       WHERE AEC.ID_CONTRIBUYENTE   = PN_ID_CONTRIBUYENTE;
+
+     PN_RESULT:= PKG_CONSTANTES.OK;
+
+         EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+            WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSUTAR_DESC_ACT_ECONOMICA ',
+                                                         'ID CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE  , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4 || ACTIVIDAD_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+     END ;
+
+      EXIT WHEN PN_RESULT <>  PKG_CONSTANTES.OK ;
+
+           BEGIN
+
+             SELECT AE.DESC_ACTIVIDAD_ECONOMICA
+              INTO  PC_DESC_ACTIVIDAD_ECONOMICA
+             FROM   ACTIVIDAD_ECONOMICA_C4 AE
+             WHERE AE.CODIGO_ACTIVIDAD_ECONOMICA =  PC_CODIGO_ACT_ECO;
+
+             PN_RESULT:= PKG_CONSTANTES.OK;
+
+             EXCEPTION
+
+              WHEN NO_DATA_FOUND THEN
+                 PN_RESULT := pkg_constantes.nodatafound;
+
+          END ;
+
+        EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK ;
+
+       IF PN_RESULT = pkg_constantes.nodatafound then
+
+           BEGIN
+
+
+              SELECT DAC.DESCRIPCION_DIVISION_A_E
+                INTO  PC_DESC_ACTIVIDAD_ECONOMICA
+              FROM DIVISION_ACT_ECONOMICA_C4 DAC
+              WHERE  DAC.CODIGO_DIVISION_A_E = PC_CODIGO_ACT_ECO;
+
+
+                PN_RESULT:= PKG_CONSTANTES.OK;
+
+                 EXCEPTION
+
+                  WHEN NO_DATA_FOUND THEN
+                     PN_RESULT := pkg_constantes.nodatafound;
+           END ;
+
+           EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK;
+
+       end if;
+
+
+       IF PN_RESULT = pkg_constantes.nodatafound then
+
+         BEGIN
+
+
+           SELECT CAE.DESCRIPCION_CLASE_ACTIVIDAD_E
+             INTO  PC_DESC_ACTIVIDAD_ECONOMICA
+            FROM CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+           WHERE CAE.CODIGO_CLASE_ACTIVIDAD_E = PC_CODIGO_ACT_ECO;
+
+        PN_RESULT:= PKG_CONSTANTES.OK;
+
+                 EXCEPTION
+
+                  WHEN NO_DATA_FOUND THEN
+                     PN_RESULT := pkg_constantes.nodatafound;
+        END;
+
+            EXIT WHEN PN_RESULT = PKG_CONSTANTES.OK  OR  PN_RESULT = pkg_constantes.nodatafound;
+
+       END IF;
+
+
+
+  END LOOP;
+
+
+ END P_CONSUTAR_ACT_ECONO_CONTRIB ;
+
+PROCEDURE P_CONSULTAR_DESC_GRUPO_AE ( PC_COD_GRUPO         IN  VARCHAR2,
+                                      PC_DESCRIPCION_GRUPO OUT VARCHAR2,
+                                      PN_RESULT               OUT PLS_INTEGER)
+
+IS
+
+BEGIN
+
+      ----- CONSULTAR UN GRUPO ESPECIFIFICO DE LA ACTIVIDAQD ECONOMICA -----
+        SELECT GA.DESCRIPCION_GRUPO_A_E DESCRIPCION_GRUPO
+         INTO PC_DESCRIPCION_GRUPO
+         FROM GRUPO_ACTIVIDAD_ECONOMICA_C4 GA
+         WHERE GA.CODIGO_GRUPO_A_E = PC_COD_GRUPO ;
+
+          PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+            WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSULTAR_DESC_GRUPO_AE',
+
+TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                         'CODIGO GRUPO ACTIVIDAD ECONOMICA :'||PC_COD_GRUPO, 'DATOSCONTRIBUYENTE.GRUPO_ACTIVIDAD_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+
+END P_CONSULTAR_DESC_GRUPO_AE;
+
+PROCEDURE P_CONSULTAR_DESC_DIV_AE ( PC_COD_DIVISION          IN VARCHAR2,
+                                    PC_DESCRIPCION_DIVISION OUT VARCHAR2,
+                                    PN_RESULT                  OUT PLS_INTEGER)
+IS
+
+BEGIN
+
+   ----- CONSULTA LA DESCRIPCION DE UNA DIVISION
+   SELECT DAE.DESCRIPCION_DIVISION_A_E   DESCRIPCION_DIVISION
+     INTO PC_DESCRIPCION_DIVISION
+     FROM DIVISION_ACT_ECONOMICA_C4 DAE
+    WHERE DAE.CODIGO_DIVISION_A_E      = PC_COD_DIVISION;
+
+        PN_RESULT:= PKG_CONSTANTES.OK;
+
+      EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+            WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSULTAR_DESC_DIV_AE',
+                                                         'CODIGO DIVISION ACTIVIDAD ECONOMICA :'||PC_COD_DIVISION , 'DATOSCONTRIBUYENTE.DIVISION_ACT_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+END P_CONSULTAR_DESC_DIV_AE;
+
+PROCEDURE P_CONSULTAR_DESC_CLASE_AE ( PN_COD_CLASE          IN VARCHAR2,
+                                      PC_DESCRIPCION_CLASE  OUT VARCHAR2,
+                                      PN_RESULT             OUT PLS_INTEGER)
+IS
+
+ BEGIN
+
+       ------- CONSULTA LA DESCRIPCION DE UNA DIVISION
+        SELECT CAE.DESCRIPCION_CLASE_ACTIVIDAD_E
+          INTO  PC_DESCRIPCION_CLASE
+          FROM  CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+         WHERE CAE.CODIGO_CLASE_ACTIVIDAD_E =  PN_COD_CLASE;
+
+         PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+            WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSULTAR_DESC_CLASE_AE',
+                                                         'CODIGO CLASE ACTIVIDAD ECONOMICA :'||PN_COD_CLASE , 'DATOSCONTRIBUYENTE.CLASE_ACTIVIDAD_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+ END P_CONSULTAR_DESC_CLASE_AE  ;
+
+PROCEDURE P_CONSULTA_DESC_AE ( PN_COD_ACT_ECONO          IN VARCHAR2,
+                               PN_DESCRIPCION_ACT_ECO    OUT VARCHAR2,
+                               PN_RESULT                 OUT PLS_INTEGER)
+IS
+
+ BEGIN
+        ------- CONSULTA LA DESCRIPCION DE UNA ACTIVIDAD ECONOMICA
+
+         SELECT AEC.DESC_ACTIVIDAD_ECONOMICA
+           INTO PN_DESCRIPCION_ACT_ECO
+           FROM ACTIVIDAD_ECONOMICA_C4 AEC
+          WHERE AEC.CODIGO_ACTIVIDAD_ECONOMICA = PN_COD_ACT_ECONO;
+
+         PN_RESULT:= PKG_CONSTANTES.OK;
+
+        EXCEPTION
+
+             WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+         WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSULTA_DESC_AE',
+                                                         'CODIGO ACTIVIDAD ECONOMICA :'||PN_COD_ACT_ECONO , 'DATOSCONTRIBUYENTE.ACTIVIDAD_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+ END  P_CONSULTA_DESC_AE ;
+
+PROCEDURE P_INSERTAR_AUDITORIA ( PN_ID_CONTRIBUYENTE    IN NUMBER,
+                                 PC_RESP1_ANTERIOR      IN VARCHAR2,
+                                 PC_RESP2A_ANTERIOR     IN VARCHAR2,
+                                 PC_RESP2B_ANTERIOR     IN VARCHAR2,
+                                 PC_RESP2C_ANTERIOR     IN VARCHAR2,
+                                 PC_RESP3_ANTERIOR      IN VARCHAR2,
+                                 PC_COD_AE_ANTERIOR     IN VARCHAR2,
+                                 PC_DESC_ACT_ECONOMICA  IN varchar2,
+                                 PN_CERTICADO_ANTERIOR  IN varchar2,
+                                 PD_FECHA_ANTERIOR      IN DATE,
+                                 PN_RESULT             OUT  NUMBER)
+
+IS
+
+
+   ---- INSERTA LA AUDITORIA DE UN CONTRIBUYENTE , ESTE `PROCEDIMIENTO ES LLAMADO DESDE EL TRIGER DATOSCONTRIBUYENTE.TRG_ACTUALIZA_ACT_ECONOMICA
+
+ BEGIN
+
+         INSERT INTO AUDITORIA_ACT_ECONOMICA_C4
+         VALUES ( ID_AUDITORIA_AE.NEXTVAL,
+                  PN_ID_CONTRIBUYENTE,
+                  PC_COD_AE_ANTERIOR,
+                  PN_CERTICADO_ANTERIOR,
+                  PD_FECHA_ANTERIOR,
+                  PC_RESP1_ANTERIOR,
+                  PC_RESP2A_ANTERIOR,
+                  PC_RESP2B_ANTERIOR,
+                  PC_RESP2C_ANTERIOR,
+                  PC_RESP3_ANTERIOR,
+                  SYSDATE,
+                  PC_DESC_ACT_ECONOMICA  );
+
+
+               PN_RESULT  := PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+        WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_INSERTAR_AUDITORIA',
+                                                         'ID_CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE , 'DATOSCONTRIBUYENTE.AUDITORIA_ACT_ECONOMICA_C4 ',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+ END P_INSERTAR_AUDITORIA ;
+
+PROCEDURE P_ACT_CUESTIONARIO_CONTRIB ( PN_ID_CONTRIBUYENTE    IN NUMBER,
+                                      PC_RESP_1          IN VARCHAR2,
+                                      PC_RESP_2A         IN VARCHAR2,
+                                      PC_RESP_2B         IN VARCHAR2,
+                                      PC_RESP_2C         IN VARCHAR2,
+                                      PC_RESP_3          IN VARCHAR2,
+                                      PN_RESULT              OUT PLS_INTEGER)
+
+IS
+
+CORRELATIVO NUMBER ;
+
+    ---- AL ACTUALIZAR EL CUESTIONARIO Y ACTIVIDAD ECONOMICA DE UN CONTRIBUYENTE SE GUARDA LA AUDITORIA, SE ACTIVA EL TRIGER DATOSCONTRIBUYENTE.TRG_ACTUALIZA_ACT_ECONOMICA
+
+      BEGIN
+
+        -----SE ACTUALIZA EL CUESTIONARIO ----
+          UPDATE CUESTIONARIO_ACT_ECONOMICA_C4 CA
+              SET CA.RESPUESTA_1 =  PC_RESP_1 ,
+                  CA.RESPUESTA_2A = PC_RESP_2A  ,
+                  CA.RESPUESTA_2B = PC_RESP_2B,
+                  CA.RESPUESTA_2C = PC_RESP_2C ,
+                  CA.RESPUESTA_3  =  PC_RESP_3  ,
+                  CA.FECHA_REGISTRO_CUESTIONARIO =  SYSDATE
+            WHERE CA.ID_CONTRIBUYENTE   = PN_ID_CONTRIBUYENTE ;
+
+              PN_RESULT:= PKG_CONSTANTES.OK;
+
+               IF SQL%NOTFOUND THEN
+                    PN_RESULT := Pkg_Constantes.NODATAFOUND;
+                ELSE
+                   PN_RESULT := Pkg_Constantes.OK;
+               END IF;
+
+           EXCEPTION
+
+         WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_ACTUALIZA_ACT_ECONOMICA',
+                                                         'ID_CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE , 'DATOSCONTRIBUYENTE.P_ACTUALIZA_ACT_ECONOMICA.CUESTIONARIO_ACT_ECONOMICA_C4 ',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+        IF PN_RESULT = PKG_CONSTANTES.OK THEN
+             COMMIT ;
+           ELSE
+             ROLLBACK ;
+        END IF;
+
+END P_ACT_CUESTIONARIO_CONTRIB ;
+
+
+PROCEDURE P_ACT_ECONOM_CONTRIB  ( PN_ID_CONTRIBUYENTE    IN NUMBER,
+                                  PC_COD_ACT_ECO_NVO     IN VARCHAR2,
+                                  PN_RESULT              OUT PLS_INTEGER)
+
+IS
+
+CORRELATIVO NUMBER ;
+VC_DESCRIPCION_AE VARCHAR2(240);
+RESULT NUMBER ;
+
+    ---- AL ACTUALIZAR EL CUESTIONARIO Y ACTIVIDAD ECONOMICA DE UN CONTRIBUYENTE SE GUARDA LA AUDITORIA, SE ACTIVA EL TRIGER DATOSCONTRIBUYENTE.TRG_ACTUALIZA_ACT_ECONOMICA
+BEGIN
+
+    BEGIN
+
+       ----SE BUSCA LA DESCRIPCION D ELA ACTIVIDAD ECONOMICA PARA HACER UN INSERT
+
+       LOOP
+
+       P_CONSULTAR_DESC_DIV_AE ( TRIM(PC_COD_ACT_ECO_NVO),VC_DESCRIPCION_AE, RESULT );
+
+       EXIT WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK  THEN
+
+         P_CONSULTAR_DESC_CLASE_AE ( TRIM(PC_COD_ACT_ECO_NVO),VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+       EXIT  WHEN  RESULT = PKG_CONSTANTES.OK;
+
+       IF  RESULT <>  PKG_CONSTANTES.OK  THEN
+
+         P_CONSULTA_DESC_AE ( TRIM(PC_COD_ACT_ECO_NVO),VC_DESCRIPCION_AE, RESULT );
+
+       END IF;
+
+       EXIT  WHEN RESULT = PKG_CONSTANTES.OK;
+
+      END LOOP;
+
+     END ;
+
+       BEGIN
+
+       -- SE USA UN CORRELATIVO PARA LLEVAR UN CONTROL DE LOS CONTRIBUYENTES QUE REGISTRES SU ACTIVIDAD ECONOMICA
+
+      SELECT LPAD (CORR_CODIGO_CIUU.NEXTVAL,10,0)
+        INTO CORRELATIVO
+        FROM DUAL ;
+
+      END ;
+
+       BEGIN
+        -----SE ACTUALIZA EL ACTIVIDAD ECONOMICA----
+          UPDATE  ACTIVIDAD_ECONOMICA_CONTRIB  AEC
+              SET AEC.CODIGO_ACT_ECONOMICA    = PC_COD_ACT_ECO_NVO ,
+                  AEC.NUMERO_CERTIFICADO      = CORRELATIVO,
+                  AEC.FECHA_REGISTRO_ACT_ECON = SYSDATE ,
+                  AEC.DESCRIPCION_ACT_ECONOMICA = VC_DESCRIPCION_AE
+            WHERE AEC.ID_CONTRIBUYENTE          = PN_ID_CONTRIBUYENTE ;
+
+              PN_RESULT:= PKG_CONSTANTES.OK;
+
+               IF SQL%NOTFOUND THEN
+                    PN_RESULT := Pkg_Constantes.NODATAFOUND;
+                    ROLLBACK;
+                ELSE
+                   PN_RESULT := Pkg_Constantes.OK;
+                   COMMIT;
+               END IF;
+       EXCEPTION
+         WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_ACTUALIZA_ACT_ECONOMICA',
+                                                         'ID_CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE , 'DATOSCONTRIBUYENTE.P_ACTUALIZA_ACT_ECONOMICA.CUESTIONARIO_ACT_ECONOMICA_C4 ',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+      END;
+
+--        IF PN_RESULT = PKG_CONSTANTES.OK THEN
+--             COMMIT ;
+--           ELSE
+--             ROLLBACK ;
+--        END IF;
+
+END P_ACT_ECONOM_CONTRIB;
+
+
+PROCEDURE P_CONSULTAR_CUESTIONARIO ( PN_ID_CONTRIBUYENTE IN NUMBER,
+                                     PC_RESPUESTA1       OUT VARCHAR2,
+                                     PC_RESPUESTA2A      OUT VARCHAR2,
+                                     PC_RESPUESTA2B      OUT VARCHAR2,
+                                     PC_RESPUESTA2C      OUT VARCHAR2,
+                                     PC_RESPUESTA3       OUT VARCHAR2,
+                                     PN_RESULT           OUT PLS_INTEGER)
+IS
+
+CORRELATIVO NUMBER ;
+
+ BEGIN
+
+         SELECT CA.RESPUESTA_1,
+                CA.RESPUESTA_2A,
+
+TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                CA.RESPUESTA_2B,
+                CA.RESPUESTA_2C,
+                CA.RESPUESTA_3
+           INTO PC_RESPUESTA1,
+                PC_RESPUESTA2A,
+                PC_RESPUESTA2B,
+                PC_RESPUESTA2C,
+                PC_RESPUESTA3
+           FROM CUESTIONARIO_ACT_ECONOMICA_C4 CA
+            WHERE CA.ID_CONTRIBUYENTE         = PN_ID_CONTRIBUYENTE;
+
+          PN_RESULT:= PKG_CONSTANTES.OK;
+
+       EXCEPTION
+
+             WHEN NO_DATA_FOUND THEN
+             PN_RESULT := pkg_constantes.nodatafound;
+
+         WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_CONSULTAR_CUESTIONARIO',
+                                                         'ID_CONTRIBUYENTE :'||PN_ID_CONTRIBUYENTE , 'DATOSCONTRIBUYENTE.CUESTIONARIO_ACT_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+               END;
+
+ END P_CONSULTAR_CUESTIONARIO  ;
+
+ PROCEDURE P_ELIMINA_CUESTIONARIO_TEMP ( pn_id_CONTRIBUYENTE IN NUMBER,
+                                         result             OUT NUMBER,
+                                         pn_indica_commit          IN PLS_INTEGER DEFAULT Pkg_Constantes.Cp_No_Commit)
+IS
+
+BEGIN
+
+    DELETE FROM T_CUESTIONA_ACT_ECONOMICA_C4 TCA
+    WHERE TCA.ID_CONTRIBUYENTE_T  = pn_id_CONTRIBUYENTE;
+
+    result := Pkg_Constantes.OK;
+
+    IF SQL%FOUND THEN
+            result := pkg_constantes.ok;
+
+            IF (pn_indica_commit = pkg_constantes.cp_si_commit) THEN
+                 COMMIT;
+            END IF;
+        ELSE
+            result := pkg_constantes.NODATAFOUND;
+    END IF;
+
+END P_ELIMINA_CUESTIONARIO_TEMP;
+
+
+ PROCEDURE P_ELIMINA_ACT_ECONOMICA_TEMP ( pn_id_CONTRIBUYENTE IN NUMBER,
+                                          result             OUT NUMBER,
+                                          pn_indica_commit          IN PLS_INTEGER DEFAULT Pkg_Constantes.Cp_No_Commit)
+IS
+BEGIN
+
+    DELETE FROM T_ACTIVIDAD_ECONOMICA_CONTRIB TAE
+    WHERE   TAE.ID_CONTRIBUYENTE_T = PN_id_CONTRIBUYENTE;
+
+    result := Pkg_Constantes.OK;
+
+     IF SQL%FOUND THEN
+            result := pkg_constantes.ok;
+
+            IF (pn_indica_commit = pkg_constantes.cp_si_commit) THEN
+                 COMMIT;
+            END IF;
+        ELSE
+            result := pkg_constantes.NODATAFOUND;
+     END IF;
+
+
+END P_ELIMINA_ACT_ECONOMICA_TEMP ;
+
+FUNCTION f_verifica_act_economica (PN_ID_CONTRIB  IN NUMBER)
+
+ RETURN NUMBER
+
+IS
+
+ VN_IND_ACT_ECONOMICA NUMBER;
+ RESULT  NUMBER;
+ VN_INDICADOR NUMBER ;
+
+BEGIN
+      BEGIN
+
+        --- verifica que el contribuyente NO sea consejo comunanales y comuna
+
+        select 1
+           INTO VN_INDICADOR
+            from contribuyente c
+            where c.ID_CONTRIBUYENTE = PN_ID_CONTRIB
+              and c.SITUACION_CONTRIBUYENTE = '00'
+              and c.PERSONALIDAD_CONTRIBUYENTE = 3
+              and c.TIPO_SOCIEDAD_CONTRIBUYENTE NOT IN ('21','16') ;  ---- comuna o consejos comunales
+
+          RESULT:= PKG_CONSTANTES.OK;
+
+
+       EXCEPTION
+          WHEN NO_DATA_FOUND THEN
+            BEGIN
+               VN_IND_ACT_ECONOMICA := PKG_CONSTANTES.ERR_GENERAL ; ---  -1 indica que el contribuyente es una comuna o consejo comunal
+
+             END;
+
+          WHEN OTHERS THEN
+            BEGIN
+             VN_IND_ACT_ECONOMICA := PKG_CONSTANTES.ERR_GENERAL  ;   ---  -1 indica que el contribuyente es una comuna o consejo comunal
+
+
+            END ;
+
+      END ;
+
+
+
+    IF RESULT = PKG_CONSTANTES.OK  and VN_INDICADOR = 1 THEN
+
+    BEGIN
+
+      SELECT 1      ---- si el valor es 1 significa que tiene la actividad economica actualizada
+      INTO   VN_IND_ACT_ECONOMICA
+      FROM  ACTIVIDAD_ECONOMICA_CONTRIB AEC
+      WHERE AEC.ID_CONTRIBUYENTE = PN_ID_CONTRIB;
+
+       RESULT:= PKG_CONSTANTES.OK;
+
+      EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+            BEGIN
+               VN_IND_ACT_ECONOMICA := PKG_CONSTANTES.Cn_Informacion_no_Disponible  ;   ---- si el valor es 0 significa que el contribuyente no tiene actualizada la actividad econo
+mica
+
+
+             END;
+
+      END ;
+
+    END IF;
+
+     RETURN  VN_IND_ACT_ECONOMICA;
+
+END f_verifica_act_economica;
+
+
+
+
+PROCEDURE P_CONSULTAR_HISTORIAL_CONTRIB ( PC_RIF_CONTRIBUYENTE IN VARCHAR2,
+                                          C_HISTORIAL  OUT CURSOR_GRUPO,
+                                          PN_RESULT           OUT PLS_INTEGER)
+IS
+
+CORRELATIVO NUMBER ;
+
+ BEGIN
+
+         BEGIN
+
+          --- CONSULA EL HISTORIAL DE UN CONTRIB DADO SU RIF
+
+         OPEN C_HISTORIAL FOR
+
+
+           SELECT TRIM(C.APELLIDO_CONTRIBUYENTE)||', '||TRIM(C.NOMBRE_CONTRIBUYENTE)RAZON_SOCIAL,
+                  (SELECT TV.DESCRIPCION_TIPO_VIALIDAD FROM TIPO_VIALIDAD TV WHERE DC.TIPO_VIALIDAD_D_C = TV.CODIGO_TIPO_VIALIDAD)||' '||
+                  TRIM(DC.VIALIDAD_DIR_CONTRIBUYENTE)||', '||
+                  (SELECT TS.DESCRIPCION_TIPO_SECTOR FROM TIPO_SECTOR TS WHERE DC.TIPO_SECTOR_D_C = TS.CODIGO_TIPO_SECTOR)||' '||
+                  TRIM(DC.SECTOR_DIRECCION_CONTRIBUYENTE)||', '||
+                  (SELECT TE.DESCRIPCION_TIPO_EDIFICACION FROM TIPO_EDIFICACION TE WHERE DC.TIPO_EDIFICACION_D_C = TE.CODIGO_TIPO_EDIFICACION)||' '||
+                   TRIM(DC.EDIFICACION_DIR_CONTRIBUYENTE)||', '||
+                  (SELECT TP.DESCRIPCION_TIPO_LOCAL FROM TIPO_LOCAL TP WHERE DC.TIPO_LOCAL_D_C = TP.CODIGO_TIPO_LOCAL)||' '||
+                   TRIM(DC.LOCAL_DIRECCION_CONTRIBUYENTE)||', '||
+                  TRIM(DC.REFERENCIA_DIRECCION_C)DOMICILIO_FISCAL,
+                    (SELECT UB.NOMBRE_ESTADO
+                   FROM VM_UBICACION_GEOGRAFICA UB
+                 WHERE UB.ID_CENTRO_POBLADO = DC.UBICACION_GEOGRAFICA ) NOMBRE_ESTADO,
+                   (SELECT UB.NOMBRE_MUNICIPIO
+                  FROM VM_UBICACION_GEOGRAFICA UB
+                 WHERE UB.ID_CENTRO_POBLADO = DC.UBICACION_GEOGRAFICA ) NOMBRE_MUNICIPIO,
+                  (SELECT UB.NOMBRE_PARROQUIA
+                  FROM VM_UBICACION_GEOGRAFICA UB
+                 WHERE UB.ID_CENTRO_POBLADO = DC.UBICACION_GEOGRAFICA) NOMBRE_PARROQUIA,
+                  (SELECT UB.NOMBRE_CENTRO_POBLADO
+                  FROM VM_UBICACION_GEOGRAFICA UB
+                 WHERE UB.ID_CENTRO_POBLADO = DC.UBICACION_GEOGRAFICA) NOMBRE_CIUDAD,
+                 AE.FECHA_REGISTRO_AE            FECHA_EMISION_AE,
+                 AE.NUMERO_CERTIFICADO_ANTERIOR  NUMERO_CERTIFICADO_AE,
+                 AE.COD_ACT_ECONOMICA_ANTERIOR   CODIGO_ACTIVIDAD_ECONOMICA,
+                 ( SELECT AE.DESC_ACTIVIDAD_ECONOMICA
+                      FROM   ACTIVIDAD_ECONOMICA_C4 AE
+                     WHERE AE.CODIGO_ACTIVIDAD_ECONOMICA =  AE.COD_ACT_ECONOMICA_ANTERIOR
+                    union all
+                      SELECT DAC.DESCRIPCION_DIVISION_A_E
+                        FROM DIVISION_ACT_ECONOMICA_C4 DAC
+                       WHERE  DAC.CODIGO_DIVISION_A_E =  AE.COD_ACT_ECONOMICA_ANTERIOR
+                    union all
+                     SELECT CAE.DESCRIPCION_CLASE_ACTIVIDAD_E
+                       FROM CLASE_ACTIVIDAD_ECONOMICA_C4 CAE
+                      WHERE CAE.CODIGO_CLASE_ACTIVIDAD_E =  AE.COD_ACT_ECONOMICA_ANTERIOR) DES_AE_ANT
+           FROM  DIRECCION_CONTRIBUYENTE dc,
+                 CONTRIBUYENTE C,
+                 AUDITORIA_ACT_ECONOMICA_C4 AE
+          WHERE C.ID_CONTRIBUYENTE = PC_RIF_CONTRIBUYENTE
+            AND C.ID_CONTRIBUYENTE = DC.ID_CONTRIBUYENTE
+            AND DC.TIPO_DIRECCION_CONTRIBUYENTE =  '00'
+           AND  C.ID_CONTRIBUYENTE = AE.ID_CONTRIBUYENTE_AE
+           ORDER BY  TO_CHAR (AE.FECHA_REGISTRO_AE, 'DD/MM/YYYY')  DESC ;
+
+
+              EXCEPTION
+
+
+                        WHEN OTHERS THEN
+                               BEGIN
+                                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4P_CONSULTAR_HISTORIAL_CONTRIB ',
+
+
+                                                                         'RIF_CONTRIBUYENTE :'||PC_RIF_CONTRIBUYENTE, 'DATOSCONTRIBUYENTE. AUDITORIA_ACT_ECONOMICA_C4',
+                                                                         SUBSTR (SQLERRM, 1, 300), NULL, PN_RESULT );
+                               END;
+
+         END ;
+
+ END P_CONSULTAR_HISTORIAL_CONTRIB ;
+
+PROCEDURE P_ELIMINA_CUESTIONARIO_DEF ( pn_id_CONTRIBUYENTE IN NUMBER,
+                                         result             OUT NUMBER,
+                                         pn_indica_commit          IN PLS_INTEGER DEFAULT Pkg_Constantes.Cp_No_Commit)
+IS
+
+PC_COD_ACT_EC VARCHAR2(4);
+PC_DES_ACT_EC VARCHAR2(200);
+PD_FECHA_AE    DATE;
+PC_RESPUESTA1 VARCHAR2(160);
+PC_RESPUESTA2A VARCHAR2(160);
+PC_RESPUESTA2B VARCHAR2(160);
+PC_RESPUESTA2C VARCHAR2(160);
+PC_RESPUESTA3 VARCHAR2(160);
+PC_NUM_CERTIFICADO VARCHAR2(160);
+
+BEGIN
+
+ --- este prccedimiento es llamada para eliminar la actividad economica de un contrib con firma personal
+
+  BEGIN
+   --- busca la act economica de un contribuyente y sus respuestas para luego ser
+   --- enviadas a la auditoria
+
+    SELECT AE.CODIGO_ACT_ECONOMICA,
+           AE.DESCRIPCION_ACT_ECONOMICA,
+           AE.FECHA_REGISTRO_ACT_ECON,
+           CU.RESPUESTA_1,
+           CU.RESPUESTA_2A,
+           CU.RESPUESTA_2B,
+           CU.RESPUESTA_2C,
+           CU.RESPUESTA_3,
+           AE.NUMERO_CERTIFICADO
+       INTO PC_COD_ACT_EC,
+            PC_DES_ACT_EC,
+            PD_FECHA_AE,
+            PC_RESPUESTA1,
+            PC_RESPUESTA2A,
+            PC_RESPUESTA2B,
+            PC_RESPUESTA2C,
+            PC_RESPUESTA3,
+            PC_NUM_CERTIFICADO
+     FROM CUESTIONARIO_ACT_ECONOMICA_C4 CU,
+          ACTIVIDAD_ECONOMICA_CONTRIB AE
+    WHERE CU.ID_CONTRIBUYENTE = pn_id_CONTRIBUYENTE
+      AND CU.ID_CONTRIBUYENTE  = AE.ID_CONTRIBUYENTE;
+
+     result := Pkg_Constantes.OK;
+
+      EXCEPTION
+
+          WHEN NO_DATA_FOUND THEN
+            BEGIN
+               result:= Pkg_Constantes.NODATAFOUND ;
+             END;
+
+          WHEN OTHERS THEN
+               BEGIN
+                    pkg_error_handler.p_crear_log_error (pkg_constantes.err_general, 'DATOSCONTRIBUYENTE.PKG_ACTIVIDAD_ECONOMICA_C4.P_ELIMINA_CUESTIONARIO_DEF ',
+                                                         'ID_CONTRIBUIYENTE:'||pn_id_CONTRIBUYENTE , 'DATOSCONTRIBUYENTE.AUDITORIA_ACT_ECONOMICA_C4',
+                                                         SUBSTR (SQLERRM, 1, 300), NULL, result );
+               END;
+
+     END ;
+
+
+     IF result = Pkg_Constantes.OK THEN
+
+
+TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      --- si se consigue los datos del contrib se elimina el cuestionario
+
+
+     DELETE FROM CUESTIONARIO_ACT_ECONOMICA_C4 CU
+        WHERE CU.ID_CONTRIBUYENTE  = pn_id_CONTRIBUYENTE;
+
+        result := Pkg_Constantes.OK;
+
+        IF SQL%NOTFOUND THEN
+
+         result:= Pkg_Constantes.NODATAFOUND ;
+
+         else
+         --- si se borra el cuestionario se llama a  P_ELIMINA_ACT_ECONOMICA_DEF para eliminar la act eco
+
+           P_ELIMINA_ACT_ECONOMICA_DEF ( pn_id_CONTRIBUYENTE,
+                                        PC_COD_ACT_EC,
+                                        PC_DES_ACT_EC,
+                                        PD_FECHA_AE,
+                                        PC_RESPUESTA1,
+                                        PC_RESPUESTA2A,
+                                        PC_RESPUESTA2B,
+                                        PC_RESPUESTA2C,
+                                        PC_RESPUESTA3,
+                                        PC_NUM_CERTIFICADO,
+                                        result);
+
+        END IF;
+
+     END IF;
+
+      IF result = Pkg_Constantes.OK THEN
+        commit;
+        else
+         rollback ;
+       end if;
+
+
+END P_ELIMINA_CUESTIONARIO_DEF;
+
+
+ PROCEDURE P_ELIMINA_ACT_ECONOMICA_DEF( PN_ID_CONTRIBUYENTE IN NUMBER,
+                                        PC_COD_ACT_EC in varchar2,
+                                        PC_DES_ACT_EC in varchar2,
+                                        PD_FECHA_AE in DATE,
+                                        PC_RESPUESTA1 in varchar2,
+                                        PC_RESPUESTA2A in varchar2,
+                                        PC_RESPUESTA2B in varchar2,
+                                        PC_RESPUESTA2C in varchar2,
+                                        PC_RESPUESTA3 in varchar2,
+                                        PC_NUM_CERTIFICADO IN VARCHAR2,
+                                        pn_result             OUT NUMBER)
+
+IS
+
+BEGIN
+
+   --- elimina la actividad economica del contribuyente ----
+
+    DELETE FROM ACTIVIDAD_ECONOMICA_CONTRIB AEC
+    WHERE   AEC.ID_CONTRIBUYENTE = PN_ID_CONTRIBUYENTE;
+
+    pn_result     := Pkg_Constantes.OK;
+
+     IF SQL%NOTFOUND THEN
+
+     pn_result  := Pkg_Constantes.NODATAFOUND ;
+     rollback ;
+
+     else
+
+     --- si se elimina la act economica correctamente se inserta la auditoria
+
+      P_INSERTAR_AUDITORIA  (  PN_ID_CONTRIBUYENTE,
+                               PC_RESPUESTA1,
+                                PC_RESPUESTA2A,
+                                PC_RESPUESTA2B,
+                                PC_RESPUESTA2C,
+                                PC_RESPUESTA3,
+                                PC_COD_ACT_EC,
+                                PC_DES_ACT_EC,
+                                PC_NUM_CERTIFICADO,
+                                PD_FECHA_AE,
+                                pn_result );
+
+    END IF;
+
+      IF  pn_result   = Pkg_Constantes.OK THEN
+         COMMIT;
+       ELSE
+      pn_result  := Pkg_Constantes.NODATAFOUND ;
+       END IF;
+
+
+END P_ELIMINA_ACT_ECONOMICA_DEF ;
+
+
+END PKG_ACTIVIDAD_ECONOMICA_C4 ;
