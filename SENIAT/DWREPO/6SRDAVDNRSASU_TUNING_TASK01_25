@@ -1,0 +1,275 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('6SRDAVDNRSASU_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : 6srdavdnrsasu_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/26/2026 15:54:21
+Completed at       : 08/26/2026 15:54:43
+
+-------------------------------------------------------------------------------
+Schema Name: SYS
+SQL ID     : 6srdavdnrsasu
+SQL Text   :       SELECT
+                     (SELECT COUNT(DISTINCT mp2.RIF_CONTRIBUYENTE_PAGO)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as total_con_pagos,
+                     (SELECT SUM(mp2.MONTO_TOTAL_PAGO)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as monto_total,
+                     (SELECT COUNT(CASE WHEN mp2.MONTO_TOTAL_PAGO > 0 THEN 1
+             END)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as rif_validos,
+                     (SELECT COUNT(CASE WHEN mp2.MONTO_TOTAL_PAGO = 0 THEN 1
+             END)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as rif_invalidos,
+                     (SELECT COUNT(CASE WHEN TRUNC(mp2.FECHA_RECAUDACION_PAGO)
+              = TRUNC(SYSDATE) THEN 1 END)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as pagos_hoy,
+                     (SELECT COUNT(CASE WHEN TRUNC(mp2.FECHA_RECAUDACION_PAGO)
+              >= TRUNC(SYSDATE, 'MM') THEN 1 END)
+                      FROM CGBRITO.CARTERA_CONTRIBUYENTES cc2
+                      INNER JOIN DBO.MOVIMIENTO_PAGO mp2 ON
+             mp2.RIF_CONTRIBUYENTE_PAGO = cc2.RIF
+                      WHERE mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                      AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      AND cc2.USUARIO_ID = :usuarioId) as pagos_mes,
+                     (SELECT COUNT(*) FROM CGBRITO.CARTERA_CONTRIBUYENTES cc
+             WHERE 1=1 AND cc.USUARIO_ID = :usuarioId) as total_cartera,
+                     (SELECT COUNT(*) FROM CGBRITO.CARTERA_CONTRIBUYENTES cc
+                      WHERE NOT EXISTS (
+                        SELECT 1 FROM DBO.MOVIMIENTO_PAGO mp2
+                        WHERE mp2.RIF_CONTRIBUYENTE_PAGO = cc.RIF
+                        AND mp2.FECHA_RECAUDACION_PAGO >=
+             TO_DATE(:fechaInicio, 'YYYY-MM-DD')
+                        AND mp2.FECHA_RECAUDACION_PAGO <= TO_DATE(:fechaFin,
+             'YYYY-MM-DD')
+                      )
+                      AND cc.USUARIO_ID = :usuarioId) as rif_sin_pagos
+                   FROM DUAL
+
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- At least one important bind value was missing for this sql statement. The
+  accuracy of the advisor's analysis may depend on all important bind values
+  being supplied.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 2659677033
+
+----------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                             | Name                           | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
+----------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                      |                                |     1 |       | 32889   (1)| 00:00:02 |       |       |
+|   1 |  SORT AGGREGATE                       |                                |     1 |    12 |            |          |       |       |
+|   2 |   VIEW                                | VM_NWVW_1                      |  1104 | 13248 |  2940   (1)| 00:00:01 |       |       |
+|   3 |    SORT GROUP BY                      |                                |  1104 | 72864 |  2940   (1)| 00:00:01 |       |       |
+|*  4 |     FILTER                            |                                |       |       |            |          |       |       |
+|*  5 |      HASH JOIN SEMI                   |                                |  1747 |   112K|  2939   (1)| 00:00:01 |       |       |
+|*  6 |       TABLE ACCESS FULL               | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|   7 |       PARTITION RANGE ITERATOR        |                                |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|*  8 |        INDEX RANGE SCAN               | IDX_MOVPAGO_FECHA_RIF          |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|   9 |  SORT AGGREGATE                       |                                |     1 |    70 |            |          |       |       |
+|* 10 |   FILTER                              |                                |       |       |            |          |       |       |
+|  11 |    NESTED LOOPS                       |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|  12 |     NESTED LOOPS                      |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|* 13 |      TABLE ACCESS FULL                | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|* 14 |      INDEX RANGE SCAN                 | IDX_MOVIMIENTO_PAGO_COMPROMISO |     1 |       |     3   (0)| 00:00:01 |       |       |
+|  15 |     TABLE ACCESS BY GLOBAL INDEX ROWID| MOVIMIENTO_PAGO                |     1 |    23 |     4   (0)| 00:00:01 | ROWID | ROWID |
+|  16 |  SORT AGGREGATE                       |                                |     1 |    70 |            |          |       |       |
+|* 17 |   FILTER                              |                                |       |       |            |          |       |       |
+|  18 |    NESTED LOOPS                       |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|  19 |     NESTED LOOPS                      |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|* 20 |      TABLE ACCESS FULL                | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|* 21 |      INDEX RANGE SCAN                 | IDX_MOVIMIENTO_PAGO_COMPROMISO |     1 |       |     3   (0)| 00:00:01 |       |       |
+|  22 |     TABLE ACCESS BY GLOBAL INDEX ROWID| MOVIMIENTO_PAGO                |     1 |    23 |     4   (0)| 00:00:01 | ROWID | ROWID |
+|  23 |  SORT AGGREGATE                       |                                |     1 |    70 |            |          |       |       |
+|* 24 |   FILTER                              |                                |       |       |            |          |       |       |
+|  25 |    NESTED LOOPS                       |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|  26 |     NESTED LOOPS                      |                                |  1801 |   123K|  7031   (1)| 00:00:01 |       |       |
+|* 27 |      TABLE ACCESS FULL                | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|* 28 |      INDEX RANGE SCAN                 | IDX_MOVIMIENTO_PAGO_COMPROMISO |     1 |       |     3   (0)| 00:00:01 |       |       |
+|  29 |     TABLE ACCESS BY GLOBAL INDEX ROWID| MOVIMIENTO_PAGO                |     1 |    23 |     4   (0)| 00:00:01 | ROWID | ROWID |
+|  30 |  SORT AGGREGATE                       |                                |     1 |    66 |            |          |       |       |
+|* 31 |   FILTER                              |                                |       |       |            |          |       |       |
+|* 32 |    HASH JOIN                          |                                |  1801 |   116K|  2939   (1)| 00:00:01 |       |       |
+|* 33 |     TABLE ACCESS FULL                 | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|  34 |     PARTITION RANGE ITERATOR          |                                |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|* 35 |      INDEX RANGE SCAN                 | IDX_MOVPAGO_FECHA_RIF          |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|  36 |  SORT AGGREGATE                       |                                |     1 |    66 |            |          |       |       |
+|* 37 |   FILTER                              |                                |       |       |            |          |       |       |
+|* 38 |    HASH JOIN                          |                                |  1801 |   116K|  2939   (1)| 00:00:01 |       |       |
+|* 39 |     TABLE ACCESS FULL                 | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|  40 |     PARTITION RANGE ITERATOR          |                                |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|* 41 |      INDEX RANGE SCAN                 | IDX_MOVPAGO_FECHA_RIF          |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|  42 |  SORT AGGREGATE                       |                                |     1 |    36 |            |          |       |       |
+|* 43 |   TABLE ACCESS FULL                   | CARTERA_CONTRIBUYENTES         |  1747 | 62892 |    36   (0)| 00:00:01 |       |       |
+|  44 |  SORT AGGREGATE                       |                                |     1 |    66 |            |          |       |       |
+|* 45 |   HASH JOIN ANTI                      |                                |    17 |  1122 |  2939   (1)| 00:00:01 |       |       |
+|* 46 |    TABLE ACCESS FULL                  | CARTERA_CONTRIBUYENTES         |  1747 | 82109 |    36   (0)| 00:00:01 |       |       |
+|  47 |    PARTITION RANGE ITERATOR           |                                |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|* 48 |     INDEX RANGE SCAN                  | IDX_MOVPAGO_FECHA_RIF          |   249K|  4630K|  2901   (1)| 00:00:01 |   KEY |   KEY |
+|  49 |  FAST DUAL                            |                                |     1 |       |     2   (0)| 00:00:01 |       |       |
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   4 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+   5 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF")
+   6 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+   8 - access("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  10 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+  13 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+  14 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF" AND "MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD')
+              AND "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+       filter("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  17 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+  20 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+  21 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF" AND "MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD')
+              AND "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+       filter("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  24 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+  27 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+  28 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF" AND "MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD')
+              AND "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+       filter("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  31 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+  32 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF")
+  33 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+  35 - access("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  37 - filter(TO_DATE(:FECHAFIN,'YYYY-MM-DD')>=TO_DATE(:FECHAINICIO,'YYYY-MM-DD'))
+  38 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC2"."RIF")
+  39 - filter("CC2"."USUARIO_ID"=:USUARIOID)
+  41 - access("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+  43 - filter("CC"."USUARIO_ID"=:USUARIOID)
+  45 - access("MP2"."RIF_CONTRIBUYENTE_PAGO"="CC"."RIF")
+  46 - filter("CC"."USUARIO_ID"=:USUARIOID)
+  48 - access("MP2"."FECHA_RECAUDACION_PAGO">=TO_DATE(:FECHAINICIO,'YYYY-MM-DD') AND
+              "MP2"."FECHA_RECAUDACION_PAGO"<=TO_DATE(:FECHAFIN,'YYYY-MM-DD'))
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+Este reporte del SQL Tuning Advisor (DBMS_SQLTUNE.REPORT_TUNING_TASK) analiza a fondo la consulta pesada con SQL_ID: 6srdavdnrsasu que identificamos previamente en el AWR.
+
+A continuación, te explico punto por punto y detalladamente cada sección de este reporte para que comprendas exactamente qué está haciendo la base de datos y por qué consume tantos recursos.
+
+1. General Information Section (Información General)
+Esta sección resume los metadatos de la ejecución del asistente de optimización:
+
+Tuning Task Name: 6srdavdnrsasu_tuning_task01 (Nombre interno que le diste a la tarea de diagnóstico).
+
+Workload Type / Scope: Analiza una única sentencia SQL bajo un alcance COMPREHENSIVE (exhaustivo), lo que significa que el optimizador revisó estadísticas, perfiles SQL, índices recomendados y reestructuraciones posibles.
+
+Completion Status: COMPLETED (La tarea finalizó exitosamente en apenas unos 22 segundos).
+
+El Texto SQL (SQL Text): Aquí está la clave del problema arquitectónico de la consulta. Si te fijas, es un bloque monolítico ejecutado sobre la tabla virtual DUAL que contiene 8 subconsultas independientes (scalar subqueries). Cada subconsulta va a las mismas tablas (CGBRITO.CARTERA_CONTRIBUYENTES y DBO.MOVIMIENTO_PAGO) a calcular cosas ligeramente distintas:
+
+total_con_pagos: Cuenta contribuyentes distintos con pagos.
+
+monto_total: Suma los montos de pago.
+
+rif_validos: Cuenta pagos con monto mayor a 0.
+
+rif_invalidos: Cuenta pagos con monto igual a 0.
+
+pagos_hoy: Cuenta pagos realizados el día de hoy (TRUNC(SYSDATE)).
+
+pagos_mes: Cuenta pagos del mes en curso.
+
+total_cartera: Cuenta el total de la cartera del usuario.
+
+rif_sin_pagos: Usa un NOT EXISTS para buscar contribuyentes sin pagos en el rango de fechas.
+
+2. Additional Information Section (Información Adicional)
+El aviso: "At least one important bind value was missing for this sql statement..."
+
+Qué significa: El sintonizador advierte que al momento de generar la tarea, faltaban valores para las variables deBIND (:fechaInicio, :fechaFin, :usuarioId). Cuando esto ocurre, Oracle debe "adivinar" o usar valores estimados para las variables, lo que a veces hace que el costo estimado en el plan no refleje el 100% de la realidad operativa, aunque el diagnóstico estructural sigue siendo válido.
+
+3. Explain Plans Section (El Plan de Ejecución Original)
+El plan de ejecución tiene el Plan Hash Value: 2659677033 y consta de 49 líneas de operación (Id 0 hasta 49).
+
+Lo que revela este plan es alarmante y explica por qué la consulta consume tanto tiempo y recursos de E/S (%IO > 90%):
+
+La duplicación masiva de trabajo (Efecto Multiplicador):
+
+Al estar estructurada mediante múltiples subconsultas escalares independientes en el SELECT, Oracle se ve obligado a escanear las tablas y los índices varias veces en una sola ejecución de la sentencia.
+
+Observa los múltiples bloques de SORT AGGREGATE (por ejemplo, en las líneas 1, 9, 16, 23, 30, 36, 42, 44). Cada uno de estos representa una subconsulta que procesa los datos por separado.
+
+Escaneos masivos repetidos:
+
+En varias de las operaciones de rango (como en las líneas 7-8, 34-35, 47-48), el plan utiliza el índice IDX_MOVPAGO_FECHA_RIF haciendo un recorrido por particiones (Partition Range Iterator) que toca más de 249,000 filas (249K) por cada subconsulta.
+
+Al repetirse esto en casi cada columna calculada, la base de datos termina leyendo millones de filas físicas de forma redundante en una sola llamada del usuario.
+
+Accesos costosos por ROWID:
+
+Operaciones como TABLE ACCESS BY GLOBAL INDEX ROWID (líneas 15, 22, 29) indican que la base de datos busca las filas en el índice y luego tiene que ir a buscar el registro completo al bloque de la tabla en disco, generando precisamente el evento de espera db file sequential read que vimos en el AWR.
+
+Conclusión y Diagnóstico Raíz
+El problema de esta consulta no es la falta de un índice mágico, sino un defecto de diseño en la construcción de la sentencia SQL.
+
+Hacer 8 subconsultas separadas sobre las mismas tablas para traer indicadores de un tablero o reporte en una sola línea (FROM DUAL) obliga a Oracle a repetir el mismo trabajo pesado 8 veces seguidas.
+
+¿Cómo se resuelve? (La Solución Definitiva)
+Se debe reescribir la consulta utilizando una Cláusula WITH (Common Table Expression - CTE) o una Agregación Condicional en una sola pasada.
+
+En lugar de consultar las tablas 8 veces, la idea es hacer un solo JOIN entre CARTERA_CONTRIBUYENTES y MOVIMIENTO_PAGO filtrando por las fechas y el usuario una sola vez, y dentro de ese único recorrido calcular todas las métricas usando SUM(CASE WHEN ...), COUNT(DISTINCT ...) y funciones condicionales.

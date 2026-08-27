@@ -267,3 +267,94 @@ Total hints for statement: 1 (U - Unused (1))
          U -  PARALLEL
 
 -------------------------------------------------------------------------------
+
+
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza la tarea de optimización para la consulta generada por **Metabase** bajo el `SQL_ID: dmcfjc6pf9jxf` (identificada por la tarea `dmcfjc6pf9jxf_tuning_task01`).
+
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos básicos y el contexto de la ejecución del asistente de diagnóstico:
+
+* **`Tuning Task Name`:** `dmcfjc6pf9jxf_tuning_task01` (Nombre identificador interno de la tarea de tuning).
+* **`Tuning Task Owner` & `Workload Type`:** La tarea pertenece al usuario `SYS` y analiza una **única sentencia SQL** (`Single SQL Statement`).
+* **`Scope` & `Completion Status`:** Se ejecutó bajo un alcance exhaustivo (`COMPREHENSIVE`) y finalizó con estado `COMPLETED` de forma muy rápida (en apenas 1 segundo, iniciándose y completándose el 13/08/2026).
+* **`Schema Name`:** Pertenece al esquema de la herramienta de BI `METABASE`.
+* **El Texto SQL (`SQL Text`):** Proviene de Metabase (`userID: 286`) y realiza un agrupamiento y conteo (`COUNT(*)`) de la columna `DEPENDENCIA` sobre la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`, uniendo opcionalmente con la tabla de impuestos mediante un `LEFT JOIN` y aplicando múltiples filtros estrictos:
+1. Una larga lista de exclusiones de `SITUACION_COMPROMISO` (variables `:1` a `:11` que evalúan estados como cancelaciones a tiempo, fuera de tiempo, compromisos anulados, garantizados, etc., o que sean `NULL`).
+2. Filtros de igualdad por variables de *bind* para `TIPO_CONTRIBUYENTE` (`:12`), `REGION` (`:13`), `DEPENDENCIA` (`:14`) y `FLAG_COMPROMISO` (`:15`).
+3. Los resultados se agrupan por `DEPENDENCIA` y se ordenan descendentemente por el conteo (`count DESC`) y ascendentemente por la dependencia.
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador evaluó la estructura de la consulta y encontró **dos alternativas** de mejora:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que fuerce la ejecución paralela utilizando un Grado de Paralelismo (**DOP**) de 6.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => 'dmcfjc6pf9jxf_tuning_task01', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **81.55%**.
+* **El costo oculto (Trade-off):** Aunque la consulta individual responderá más rápido, consumirá un **10.66% más de recursos globales** del sistema. Al acaparar múltiples procesadores simultáneamente durante su ejecución, **puede degradar la concurrencia y ralentizar otras consultas** que corran al mismo tiempo en la base de datos.
+
+### Hallazgo 2: Creación de un Índice (La solución estructural recomendada)
+
+* **Recomendación:** Crear un índice compuesto directamente sobre las columnas utilizadas en los criterios de igualdad de la consulta:
+```sql
+create index DBO.IDX$$_34F10001 on DBO.COMPROMISOS_PAGOS_GLOBAL("DEPENDENCIA","REGION","TIPO_CONTRIBUYENTE","FLAG_COMPROMISO");
+
+```
+
+
+* **Beneficio estimado:** Una mejora masiva del **92.24%** en el rendimiento.
+* **Por qué es la mejor opción:** Ataca el problema de raíz permitiendo que el motor localice de forma directa los registros que coinciden con los filtros de dependencia, región, tipo de contribuyente y flag, evitando desperdiciar recursos de CPU o forzar paralelismo de hardware.
+
+---
+
+## 3. Additional Information Section (Información Adicional)
+
+* **El aviso:** *"At least one important bind value was missing for this sql statement..."*
+* **Qué significa:** El sintonizador advierte que al momento de ejecutar la tarea, al menos un valor de las variables de *bind* no estaba presente. Aunque el asistente realiza una estimación para estructurar el plan, la precisión analítica puede verse ligeramente afectada si faltaban datos reales en el entorno.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta tres comportamientos posibles para la base de datos:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `MAT_VIEW ACCESS FULL` seguido de `SORT GROUP BY NOSORT` y `SORT ORDER BY`.
+* **Métricas:** Presenta un **costo altísimo de 234,000** y un tiempo estimado de 10 segundos. Al no existir un índice adecuado para los filtros de igualdad, la base de datos se ve obligada a leer absolutamente toda la vista materializada de principio a fin para poder agrupar y ordenar.
+
+### Plan 2: Using New Indices (Usando el Índice Recomendado)
+
+* **Operación clave:** `INDEX RANGE SCAN` utilizando el índice `IDX$$_34F10001`, seguido de un acceso por `ROWID` a la vista materializada (`MAT_VIEW ACCESS BY INDEX ROWID`).
+* **Métricas:** El costo se desploma drásticamente de 234,000 a **18,179**, reduciendo el tiempo de ejecución a **1 segundo** (`00:00:01`).
+* **Interpretación:** Gracias a este índice compuesto de cuatro columnas, el motor salta directamente a los registros que coinciden con la dependencia, región, tipo y flag, reduciendo drásticamente las lecturas físicas.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 6)
+
+* **Operación clave:** `PX COORDINATOR`, `HASH GROUP BY` y `MAT_VIEW ACCESS FULL` distribuidos en hilos paralelos (`Q1,00`).
+* **Métricas:** Costo de 43,255 y un tiempo de respuesta de 2 segundos.
+* **Interpretación:** Aunque mejora los 10 segundos originales, **sigue realizando un escaneo completo** de la vista materializada, solo que repartiendo la fuerza bruta del CPU entre 6 procesadores.
+
+---
+
+### Conclusión y Recomendación Final
+
+La recomendación técnica óptima es **descartar el uso de paralelismo** y **crear el índice propuesto** (`DBO.IDX$$_34F10001`). Al implementar dicho índice compuesto, esta consulta de Metabase dejará de barrer la vista materializada por completo y se resolverá de manera sumamente eficiente.

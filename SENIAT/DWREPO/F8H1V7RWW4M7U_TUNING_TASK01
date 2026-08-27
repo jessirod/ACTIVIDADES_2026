@@ -197,3 +197,99 @@ Total hints for statement: 1 (U - Unused (1))
          U -  PARALLEL
 
 -------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+A continuación, te explico **punto por punto y detalladamente** el reporte del **SQL Tuning Advisor** para la tarea `f8h1v7rww4m7u_tuning_task01` (`SQL_ID: 9swwvyrgwvb30`):
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos y el alcance técnico del diagnóstico ejecutado por el motor de base de datos:
+
+* **Tuning Task Name**: `f8h1v7rww4m7u_tuning_task01` (Nombre asignado a la tarea de optimización).
+* **Tuning Task Owner**: `SYS` (Usuario propietario de la ejecución del diagnóstico).
+* **Workload Type**: `Single SQL Statement` (Analiza una única sentencia SQL individual).
+* **Scope**: `COMPREHENSIVE` (Alcance exhaustivo de análisis que incluye búsqueda de perfiles, índices y reestructuraciones).
+* **Time Limit**: `20000` segundos (Límite máximo de tiempo asignado para la tarea).
+* **Completion Status**: `COMPLETED` (La tarea finalizó exitosamente en apenas 4 segundos, iniciando el `08/19/2026 09:50:44` y concluyendo a las `09:50:48`).
+* **Schema Name**: `SYS`.
+* **SQL ID**: `9swwvyrgwvb30`.
+* **SQL Text**:
+* La consulta selecciona el nombre del impuesto (`NOMBRE_IMPUESTO`) y realiza un conteo total (`COUNT(*) "count"`).
+* Une la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"` con la tabla `"DBO"."IMPUESTO"` mediante un `LEFT JOIN` utilizando la relación de códigos (`IMPUESTO_COMP_PAGO = CODIGO_IMPUESTO`).
+* Filtra los registros evaluando una región específica (`REGION = :1`) y dos condiciones alternativas de situación de compromiso (`SITUACION_COMPROMISO = :2 OR SITUACION_COMPROMISO = :3`).
+* Agrupa los resultados por el nombre del impuesto y los ordena de forma descendente por el conteo (`count DESC`) y ascendente por el nombre del impuesto (`NOMBRE_IMPUESTO ASC`).
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador identificó **dos hallazgos principales** con sus respectivas soluciones:
+
+### Hallazgo 1: SQL Profile Finding (Perfil SQL con Ejecución Paralela)
+
+* **Recomendación**: Aceptar el perfil SQL recomendado para forzar la ejecución paralela ejecutando el script indicado:
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => 'f8h1v7rww4m7u_tuning_task01', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Impacto y Beneficio**: Al ejecutar esta consulta en paralelo utilizando un Grado de Paralelismo (**DOP**) de 6, se mejorará el tiempo de respuesta en un **81.55%** frente al plan original.
+* **Costo Oculto (Trade-off)**: El paralelismo incrementará el consumo de recursos de la sentencia en un **10.67%**, lo que puede reducir el rendimiento global del sistema (*throughput*) y afectar negativamente el tiempo de respuesta de otras consultas concurrentes.
+
+### Hallazgo 2: Index Finding (Creación de un Índice)
+
+* **Recomendación**: Crear un índice compuesto adaptado a las columnas que participan en los filtros de la consulta:
+```sql
+create index DBO.IDX$$_35A90002 on DBO.COMPROMISOS_PAGOS_GLOBAL("SITUACION_COMPROMISO","REGION","IMPUESTO_COMP_PAGO");
+
+```
+
+
+* **Beneficio Estimado**: Ofrece una mejora del **98.88%** en el rendimiento.
+* **Rationale**: Crear este índice optimiza drásticamente el plan de ejecución al permitir accesos directos, aunque se señala que para un análisis más amplio convendría evaluar toda una carga de trabajo con el *Access Advisor*.
+
+---
+
+## 3. Additional Information Section (Información Adicional)
+
+* **Aviso de Bind Values**: Se advierte que al menos un valor de *bind* importante no estaba presente al momento de ejecutar el análisis, por lo que la precisión de las estimaciones del asesor podría depender de los valores reales proporcionados en ejecución.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El informe detalla tres planes diferentes evaluados por el optimizador:
+
+### Plan 1: Original (Sin Optimizar)
+
+* **Métricas**: Presenta un costo elevado de **237K** y un tiempo estimado de ejecución de 10 segundos.
+* **Operaciones**: Realiza un escaneo completo de la vista materializada (`MAT_VIEW ACCESS FULL` en `COMPROMISOS_PAGOS_GLOBAL`) y un escaneo completo de la tabla `IMPUESTO`, procesando posteriormente agrupamientos pesados por hash.
+
+### Plan 2: Using New Indices (Usando el Índice Recomendado)
+
+* **Métricas**: El costo se desploma de manera drástica a **2,649** y el tiempo de respuesta se reduce a **1 segundo** (`00:00:01`).
+* **Operaciones**: Utiliza un iterador de listas (`INLIST ITERATOR`) para realizar un `INDEX RANGE SCAN` sobre el nuevo índice `IDX$$_35A90002`, evitando por completo los escaneos completos masivos de la vista materializada.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 6)
+
+* **Métricas**: Presenta un costo de **43,854** y un tiempo estimado de 2 segundos.
+* **Operaciones**: Emplea un coordinador paralelo (`PX COORDINATOR`), canales de distribución de datos (`TQ`), creación de filtros de Bloom (`JOIN FILTER CREATE / USE` con `:BF0000`) y procesamiento distribuido por bloques para repartir el escaneo completo entre múltiples procesadores de hardware.
+
+---
+
+### Conclusión y Recomendación Práctica
+
+La alternativa más limpia, eficiente y respetuosa con los recursos globales del servidor es **descartar el uso de perfiles de paralelismo** y **crear el índice propuesto** (`DBO.IDX$$_35A90002`). Esto permitirá que la consulta resuelva los filtros de forma directa, bajando el costo de ejecución a la fracción mínima y entregando resultados en 1 segundo.

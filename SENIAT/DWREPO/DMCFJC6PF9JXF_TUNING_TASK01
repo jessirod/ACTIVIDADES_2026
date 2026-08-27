@@ -159,3 +159,83 @@ Total hints for statement: 1 (U - Unused (1))
          U -  PARALLEL
 
 -------------------------------------------------------------------------------
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza la tarea de optimización para la consulta generada por **Metabase** bajo el `SQL_ID: dmcfjc6pf9jxf`.
+
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección detalla los metadatos y el contexto de la ejecución del asistente de diagnóstico:
+
+* **`Tuning Task Name`:** `dmcfjc6pf9jxf_tuning_task01` (Nombre identificador interno de la tarea de tuning).
+* **`Tuning Task Owner` & `Workload Type`:** La tarea pertenece al usuario `SYS` y analiza una **única sentencia SQL** (`Single SQL Statement`).
+* **`Scope` & `Completion Status`:** Se ejecutó bajo un alcance exhaustivo (`COMPREHENSIVE`) y finalizó con estado `COMPLETED` en apenas 30 segundos (de 15:40:29 a 15:40:59 del 13/08/2026).
+* **`Schema Name`:** Pertenece al esquema `METABASE`.
+* **El Texto SQL (`SQL Text`):** Proviene de Metabase (`userID: 286`) y realiza un conteo total (`COUNT(*)`) sobre la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`, haciendo un `LEFT JOIN` con la tabla de impuestos (`"DBO"."IMPUESTO"`) y aplicando tres filtros estrictos mediante variables de *bind*:
+1. **Región (`:1`):** `REGION NOR ORIENTAL`
+2. **Situación del Compromiso (`:2` o `:3`):** `PENDIENTE DE CANCELACION - SIN VENCER` o `PENDIENTE DE CANCELACION - VENCIDO`.
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró **dos alternativas** de mejora independientes:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que fuerce la ejecución paralela utilizando un Grado de Paralelismo (**DOP**) de 6.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => 'dmcfjc6pf9jxf_tuning_task01', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **81.55%**.
+* **El costo oculto (Trade-off):** Aunque la consulta individual responderá más rápido, consumirá un **10.66% más de recursos globales** del sistema. Al acaparar múltiples procesadores simultáneamente, **puede degradar la concurrencia y ralentizar otras consultas** que corran al mismo tiempo en la base de datos.
+
+### Hallazgo 2: Creación de un Índice (La solución estructural recomendada)
+
+* **Recomendación:** Crear un índice compuesto directamente sobre los campos evaluados en los filtros de la vista materializada:
+```sql
+create index DBO.IDX$$_34F00001 on DBO.COMPROMISOS_PAGOS_GLOBAL("REGION","SITUACION_COMPROMISO");
+
+```
+
+
+* **Beneficio estimado:** Una mejora del **99%** en el rendimiento.
+* **Por qué es la mejor opción:** Ataca el problema de raíz permitiendo que el motor localice de forma directa los registros de la región y situaciones solicitadas, sin necesidad de forzar paralelismo de hardware ni desperdiciar recursos de CPU.
+
+---
+
+## 3. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta tres comportamientos posibles para la base de datos:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `MAT_VIEW ACCESS FULL` (Escaneo completo de la vista materializada).
+* **Métricas:** Presenta un **costo altísimo de 234,000** y un tiempo estimado de 10 segundos. Al no existir un índice para los filtros de región y situación, la base de datos se ve obligada a leer absolutamente toda la vista materializada de principio a fin.
+
+### Plan 2: Using New Indices (Usando el Índice Recomendado)
+
+* **Operación clave:** `INDEX RANGE SCAN` utilizando un `INLIST ITERATOR` sobre el índice `IDX$$_34F00001`.
+* **Métricas:** El costo se desploma drásticamente de 234,000 a solo **2,335**, reduciendo el tiempo de ejecución a **1 segundo**.
+* **Interpretación:** Gracias a este índice compuesto, el motor descarta de inmediato los datos que no coinciden con la región o las situaciones de compromiso indicadas.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 6)
+
+* **Operación clave:** `PX COORDINATOR` y `MAT_VIEW ACCESS FULL` distribuidos en hilos paralelos (`Q1,00`).
+* **Métricas:** Costo de 43,256 y un tiempo de respuesta de 2 segundos. Aunque mejora el tiempo original, sigue realizando un escaneo completo de la vista materializada, solo que repartiendo la carga entre varios procesadores.
+
+---
+
+### Conclusión y Recomendación Final
+
+La recomendación técnica óptima es **descartar el paralelismo** y **crear el índice propuesto** (`DBO.IDX$$_34F00001`). Al implementar dicho índice, esta consulta de Metabase pasará de tardar 10 segundos barriendo la vista materializada por completo a resolverse en **1 segundo exacto** de manera sumamente eficiente.

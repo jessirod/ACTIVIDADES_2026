@@ -1,18 +1,19 @@
-DBMS_SQLTUNE.REPORT_TUNING_TASK('1Y07XQ61K975U_TUNING_TASK01')
+
+DBMS_SQLTUNE.REPORT_TUNING_TASK('1Y07XQ61K975U_TUNING_TASK02')
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GENERAL INFORMATION SECTION
 -------------------------------------------------------------------------------
-Tuning Task Name   : 1y07xq61k975u_tuning_task01
+Tuning Task Name   : 1y07xq61k975u_tuning_task02
 Tuning Task Owner  : SYS
 Workload Type      : Single SQL Statement
 Scope              : COMPREHENSIVE
 Time Limit(seconds): 20000
 Completion Status  : COMPLETED
-Started at         : 08/13/2026 15:28:25
-Completed at       : 08/13/2026 15:28:37
+Started at         : 08/27/2026 14:08:00
+Completed at       : 08/27/2026 14:08:19
 
 -------------------------------------------------------------------------------
-Schema Name: METABASE
+Schema Name: SYS
 SQL ID     : 1y07xq61k975u
 SQL Text   : -- Metabase
              SELECT * FROM (SELECT "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLA
@@ -23,7 +24,7 @@ SQL Text   : -- Metabase
              WHERE rownum <= 1000
 
 -------------------------------------------------------------------------------
-FINDINGS SECTION (3 findings)
+FINDINGS SECTION (2 findings)
 -------------------------------------------------------------------------------
 
 1- SQL Profile Finding (see explain plans section below)
@@ -35,7 +36,7 @@ FINDINGS SECTION (3 findings)
   - Consider accepting the recommended SQL profile to use parallel execution
     for this statement.
     execute dbms_sqltune.accept_sql_profile(task_name =>
-            '1y07xq61k975u_tuning_task01', task_owner => 'SYS', replace =>
+            '1y07xq61k975u_tuning_task02', task_owner => 'SYS', replace =>
             TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
 
   Executing this query parallel with DOP 24 will improve its response time
@@ -68,7 +69,7 @@ FINDINGS SECTION (3 findings)
   ------------------------------------------
   - Consider running the Access Advisor to improve the physical schema design
     or creating the recommended index.
-    create index DBO.IDX$$_34EF0001 on DBO.ITEM_DECLARACION("NUMERO_ITEM_DECLAR
+    create index DBO.IDX$$_36B60001 on DBO.ITEM_DECLARACION("NUMERO_ITEM_DECLAR
     ACION_I_D");
 
   Rationale
@@ -78,31 +79,6 @@ FINDINGS SECTION (3 findings)
     using a representative SQL workload as opposed to a single statement. This
     will allow to get comprehensive index recommendations which takes into
     account index maintenance overhead and additional space consumption.
-
-3- Alternative Plan Finding
----------------------------
-  Some alternative execution plans for this statement were found by searching
-  the system's real-time and historical performance data.
-
-  The following table lists these plans ranked by their average elapsed time.
-  See section "ALTERNATIVE PLANS SECTION" for detailed information on each
-  plan.
-
-  id plan hash  last seen            elapsed (s)  origin          note
-  -- ---------- -------------------- ------------ --------------- ----------------
-   1 3904644145  2026-08-13/14:37:19     1829.392 Cursor Cache
-
-  Information
-  -----------
-  - Because no execution history for the Original Plan was found, the SQL
-    Tuning Advisor could not determine if any of these execution plans are
-    superior to it.  However, if you know that one alternative plan is better
-    than the Original Plan, you can create a SQL plan baseline for it. This
-    will instruct the Oracle optimizer to pick it over any other choices in
-    the future.
-    execute dbms_sqltune.create_sql_plan_baseline(task_name =>
-            '1y07xq61k975u_tuning_task01', owner_name => 'SYS',
-            plan_hash_value => xxxxxxxx);
 
 -------------------------------------------------------------------------------
 ADDITIONAL INFORMATION SECTION
@@ -127,8 +103,8 @@ Plan hash value: 4077300361
 |*  1 |  COUNT STOPKEY          |                  |       |       |            |          |       |       |
 |   2 |   VIEW                  |                  |  1183 |  7098 |  3824K (18)| 00:02:30 |       |       |
 |*  3 |    SORT GROUP BY STOPKEY|                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
-|   4 |     PARTITION LIST ALL  |                  |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
-|   5 |      TABLE ACCESS FULL  | ITEM_DECLARACION |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
+|   4 |     PARTITION LIST ALL  |                  |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   292 |
+|   5 |      TABLE ACCESS FULL  | ITEM_DECLARACION |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   292 |
 ------------------------------------------------------------------------------------------------------------
 
 Predicate Information (identified by operation id):
@@ -139,7 +115,7 @@ Predicate Information (identified by operation id):
 
 2- Using New Indices
 --------------------
-Plan hash value: 4107716522
+Plan hash value: 383822950
 
 -----------------------------------------------------------------------------------------
 | Id  | Operation              | Name           | Rows  | Bytes | Cost (%CPU)| Time     |
@@ -148,7 +124,7 @@ Plan hash value: 4107716522
 |*  1 |  COUNT STOPKEY         |                |       |       |            |          |
 |   2 |   VIEW                 |                |  1000 |  6000 |     6   (0)| 00:00:01 |
 |   3 |    SORT GROUP BY NOSORT|                |  1000 |  4000 |     6   (0)| 00:00:01 |
-|   4 |     INDEX FULL SCAN    | IDX$$_34EF0001 |  5075M|    18G|     6   (0)| 00:00:01 |
+|   4 |     INDEX FULL SCAN    | IDX$$_36B60001 |  5075M|    18G|     6   (0)| 00:00:01 |
 -----------------------------------------------------------------------------------------
 
 Predicate Information (identified by operation id):
@@ -173,8 +149,8 @@ Plan hash value: 1380218257
 |   7 |        PX RECEIVE           |                  |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,01 | PCWP |            |
 |   8 |         PX SEND RANGE       | :TQ10000         |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,00 | P->P | RANGE      |
 |   9 |          HASH GROUP BY      |                  |  1183 |  4732 |   171K (15)| 00:00:07 |       |       |  Q1,00 | PCWP |            |
-|  10 |           PX BLOCK ITERATOR |                  |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   289 |  Q1,00 | PCWC |            |
-|  11 |            TABLE ACCESS FULL| ITEM_DECLARACION |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   289 |  Q1,00 | PCWP |            |
+|  10 |           PX BLOCK ITERATOR |                  |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   292 |  Q1,00 | PCWC |            |
+|  11 |            TABLE ACCESS FULL| ITEM_DECLARACION |  5075M|    18G|   149K  (2)| 00:00:06 |     1 |   292 |  Q1,00 | PCWP |            |
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 Predicate Information (identified by operation id):
@@ -185,40 +161,104 @@ Predicate Information (identified by operation id):
    6 - filter(ROWNUM<=1000)
 
 -------------------------------------------------------------------------------
-ALTERNATIVE PLANS SECTION
--------------------------------------------------------------------------------
 
-Plan 1
-------
 
-  Plan Origin                 :Cursor Cache
-  Plan Hash Value             :3904644145
-  Executions                  :1
-  Elapsed Time                :1829.392 sec
-  CPU Time                    :284.087 sec
-  Buffer Gets                 :22466325
-  Disk Reads                  :22391497
-  Disk Writes                 :0
 
-Notes:
-  1. Statistics shown are averaged over multiple executions.
 
-------------------------------------------------------------------------------------------------------------
-| Id  | Operation               | Name             | Rows  | Bytes | Cost (%CPU)| Time     | Pstart| Pstop |
-------------------------------------------------------------------------------------------------------------
-|   0 | SELECT STATEMENT        |                  |  1000 |  6000 |  3824K (18)| 00:02:30 |       |       |
-|*  1 |  COUNT STOPKEY          |                  |       |       |            |          |       |       |
-|   2 |   VIEW                  |                  |  1183 |  7098 |  3824K (18)| 00:02:30 |       |       |
-|*  3 |    SORT ORDER BY STOPKEY|                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
-|   4 |     HASH GROUP BY       |                  |  1183 |  4732 |  3824K (18)| 00:02:30 |       |       |
-|   5 |      PARTITION LIST ALL |                  |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
-|   6 |       TABLE ACCESS FULL | ITEM_DECLARACION |  5075M|    18G|  3232K  (3)| 00:02:07 |     1 |   289 |
-------------------------------------------------------------------------------------------------------------
 
-Predicate Information (identified by operation id):
----------------------------------------------------
+Este reporte del **SQL Tuning Advisor** analiza una consulta ultrapesada generada por **Metabase** (`SQL_ID: 1y07xq61k975u`) que intenta agrupar y ordenar los números de ítem de declaración de una tabla extremadamente masiva.
 
-   1 - filter(ROWNUM<=1000)
-   3 - filter(ROWNUM<=1000)
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
 
--------------------------------------------------------------------------------
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos básicos de la ejecución del asistente de diagnóstico:
+
+* **`Tuning Task Name`:** `1y07xq61k975u_tuning_task02` (Nombre interno de la tarea de optimización).
+* **`Workload Type` / `Scope`:** Analiza una **única sentencia SQL** bajo un alcance exhaustivo (`COMPREHENSIVE`).
+* **Tiempos:** La tarea se ejecutó rápidamente entre las 14:08:00 y las 14:08:19 del 27/08/2026.
+* **El Texto SQL (`SQL Text`):** La consulta proviene de Metabase y realiza lo siguiente:
+```sql
+SELECT * FROM (
+    SELECT "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLARACION_I_D" "NUMERO_ITEM_DECLARACION_I_D" 
+    FROM "DBO"."ITEM_DECLARACION" 
+    GROUP BY "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLARACION_I_D" 
+    ORDER BY "DBO"."ITEM_DECLARACION"."NUMERO_ITEM_DECLARACION_I_D" ASC
+) WHERE rownum <= 1000
+
+```
+
+
+* **Qué hace lógicamente:** Agrupa todos los registros de la tabla por el número de ítem de declaración, los ordena alfabéticamente de forma ascendente y limita el resultado global a un máximo de 1,000 filas con `rownum <= 1000`.
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró **dos alternativas** de mejora muy distintas:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que fuerce la ejecución paralela utilizando un Grado de Paralelismo (**DOP**) de **24**.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => '1y07xq61k975u_tuning_task02', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **95.50%**.
+* **El costo oculto (Trade-off):** Movilizar 24 hilos de CPU simultáneamente incrementará el consumo de recursos de la sentencia en un **7.88%**. Aunque la consulta terminará más rápido, al acaparar tantos recursos de golpe se puede reducir el rendimiento global del sistema y afectar la concurrencia de otras aplicaciones.
+
+### Hallazgo 2: Creación de un Índice (La solución estructural recomendada)
+
+* **Recomendación:** Crear un índice en la columna utilizada para agrupar y ordenar:
+```sql
+create index DBO.IDX$$_36B60001 on DBO.ITEM_DECLARACION("NUMERO_ITEM_DECLARACION_I_D");
+
+```
+
+
+* **Beneficio estimado:** Una mejora colosal del **99.99%** en el rendimiento.
+* **Por qué es la mejor opción:** Evita saturar el hardware con paralelismo y ataca el problema de raíz permitiendo consultar la información directamente ordenada.
+
+---
+
+## 3. Additional Information Section (Información Adicional)
+
+* **El aviso:** *"The optimizer could not merge the view at line ID 2 of the execution plan..."*
+* **Qué significa:** Explica que Oracle no pudo fusionar la subconsulta con la consulta principal debido a una regla de diseño: **el optimizador no puede fusionar vistas que contengan una cláusula `ORDER BY**` (a menos que formen parte de una sentencia de modificación como `DELETE` o `UPDATE`). Por lo tanto, el motor debe procesar la vista primero y luego aplicar el límite de filas.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte expone tres escenarios de ejecución que muestran la magnitud real del problema en esta tabla:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `TABLE ACCESS FULL` sobre la tabla `ITEM_DECLARACION`.
+* **El tamaño del problema:** ¡La tabla `ITEM_DECLARACION` tiene **5,075 millones de filas (5.07 mil millones)** y ocupa **18 GB** de espacio! Al no haber un índice, la base de datos barre todas las particiones (de la 1 a la 292) de principio a fin.
+* **Métricas:** Tiene un **costo astronómico de 3,824K (3.8 millones)** y un tiempo estimado de **2 minutos y 30 segundos**. Aunque usa un `COUNT STOPKEY` para frenar al llegar a los 1,000 registros, el esfuerzo de leer los 5 mil millones de filas ya se ejecutó por completo.
+
+### Plan 2: Using New Indices (Usando el Índice Recomendado)
+
+* **Operación clave:** `INDEX FULL SCAN` utilizando el índice `IDX$$_36B60001` y un `SORT GROUP BY NOSORT`.
+* **Métricas:** El costo se desploma de 3,824,000 a un irrisorio **6**, reduciendo el tiempo de ejecución a **1 segundo**.
+* **Por qué es tan eficiente:** Como un índice B-Tree en Oracle **ya almacena los datos ordenados de forma natural**, el motor no necesita escanear la tabla gigante ni ordenar nada en memoria (`NOSORT`). Simplemente lee el índice ordenado y se detiene inmediatamente (`STOPKEY`) al completar las primeras 1,000 filas solicitadas.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 24)
+
+* **Operaciones clave:** Emplea coordinadores y servidores de ejecución paralela (`PX COORDINATOR`, `HASH GROUP BY`, etc.) dividiendo el escaneo masivo entre 24 hilos.
+* **Métricas:** Costo de 171K y un tiempo de **7 segundos**.
+* **Interpretación:** Aunque pasa de 2.5 minutos a 7 segundos, **sigue haciendo un escaneo completo de los 5.07 mil millones de filas**, solo que repartiendo la fuerza bruta entre 24 procesadores.
+
+---
+
+### Conclusión y Recomendación Final
+
+1. **La realidad de la tabla:** Estás consultando una tabla masiva de **más de 5 mil millones de registros**. Cualquier consulta sin índice sobre ella provocará cuellos de botella severos.
+2. **Qué hacer:** **No aceptes el perfil de paralelismo**. La solución definitiva y óptima es **crear el índice recomendado** (`DBO.IDX$$_36B60001`). Al crearlo, la consulta pasará de tardar 2 minutos y medio barriendo 18 GB de datos a resolverse en **1 segundo exacto** mediante un recorrido directo del índice.

@@ -267,3 +267,95 @@ Total hints for statement: 1 (U - Unused (1))
          U -  PARALLEL
 
 -------------------------------------------------------------------------------
+
+
+
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza la tarea de optimización para la consulta generada por **Metabase** bajo el `SQL_ID: fb1hrvm0bmtsf` (identificada por la tarea `fb1hrvm0bmtsf_tuning_task01`).
+
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos básicos y el contexto de la ejecución del asistente de diagnóstico:
+
+* **`Tuning Task Name`:** `fb1hrvm0bmtsf_tuning_task01` (Nombre identificador interno de la tarea de tuning).
+* **`Tuning Task Owner` & `Workload Type`:** La tarea pertenece al usuario `SYS` y analiza una **única sentencia SQL** (`Single SQL Statement`).
+* **`Scope` & `Completion Status`:** Se ejecutó bajo un alcance exhaustivo (`COMPREHENSIVE`) y finalizó con estado `COMPLETED` de forma extremadamente rápida (en apenas 2 segundos, del 08/13/2026 15:45:27 al 15:45:29).
+* **`Schema Name`:** Pertenece al esquema de la herramienta de BI `METABASE`.
+* **El Texto SQL (`SQL Text`):** Proviene de Metabase (`userID: 277`) y realiza un conteo total agrupado por `"TIPO_CONTRIBUYENTE"` sobre la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`, uniendo opcionalmente con la tabla de impuestos mediante un `LEFT JOIN` y aplicando un bloque masivo de condiciones:
+1. Una larga lista de exclusiones de `SITUACION_COMPROMISO` (variables `:1` a `:11` que evalúan estados específicos o validan que sean `IS NULL`).
+2. Filtros estrictos de igualdad por variables de *bind* para `TIPO_CONTRIBUYENTE` (`:12`), `REGION` (`:13`), `DEPENDENCIA` (`:14`) y `FLAG_COMPROMISO` (`:15`).
+3. Los resultados se agrupan por `TIPO_CONTRIBUYENTE` y se ordenan descendentemente por el conteo (`count DESC`) y ascendentemente por el tipo de contribuyente.
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador evaluó la estructura de la consulta y encontró **dos alternativas** de mejora:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que fuerce la ejecución paralela utilizando un Grado de Paralelismo (**DOP**) de 6.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => 'fb1hrvm0bmtsf_tuning_task01', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **81.55%**.
+* **El costo oculto (Trade-off):** Aunque la consulta individual responderá más rápido, consumirá un **10.66% más de recursos globales** del sistema. Al acaparar múltiples procesadores simultáneamente durante su ejecución, **puede degradar la concurrencia y ralentizar otras consultas** concurrentes en la base de datos.
+
+### Hallazgo 2: Creación de un Índice (La solución estructural recomendada)
+
+* **Recomendación:** Crear un índice compuesto adaptado específicamente al orden de los campos filtrados y agrupados en esta consulta:
+```sql
+create index DBO.IDX$$_34F20001 on DBO.COMPROMISOS_PAGOS_GLOBAL("TIPO_CONTRIBUYENTE","DEPENDENCIA","REGION","FLAG_COMPROMISO");
+
+```
+
+
+* **Beneficio estimado:** Una mejora masiva del **92.21%** en el rendimiento.
+* **Nota clave de diseño:** Fíjate que el índice propuesto aquí coloca a `"TIPO_CONTRIBUYENTE"` como **primera columna** (a diferencia del reporte anterior donde mandaba `DEPENDENCIA`). Esto ocurre porque esta consulta agrupa explícitamente por `TIPO_CONTRIBUYENTE`, optimizando al máximo el acceso físico a los datos según el uso real del reporte de Metabase.
+
+---
+
+## 3. Additional Information Section (Información Adicional)
+
+* **El aviso:** *"At least one important bind value was missing for this sql statement..."*
+* **Qué significa:** Advierte que al momento de la ejecución de la tarea, faltaban algunos valores de las variables de *bind*. Aunque el asistente calcula un plan estimado sólido, la precisión analítica podría verse ligeramente condicionada si los valores reales difieren en producción.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta tres comportamientos posibles para la base de datos:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `MAT_VIEW ACCESS FULL` seguido de `SORT GROUP BY NOSORT` y `SORT ORDER BY`.
+* **Métricas:** Presenta un **costo altísimo de 234,000** y un tiempo estimado de 10 segundos. Al no disponer de un índice que filtre adecuadamente las columnas solicitadas, la base de datos se ve obligada a leer absolutamente toda la vista materializada de principio a fin.
+
+### Plan 2: Using New Indices (Usando el Índice Recomendado)
+
+* **Operación clave:** `INDEX RANGE SCAN` utilizando el índice `IDX$$_34F20001`, seguido de un acceso por `ROWID` a la vista materializada (`MAT_VIEW ACCESS BY INDEX ROWID`).
+* **Métricas:** El costo se desploma drásticamente de 234,000 a **18,268**, reduciendo el tiempo de ejecución a **1 segundo** (`00:00:01`).
+* **Interpretación:** Gracias a este índice compuesto, el motor salta de manera directa a los registros que coinciden con el tipo de contribuyente, dependencia, región y flag, evitando lecturas innecesarias en disco.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 6)
+
+* **Operación clave:** `PX COORDINATOR`, `HASH GROUP BY` y `MAT_VIEW ACCESS FULL` distribuidos en hilos paralelos (`Q1,00`).
+* **Métricas:** Costo de 43,255 y un tiempo de respuesta de 2 segundos.
+* **Interpretación:** Aunque mejora el tiempo original, **sigue realizando un escaneo completo** de la vista materializada, repartiendo la fuerza bruta del CPU entre 6 procesadores en lugar de usar la ruta inteligente del índice.
+
+---
+
+### Conclusión y Recomendación Final
+
+La recomendación técnica óptima es **descartar el uso de paralelismo** y **crear el índice propuesto** (`DBO.IDX$$_34F20001`). Al implementar dicho índice, esta consulta de Metabase dejará de consumir recursos innecesarios barriendo la vista materializada y se resolverá de forma eficiente en **1 segundo**.

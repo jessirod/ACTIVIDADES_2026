@@ -1007,3 +1007,109 @@ Predicate Information (identified by operation id):
 -------------------------------------------------------------------------------
 
 Elapsed: 00:00:00.34
+
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza una consulta extremadamente compleja y pesada generada por **Metabase** (`SQL_ID: 52fghafapzfmg`).
+
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos y el alcance de la tarea de optimización ejecutada:
+
+* **`Tuning Task Name`:** `52fghafapzfmg_tunning_task01` (Nombre asignado a la tarea de diagnóstico).
+* **`Tuning Task Owner` & `Workload Type`:** La tarea pertenece al usuario `SYS` y analiza una **única sentencia SQL** (`Single SQL Statement`).
+* **`Scope` & `Time Limit`:** Se ejecutó bajo un alcance **COMPREHENSIVE** (exhaustivo) con un límite de tiempo de 20,000 segundos.
+* **`Completion Status`:** `COMPLETED`. Sin embargo, nota los tiempos: inició el `08/19/2026 14:13:16` y culminó el `08/19/2026 16:50:35` (tardó más de 2 horas y media en completarse el análisis debido a la extrema complejidad de la consulta).
+* **El Texto SQL (`SQL Text`):** Proviene de Metabase (`userID: 23`) y es una consulta gigantesca de tipo *reporte/dashboard* que une múltiples subconsultas complejas:
+* Extrae datos maestros de contribuyentes (`DATOSCONTRIBUYENTE.CONTRIBUYENTES_CAPITAL`) con lógica condicional para calcular un campo llamado `"NOMBRE UNICO"`.
+* Realiza un `INNER JOIN` con una subconsulta que agrupa y suma pagos totales de la tabla `DBO.MOVIMIENTO_PAGO` filtrados por años (2024, 2025, 2026) y clasificados por formas de pago (tributos internos, aduaneros, IVA, ISLR, forma 35).
+* Conecta con la tabla de declaraciones (`DBO.DECLARACION`) filtrando periodos específicos e impuestos.
+* Realiza un `LEFT JOIN` con los ítems de declaración (`DBO.ITEM_DECLARACION`) buscando coincidencias por texto con `LIKE`.
+* Finalmente, ordena por descripción de tipo de contribuyente y RIF, limitando el resultado global a un máximo de 2,000 filas mediante `rownum <= 2000`.
+
+
+
+---
+
+## 2. Additional Information Section (Información Adicional)
+
+* **El aviso:** *"At least one important bind value was missing for this sql statement..."*
+* **Qué significa:** El sintonizador advierte que al momento de ejecutar la tarea faltaban valores reales para las múltiples variables de *bind* (`:1`, `:2`, etc.). Aunque el asistente realiza una estimación, la precisión del diagnóstico puede verse afectada por la ausencia de estos valores en el entorno de prueba.
+
+---
+
+## 3. Findings Section (Sección de Hallazgos)
+
+El optimizador evaluó la estructura y encontró **dos opciones viables de perfiles SQL (`SQL Profile`)** para corregir el plan de ejecución:
+
+### Opción 1: Perfil SQL estándar
+
+* **Recomendación:** Aceptar el perfil SQL recomendado ejecutando el script indicado.
+* **Beneficio estimado:** Una mejora del **99.99%** en el costo de ejecución.
+
+### Opción 2: Perfil SQL con Ejecución Paralela (Recomendación avanzada)
+
+* **Recomendación:** Aceptar el perfil SQL habilitando la ejecución paralela con un Grado de Paralelismo (**DOP**) de **24**.
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **94.34%** adicional sobre el plan del perfil estándar.
+* **El Costo Oculto (Trade-off):** Movilizar 24 hilos de procesamiento en paralelo incrementará el consumo de recursos de la sentencia en un **35.82%**. Esto significa que, aunque la consulta responderá mucho más rápido, acaparará una gran cantidad de procesadores temporalmente, lo que podría reducir el rendimiento global (*throughput*) y afectar a los usuarios concurrentes en la base de datos.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta el escenario desastroso original frente a las soluciones propuestas:
+
+### Plan 1: Original With Adjusted Cost (Plan sin optimizar)
+
+* **Métricas alarmantes:** Tiene un **costo astronómico de 14G (14 mil millones)** y un tiempo estimado de ejecución teórico de **158 horas y 57 minutos** (`158:57:05`).
+* **Operaciones clave:** Utiliza combinaciones masivas de bucles anidados (*Nested Loops*), filtros pesados y un `SORT GROUP BY STOPKEY` que intenta ordenar un volumen masivo de datos (`22T` filas estimadas en la vista) antes de aplicar el límite de `rownum <= 2000`. Es una sentencia inviable en producción tal como está escrita.
+
+### Plan 2: Using SQL Profile (Usando el Perfil Estándar)
+
+* **Métricas:** El costo se desploma drásticamente de 14G a **526K**, reduciendo el tiempo estimado a **21 segundos** (`00:00:21`).
+* **Operaciones clave:** Introduce optimizaciones avanzadas del motor como **Filtros de Bloom (`JOIN FILTER CREATE / USE`, `:BF0000`)**. Esto permite descartar filas de manera anticipada en las uniones de tablas grandes antes de procesar los `HASH JOIN`, evitando recorridos innecesarios en disco.
+
+### Plan 3: Using Parallel Execution (Usando Ejecución Paralela - DOP 24)
+
+* **Métricas:** El costo baja a **29,787** y el tiempo de respuesta se reduce a **2 segundos** (`00:00:02`).
+* **Operaciones clave:** Utiliza coordinadores paralelos (`PX COORDINATOR`), canales de transmisión de datos (`PX SEND QC (ORDER)`, `PX SEND RANGE`) y distribución híbrida de hash para repartir la carga de trabajo entre 24 hilos simultáneos.
+
+---
+
+### Conclusión y Recomendación Práctica
+
+1. **La naturaleza del problema:** Esta consulta de Metabase intenta cruzar cuatro tablas grandes y complejas (`CONTRIBUYENTES_CAPITAL`, `MOVIMIENTO_PAGO`, `DECLARACION`, `ITEM_DECLARACION`) aplicando múltiples condiciones y filtros de texto con `LIKE`. Sin un plan optimizado, el costo de procesamiento se dispara a niveles imposibles de procesar.
+2. **Cómo proceder:**
+* Si tu servidor cuenta con una excelente capacidad de hardware y CPUs disponibles, puedes aplicar el perfil con **ejecución paralela** para que el reporte devuelva resultados en **2 segundos**.
+* Si prefieres proteger la estabilidad general del servidor y evitar picos de consumo de CPU que afecten a otras aplicaciones, la opción más segura es aceptar el **perfil SQL estándar**, el cual resolverá la consulta eficientemente en unos **21 segundos** mediante filtros de Bloom sin saturar los procesadores.
+
+
+Sí, es totalmente posible reestructurar la consulta, y en el contexto de herramientas de Business Intelligence como Metabase, frecuentemente es la opción más óptima y limpia a largo plazo, mucho más que depender únicamente de SQL Profiles o forzar paralelismo de hardware.
+
+Las consultas autogeneradas por herramientas de BI (a través de traducciones automáticas de MBQL) suelen estructurarse de una forma muy rígida e ineficiente para motores relacionales exigentes como Oracle.
+
+¿Por qué se benefician estas consultas al ser reestructuradas?
+Cadenas masivas de OR: Como se vio en los reportes anteriores, Metabase suele generar filtros con decenas de condiciones OR individuales (por ejemplo, evaluando periodos o números de ítem uno por uno). Esto destruye la capacidad del optimizador para usar rangos de índices limpios.
+
+Anidamiento excesivo: Mezclar múltiples LEFT JOIN, agregaciones (SUM, GROUP BY) y subconsultas escalares en una sola sentencia kilométrica confunde al optimizador de Oracle, llevándolo a elegir planes de ejecución desastrosos.
+
+Uso de funciones en columnas filtradas: Aplicar funciones como LOWER() o TRUNC() directamente sobre las columnas en los filtros bloquea el uso natural de los índices (sargability).
+
+Estrategias clave para reestructurar y optimizar estas consultas
+Si decides intervenir la lógica o reescribir la consulta (o ajustar el modelo en Metabase), te recomiendo aplicar los siguientes enfoques:
+
+1. Utilizar Expresiones de Tabla Comunes (CTEs / Cláusula WITH):
+En lugar de hacer una gran sopa de JOINs anidados, divide la consulta por partes lógicas. Por un lado aísla los contribuyentes, por otro calcula los pagos agrupados, y al final une esos conjuntos limpios. Esto hace que el código sea legible y predecible para Oracle.
+
+2. Sustituir listas gigantescas de OR por IN o tablas de paso:
+Si la consulta evalúa una lista larga de identificadores o periodos, agruparlos en una sola condición IN (...) o estructurarla mediante una subconsulta acotada reduce drásticamente la complejidad sintáctica.
+
+3. Evaluar el uso de Vistas Materializadas dedicadas para Dashboards:
+Si esta consulta de Metabase alimenta un tablero (dashboard) que se consulta constantemente, lo ideal no es optimizar la sentencia contra las tablas transaccionales en bruto de producción, sino crear una Vista Materializada que consolide de antemano los datos que el usuario final necesita ver.
+
+¿Te gustaría que tomemos la estructura de la consulta de Metabase del último reporte (52fghafapzfmg) y diseñemos una versión reestructurada basada en CTEs para simplificarla?

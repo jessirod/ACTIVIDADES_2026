@@ -301,3 +301,101 @@ Total hints for statement: 1 (U - Unused (1))
          U -  PARALLEL
 
 -------------------------------------------------------------------------------
+
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza una consulta pesada generada por **Metabase** (`SQL_ID: 21h3sfrkr0w75`) que extrae un reporte detallado de compromisos de pago con ordenamiento por monto y un límite de visualización de hasta 2,000 filas.
+
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos y el alcance del diagnóstico ejecutado por el motor:
+
+* **`Tuning Task Name`:** `21h3sfrkr0w75_tuning_task01` (Nombre asignado a la tarea de optimización).
+* **`Tuning Task Owner` & `Workload Type`:** Pertenece al usuario `SYS` y analiza una **única sentencia SQL** (`Single SQL Statement`).
+* **`Scope` & `Completion Status`:** Se ejecutó con un alcance exhaustivo (`COMPREHENSIVE`) y finalizó con estado `COMPLETED` (inició el `08/13/2026 15:48:16` y concluyó a las `15:49:10`).
+* **`Schema Name`:** Pertenece al esquema `METABASE`.
+* **El Texto SQL (`SQL Text`):** Proviene de Metabase (`userID: 277`) y es una consulta paginada que:
+* Selecciona un conjunto masivo de columnas de la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`.
+* Realiza un `LEFT JOIN` con la tabla `"DBO"."IMPUESTO"` para traer el nombre del impuesto (`NOMBRE_IMPUESTO`).
+* Aplica filtros estrictos mediante variables de *bind* sobre 5 campos clave: `SITUACION_COMPROMISO` (evaluando dos estados pendientes), `TIPO_CONTRIBUYENTE` (`CONTRIBUYENTE ESPECIAL`), `REGION` (`REGION NOR ORIENTAL`), `DEPENDENCIA` (`AREA DE CONTRIBUYENTES ESPECIALES ANACO`) y `FLAG_COMPROMISO` (`COMPROMISO VENCIDO POR FECHA`).
+* Ordena los resultados de forma descendente por el monto del compromiso (`MONTO_COMPROMISO_PAGO DESC`).
+* Utiliza un filtro externo con `rownum <= 2000` para restringir el conjunto final de resultados a un máximo de 2,000 filas.
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró **dos áreas de mejora** con múltiples alternativas:
+
+### Hallazgo 1: Opciones de Perfiles SQL (`SQL Profile`)
+
+El asesor propone dos tipos de perfiles diferentes:
+
+1. **Perfil Estándar:** Ofrece un beneficio estimado menor o igual al 10%. Su script de activación es:
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => '21h3sfrkr0w75_tuning_task01', task_owner => 'SYS', replace => TRUE);
+
+```
+
+
+2. **Perfil con Ejecución Paralela (`PX_PROFILE`):**
+* **Recomendación:** Forzar paralelismo con un Grado de Paralelismo (**DOP**) de 6.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => '21h3sfrkr0w75_tuning_task01', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **El Costo Oculto (Trade-off):** Mejorará el tiempo de respuesta un 81.56%, pero incrementará el consumo global de recursos en un 10.66%, lo que puede reducir el rendimiento general (*throughput*) y afectar a consultas concurrentes.
+
+
+
+### Hallazgo 2: Creación de un Índice (La solución óptima estructural)
+
+* **Recomendación:** Crear un índice compuesto adaptado exactamente a las columnas de filtrado de la consulta:
+```sql
+create index DBO.IDX$$_34F30001 on DBO.COMPROMISOS_PAGOS_GLOBAL("DEPENDENCIA","REGION","SITUACION_COMPROMISO","TIPO_CONTRIBUYENTE","FLAG_COMPROMISO");
+
+```
+
+
+* **Beneficio estimado:** Una mejora masiva del **99.54%** en el rendimiento, siendo la opción más limpia y eficiente para la base de datos sin comprometer los recursos de CPU con paralelismo forzado.
+
+---
+
+## 3. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta cuatro escenarios posibles:
+
+### Plan 1: Original With Adjusted Cost (Plan sin optimizar)
+
+* **Métricas:** Presenta un costo de **234K** y un tiempo estimado de 10 segundos.
+* **Operaciones clave:** Realiza un escaneo completo de la vista materializada (`MAT_VIEW ACCESS FULL`) y un recorrido completo de la tabla de impuestos, procesando el ordenamiento y aplicando el `COUNT STOPKEY` por el `rownum <= 2000` sobre todo el volumen de datos en bruto.
+
+### Plan 2: Using SQL Profile (Usando el Perfil Estándar)
+
+* **Métricas:** Mantiene un costo de **234K** y 10 segundos.
+* **Operaciones clave:** Aunque optimiza ligeramente el acceso a la tabla de impuestos mediante un `INDEX UNIQUE SCAN` (`PK_IMPUESTO`), sigue sufriendo el impacto principal al tener que escanear por completo la vista materializada de compromisos.
+
+### Plan 3: Using New Indices (Usando el Índice Recomendado)
+
+* **Métricas:** El costo se desploma drásticamente de 234K a solo **1,073**, reduciendo el tiempo de ejecución a **1 segundo** (`00:00:01`).
+* **Operaciones clave:** Utiliza un `INDEX RANGE SCAN` sobre el nuevo índice `IDX$$_34F30001` combinándolo con un acceso por `ROWID` (`MAT_VIEW ACCESS BY INDEX ROWID BATCHED`) y uniendo eficientemente los impuestos mediante su clave primaria.
+
+### Plan 4: Using Parallel Execution (Usando Paralelismo DOP 6)
+
+* **Métricas:** Costo de 43,255 y un tiempo estimado de 2 segundos.
+* **Operaciones clave:** Emplea coordinadores paralelos para repartir un escaneo completo de la vista materializada entre varios hilos, mejorando el tiempo original a costa de un mayor consumo de recursos de hardware.
+
+---
+
+### Conclusión y Recomendación Práctica
+
+La estrategia ideal es **crear el índice compuesto recomendado** (`DBO.IDX$$_34F30001`). Esto permitirá que la consulta de Metabase filtre de forma quirúrgica los registros de la vista materializada sin requerir escaneos completos ni paralelismo, reduciendo el costo de ejecución drásticamente y devolviendo los resultados en apenas **1 segundo**.

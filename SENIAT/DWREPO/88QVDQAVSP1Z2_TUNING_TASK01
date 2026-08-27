@@ -1,20 +1,21 @@
-DBMS_SQLTUNE.REPORT_TUNING_TASK('88QVDQAVSP1Z2_TUNING_TASK01')
+DBMS_SQLTUNE.REPORT_TUNING_TASK('88QVDQAVSP1Z2_TUNING_TASK02')
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 GENERAL INFORMATION SECTION
 -------------------------------------------------------------------------------
-Tuning Task Name   : 88qvdqavsp1z2_tuning_task01
+Tuning Task Name   : 88qvdqavsp1z2_tuning_task02
 Tuning Task Owner  : SYS
 Workload Type      : Single SQL Statement
 Scope              : COMPREHENSIVE
 Time Limit(seconds): 20000
 Completion Status  : COMPLETED
-Started at         : 08/13/2026 15:21:41
-Completed at       : 08/13/2026 15:21:49
+Started at         : 08/27/2026 13:56:45
+Completed at       : 08/27/2026 13:56:47
 
 -------------------------------------------------------------------------------
 Schema Name: SYS
-SQL ID     : 43znmm5m6zbu5
-SQL Text   : SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION"
+SQL ID     : 88qvdqavsp1z2
+SQL Text   : -- Metabase
+             SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION"
              "TIPO_DECLARACION" FROM "DBO"."DECLARACION" GROUP BY
              "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY
              "DBO"."DECLARACION"."TIPO_DECLARACION" ASC) WHERE rownum <= 1000
@@ -32,7 +33,7 @@ FINDINGS SECTION (1 finding)
   - Consider accepting the recommended SQL profile to use parallel execution
     for this statement.
     execute dbms_sqltune.accept_sql_profile(task_name =>
-            '88qvdqavsp1z2_tuning_task01', task_owner => 'SYS', replace =>
+            '88qvdqavsp1z2_tuning_task02', task_owner => 'SYS', replace =>
             TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
 
   Executing this query parallel with DOP 16 will improve its response time
@@ -79,8 +80,8 @@ Plan hash value: 2737773618
 |*  1 |  COUNT STOPKEY          |             |       |       |            |          |       |       |
 |   2 |   VIEW                  |             |    10 |    40 |   509K  (5)| 00:00:20 |       |       |
 |*  3 |    SORT GROUP BY STOPKEY|             |    10 |    50 |   509K  (5)| 00:00:20 |       |       |
-|   4 |     PARTITION LIST ALL  |             |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   288 |
-|   5 |      TABLE ACCESS FULL  | DECLARACION |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   288 |
+|   4 |     PARTITION LIST ALL  |             |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   291 |
+|   5 |      TABLE ACCESS FULL  | DECLARACION |   161M|   771M|   493K  (1)| 00:00:20 |     1 |   291 |
 -------------------------------------------------------------------------------------------------------
 
 Predicate Information (identified by operation id):
@@ -106,8 +107,8 @@ Plan hash value: 3662262070
 |   7 |        PX RECEIVE           |             |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,01 | PCWP |            |
 |   8 |         PX SEND RANGE       | :TQ10000    |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,00 | P->P | RANGE      |
 |   9 |          HASH GROUP BY      |             |    10 |    50 | 35061   (4)| 00:00:02 |       |       |  Q1,00 | PCWP |            |
-|  10 |           PX BLOCK ITERATOR |             |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   288 |  Q1,00 | PCWC |            |
-|  11 |            TABLE ACCESS FULL| DECLARACION |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   288 |  Q1,00 | PCWP |            |
+|  10 |           PX BLOCK ITERATOR |             |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   291 |  Q1,00 | PCWC |            |
+|  11 |            TABLE ACCESS FULL| DECLARACION |   161M|   771M| 34128   (1)| 00:00:02 |     1 |   291 |  Q1,00 | PCWP |            |
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 Predicate Information (identified by operation id):
@@ -129,34 +130,94 @@ Total hints for statement: 1 (U - Unused (1))
 
 
 
-****************************
-****************************
 
-SELECT sql_id, sql_text
-FROM dba_hist_sqltext
-WHERE sql_id = '88qvdqavsp1z2';
+Este reporte del **SQL Tuning Advisor** analiza una consulta generada por **Metabase** (`SQL_ID: 88qvdqavsp1z2`) que intenta listar los tipos de declaraciones disponibles en la tabla masiva `DBO.DECLARACION`.
 
-SQL_ID        SQL_TEXT
-------------- ----------------------------------------------------------------------------------------------------
-88qvdqavsp1z2 -- Metabase
-              SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION" "TIPO_DECLARACION" FROM "DBO"."DECLARAC
-              ION" GROUP BY "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY "DBO"."DECLARACION"."TIPO_DECLARACION"
-               ASC) WHERE rownum <= 1000
+A continuación, te explico **punto por punto y detalladamente** cada sección de este informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección resume los metadatos de la ejecución del asistente:
+
+* **`Tuning Task Name`:** `88qvdqavsp1z2_tuning_task02` (Nombre de la tarea de diagnóstico).
+* **`Workload Type` / `Scope`:** Analiza una **única sentencia SQL** bajo un alcance **COMPREHENSIVE** (exhaustivo).
+* **Tiempos:** La tarea se ejecutó y completó casi instantáneamente (en solo 2 segundos, de 13:56:45 a 13:56:47).
+* **El Texto SQL (`SQL Text`):** La consulta proviene de Metabase y hace lo siguiente:
+```sql
+SELECT * FROM (
+    SELECT "DBO"."DECLARACION"."TIPO_DECLARACION" "TIPO_DECLARACION" 
+    FROM "DBO"."DECLARACION" 
+    GROUP BY "DBO"."DECLARACION"."TIPO_DECLARACION" 
+    ORDER BY "DBO"."DECLARACION"."TIPO_DECLARACION" ASC
+) WHERE rownum <= 1000
+
+```
+
+
+* **Qué hace lógicamente:** Agrupa todos los registros de la tabla `DECLARACION` por su tipo (`TIPO_DECLARACION`), los ordena alfabéticamente de forma ascendente y limita el resultado a un máximo de 1,000 filas mediante `rownum <= 1000`.
 
 
 
+---
 
-DECLARE
-  l_sql_tune_task_id VARCHAR2(100);
-BEGIN
-  l_sql_tune_task_id := DBMS_SQLTUNE.create_tuning_task (
-    sql_text    => 'SELECT * FROM (SELECT "DBO"."DECLARACION"."TIPO_DECLARACION" "TIPO_DECLARACION" FROM "DBO"."DECLARACION" GROUP BY "DBO"."DECLARACION"."TIPO_DECLARACION" ORDER BY "DBO"."DECLARACION"."TIPO_DECLARACION" ASC) WHERE rownum <= 1000',
-    scope       => DBMS_SQLTUNE.scope_comprehensive,
-    time_limit  => 20000,
-    task_name   => '88qvdqavsp1z2_tuning_task01',
-    description => 'Tuning task1 for statement 88qvdqavsp1z2'
-  );
-  
-  DBMS_OUTPUT.put_line('l_sql_tune_task_id: ' || l_sql_tune_task_id);
-END;
-/
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró **una alternativa principal** basada en un perfil SQL (*SQL Profile*):
+
+* **Recomendación:** Aceptar un perfil SQL que habilite la **ejecución paralela con un Grado de Paralelismo (DOP) de 16**.
+```sql
+execute dbms_sqltune.accept_sql_profile(task_name => '88qvdqavsp1z2_tuning_task02', task_owner => 'SYS', replace => TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+```
+
+
+* **Beneficio estimado:** Una mejora del **93.11%** en el tiempo de respuesta (pasa de tardar 20 segundos a unos 2 segundos).
+* **El Costo Oculto (Trade-off):**
+* Activar paralelo con 16 hilos significa que Oracle movilizará 16 procesadores o cores al mismo tiempo para barrer la tabla.
+* Aunque la consulta terminará rapidísimo (en 2 segundos en lugar de 20), **consumirá un 10.13% más de recursos globales** del servidor durante ese lapso. Si hay otras aplicaciones corriendo al mismo tiempo, este consumo masivo de recursos podría ralentizar temporalmente las consultas concurrentes.
+
+
+
+---
+
+## 3. Additional Information Section (Información Adicional)
+
+* **El aviso:** *"The optimizer could not merge the view at line ID 2..."*
+* **Qué significa:** Oracle explica por qué no pudo "fusionar" la subconsulta (*inline view*) con la consulta principal. Por regla de diseño de Oracle, un optimizador **no puede fusionar una vista que contenga una cláusula `ORDER BY**` a menos que sea una sentencia de modificación directa (`DELETE` o `UPDATE`). Por lo tanto, el motor se ve obligado a ejecutar primero el agrupamiento y ordenamiento interno y luego aplicar el filtro de `rownum`.
+
+---
+
+## 4. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta el comportamiento actual frente a la propuesta de paralelismo:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `TABLE ACCESS FULL` sobre la tabla `DECLARACION`.
+* **El tamaño del problema:** La tabla `DECLARACION` tiene **161 millones de filas (`161M`)** y un peso de `771 MB`. Al no haber un índice específico o una ruta optimizada para agrupar dinámicamente, la base de datos realiza un **barrido completo de toda la tabla** (particiones de la 1 a la 291).
+* **Métricas:** Tiene un **costo altísimo de 509,000** y un tiempo estimado de **20 segundos**. Las operaciones `COUNT STOPKEY` y `SORT GROUP BY STOPKEY` intentan cortar la ejecución al llegar a los límites, pero el esfuerzo de leer los 161 millones de registros ya se consumió.
+
+### Plan 2: Using Parallel Execution (Usando Ejecución Paralela - DOP 16)
+
+* **Operaciones clave:** Entran en juego componentes de procesamiento paralelo como `PX COORDINATOR`, `PX SEND QC (RANGE)`, `HASH GROUP BY` y `PX BLOCK ITERATOR`.
+* **Cómo funciona:** La tarea de escanear los 161 millones de filas de la tabla `DECLARACION` se divide automáticamente en **16 partes iguales** procesadas simultáneamente por 16 hilos de trabajo independientes. Al finalizar, el coordinador (`PX COORDINATOR`) junta los resultados, los ordena y los entrega al cliente.
+* **Métricas:** El costo estimado se desploma drásticamente de 509,000 a **35,061**, y el tiempo baja a **2 segundos**.
+
+---
+
+### Análisis de Contexto y Conclusión
+
+1. **¿Por qué esta consulta es pesada?**
+Estás consultando una tabla gigante de **161 millones de filas** (`DECLARACION`) para extraer únicamente los tipos de declaraciones únicos (`TIPO_DECLARACION`). Probablemente, el campo `TIPO_DECLARACION` tenga muy pocos valores distintos (por ejemplo, 5 o 10 tipos diferentes), pero al no tener un índice sobre esa columna, Oracle se ve obligado a leer la tabla entera de principio a fin.
+2. **¿Qué deberías hacer?**
+* **Opción A (La recomendada por el Asistente):** Aceptar el perfil SQL con paralelismo (`DOP 16`) si tu servidor cuenta con suficientes recursos de CPU, lo que reducirá el tiempo de espera de Metabase de 20 a 2 segundos de forma inmediata.
+* **Opción B (La solución arquitectónica ideal):** Crear un índice simple en la columna por la que estás agrupando:
+```sql
+CREATE INDEX DBO.IDX_DECLARACION_TIPO ON DBO.DECLARACION(TIPO_DECLARACION);
+
+```
+
+
+Si creas ese índice, Oracle ya no tendrá que hacer un escaneo completo (*Full Table Scan*) de 161 millones de filas, sino que podrá leer directamente el índice en una fracción de segundo, logrando un rendimiento óptimo **sin necesidad de forzar paralelismo** ni consumir recursos masivos de CPU.
