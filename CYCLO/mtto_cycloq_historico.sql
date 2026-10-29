@@ -1,0 +1,282 @@
+
+SET LINE 400
+COL OWNER FORMAT A30
+COL DIRECTORY_NAME FORMAT A30
+COL DIRECTORY_PATH FORMAT A100
+SELECT OWNER, DIRECTORY_PATH, DIRECTORY_NAME FROM ALL_DIRECTORIES
+/
+
+CREATE DIRECTORY MTTO_CYCLO AS '/exportdb/CYCLOP/DUMP';
+GRANT READ,WRITE ON DIRECTORY MTTO_CYCLO TO SYSTEM;
+
+
+
+--Validamos existencia de tablas
+set line 300
+col owner format a25
+col table_name format a20
+select owner 
+, table_name 
+from dba_tables 
+where table_name in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION');
+
+
+OWNER                     TABLE_NAME
+------------------------- --------------------
+CYCLOPS_IDENTITY          C005T_SESSION
+CYCLOPS_IDENTITY_LOG      X001T_AUDIT_LOG
+CYCLOPS_IDENTITY          C003T_TRANSACTION
+
+
+--Validar particiones de las tablas a trabajar
+set line 200 pagesize 1000
+col TABLE_OWNER format a25
+col partition_name for a20
+col TABLE_NAME for a30
+col high_value for a120
+SELECT TABLE_OWNER
+, TABLE_NAME 
+, partition_name
+, high_value
+FROM dba_tab_partitions
+WHERE TABLE_NAME in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+ORDER BY TABLE_NAME, PARTITION_POSITION
+/
+
+
+
+--Consulta que genera consultas por cada particion
+set line 200 pagesize 1000
+col TABLE_OWNER format a25
+col partition_name for a20
+col TABLE_NAME for a30
+col high_value for a120
+SELECT 'select count(1) from ' || TABLE_OWNER || '.' || TABLE_NAME || ' PARTITION (' || partition_name || ');'
+FROM dba_tab_partitions
+WHERE TABLE_NAME in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+ORDER BY TABLE_NAME, PARTITION_POSITION
+/
+
+
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P10);
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P11);
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P12);
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P01);
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P02);
+select count(1) from CYCLOPS_IDENTITY.C003T_TRANSACTION PARTITION (P03);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P10);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P11);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P12);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P01);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P02);
+select count(1) from CYCLOPS_IDENTITY.C005T_SESSION PARTITION (P03);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P10);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P11);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P12);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P01);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P02);
+select count(1) from CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG PARTITION (P03);
+
+
+--script automatico para contruir script de creacion de parfile de export
+PARFILENAME=create_parfile.sh
+sqlplus -S / as sysdba <<EOF > ${PARFILENAME}
+set timi off time off
+set feed off head off
+set pages 0
+select 'cat <<EOF > parfile_export_' || TPART.TABLE_NAME || '_' || TPART.partition_name || '.par' || chr(10) ||
+'DIRECTORY=MTTO_CYCLO'|| chr(10) ||
+'LOGFILE=EXP_CYCLO_'|| TPART.TABLE_NAME || '_' || TPART.partition_name || '.log' ||chr(10) ||
+'DUMPFILE=EXP_CYCLO_'|| TPART.TABLE_NAME || '_' || TPART.partition_name || '.dmp' ||  chr(10) ||
+'TABLES='|| TPART.TABLE_OWNER || '.' || TPART.TABLE_NAME || ':' || TPART.partition_name || chr(10) ||
+'EXCLUDE=STATISTICS'|| chr(10) ||
+'PARALLEL=6'|| chr(10) ||
+'VERSION=11.2'||chr(10)||
+'CLUSTER=N'|| chr(10)||
+'EOF'||chr(10) X
+from (SELECT TABLE_OWNER
+, TABLE_NAME 
+, partition_name
+FROM dba_tab_partitions
+WHERE TABLE_NAME in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+ORDER BY TABLE_NAME, PARTITION_POSITION) TPART;
+exit;
+EOF
+
+
+
+chmod +x ${PARFILENAME} && ./${PARFILENAME}
+
+
+
+--Creacion de script automatico para export de cada particion
+FILE_IMPORT=execute_export.sh
+for parfile in $(ls -1 parfile_export_*.par)
+do
+echo "expdp system/oracle1 parfile=${parfile} " >> ${FILE_IMPORT}
+done
+
+chmod +x ${FILE_IMPORT}
+
+
+--pasar los archivos al servidor hisotrico
+rsync -Pathv *.dmp oracle11@sun1309p:/exportdb/CYCLOSPH/MTTO_CYCLO/
+
+
+-----
+
+
+SET LINE 400
+COL OWNER FORMAT A30
+COL DIRECTORY_NAME FORMAT A30
+COL DIRECTORY_PATH FORMAT A100
+SELECT OWNER, DIRECTORY_PATH, DIRECTORY_NAME FROM ALL_DIRECTORIES
+/
+
+CREATE DIRECTORY MTTO_CYCLO AS '/exportdb/CYCLOSPH/MTTO_CYCLO';
+GRANT READ,WRITE ON DIRECTORY MTTO_CYCLO TO SYSTEM;
+
+
+--
+--script automatico para contruir script de creacion de parfile de import
+PARFILENAME=create_parfile.sh
+sqlplus -S / as sysdba <<EOF > ${PARFILENAME}
+set timi off time off
+set feed off head off
+set pages 0
+select 'cat <<EOF > parfile_import_' || TPART.TABLE_NAME || '_' || TPART.partition_name || '.par' || chr(10) ||
+'DIRECTORY=MTTO_CYCLO'|| chr(10) ||
+'LOGFILE=IMP_CYCLO_'|| TPART.TABLE_NAME || '_' || TPART.partition_name || '.log' ||chr(10) ||
+'DUMPFILE=EXP_CYCLO_'|| TPART.TABLE_NAME || '_' || TPART.partition_name || '.dmp' ||  chr(10) ||
+'TABLES='||TPART.TABLE_OWNER || '.' || TPART.TABLE_NAME || chr(10) ||
+'TABLE_EXISTS_ACTION=APPEND'||chr(10) ||	
+'PARALLEL=2'|| chr(10) ||
+'CLUSTER=N'|| chr(10)||
+'EOF'||chr(10) X
+from (SELECT TABLE_OWNER
+, TABLE_NAME 
+, partition_name
+FROM dba_tab_partitions
+WHERE TABLE_NAME in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+ORDER BY TABLE_NAME, PARTITION_POSITION) TPART;
+exit;
+EOF
+
+
+
+chmod +x ${PARFILENAME} && ./${PARFILENAME}
+
+
+--Creacion de script automatico para import de cada particion
+FILE_IMPORT=execute_import.sh
+for parfile in $(ls -1 parfile_import_*.par)
+do
+echo "impdp system/bqsmt7aral8 parfile=${parfile} " >> ${FILE_IMPORT}
+done
+
+chmod +x ${FILE_IMPORT}
+
+./execute_import.sh
+
+
+
+-- una vez cargados 
+-- depurar el origen
+-- Truncate y Rebuild Index de las particiones: 'P10', 'P11', 'P12', 'P01', 'P02', 'P03' de la tabla: CYCLOPS_IDENTITY_LOG. X001T_AUDIT_LOG en la base de datos CYCLOPS.
+-- Deshabilitar Constraint: CYCLOPS_IDENTITY.C003FK_C005T_SESSION_PT2 en la base de datos CYCLOPS.
+
+
+set line 240
+col x format a100
+col owner format a25 
+col CONSTRAINT_NAME format a30 
+col TABLE_NAME format a30
+select 'ALTER TABLE ' || OWNER || '.' || TABLE_NAME || ' DISABLE CONSTRAINT ' || CONSTRAINT_NAME || ';' x
+, OWNER
+, CONSTRAINT_NAME
+, TABLE_NAME
+from dba_constraints
+where CONSTRAINT_NAME = 'C003FK_C005T_SESSION_PT2';
+
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION DISABLE CONSTRAINT C003FK_C005T_SESSION_PT2;
+
+  
+
+set line 200 pagesize 1000
+col TABLE_OWNER format a25
+col partition_name for a20
+col TABLE_NAME for a30
+col high_value for a120
+SELECT 'ALTER TABLE ' || TABLE_OWNER || '.' || TABLE_NAME || ' TRUNCATE PARTITION ' || partition_name || ';' X
+FROM dba_tab_partitions
+WHERE TABLE_NAME in ('X001T_AUDIT_LOG', 'C005T_SESSION', 'C003T_TRANSACTION')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+ORDER BY TABLE_NAME, PARTITION_POSITION
+/
+
+
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P10;
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P11;
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P12;
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P01;
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P02;
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION TRUNCATE PARTITION P03;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P10;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P11;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P12;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P01;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P02;
+ALTER TABLE CYCLOPS_IDENTITY.C005T_SESSION TRUNCATE PARTITION P03;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P10;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P11;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P12;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P01;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P02;
+ALTER TABLE CYCLOPS_IDENTITY_LOG.X001T_AUDIT_LOG TRUNCATE PARTITION P03;
+
+
+
+
+SET LINESIZE 400
+COL INDEX_OWNER FORMAT A30 
+COL INDEX_NAME FORMAT A30 
+COL PARTITION_NAME FORMAT A30
+SELECT DIP.INDEX_OWNER 
+, DIP.INDEX_NAME 
+, DIP.PARTITION_NAME
+FROM DBA_INDEXES DI
+, DBA_IND_PARTITIONS DIP 
+WHERE DI.INDEX_NAME = DIP.INDEX_NAME
+AND TABLE_NAME IN ('C003T_TRANSACTION','C005T_SESSION','X001T_AUDIT_LOG')
+and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+AND DIP.INDEX_NAME NOT LIKE 'SYS_%';
+
+
+SET SERVEROUTPUT ON;
+DECLARE sqlCreate VARCHAR2(4000);
+BEGIN
+	FOR cur in (
+		    SELECT DIP.INDEX_OWNER 
+			, DIP.INDEX_NAME 
+			, DIP.PARTITION_NAME
+			FROM DBA_INDEXES DI
+			, DBA_IND_PARTITIONS DIP 
+			WHERE DI.INDEX_NAME = DIP.INDEX_NAME
+			AND TABLE_NAME IN ('C003T_TRANSACTION','C005T_SESSION','X001T_AUDIT_LOG')
+			and partition_name in ('P10', 'P11', 'P12', 'P01', 'P02', 'P03')
+			AND DIP.INDEX_NAME NOT LIKE 'SYS_%'
+		) LOOP 
+		    sqlCreate := 'ALTER INDEX '|| cur.INDEX_OWNER ||'.'|| cur.INDEX_NAME ||' REBUILD PARTITION ' || cur.PARTITION_NAME || ' ONLINE';
+		    DBMS_OUTPUT.PUT_LINE(sqlCreate);
+		    EXECUTE IMMEDIATE (sqlCreate);
+		END LOOP;
+END;
+/
+
+ALTER TABLE CYCLOPS_IDENTITY.C003T_TRANSACTION ENABLE NOVALIDATE CONSTRAINT C003FK_C005T_SESSION_PT2;
+
+

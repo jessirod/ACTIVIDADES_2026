@@ -23,6 +23,9 @@ TABLES=PCP.STG_PROVIDER, PCP.STG_PAYROLL
 EXCLUDE=STATISTICS
 
 
+expdp system/oracle1 SCHEMAS=PCP DIRECTORY=EXPORT_PCP DUMPFILE=metadata_esquema_pcp.dmp PARALLEL=15 CONTENT=METADATA_ONLY LOGFILE=export_metadata.log
+
+
 ****Cuando se usa %U agrega el parametro filesize para que vaya creando diferentes archivos.
 
 
@@ -44,6 +47,9 @@ REMAP_TABLESPACE=TS_ENTRY:DATA
 REMAP_TABLESPACE=TS_ENTRY_NEW:DATA
 PARALLEL=4
 LOGTIME=ALL
+
+
+
 
 
 nohup impdp system/oracle1 parfile=IMP_PCP_20260709.par &

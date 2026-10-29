@@ -1,0 +1,93 @@
+
+ping 172.27.88.21	PLBDBDVNET01	BDVNET, PagoFP
+ping 172.27.88.22
+ping 172.27.88.23
+
+
+ping 172.27.88.24	PLBDHB01	Home Banking, CANALP
+ping 172.27.88.25
+ping 172.27.88.26
+
+ping 172.27.88.41	PLBDPRAFOR01	Base de Datos Praforca
+ping 172.27.88.42	PLBDVPER01	BD Estados de Cuenta a través de BDVenlínea Personas 
+
+ping 172.27.88.43	PLINVPLBD01	 Base de Datos Inventario de Plastico 
+ping 172.27.88.44
+ping 172.27.88.45
+ping 172.27.88.46
+ping 172.27.88.47
+ping 172.27.88.48
+ping 172.27.88.49
+
+ping 172.27.88.51	PLCLSA01	CYCLOPS, CCENLNP, STOKENP
+ping 172.27.88.52
+ping 172.27.88.60
+ping 172.27.88.56	LX003SCAN.banvenez.corp - CYCLOPS, CCENLNP, STOKENP
+ping 172.27.88.57
+ping 172.27.88.58
+ping 172.27.88.59
+
+
+ping 172.27.88.61	PLGIOMBD01	  GIOM Base de Datos
+ping 172.27.88.63	PLGIOMBD01	Base de Datos para la Fusión Middleware Para Oracle Analytics
+
+ping 172.27.88.64	PLCLSB01	BDVRELP, BDVEEMP
+ping 172.27.88.65
+ping 172.27.88.66
+ping 172.27.88.69	plclsb01-vip - BDVRELP, BDVEEMP
+ping 172.27.88.70
+ping 172.27.88.71
+ping 172.27.88.72	LX006PSCAN - BDVRELP, BDVEEMP
+ping 172.27.88.73
+ping 172.27.88.74
+ping 172.27.88.75
+
+
+ping 172.27.88.67	PWIDENBD01	 Base de datos Identity 2 Solicitado por: Jose Higuera
+ping 172.27.88.68	PWIDENBD02	 Base de datos Identity 2 Solicitado por: Jose Higuera
+ping 172.27.88.76	PLPORTBD01	SRDIVP,CARPAP,PTMOSQP,INTRNET
+ping 172.27.88.77	PLBDCTREXP01	 Base de Datos CTRLEXP
+ping 172.27.88.78	PLRMORABD01	- RMAN11
+
+ping 172.27.88.79	PLBDRMD01	 Remedy ITSM 
+ping 172.27.88.80
+ping 172.27.88.81
+ping 172.27.88.82
+ping 172.27.88.83
+ping 172.27.88.84
+ping 172.27.88.85
+
+ping 172.27.88.86	PLSMSNORA01	 (MIgración M9000) 
+ping 172.27.88.91	PLORASPBD01 - efectivo ads corona
+ping 172.27.88.93	PLBDCAH01 - Caja de Ahorros 
+
+ping 172.27.88.94	PLBDSPC01 - SUPER CLUSTER - pcp - entiti - cyclop
+ping 172.27.88.95
+ping 172.27.88.96
+ping 172.27.88.102	plbdspc01-vip - SUPER CLUSTER
+ping 172.27.88.103
+ping 172.27.88.104	LX008PSCAN.banvenez.corp - SUPER CLUSTER
+ping 172.27.88.105	
+ping 172.27.88.106
+ping 172.27.88.107
+ping 172.27.88.108
+
+ping 172.27.88.99	PLBDITR01
+ping 172.27.88.101	PLNTFIBD01
+ping 172.27.88.109  PLORALABD01 - LABORATORIO
+ping 172.27.88.110	plswtbd01.banvenez.corp 
+
+ping 172.27.88.111	PLBDOPC01	BD OPICS Solicitado por: Rafael Lugo
+ping 172.27.88.120	PLGRANBD01	Base de Datos (Granja PosgretSQL)
+ping 172.27.88.129	PLBDCF01	BD Cyber 
+ping 172.27.88.131	PLBDHIST03
+ping 172.27.88.132	PLBDARCRED01	BD de ARCRED-500MD 
+
+ping 172.27.88.133	PLBDCEXP01	 BD Sistema de Control de Expedientes (CTLEXP)
+ping 172.27.88.134
+ping 172.27.88.135
+ping 172.27.88.136
+ping 172.27.88.137
+ping 172.27.88.138
+ping 172.27.88.139
+ping 172.27.88.140
