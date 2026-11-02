@@ -1,0 +1,305 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('B8WKUM6P420ZZ_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : b8wkum6p420zz_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/13/2026 15:16:07
+Completed at       : 08/13/2026 15:16:43
+
+-------------------------------------------------------------------------------
+Schema Name: METABASE
+SQL ID     : b8wkum6p420zz
+SQL Text   : -- Metabase:: userID: 286 queryType: MBQL queryHash:
+             10566d8d20084eb538ffc71da055ea0296ff14baa891bd30cc9c37e5ae3a040d
+             SELECT COUNT(*) "count" FROM "DBO"."COMPROMISOS_PAGOS_GLOBAL"
+             LEFT JOIN "DBO"."IMPUESTO" "Impuesto - Impuesto Comp Pago" ON
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO" =
+             "Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO" WHERE
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE" = :1 )
+             AND ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."REGION" = :2 ) AND
+             (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :3 )
+             OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :4
+             ))
+Bind Variables :
+ 1 -  (VARCHAR2(128)):CONTRIBUYENTE ORDINARIO
+ 2 -  (VARCHAR2(128)):REGION NOR ORIENTAL
+ 3 -  (VARCHAR2(2000)):PENDIENTE DE CANCELACION - SIN VENCER
+ 4 -  (VARCHAR2(2000)):PENDIENTE DE CANCELACION - VENCIDO
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (2 findings)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 81.55%)
+  ------------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            'b8wkum6p420zz_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 6 will improve its response time
+  81.56% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 10.66% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+2- Index Finding (see explain plans section below)
+--------------------------------------------------
+  The execution plan of this statement can be improved by creating one or more
+  indices.
+
+  Recommendation (estimated benefit: 99.26%)
+  ------------------------------------------
+  - Consider running the Access Advisor to improve the physical schema design
+    or creating the recommended index.
+    create index DBO.IDX$$_34ED0001 on DBO.COMPROMISOS_PAGOS_GLOBAL("REGION","S
+    ITUACION_COMPROMISO","TIPO_CONTRIBUYENTE");
+
+  Rationale
+  ---------
+    Creating the recommended indices significantly improves the execution plan
+    of this statement. However, it might be preferable to run "Access Advisor"
+    using a representative SQL workload as opposed to a single statement. This
+    will allow to get comprehensive index recommendations which takes into
+    account index maintenance overhead and additional space consumption.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 1466829750
+
+--------------------------------------------------------------------------------------------------
+| Id  | Operation             | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT      |                          |     1 |    66 |   234K  (2)| 00:00:10 |
+|   1 |  SORT AGGREGATE       |                          |     1 |    66 |            |          |
+|*  2 |   MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL |   153K|  9877K|   234K  (2)| 00:00:10 |
+--------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   2 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND
+              "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:4))
+
+2- Using New Indices
+--------------------
+Plan hash value: 3784722682
+
+-------------------------------------------------------------------------------------
+| Id  | Operation          | Name           | Rows  | Bytes | Cost (%CPU)| Time     |
+-------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT   |                |     1 |    66 |  1712   (1)| 00:00:01 |
+|   1 |  SORT AGGREGATE    |                |     1 |    66 |            |          |
+|   2 |   INLIST ITERATOR  |                |       |       |            |          |
+|*  3 |    INDEX RANGE SCAN| IDX$$_34ED0001 |   153K|  9877K|  1712   (1)| 00:00:01 |
+-------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   3 - access("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:4) AND
+              "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1)
+
+3- Using Parallel Execution
+---------------------------
+Plan hash value: 3763966778
+
+-----------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                 | Name                     | Rows  | Bytes | Cost (%CPU)| Time     |    TQ  |IN-OUT| PQ Distrib |
+-----------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT          |                          |     1 |    66 | 43257   (1)| 00:00:02 |        |      |            |
+|   1 |  SORT AGGREGATE           |                          |     1 |    66 |            |          |        |      |            |
+|   2 |   PX COORDINATOR          |                          |       |       |            |          |        |      |            |
+|   3 |    PX SEND QC (RANDOM)    | :TQ10000                 |     1 |    66 |            |          |  Q1,00 | P->S | QC (RAND)  |
+|   4 |     SORT AGGREGATE        |                          |     1 |    66 |            |          |  Q1,00 | PCWP |            |
+|   5 |      PX BLOCK ITERATOR    |                          | 69056 |  4450K| 43257   (1)| 00:00:02 |  Q1,00 | PCWC |            |
+|*  6 |       MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL | 69056 |  4450K| 43257   (1)| 00:00:02 |  Q1,00 | PCWP |            |
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   6 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:2 AND "COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTRIBUYENTE"=:1 AND
+              ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3 OR "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:4))
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  PARALLEL
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+Este reporte del **SQL Tuning Advisor** analiza la consulta generada por Metabase (`SQL_ID: b8wkum6p420zz`) que realiza un conteo sobre compromisos de pago.
+
+A continuación, te presento una explicación detallada, punto por punto, de cada sección del informe:
+
+---
+
+## 1. General Information Section (Información General)
+
+Esta sección detalla los metadatos básicos de la ejecución del asistente de optimización:
+
+* **Nombre de la Tarea:** `b8wkum6p420zz_tuning_task01`, ejecutada bajo el esquema `METABASE` con alcance exhaustivo (`COMPREHENSIVE`).
+* **Origen de la consulta:** Proviene de la herramienta de Business Intelligence **Metabase** (`userID: 286`).
+* **Estructura del SQL:** La sentencia ejecuta un `COUNT(*)` sobre la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`, haciendo un `LEFT JOIN` con la tabla `"DBO"."IMPUESTO"` y filtrando estrictamente por tres criterios de negocio:
+1. Tipo de contribuyente (`:1` = `CONTRIBUYENTE ORDINARIO`).
+2. Región (`:2` = `REGION NOR ORIENTAL`).
+3. Situación del compromiso (`:3` y `:4` = `PENDIENTE DE CANCELACION - SIN VENCER` o `PENDIENTE DE CANCELACION - VENCIDO`).
+
+
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró **dos alternativas** para mejorar el rendimiento de esta consulta:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que fuerce la ejecución paralela con un grado de paralelismo (`DOP`) de 6.
+* **Beneficio estimado:** Mejora el tiempo de respuesta en un **81.55%**.
+* **El costo oculto (Trade-off):** Aunque la consulta individual responderá más rápido, consumirá un **10.66% más de recursos globales** del sistema. Al acaparar múltiples procesos de CPU y E/S simultáneamente durante esos segundos, **podría degradar la concurrencia y afectar negativamente a otras consultas** que corran al mismo tiempo en la base de datos.
+
+### Hallazgo 2: Creación de un Índice (La solución estructural recomendada)
+
+* **Recomendación:** Crear un índice compuesto en la vista materializada:
+```sql
+create index DBO.IDX$$_34ED0001 on DBO.COMPROMISOS_PAGOS_GLOBAL("REGION","SITUACION_COMPROMISO","TIPO_CONTRIBUYENTE");
+
+```
+
+
+* **Beneficio estimado:** Una mejora monumental del **99.26%** en el rendimiento.
+* **Por qué es la mejor opción:** En lugar de forzar a la base de datos a usar más hardware (paralelismo), este índice permite acceder directamente a los datos filtrados sin desperdiciar recursos.
+
+---
+
+## 3. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte muestra tres escenarios distintos para entender cómo cambia el comportamiento de la base de datos:
+
+### Plan 1: Original (Sin optimización)
+
+* **Operación clave:** `MAT_VIEW ACCESS FULL` (Escaneo completo de la vista materializada).
+* **Métricas:** Tiene un **costo altísimo de 234,000** y un tiempo estimado de 10 segundos. Al no haber índices para los filtros de región, tipo y situación, la base de datos se ve obligada a leer absolutamente todos los registros de la vista materializada de principio a fin.
+
+### Plan 2: Usando el Nuevo Índice (`IDX$$_34ED0001`)
+
+* **Operación clave:** `INDEX RANGE SCAN` utilizando un `INLIST ITERATOR`.
+* **Métricas:** El costo se desploma de 234,000 a solo **1,712**, reduciendo el tiempo de ejecución a **1 segundo**.
+* **Interpretación:** Gracias al índice compuesto, la base de datos localiza de forma directa los apuntes que coinciden con la región y las situaciones de compromiso, eliminando por completo el escaneo masivo en disco.
+
+### Plan 3: Usando Ejecución Paralela
+
+* **Operación clave:** `PX COORDINATOR` y `MAT_VIEW ACCESS FULL` divididos en múltiples hilos de ejecución paralela (`Q1,00`).
+* **Métricas:** Costo de 43,257 y tiempo de 2 segundos. Aunque es más rápido que el original, sigue haciendo un escaneo completo, solo que repartido entre varios procesadores.
+
+---
+
+### Conclusión y Recomendación Final
+
+La recomendación clara de este reporte es **no utilizar paralelismo**, sino **crear el índice recomendado** (`DBO.IDX$$_34ED0001`). Al implementar ese índice, la consulta de Metabase pasará de tardar 10 segundos haciendo un escaneo completo a resolverse instantáneamente en menos de 1 segundo, consumiendo los mínimos recursos posibles y protegiendo la salud general de la base de datos.
+
+
+
+
+
+
+
+
+Este informe del **SQL Tuning Advisor** detalla el diagnóstico y las recomendaciones para optimizar la consulta ejecutada por Metabase (`SQL_ID: b8wkum6p420zz`).
+
+A continuación se presenta la explicación detallada, sección por sección:
+
+---
+
+## 1. General Information Section (Información General)
+
+* **`Tuning Task Name`:** `b8wkum6p420zz_tuning_task01` (Identificador único de la tarea de optimización en el esquema `METABASE`).
+* **`Scope` y `Workload Type`:** Análisis ejecutado bajo un alcance exhaustivo (`COMPREHENSIVE`) para una única sentencia SQL.
+* **`SQL Text`:** La consulta realiza un conteo total (`COUNT(*)`) sobre la vista materializada `"DBO"."COMPROMISOS_PAGOS_GLOBAL"`, realizando una combinación externa (`LEFT JOIN`) con la tabla de impuestos y aplicando filtros estrictos sobre tres columnas clave: tipo de contribuyente (`:1`), región (`:2`) y situación del compromiso (`:3` y `:4`).
+
+---
+
+## 2. Findings Section (Sección de Hallazgos)
+
+El optimizador encontró dos alternativas principales para mejorar el rendimiento:
+
+### Hallazgo 1: SQL Profile con Ejecución Paralela (`PX_PROFILE`)
+
+* **Recomendación:** Aceptar un perfil SQL que habilite la ejecución en paralelo con un grado de paralelismo (`DOP`) de 6.
+* **Impacto y contrapartida:** Aunque el tiempo de respuesta de esta consulta específica mejoraría en un **81.55%**, su consumo de recursos globales aumentaría en un **10.66%**. Al utilizar múltiples hilos de CPU y E/S simultáneamente, puede saturar los recursos del sistema y **degradar el rendimiento de las consultas concurrentes** que corran al mismo tiempo.
+
+### Hallazgo 2: Creación de un Índice (Recomendación Óptima)
+
+* **Recomendación:** Crear un índice compuesto en la vista materializada utilizando las columnas de los filtros:
+```sql
+CREATE INDEX DBO.IDX$$_34ED0001 ON DBO.COMPROMISOS_PAGOS_GLOBAL("REGION", "SITUACION_COMPROMISO", "TIPO_CONTRIBUYENTE");
+
+```
+
+
+* **Impacto:** Ofrece una mejora estimada del **99.26%** en el rendimiento sin la necesidad de incrementar drásticamente el consumo de hardware ni afectar la concurrencia general de la base de datos.
+
+---
+
+## 3. Explain Plans Section (Comparativa de Planes de Ejecución)
+
+El reporte contrasta tres comportamientos posibles del optimizador:
+
+### Plan 1: Original (Sin optimizar)
+
+* **Operación:** `MAT_VIEW ACCESS FULL` (Escaneo completo de la vista materializada).
+* **Métricas:** Presenta un **costo altísimo de 234,000** y un tiempo estimado de 10 segundos. Al carecer de un índice adecuado para los campos evaluados en el `WHERE`, la base de datos se ve obligada a leer cada registro de la vista desde el disco.
+
+### Plan 2: Usando el Nuevo Índice (`IDX$$_34ED0001`)
+
+* **Operación:** `INDEX RANGE SCAN` mediante un iterador de listas (`INLIST ITERATOR`).
+* **Métricas:** El costo se desploma drásticamente de 234,000 a solo **1,712**, reduciendo el tiempo de ejecución a **1 segundo**.
+* **Interpretación:** El índice permite localizar de forma directa y selectiva los datos que cumplen con la región, el tipo de contribuyente y las situaciones de compromiso, eliminando los costosos recorridos secuenciales.
+
+### Plan 3: Usando Ejecución Paralela
+
+* **Operación:** `PX COORDINATOR` y `MAT_VIEW ACCESS FULL` distribuidos en múltiples procesos en paralelo (`Q1,00`).
+* **Métricas:** Costo de 43,257 y tiempo de 2 segundos. Aunque acelera la ejecución de la consulta individual mediante fuerza bruta de procesamiento, sigue requiriendo un escaneo completo de los datos.

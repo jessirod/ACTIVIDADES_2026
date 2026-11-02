@@ -1,0 +1,136 @@
+--DROP TABLE PCP.ORDEN_DETAIL_NEW;
+
+CREATE TABLE PCP.ORDEN_DETAIL_NEW
+(
+  ID_ORDEN_DETAIL             NUMBER(18) DEFAULT PCP.ISEQ$$_78824.nextval NOT NULL,
+  ID_ORDEN                    NUMBER(18)        NOT NULL,
+  DATE_EXECUTED               DATE,
+  REVERT_ORDEN                NUMBER(18),
+  CLAVE_ORIGEN                NUMBER(2),
+  AGREEMENT                   NUMBER(1),
+  REVERT_ORDEN_ROOT           NUMBER(18),
+  MESSAGE_TYPE                VARCHAR2(3 BYTE),
+  REF_AVISO                   NUMBER(6),
+  MESSAGE_REFERENCE           NUMBER(1),
+  URI_FILE                    VARCHAR2(220 BYTE),
+  TOTAL_DEBIT_REJECTS         NUMBER(12),
+  TOTAL_CREDIT_REJECTS        NUMBER(12),
+  TOTAL_AMOUNT_ORI            NUMBER(20,2),
+  SUBCHANNEL                  NUMBER(1),
+  SIZE_FILE                   NUMBER(10),
+  SITE_NUMBER                 NUMBER(1),
+  SIP_NEG_NUMBER              NUMBER(8),
+  PROV_ID_DEBITS              NUMBER(18),
+  SENT_DATE                   DATE,
+  SEND_CHANNEL                NUMBER(2),
+  REQUEST_DATE                DATE,
+  NEG_NUMBER                  NUMBER(8),
+  LAST_MODIFICATION_DATE      DATE,
+  HOST_PROC_DATE              DATE,
+  PROV_ID_ORDEN_ROOT          NUMBER(18),
+  FORCE_DEBIT                 NUMBER(1),
+  FORCE_AUTHORIZATION         NUMBER(1),
+  BRANCH                      NUMBER(10),
+  BRANCH_DESC                 VARCHAR2(150 BYTE),
+  BUSINESS_STATUS_DESC        VARCHAR2(100 BYTE),
+  URI_FILE_APPROVED           VARCHAR2(150 BYTE),
+  URI_FILE_RSPHOST            VARCHAR2(150 BYTE),
+  MAIL                        VARCHAR2(150 BYTE),
+  MAIL_APROBADOR              VARCHAR2(150 BYTE),
+  IP                          VARCHAR2(150 BYTE),
+  CERTIFY_COMMENT             VARCHAR2(255 BYTE),
+  REVERSE_COMMENT             VARCHAR2(255 BYTE),
+  REPROCES_COMMENT            VARCHAR2(255 BYTE),
+  CUENTA_COMISIONES           VARCHAR2(20 BYTE),
+  ENVIO_RESPUESTA_TRANSPORTE  VARCHAR2(1 BYTE)  DEFAULT 'N'                   NOT NULL,
+  ENVIO_RESPUESTA_PASAJE      VARCHAR2(1 BYTE)  DEFAULT 'N'                   NOT NULL,
+  MENSAJEERROR                VARCHAR2(255 BYTE),
+  NUMERO_INTERCAMBIO          VARCHAR2(50 BYTE),
+  RESPUESTA_BANSTA            VARCHAR2(1 BYTE)  DEFAULT 'N',
+  RECORD_ENTRY_DATE           DATE     DEFAULT SYSDATE
+)
+TABLESPACE DATA
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+PARTITION BY RANGE (RECORD_ENTRY_DATE)
+INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
+(
+    PARTITION ORDEN_DETAIL_inicial VALUES LESS THAN (TO_DATE('01-01-2020', 'DD-MM-YYYY'))
+);
+
+
+ALTER TABLE PCP.ORDEN_DETAIL_NEW ADD (
+  PRIMARY KEY
+  (ID_ORDEN_DETAIL)
+  USING INDEX
+    TABLESPACE INDX
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                BUFFER_POOL      DEFAULT
+               )
+  ENABLE VALIDATE);
+
+
+-- DROP SEQUENCE PCP.ISEQ$$_78824;
+
+-- Sequence ISEQ$$_78824 is created automatically by Oracle for use with an Identity column
+
+
+CREATE INDEX PCP.ORDEN_DETAIL_NEW_N1 ON PCP.ORDEN_DETAIL_NEW
+(ID_ORDEN)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.ORDEN_DETAIL_NEW_N2 ON PCP.ORDEN_DETAIL_NEW
+("SEND_CHANNEL" DESC)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+--  There is no statement for index PCP.SYS_C008453.
+--  The object is created when the parent object is created.
+
+ALTER TABLE PCP.ORDEN_DETAIL_NEW ADD (
+  CONSTRAINT FK_ORDEN_U2 
+  FOREIGN KEY (ID_ORDEN) 
+  REFERENCES PCP.ORDEN (ID_ORDEN)
+  ON DELETE CASCADE
+  ENABLE NOVALIDATE);

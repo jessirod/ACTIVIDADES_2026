@@ -1,0 +1,36 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('6Q8FGK876UZFT_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : 6q8fgk876uzft_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/19/2026 10:22:17
+Completed at       : 08/19/2026 10:22:20
+
+-------------------------------------------------------------------------------
+Schema Name: ETL
+SQL ID     : 6q8fgk876uzft
+SQL Text   : INSERT INTO DBO.RELACION_FACTURA
+                                     (ID_RELACION_FACTURA,ID_EXPORTADOR_R_F,PE
+             RIODO_IMPOSITIVO_R_F,ID_PROVEEDOR_R_F,NUMERO_RELACION_FACTURA,FEC
+             HA_CARGA_RELACION_FACTURA,TIPO_OPERACION_R_F,TIPO_DOCUMENTO_R_F,R
+             IF_COMPRADOR_VENDEDOR_R_F,NUMERO_DOCUMENTO_R_F,NUMERO_CONTROL_DOC
+             UMENTO_R_F,NUMERO_DOC_COMPLEMENTO_R_F,INDICADOR_ERROR_R_F,DESCRIP
+             CION_ERROR_R_F,FECHA_DOCUMENTO_R_F,NUMERO_COMPROBANTE_R_F,DECLARA
+             CION_R_F,PORCENTAJE_ALICUOTA_R_F,NUMERO_EXPEDIENTE_R_F,ORIGEN_INF
+             ORMACION_R_F,NUMERO_DOCUMENTO_FORMAT_R_F,NUMERO_CONTRO_DOC_FORMAT
+             _R_F,MONTO_IVA_R_F_BS,MONTO_IVA_R_F,MONTO_EXENTO_IMPUESTO_BS,MONT
+             O_EXENTO_IMPUESTO,MONTO_DOCUMENTO_R_F_BS,MONTO_DOCUMENTO_R_F,BASE
+             _IMPONIBLE_R_F_BS,BASE_IMPONIBLE_R_F,PERIODO_IMPOSITIVO_PART)
+                                     VALUES (:1,:2,:3,:4,:5,:6,:7,:8,:9,:10,:1
+             1,:12,:13,:14,:15,:16,:17,:18,:19,:20,:21,:22,:23,:24,:25,:26,:27
+             ,:28,:29,:30,:31)
+
+-------------------------------------------------------------------------------
+There are no recommendations to improve the statement.
+
+-------------------------------------------------------------------------------

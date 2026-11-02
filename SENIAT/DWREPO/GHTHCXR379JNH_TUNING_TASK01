@@ -1,0 +1,207 @@
+DBMS_SQLTUNE.REPORT_TUNING_TASK('GHTHCXR379JNH_TUNING_TASK01')
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+GENERAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+Tuning Task Name   : ghthcxr379jnh_tuning_task01
+Tuning Task Owner  : SYS
+Workload Type      : Single SQL Statement
+Scope              : COMPREHENSIVE
+Time Limit(seconds): 20000
+Completion Status  : COMPLETED
+Started at         : 08/19/2026 11:20:20
+Completed at       : 08/19/2026 11:20:48
+
+-------------------------------------------------------------------------------
+Schema Name: SYS
+SQL ID     : ghthcxr379jnh
+SQL Text   : -- Metabase:: userID: 286 queryType: MBQL queryHash:
+             5970a9455fb8f0e100a3547377a9d11698cd55d85a937b96ebcc243280ea51fd
+             SELECT * FROM (SELECT "DBO"."COMPROMISOS_PAGOS_GLOBAL"."ID_COMPRO
+             MISO_PAGO" "ID_COMPROMISO_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."NUMERO_PORCION_COMP_PAGO"
+             "NUMERO_PORCION_COMP_PAGO", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."PER
+             IODO_COMPROMISO_PAGO" "PERIODO_COMPROMISO_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."ID_CONTRIBUYENTE"
+             "ID_CONTRIBUYENTE", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."FECHA_VENCI
+             MIENTO_COMP_PAGO" "FECHA_VENCIMIENTO_COMP_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."FECHA_RECAUDACION_COMP_PAGO"
+             "FECHA_RECAUDACION_COMP_PAGO", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."
+             CODIGO_FORMA_COMP_PAGO" "CODIGO_FORMA_COMP_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."NUMERO_DOCUMENTO_COMP_PAGO"
+             "NUMERO_DOCUMENTO_COMP_PAGO", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."D
+             ESCRIPCION_COMPROMISO_PAGO" "DESCRIPCION_COMPROMISO_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."FECHA_ORIGINAL_VENCIMIENTO_C_P"
+              "FECHA_ORIGINAL_VENCIMIENTO_C_P",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO"
+             "IMPUESTO_COMP_PAGO", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."FECHA_OPE
+             RACION_C_P" "FECHA_OPERACION_C_P",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."RIF_CONTRIBUYENTE_C_P"
+             "RIF_CONTRIBUYENTE_C_P", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."MONTO_
+             COMPROMISO_PAGO" "MONTO_COMPROMISO_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."FLAG_COMPROMISO"
+             "FLAG_COMPROMISO", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."MONEDA"
+             "MONEDA", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."MONTO_DOLARES"
+             "MONTO_DOLARES", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."ID_DECLARACION
+             _COMP_PAGO" "ID_DECLARACION_COMP_PAGO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."CODIGO_PLAN_UNICO_CTA_CP"
+             "CODIGO_PLAN_UNICO_CTA_CP", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."CON
+             TRIBUYENTE_APELLIDO" "CONTRIBUYENTE_APELLIDO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."CONTRIBUYENTE_NOMBRE"
+             "CONTRIBUYENTE_NOMBRE", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."CONTRIB
+             UYENTE_DV" "CONTRIBUYENTE_DV", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."
+             CONTRIBUYENTE_FEC_VENC" "CONTRIBUYENTE_FEC_VENC",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA" "DEPENDENCIA",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."DEPENDENCIA_SECTOR"
+             "DEPENDENCIA_SECTOR", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."REGION"
+             "REGION", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_PERSONALIDAD"
+             "TIPO_PERSONALIDAD", "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TIPO_CONTR
+             IBUYENTE" "TIPO_CONTRIBUYENTE", "DBO"."COMPROMISOS_PAGOS_GLOBAL".
+             "SITUACION_COMPROMISO" "SITUACION_COMPROMISO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."TASA_CAMBIO" "TASA_CAMBIO",
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."ACTIVIDAD_ECONOMICA"
+             "ACTIVIDAD_ECONOMICA", "Impuesto - Impuesto Comp
+             Pago"."NOMBRE_IMPUESTO" "Impuesto - Impuesto C_66924356", "Vm
+             Contribuyentes Reg_6ac69e93"."EMAIL_CONTRIBUYENTE" "Vm
+             Contribuyentes Reg_02b5da35" FROM
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL" LEFT JOIN "DBO"."IMPUESTO"
+             "Impuesto - Impuesto Comp Pago" ON
+             "DBO"."COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO" =
+             "Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO" LEFT JOIN
+             "DATOSCONTRIBUYENTE"."VM_CONTRIBUYENTES_REGION_NOR_ORIENTAL" "Vm
+             Contribuyentes Reg_6ac69e93" ON "DBO"."COMPROMISOS_PAGOS_GLOBAL".
+             "ID_CONTRIBUYENTE" = "Vm Contribuyentes
+             Reg_6ac69e93"."ID_CONTRIBUYENTE" WHERE
+             ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."REGION" = :1 ) AND
+             (("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :2 )
+             OR ("DBO"."COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO" = :3
+             )) ORDER BY "DBO"."COMPROMISOS_PAGOS_GLOBAL"."MONTO_COMPROMISO_PA
+             GO" DESC) WHERE rownum <= 2000
+
+-------------------------------------------------------------------------------
+FINDINGS SECTION (1 finding)
+-------------------------------------------------------------------------------
+
+1- SQL Profile Finding (see explain plans section below)
+--------------------------------------------------------
+  A potentially better execution plan was found for this statement.
+
+  Recommendation (estimated benefit: 83.62%)
+  ------------------------------------------
+  - Consider accepting the recommended SQL profile to use parallel execution
+    for this statement.
+    execute dbms_sqltune.accept_sql_profile(task_name =>
+            'ghthcxr379jnh_tuning_task01', task_owner => 'SYS', replace =>
+            TRUE, profile_type => DBMS_SQLTUNE.PX_PROFILE);
+
+  Executing this query parallel with DOP 6 will improve its response time
+  83.62% over the original plan. However, this will increase the statement's
+  resource consumption by an estimated 1.74% which may result in a reduction
+  of system throughput. Also, because these resources are consumed over a much
+  smaller duration, the response time of concurrent statements might be
+  negatively impacted.
+
+  The following data shows some sampled statistics for this SQL from the past
+  week and projected weekly values when parallel execution is enabled.
+
+                                 Past week sampled statistics for this SQL
+                                 -----------------------------------------
+  Number of executions                                                   0
+  Percent of total activity                                              0
+  Percent of samples with #Active Sessions > 2*CPU                       0
+  Weekly DB time (in sec)                                                0
+
+                              Projected statistics with Parallel Execution
+                              --------------------------------------------
+  Weekly DB time (in sec)                                                0
+
+-------------------------------------------------------------------------------
+ADDITIONAL INFORMATION SECTION
+-------------------------------------------------------------------------------
+- The optimizer could not merge the view at line ID 2 of the execution plan.
+  The optimizer cannot merge a view that contains an "ORDER BY" clause unless
+  the statement is a "DELETE" or an "UPDATE" and the parent query is the top
+  most query in the statement.
+- At least one important bind value was missing for this sql statement. The
+  accuracy of the advisor's analysis may depend on all important bind values
+  being supplied.
+
+-------------------------------------------------------------------------------
+EXPLAIN PLANS SECTION
+-------------------------------------------------------------------------------
+
+1- Original
+-----------
+Plan hash value: 784231163
+
+---------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                 | Name                                  | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |
+---------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT          |                                       |  2000 |  1898K|       |   303K  (1)| 00:00:12 |
+|*  1 |  COUNT STOPKEY            |                                       |       |       |       |            |          |
+|   2 |   VIEW                    |                                       |   312K|   289M|       |   303K  (1)| 00:00:12 |
+|*  3 |    SORT ORDER BY STOPKEY  |                                       |   312K|   166M|   174M|   303K  (1)| 00:00:12 |
+|*  4 |     HASH JOIN RIGHT OUTER |                                       |   312K|   166M|       |   272K  (2)| 00:00:11 |
+|   5 |      TABLE ACCESS FULL    | IMPUESTO                              |   159 |  7314 |       |     2   (0)| 00:00:01 |
+|*  6 |      HASH JOIN RIGHT OUTER|                                       |   312K|   152M|   131M|   272K  (2)| 00:00:11 |
+|   7 |       MAT_VIEW ACCESS FULL| VM_CONTRIBUYENTES_REGION_NOR_ORIENTAL |  3353K|    92M|       | 31688   (1)| 00:00:02 |
+|*  8 |       MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL              |   310K|   142M|       |   237K  (2)| 00:00:10 |
+---------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=2000)
+   3 - filter(ROWNUM<=2000)
+   4 - access("COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO"="Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO"(+))
+   6 - access("COMPROMISOS_PAGOS_GLOBAL"."ID_CONTRIBUYENTE"="Vm Contribuyentes Reg_6ac69e93"."ID_CONTRIBUYENTE"(+))
+   8 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:1 AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:2 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3))
+
+2- Using Parallel Execution
+---------------------------
+Plan hash value: 2231051826
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Id  | Operation                         | Name                                  | Rows  | Bytes |TempSpc| Cost (%CPU)| Time     |    TQ  |IN-OUT| PQ Distrib |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT                  |                                       |  2000 |  1898K|       | 49704   (1)| 00:00:02 |        |      |            |
+|*  1 |  COUNT STOPKEY                    |                                       |       |       |       |            |          |        |      |            |
+|   2 |   PX COORDINATOR                  |                                       |       |       |       |            |          |        |      |            |
+|   3 |    PX SEND QC (ORDER)             | :TQ10003                              |   312K|   289M|       | 49704   (1)| 00:00:02 |  Q1,03 | P->S | QC (ORDER) |
+|   4 |     VIEW                          |                                       |   312K|   289M|       | 49704   (1)| 00:00:02 |  Q1,03 | PCWP |            |
+|*  5 |      SORT ORDER BY STOPKEY        |                                       |   312K|   166M|   174M| 49704   (1)| 00:00:02 |  Q1,03 | PCWP |            |
+|   6 |       PX RECEIVE                  |                                       |  2000 |  1898K|       |            |          |  Q1,03 | PCWP |            |
+|   7 |        PX SEND RANGE              | :TQ10002                              |  2000 |  1898K|       |            |          |  Q1,02 | P->P | RANGE      |
+|*  8 |         SORT ORDER BY STOPKEY     |                                       |  2000 |  1898K|       |            |          |  Q1,02 | PCWP |            |
+|*  9 |          HASH JOIN RIGHT OUTER    |                                       |   312K|   166M|       | 49700   (1)| 00:00:02 |  Q1,02 | PCWP |            |
+|  10 |           PX RECEIVE              |                                       |  3353K|    92M|       |  5844   (1)| 00:00:01 |  Q1,02 | PCWP |            |
+|  11 |            PX SEND HASH           | :TQ10000                              |  3353K|    92M|       |  5844   (1)| 00:00:01 |  Q1,00 | P->P | HASH       |
+|  12 |             PX BLOCK ITERATOR     |                                       |  3353K|    92M|       |  5844   (1)| 00:00:01 |  Q1,00 | PCWC |            |
+|  13 |              MAT_VIEW ACCESS FULL | VM_CONTRIBUYENTES_REGION_NOR_ORIENTAL |  3353K|    92M|       |  5844   (1)| 00:00:01 |  Q1,00 | PCWP |            |
+|  14 |           PX RECEIVE              |                                       |   310K|   156M|       | 43848   (1)| 00:00:02 |  Q1,02 | PCWP |            |
+|  15 |            PX SEND HASH           | :TQ10001                              |   310K|   156M|       | 43848   (1)| 00:00:02 |  Q1,01 | P->P | HASH       |
+|* 16 |             HASH JOIN RIGHT OUTER |                                       |   310K|   156M|       | 43848   (1)| 00:00:02 |  Q1,01 | PCWP |            |
+|  17 |              TABLE ACCESS FULL    | IMPUESTO                              |   159 |  7314 |       |     2   (0)| 00:00:01 |  Q1,01 | PCWP |            |
+|  18 |              PX BLOCK ITERATOR    |                                       |   310K|   142M|       | 43846   (1)| 00:00:02 |  Q1,01 | PCWC |            |
+|* 19 |               MAT_VIEW ACCESS FULL| COMPROMISOS_PAGOS_GLOBAL              |   310K|   142M|       | 43846   (1)| 00:00:02 |  Q1,01 | PCWP |            |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Predicate Information (identified by operation id):
+---------------------------------------------------
+
+   1 - filter(ROWNUM<=2000)
+   5 - filter(ROWNUM<=2000)
+   8 - filter(ROWNUM<=2000)
+   9 - access("COMPROMISOS_PAGOS_GLOBAL"."ID_CONTRIBUYENTE"="Vm Contribuyentes Reg_6ac69e93"."ID_CONTRIBUYENTE"(+))
+  16 - access("COMPROMISOS_PAGOS_GLOBAL"."IMPUESTO_COMP_PAGO"="Impuesto - Impuesto Comp Pago"."CODIGO_IMPUESTO"(+))
+  19 - filter("COMPROMISOS_PAGOS_GLOBAL"."REGION"=:1 AND ("COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:2 OR
+              "COMPROMISOS_PAGOS_GLOBAL"."SITUACION_COMPROMISO"=:3))
+
+Hint Report (identified by operation id / Query Block Name / Object Alias):
+Total hints for statement: 1 (U - Unused (1))
+---------------------------------------------------------------------------
+
+   0 -  STATEMENT
+         U -  PARALLEL
+
+-------------------------------------------------------------------------------

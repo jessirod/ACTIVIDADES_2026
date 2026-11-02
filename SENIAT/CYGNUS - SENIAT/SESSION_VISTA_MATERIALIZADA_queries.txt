@@ -1,0 +1,247 @@
+.SELECT file_name, autoextensible, ROUND(bytes/1024/1024/1024,1) GB FROM DBA_TEMP_FILES;
+
+Esto es para monitorear el UILD de la MV 
+
+ 
+
+SELECT tablespace_name, ROUND(SUM(blocks)*8192/1024/1024/1024,2) GB_EN_USO FROM V$SORT_USAGE GROUP BY tablespace_name;
+
+Esto es para monitorear el BUILD de la MV 
+
+SELECT tablespace_name, ROUND(SUM(blocks)*8192/1024/1024/1024,2) GB_EN_USO FROM V$SORT_USAGE GROUP BY tablespace_name;
+
+.
+
+,.
+
+Con esto ajustamos en memoria los parametros para sacar el mayor provecho en el BUILD de la Vista
+
+ALTER SYSTEM SET parallel_max_servers = 48 SCOPE = MEMORY;
+
+ALTER SESSION ENABLE PARALLEL DDL; ALTER SESSION FORCE PARALLEL DDL PARALLEL 16; ALTER SESSION FORCE PARALLEL QUERY PARALLEL 16;
+
+Con esto creamos la VM con refresh FAST
+
+CREATE MATERIALIZED VIEW DBO.MV_DECLARACION_BASE TABLESPACE TS_D_MEDIUM NOLOGGING NOCACHE NOCOMPRESS BUILD IMMEDIATE REFRESH FAST ON DEMAND AS SELECT d.ID_CONTRIBUYENTE CONTRIBUYENTE, d.IMPUESTO_DECLARACION IMPUESTO, d.PERIODO_DECLARACION PERIODO, COUNT(*) CNT FROM DBO.DECLARACION d WHERE d.IMPUESTO_DECLARACION IN ('25','26','30') AND d.SITUACION_DECLARACION NOT IN ('00','31') GROUP BY d.ID_CONTRIBUYENTE, d.IMPUESTO_DECLARACION, d.PERIODO_DECLARACION;
+
+
+CREATE UNIQUE INDEX DBO.MV_DECLARACION_BASE_U1 ON DBO.MV_DECLARACION_BASE (CONTRIBUYENTE, IMPUESTO, PERIODO) TABLESPACE TS_I_MEDIUM NOLOGGING PARALLEL 8;
+
+ALTER MATERIALIZED VIEW DBO.MV_DECLARACION_BASE NOPARALLEL LOGGING; 
+
+ 
+
+ALTER INDEX DBO.MV_DECLARACION_BASE_U1 NOPARALLEL LOGGING;
+
+
+BEGIN DBMS_STATS.GATHER_TABLE_STATS('DBO','MV_DECLARACION_BASE', estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE, method_opt => 'FOR ALL COLUMNS SIZE AUTO', cascade => TRUE, degree => 8); END; /
+
+ALTER SYSTEM SET parallel_max_servers = 16 SCOPE = MEMORY;
+
+
+*****************************************
+
+SELECT owner, mview_name FROM ALL_BASE_TABLE_MVIEWS WHERE master = 'DECLARACION';
+.
+.
+.
+
+SELECT owner, mview_name, refresh_mode, refresh_method,
+       last_refresh_type, last_refresh_date, staleness
+  FROM ALL_MVIEWS
+ WHERE owner = 'DBO' AND mview_name LIKE 'MV_DECLARACION%';
+.
+.
+.
+
+SELECT table_name, num_rows, blocks, last_analyzed
+  FROM DBA_TABLES
+ WHERE owner = 'DBO' AND table_name IN ('MV_DECLARACION_BASE','DECLARACION');
+
+SELECT index_name, num_rows, distinct_keys, clustering_factor, status, last_analyzed
+  FROM DBA_INDEXES
+ WHERE owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE';
+.
+.
+.
+
+SELECT snapid, mowner, master, snapshot, snaptime
+  FROM SYS.SLOG$ WHERE master = 'DECLARACION';
+
+
+
+
+  *********************************************
+  **************************************************************
+
+
+
+  Pablo Vivas, [12/08/2026 at 09:40:17]:
+
+SELECT table_name, degree, num_rows, blocks, last_analyzed
+
+  FROM DBA_TABLES
+
+ WHERE owner = 'DBO' AND table_name IN ('MV_DECLARACION_BASE','DECLARACION');
+
+ 
+
+SELECT index_name, degree, status, num_rows, distinct_keys,
+
+       clustering_factor, last_analyzed
+
+  FROM DBA_INDEXES
+
+ WHERE owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE';
+
+ 
+
+SELECT sql_id, child_number, ROUND(elapsed_time/1e6,2) SEG,
+
+       buffer_gets, disk_reads, SUBSTR(sql_text,1,150) TXT
+
+  FROM V$SQL
+
+ WHERE UPPER(sql_text) LIKE '%MV_DECLARACION_BASE%'
+
+   AND UPPER(sql_text) NOT LIKE '%V$SQL%'
+
+ ORDER BY last_active_time DESC;
+
+ 
+
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR('&sql_id', &child_number, 'ALLSTATS LAST'));
+
+
+
+********************************
+*
+
+
+
+********************************************************
+**************************************************************************
+
+
+
+SELECT index_name, column_position, column_name
+  FROM DBA_IND_COLUMNS
+ WHERE index_owner = 'DBO' AND table_name = 'MV_DECLARACION_BASE'
+ ORDER BY index_name, column_position;
+.
+.
+BEGIN
+   DBMS_STATS.GATHER_TABLE_STATS ('DBO','MV_DECLARACION_BASE',
+      estimate_percent => 100, method_opt => 'FOR ALL COLUMNS SIZE AUTO',
+      cascade => TRUE, degree => 8, no_invalidate => FALSE);
+END;
+/
+.
+.
+ALTER MATERIALIZED VIEW DBO.MV_DECLARACION_BASE NOPARALLEL;
+
+BEGIN
+   FOR r IN (SELECT index_name FROM USER_INDEXES
+              WHERE table_name = 'MV_DECLARACION_BASE' AND degree <> '1') LOOP
+      EXECUTE IMMEDIATE 'ALTER INDEX ' || r.index_name || ' NOPARALLEL';
+   END LOOP;
+END;
+/
+
+Pablo Vivas 11:22 AM
+.
+.
+SELECT table_name, partitioning_type, partition_count, partitioning_key_count
+  FROM DBA_PART_TABLES WHERE owner = 'DBO' AND table_name = 'DECLARACION';
+
+SELECT name, column_name, column_position
+  FROM DBA_PART_KEY_COLUMNS WHERE owner = 'DBO' AND name = 'DECLARACION';
+
+DELETE FROM MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE';
+COMMIT;
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+
+SELECT capability_name, possible, related_text, SUBSTR(msgtxt,1,80) MSG
+  FROM MV_CAPABILITIES_TABLE
+ WHERE capability_name LIKE '%PCT%' OR capability_name LIKE 'REFRESH_FAST%'
+ ORDER BY capability_name;
+.
+.
+@?/rdbms/admin/utlxmv.sql
+
+Pablo Vivas 11:29 AM
+CREATE TABLE MV_CAPABILITIES_TABLE ( STATEMENT_ID VARCHAR2(30), MVOWNER VARCHAR2(30), MVNAME VARCHAR2(30), CAPABILITY_NAME VARCHAR2(30), POSSIBLE CHAR(1), RELATED_TEXT VARCHAR2(2000), RELATED_NUM NUMBER, MSGNO INTEGER, MSGTXT VARCHAR2(2000), SEQ NUMBER );
+.
+.
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+.
+.
+SELECT capability_name, possible, related_text, SUBSTR(msgtxt,1,100) MSG FROM MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE' ORDER BY capability_name;
+
+Pablo Vivas 11:34 AM
+current_schema=DBO
+
+Pablo Vivas 11:48 AM
+.
+.
+.
+SELECT owner, mview_name, detailobj_name, detail_partition_name, freshness FROM DBA_MVIEW_DETAIL_PARTITION WHERE mview_name = 'MV_DECLARACION_BASE' AND freshness <> 'FRESH';
+.
+.
+SELECT owner, mview_name, detailobj_name, detailobj_pct, num_fresh_pct_partitions, num_stale_pct_partitions FROM DBA_MVIEW_DETAIL_RELATIONS WHERE mview_name = 'MV_DECLARACION_BASE';
+.
+.
+.
+SELECT ' PARTITION ' || partition_name || ' VALUES (' || high_value || '),' FROM DBA_TAB_PARTITIONS WHERE table_owner = 'DBO' AND table_name = 'DECLARACION' ORDER BY partition_position;
+
+Pablo Vivas 12:00 PM
+.
+.
+.
+.
+DROP MATERIALIZED VIEW DBO.MV_DECLARACION_BASE;
+
+Pablo Vivas 12:05 PM
+ALTER SESSION ENABLE PARALLEL DDL; 
+ALTER SESSION FORCE PARALLEL DDL PARALLEL 8; 
+ALTER SESSION FORCE PARALLEL QUERY PARALLEL 8;
+
+ALTER SESSION ENABLE PARALLEL DDL; 
+ALTER SESSION FORCE PARALLEL DDL PARALLEL 8; 
+ALTER SESSION FORCE PARALLEL QUERY PARALLEL 8;
+.
+.
+.
+CREATE MATERIALIZED VIEW DBO.MV_DECLARACION_BASE
+   TABLESPACE TS_D_MEDIUM
+   NOLOGGING NOCACHE NOCOMPRESS
+   BUILD IMMEDIATE
+   REFRESH FAST ON DEMAND
+AS
+   SELECT d.ID_CONTRIBUYENTE      CONTRIBUYENTE,
+          d.IMPUESTO_DECLARACION  IMPUESTO,
+          d.PERIODO_DECLARACION   PERIODO,
+          COUNT(*)                CANTIDAD          
+     FROM DBO.DECLARACION d
+    WHERE d.IMPUESTO_DECLARACION IN ('25','26','30')
+      AND d.SITUACION_DECLARACION NOT IN ('00','31')
+   GROUP BY d.ID_CONTRIBUYENTE,
+            d.IMPUESTO_DECLARACION,
+            d.PERIODO_DECLARACION;
+.
+.
+v$px_session
+
+Pablo Vivas 12:11 PM
+DELETE FROM SYS.MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE'; COMMIT;
+.
+.
+EXEC DBMS_MVIEW.EXPLAIN_MVIEW('DBO.MV_DECLARACION_BASE');
+.
+.
+SELECT capability_name, possible, SUBSTR(msgtxt,1,90) MSG FROM SYS.MV_CAPABILITIES_TABLE WHERE mvname = 'MV_DECLARACION_BASE' AND capability_name LIKE 'REFRESH_FAST%';
+
+Pablo Vivas 12:21 PM
+.
+.
+/*+ FULL(x) PARALLEL(x 16) */

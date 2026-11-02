@@ -1,0 +1,57 @@
+spool sqltuning_osiris.lst
+
+SET LONG 1000000
+SET LONGCHUNKSIZE 1000000
+SET LINESIZE 200
+SET PAGESIZE 0
+SET TRIMSPOOL ON
+SET FEEDBACK OFF
+
+
+PROMPT "--------------------------1--------------------------------------------"
+select dbms_sqltune.report_tuning_task('0q8t5jtfvnj20_tuning_task1') from dual;
+
+PROMPT "--------------------------2--------------------------------------------"
+select dbms_sqltune.report_tuning_task('f2kta5pc14w3m_tuning_task1') from dual;
+
+PROMPT "--------------------------3--------------------------------------------"
+select dbms_sqltune.report_tuning_task('3kr0uc4gcthqw_tuning_task1') from dual;
+
+PROMPT "--------------------------4--------------------------------------------"
+select dbms_sqltune.report_tuning_task('9c4w6f89ca2rc_tuning_task1') from dual;
+
+PROMPT "--------------------------5--------------------------------------------"
+select dbms_sqltune.report_tuning_task('9wm9ynjvdznya_tuning_task1') from dual;
+
+PROMPT "--------------------------6--------------------------------------------"
+select dbms_sqltune.report_tuning_task('cr4k0um90nuqc_tuning_task1') from dual;
+
+PROMPT "--------------------------7--------------------------------------------"
+select dbms_sqltune.report_tuning_task('7f458sz8134fh_tuning_task1') from dual;
+
+PROMPT "--------------------------8--------------------------------------------"
+select dbms_sqltune.report_tuning_task('8h24t7pnjxgjc_tuning_task1') from dual;
+
+PROMPT "--------------------------9--------------------------------------------"
+select dbms_sqltune.report_tuning_task('57yhzcdjc71wy_tuning_task1') from dual;
+
+PROMPT "--------------------------10--------------------------------------------"
+select dbms_sqltune.report_tuning_task('3fuzprm640n1y_tuning_task1') from dual;
+
+PROMPT "--------------------------11--------------------------------------------"
+select dbms_sqltune.report_tuning_task('94013gg00mfnt_tuning_task1') from dual;
+
+PROMPT "--------------------------12--------------------------------------------"
+select dbms_sqltune.report_tuning_task('04c3r8pbn1tjc_tuning_task1') from dual;
+
+PROMPT "--------------------------13--------------------------------------------"
+select dbms_sqltune.report_tuning_task('b4jmru9wxunqy_tuning_task1') from dual;
+
+PROMPT "--------------------------14--------------------------------------------"
+select dbms_sqltune.report_tuning_task('267pa6yujgpmd_tuning_task1') from dual;
+
+PROMPT "--------------------------15--------------------------------------------"
+select dbms_sqltune.report_tuning_task('4nm42wpg27wmy_tuning_task1') from dual;
+
+
+spool off;

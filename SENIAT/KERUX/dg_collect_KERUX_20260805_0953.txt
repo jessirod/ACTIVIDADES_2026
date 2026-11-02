@@ -1,0 +1,430 @@
+============================================================================
+1. INSTANCIA, VERSION Y ROL
+============================================================================
+
+INSTANCE_NAM HOST_NAME                 VERSION      STATUS       STARTUP_TIME
+------------ ------------------------- ------------ ------------ --------------------
+KERUX        kerux_drs                 10.2.0.4.0   MOUNTED      16-JUL-2026 14:19:35
+Elapsed: 00:00:00.01
+
+NAME         DATABASE_ROLE      PROTECTION_MODE        PROTECTION_LEVEL       OPEN_MODE            FORCE_
+------------ ------------------ ---------------------- ---------------------- -------------------- ------
+KERUX        PHYSICAL STANDBY   MAXIMUM PERFORMANCE    MAXIMUM PERFORMANCE    MOUNTED              YES
+Elapsed: 00:00:00.00
+FLASHBACK_ON      : NO
+SWITCHOVER_STATUS : SESSIONS ACTIVE
+Elapsed: 00:00:00.05
+CDB (multitenant) : N/A (< 12c)
+Elapsed: 00:00:00.01
+
+============================================================================
+2. PARAMETROS DE DATA GUARD
+============================================================================
+
+PNAME                            PVALUE
+-------------------------------- ----------------------------------------------------------------------------------------------------------------------------------
+archive_lag_target               0
+db_file_name_convert
+db_unique_name                   KERUXDRS
+dg_broker_config_file1           /oracle1/app/10.2.0/dbs/dr1KERUXDRS.dat
+dg_broker_config_file2           /oracle1/app/10.2.0/dbs/dr2KERUXDRS.dat
+dg_broker_start                  TRUE
+fal_client                       (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=kerux_drs)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=KERUXDRS_XPT)(INSTANCE_
+                                 NAME=KERUX)(SERVER=dedicated)))
+
+fal_server                       (DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST=s02apker01)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=KERUX_XPT)(SERVER=dedi
+                                 cated)))
+
+log_archive_config               DG_CONFIG=(KERUX,KERUXDRS)
+log_archive_dest_1               location="/oradata/KERUX/oraarch1", valid_for=(ALL_LOGFILES,ALL_ROLES)
+log_archive_dest_3               location="/oradata/KERUX/archive_standby", valid_for=(STANDBY_LOGFILE,STANDBY_ROLE)
+log_archive_dest_state_1         ENABLE
+log_archive_dest_state_2         ENABLE
+log_archive_dest_state_3         ENABLE
+log_archive_dest_state_4         enable
+log_archive_dest_state_5         enable
+log_archive_dest_state_6         enable
+log_archive_dest_state_7         enable
+log_archive_dest_state_8         enable
+log_archive_dest_state_9         enable
+log_archive_max_processes        2
+log_archive_min_succeed_dest     1
+log_file_name_convert
+remote_login_passwordfile        EXCLUSIVE
+standby_file_management          AUTO
+Elapsed: 00:00:00.01
+
+============================================================================
+3. DESTINOS DE ARCHIVADO Y ERRORES DE TRANSPORTE
+============================================================================
+
+   DEST_ID DEST_NAME            STATUS    TYPE           DATABASE_MODE   RECOVERY_MODE           ERROR
+---------- -------------------- --------- -------------- --------------- ----------------------- --------------------------------------------------
+         1 LOG_ARCHIVE_DEST_1   VALID     PHYSICAL       MOUNTED-STANDBY MANAGED REAL TIME APPLY
+         3 LOG_ARCHIVE_DEST_3   VALID     PHYSICAL       MOUNTED-STANDBY MANAGED REAL TIME APPLY
+        11 STANDBY_ARCHIVE_DEST VALID     PHYSICAL       MOUNTED-STANDBY MANAGED REAL TIME APPLY
+Elapsed: 00:00:00.03
+
+   DEST_ID STATUS    TARGET  ARCHIVER   TRANSMIT_MOD AFF ERROR
+---------- --------- ------- ---------- ------------ --- --------------------------------------------------
+         3 VALID     LOCAL   ARCH       SYNCHRONOUS  NO
+        11 VALID     LOCAL   ARCH       SYNCHRONOUS  NO
+Elapsed: 00:00:00.00
+
+============================================================================
+4. SECUENCIAS: ARCHIVADAS Y APLICADAS (por thread)
+============================================================================
+--- Ultima secuencia archivada:
+
+   THREAD# ULTIMA_ARCHIVADA
+---------- ----------------
+         1            67290
+Elapsed: 00:00:00.02
+--- Ultima secuencia con APPLIED='YES':
+
+   THREAD# ULTIMA_APLICADA
+---------- ---------------
+         1           67290
+Elapsed: 00:00:00.02
+--- Secuencia actual del redo online:
+Elapsed: 00:00:00.00
+--- v$archive_gap:
+Elapsed: 00:00:00.37
+
+============================================================================
+5. PROCESOS DE TRANSPORTE Y APLICACION
+============================================================================
+--- v$managed_standby:
+
+PROCESS   STATUS       CLIENT_PRO    THREAD#  SEQUENCE#     BLOCK#
+--------- ------------ ---------- ---------- ---------- ----------
+ARCH      CLOSING      ARCH                1      67271     569345
+ARCH      CLOSING      ARCH                1      67290     987137
+MRP0      APPLYING_LOG N/A                 1      67291     878434
+RFS       IDLE         UNKNOWN             0          0          0
+RFS       IDLE         LGWR                1      67291     878442
+Elapsed: 00:00:00.00
+--- v$dataguard_process (solo 12.2+):
+N/A (version < 12.2)
+Elapsed: 00:00:00.01
+
+============================================================================
+6. LAG DE TRANSPORTE Y APLICACION (v$dataguard_stats, 10g+)
+============================================================================
+apply finish time           +00 00:00:00.0        day(2) to second(1) interval    05-AUG-2026 09:53:20
+apply lag                   +00 00:00:07          day(2) to second(0) interval    05-AUG-2026 09:53:20
+estimated startup time      14                    second                          05-AUG-2026 09:53:20
+standby has been open       N                     05-AUG-2026 09:53:20
+transport lag               +00 00:00:00          day(2) to second(0) interval    05-AUG-2026 09:53:20
+Elapsed: 00:00:00.05
+
+============================================================================
+7. ONLINE REDO LOGS Y STANDBY REDO LOGS
+============================================================================
+--- Online redo logs:
+
+   THREAD#     GROUP#         MB    MEMBERS STATUS
+---------- ---------- ---------- ---------- ----------------
+         1          1        512          2 CLEARING
+         1          2        512          2 CLEARING_CURRENT
+         1          3        512          2 CLEARING
+Elapsed: 00:00:00.00
+--- Standby redo logs:
+
+   THREAD#     GROUP#         MB STATUS           USED
+---------- ---------- ---------- ---------- ----------
+         1          4        512 ACTIVE      449762304
+         1          5        512 UNASSIGNED        512
+         1          6        512 UNASSIGNED        512
+Elapsed: 00:00:00.00
+
+============================================================================
+8. SWITCHES DE REDO POR HORA (ultimas 48h)
+============================================================================
+
+HORA                                                                                                          SWITCHES
+----------------------------------------------------------------------------------------------------------- ----------
+03-AUG 10:00                                                                                                         8
+03-AUG 11:00                                                                                                        13
+03-AUG 12:00                                                                                                         7
+03-AUG 13:00                                                                                                         4
+03-AUG 14:00                                                                                                         3
+03-AUG 15:00                                                                                                         5
+03-AUG 16:00                                                                                                         4
+03-AUG 17:00                                                                                                        11
+03-AUG 22:00                                                                                                         1
+04-AUG 08:00                                                                                                         5
+04-AUG 09:00                                                                                                         4
+04-AUG 10:00                                                                                                         7
+04-AUG 11:00                                                                                                         5
+04-AUG 12:00                                                                                                         4
+04-AUG 14:00                                                                                                         8
+04-AUG 15:00                                                                                                         1
+04-AUG 16:00                                                                                                         4
+05-AUG 08:00                                                                                                         1
+05-AUG 09:00                                                                                                         1
+Elapsed: 00:00:00.02
+
+============================================================================
+9. MENSAJES DE DATA GUARD ULTIMOS 3 DIAS (v$dataguard_status)
+============================================================================
+
+TIMESTAMP            SEVERITY      ERROR_CODE MESSAGE
+-------------------- ------------- ---------- ------------------------------------------------------------------------------------------------------------------------
+03-AUG-2026 11:30:05 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 11:30:13 Warning                0 Media Recovery Waiting for thread 1 sequence 67207 (in transit)
+03-AUG-2026 11:32:04 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:32:04 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 11:32:12 Warning                0 Media Recovery Waiting for thread 1 sequence 67208 (in transit)
+03-AUG-2026 11:45:41 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:45:41 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 11:45:53 Warning                0 Media Recovery Waiting for thread 1 sequence 67209 (in transit)
+03-AUG-2026 11:47:47 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:47:47 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 11:47:55 Warning                0 Media Recovery Waiting for thread 1 sequence 67210 (in transit)
+03-AUG-2026 11:49:05 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:49:05 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 11:49:13 Warning                0 Media Recovery Waiting for thread 1 sequence 67211 (in transit)
+03-AUG-2026 11:52:49 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:52:49 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 11:52:56 Warning                0 Media Recovery Waiting for thread 1 sequence 67212 (in transit)
+03-AUG-2026 11:56:50 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:56:50 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 11:57:02 Warning                0 Media Recovery Waiting for thread 1 sequence 67213 (in transit)
+03-AUG-2026 11:57:37 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:57:37 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 11:57:46 Warning                0 Media Recovery Waiting for thread 1 sequence 67214 (in transit)
+03-AUG-2026 11:59:16 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 11:59:16 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 11:59:25 Warning                0 Media Recovery Waiting for thread 1 sequence 67215 (in transit)
+03-AUG-2026 12:00:22 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:00:22 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 12:00:29 Warning                0 Media Recovery Waiting for thread 1 sequence 67216 (in transit)
+03-AUG-2026 12:05:22 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:05:22 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 12:05:25 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:05:27 Warning                0 RFS[1]: Successfully opened standby log 6: '/oradata/KERUX/redo_standby/redo06_standby.log'
+03-AUG-2026 12:05:28 Informational          0 Media Recovery Log /oradata/KERUX/archive_standby/KERUX_1_67217_869693207.arc
+03-AUG-2026 12:05:28 Warning                0 Media Recovery Waiting for thread 1 sequence 67218 (in transit)
+03-AUG-2026 12:05:31 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:05:31 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 12:05:31 Warning                0 Media Recovery Waiting for thread 1 sequence 67219 (in transit)
+03-AUG-2026 12:05:32 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:05:32 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 12:05:32 Informational          0 Media Recovery Log /oradata/KERUX/archive_standby/KERUX_1_67219_869693207.arc
+03-AUG-2026 12:05:32 Warning                0 Media Recovery Waiting for thread 1 sequence 67220 (in transit)
+03-AUG-2026 12:24:24 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:24:24 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 12:24:37 Warning                0 Media Recovery Waiting for thread 1 sequence 67221 (in transit)
+03-AUG-2026 12:25:57 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 12:25:57 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 12:26:05 Warning                0 Media Recovery Waiting for thread 1 sequence 67222 (in transit)
+03-AUG-2026 13:28:18 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 13:28:18 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 13:28:31 Warning                0 Media Recovery Waiting for thread 1 sequence 67223 (in transit)
+03-AUG-2026 13:29:42 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 13:29:42 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 13:29:49 Warning                0 Media Recovery Waiting for thread 1 sequence 67224 (in transit)
+03-AUG-2026 13:31:37 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 13:31:37 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 13:31:45 Warning                0 Media Recovery Waiting for thread 1 sequence 67225 (in transit)
+03-AUG-2026 13:50:24 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 13:50:25 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 13:50:37 Warning                0 Media Recovery Waiting for thread 1 sequence 67226 (in transit)
+03-AUG-2026 14:02:34 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 14:02:34 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 14:02:46 Warning                0 Media Recovery Waiting for thread 1 sequence 67227 (in transit)
+03-AUG-2026 14:05:38 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 14:05:38 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 14:05:46 Warning                0 Media Recovery Waiting for thread 1 sequence 67228 (in transit)
+03-AUG-2026 14:35:57 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 14:35:57 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 14:36:09 Warning                0 Media Recovery Waiting for thread 1 sequence 67229 (in transit)
+03-AUG-2026 15:02:25 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 15:02:25 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 15:02:37 Warning                0 Media Recovery Waiting for thread 1 sequence 67230 (in transit)
+03-AUG-2026 15:05:03 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 15:05:03 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 15:05:11 Warning                0 Media Recovery Waiting for thread 1 sequence 67231 (in transit)
+03-AUG-2026 15:23:21 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 15:23:21 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 15:23:34 Warning                0 Media Recovery Waiting for thread 1 sequence 67232 (in transit)
+03-AUG-2026 15:25:15 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 15:25:15 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 15:25:24 Warning                0 Media Recovery Waiting for thread 1 sequence 67233 (in transit)
+03-AUG-2026 15:27:16 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 15:27:16 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 15:27:25 Warning                0 Media Recovery Waiting for thread 1 sequence 67234 (in transit)
+03-AUG-2026 16:04:54 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 16:04:54 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 16:05:09 Warning                0 Media Recovery Waiting for thread 1 sequence 67235 (in transit)
+03-AUG-2026 16:06:26 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 16:06:26 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 16:06:34 Warning                0 Media Recovery Waiting for thread 1 sequence 67236 (in transit)
+03-AUG-2026 16:49:39 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 16:49:39 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 16:49:50 Warning                0 Media Recovery Waiting for thread 1 sequence 67237 (in transit)
+03-AUG-2026 16:55:12 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 16:55:12 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 16:55:26 Warning                0 Media Recovery Waiting for thread 1 sequence 67238 (in transit)
+03-AUG-2026 17:06:51 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:06:51 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:07:04 Warning                0 Media Recovery Waiting for thread 1 sequence 67239 (in transit)
+03-AUG-2026 17:13:37 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:13:37 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 17:13:49 Warning                0 Media Recovery Waiting for thread 1 sequence 67240 (in transit)
+03-AUG-2026 17:14:39 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:14:39 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:14:47 Warning                0 Media Recovery Waiting for thread 1 sequence 67241 (in transit)
+03-AUG-2026 17:16:06 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:16:06 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 17:16:14 Warning                0 Media Recovery Waiting for thread 1 sequence 67242 (in transit)
+03-AUG-2026 17:30:16 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:30:16 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:30:27 Warning                0 Media Recovery Waiting for thread 1 sequence 67243 (in transit)
+03-AUG-2026 17:31:58 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:31:58 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 17:32:06 Warning                0 Media Recovery Waiting for thread 1 sequence 67244 (in transit)
+03-AUG-2026 17:37:34 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:37:34 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:37:46 Warning                0 Media Recovery Waiting for thread 1 sequence 67245 (in transit)
+03-AUG-2026 17:38:40 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:38:40 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 17:38:48 Warning                0 Media Recovery Waiting for thread 1 sequence 67246 (in transit)
+03-AUG-2026 17:40:18 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:40:18 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:40:27 Warning                0 Media Recovery Waiting for thread 1 sequence 67247 (in transit)
+03-AUG-2026 17:44:03 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:44:03 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 17:44:12 Warning                0 Media Recovery Waiting for thread 1 sequence 67248 (in transit)
+03-AUG-2026 17:45:43 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 17:45:43 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+03-AUG-2026 17:45:50 Warning                0 Media Recovery Waiting for thread 1 sequence 67249 (in transit)
+03-AUG-2026 22:33:02 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+03-AUG-2026 22:33:02 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+03-AUG-2026 22:33:15 Warning                0 Media Recovery Waiting for thread 1 sequence 67250 (in transit)
+04-AUG-2026 08:31:53 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 08:31:53 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 08:32:06 Warning                0 Media Recovery Waiting for thread 1 sequence 67251 (in transit)
+04-AUG-2026 08:33:50 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 08:33:50 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 08:33:57 Warning                0 Media Recovery Waiting for thread 1 sequence 67252 (in transit)
+04-AUG-2026 08:40:54 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 08:40:54 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 08:41:06 Warning                0 Media Recovery Waiting for thread 1 sequence 67253 (in transit)
+04-AUG-2026 08:57:32 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 08:57:32 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 08:57:47 Warning                0 Media Recovery Waiting for thread 1 sequence 67254 (in transit)
+04-AUG-2026 08:59:02 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 08:59:02 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 08:59:10 Warning                0 Media Recovery Waiting for thread 1 sequence 67255 (in transit)
+04-AUG-2026 09:15:46 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 09:15:46 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 09:15:56 Warning                0 Media Recovery Waiting for thread 1 sequence 67256 (in transit)
+04-AUG-2026 09:25:27 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 09:25:27 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 09:25:40 Warning                0 Media Recovery Waiting for thread 1 sequence 67257 (in transit)
+04-AUG-2026 09:54:52 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 09:54:52 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 09:55:04 Warning                0 Media Recovery Waiting for thread 1 sequence 67258 (in transit)
+04-AUG-2026 09:59:41 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 09:59:41 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 09:59:50 Warning                0 Media Recovery Waiting for thread 1 sequence 67259 (in transit)
+04-AUG-2026 10:01:02 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:01:02 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 10:01:11 Warning                0 Media Recovery Waiting for thread 1 sequence 67260 (in transit)
+04-AUG-2026 10:17:32 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:17:32 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 10:17:45 Warning                0 Media Recovery Waiting for thread 1 sequence 67261 (in transit)
+04-AUG-2026 10:38:45 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:38:45 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 10:38:59 Warning                0 Media Recovery Waiting for thread 1 sequence 67262 (in transit)
+04-AUG-2026 10:40:12 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:40:12 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 10:40:23 Warning                0 Media Recovery Waiting for thread 1 sequence 67263 (in transit)
+04-AUG-2026 10:49:18 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:49:18 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 10:49:30 Warning                0 Media Recovery Waiting for thread 1 sequence 67264 (in transit)
+04-AUG-2026 10:50:54 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:50:54 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 10:51:03 Warning                0 Media Recovery Waiting for thread 1 sequence 67265 (in transit)
+04-AUG-2026 10:52:50 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 10:52:50 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 10:52:58 Warning                0 Media Recovery Waiting for thread 1 sequence 67266 (in transit)
+04-AUG-2026 11:08:38 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 11:08:38 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 11:09:01 Warning                0 Media Recovery Waiting for thread 1 sequence 67267 (in transit)
+04-AUG-2026 11:10:29 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 11:10:29 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 11:10:36 Warning                0 Media Recovery Waiting for thread 1 sequence 67268 (in transit)
+04-AUG-2026 11:25:38 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 11:25:38 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 11:25:50 Warning                0 Media Recovery Waiting for thread 1 sequence 67269 (in transit)
+04-AUG-2026 11:27:08 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 11:27:08 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 11:27:16 Warning                0 Media Recovery Waiting for thread 1 sequence 67270 (in transit)
+04-AUG-2026 11:29:11 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 11:29:11 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 11:29:20 Warning                0 Media Recovery Waiting for thread 1 sequence 67271 (in transit)
+04-AUG-2026 12:05:22 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 12:05:22 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 12:05:23 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 12:05:23 Warning                0 RFS[1]: Successfully opened standby log 6: '/oradata/KERUX/redo_standby/redo06_standby.log'
+04-AUG-2026 12:05:35 Informational          0 Media Recovery Log /oradata/KERUX/archive_standby/KERUX_1_67272_869693207.arc
+04-AUG-2026 12:05:35 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 12:05:35 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 12:05:35 Informational          0 Media Recovery Log /oradata/KERUX/archive_standby/KERUX_1_67273_869693207.arc
+04-AUG-2026 12:05:35 Warning                0 Media Recovery Waiting for thread 1 sequence 67274 (in transit)
+04-AUG-2026 12:05:36 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 12:05:36 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 12:05:36 Informational          0 Media Recovery Log /oradata/KERUX/archive_standby/KERUX_1_67274_869693207.arc
+04-AUG-2026 12:05:36 Warning                0 Media Recovery Waiting for thread 1 sequence 67275 (in transit)
+04-AUG-2026 14:18:11 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:18:11 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 14:18:28 Warning                0 Media Recovery Waiting for thread 1 sequence 67276 (in transit)
+04-AUG-2026 14:21:03 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:21:03 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 14:21:11 Warning                0 Media Recovery Waiting for thread 1 sequence 67277 (in transit)
+04-AUG-2026 14:22:54 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:22:54 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 14:23:02 Warning                0 Media Recovery Waiting for thread 1 sequence 67278 (in transit)
+04-AUG-2026 14:25:40 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:25:40 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 14:25:47 Warning                0 Media Recovery Waiting for thread 1 sequence 67279 (in transit)
+04-AUG-2026 14:27:31 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:27:31 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 14:27:40 Warning                0 Media Recovery Waiting for thread 1 sequence 67280 (in transit)
+04-AUG-2026 14:39:43 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:39:43 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 14:39:54 Warning                0 Media Recovery Waiting for thread 1 sequence 67281 (in transit)
+04-AUG-2026 14:41:25 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:41:25 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 14:41:32 Warning                0 Media Recovery Waiting for thread 1 sequence 67282 (in transit)
+04-AUG-2026 14:43:17 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 14:43:17 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 14:43:25 Warning                0 Media Recovery Waiting for thread 1 sequence 67283 (in transit)
+04-AUG-2026 15:58:23 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 15:58:23 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 15:58:35 Warning                0 Media Recovery Waiting for thread 1 sequence 67284 (in transit)
+04-AUG-2026 16:01:21 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 16:01:21 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 16:01:29 Warning                0 Media Recovery Waiting for thread 1 sequence 67285 (in transit)
+04-AUG-2026 16:04:34 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 16:04:34 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 16:04:43 Warning                0 Media Recovery Waiting for thread 1 sequence 67286 (in transit)
+04-AUG-2026 16:06:00 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 16:06:00 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+04-AUG-2026 16:06:08 Warning                0 Media Recovery Waiting for thread 1 sequence 67287 (in transit)
+04-AUG-2026 16:07:39 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+04-AUG-2026 16:07:39 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+04-AUG-2026 16:07:46 Warning                0 Media Recovery Waiting for thread 1 sequence 67288 (in transit)
+05-AUG-2026 08:41:26 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+05-AUG-2026 08:41:26 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+05-AUG-2026 08:41:37 Warning                0 Media Recovery Waiting for thread 1 sequence 67289 (in transit)
+05-AUG-2026 09:17:56 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+05-AUG-2026 09:17:56 Warning                0 RFS[1]: Successfully opened standby log 5: '/oradata/KERUX/redo_standby/redo05_standby.log'
+05-AUG-2026 09:18:09 Warning                0 Media Recovery Waiting for thread 1 sequence 67290 (in transit)
+05-AUG-2026 09:20:00 Informational          0 Primary database is in MAXIMUM PERFORMANCE mode
+05-AUG-2026 09:20:00 Warning                0 RFS[1]: Successfully opened standby log 4: '/oradata/KERUX/redo_standby/redo04_standby.log'
+05-AUG-2026 09:20:07 Warning                0 Media Recovery Waiting for thread 1 sequence 67291 (in transit)
+Elapsed: 00:00:00.02

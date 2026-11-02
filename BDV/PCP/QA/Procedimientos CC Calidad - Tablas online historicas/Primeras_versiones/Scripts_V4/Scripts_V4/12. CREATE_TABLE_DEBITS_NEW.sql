@@ -1,0 +1,202 @@
+--DROP TABLE PCP.DEBITS_NEW
+
+CREATE TABLE PCP.DEBITS_NEW
+(
+  ID_DEBITS                  NUMBER(18) DEFAULT PCP.ISEQ$$_78826.nextval NOT NULL,
+  ID_ORDEN                   NUMBER(18)         NOT NULL,
+  REFERENCE_NUMBER           NUMBER(20,2),
+  CUSTOMER_ID                VARCHAR2(20 BYTE),
+  RECORD_ENTRY_DATE          DATE               DEFAULT SYSDATE,
+  CUSTOMER_DESC              VARCHAR2(256 BYTE),
+  PROCESS_DATE               DATE,
+  ACCOUNT_NUMBER             VARCHAR2(20 BYTE),
+  ACCOUNT_TYPE               VARCHAR2(2 BYTE),
+  AMOUNT                     NUMBER(20,2),
+  CURRENCY                   VARCHAR2(3 BYTE),
+  PAYMENT_TYPE               VARCHAR2(3 BYTE),
+  IS_PAYROLL                 VARCHAR2(1 BYTE),
+  STATUS                     NUMBER(2)          DEFAULT 0,
+  BUSINESS_STATUS_CODE       VARCHAR2(8 BYTE),
+  MONTO_ACTUALIZADO          NUMBER(20,2)       DEFAULT 0,
+  VERIFICACION_SALDO         VARCHAR2(2 BYTE),
+  ID_DEBITS_ROOT             NUMBER(18),
+  RETRY                      NUMBER(4),
+  BUSINESS_STATUS_DESC       VARCHAR2(100 BYTE),
+  ID_CREDITS_REVERSO         NUMBER(18),
+  TOTAL_CREDITOS_RECHAZADOS  NUMBER(15),
+  TOTAL_CREDITOS_ACEPTADOS   NUMBER(15),
+  PAGO_POSTERIOR             VARCHAR2(1 BYTE),
+  SERIAL                     VARCHAR2(8 BYTE),
+  ES_TRANSPORT               NUMBER(2),
+  STATUS_COMIS_TRANSPORT     NUMBER(2),
+  COD_MENSAJE_OPS            VARCHAR2(6 BYTE),
+  OPS                        NUMBER(3),
+  DATE_UPDATE                DATE,
+  STATUS_PATRIA              VARCHAR2(1 BYTE),
+  ES_ACTULIZADO              NUMBER(2)
+)
+TABLESPACE DATA
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+PARTITION BY RANGE (PROCESS_DATE)
+INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
+(
+    PARTITION DEBITS_inicial VALUES LESS THAN (TO_DATE('01-01-2020', 'DD-MM-YYYY'))
+);
+
+
+ALTER TABLE PCP.DEBITS_NEW ADD (
+  PRIMARY KEY
+  (ID_DEBITS)
+  USING INDEX
+    TABLESPACE INDX
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                BUFFER_POOL      DEFAULT
+               )
+  ENABLE VALIDATE);
+
+
+-- DROP SEQUENCE PCP.ISEQ$$_78826;
+
+-- Sequence ISEQ$$_78826 is created automatically by Oracle for use with an Identity column
+
+
+CREATE INDEX PCP.DEBITS_NEW_N1 ON PCP.DEBITS_NEW
+(ID_DEBITS_ROOT)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N2 ON PCP.DEBITS_NEW
+(PAYMENT_TYPE)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N3 ON PCP.DEBITS_NEW
+(PAYMENT_TYPE, STATUS, BUSINESS_STATUS_CODE)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N4 ON PCP.DEBITS_NEW
+(PROCESS_DATE)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N5 ON PCP.DEBITS_NEW
+(ID_DEBITS, ID_ORDEN, CUSTOMER_ID, PROCESS_DATE)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N6 ON PCP.DEBITS_NEW
+(ID_ORDEN, ID_DEBITS, BUSINESS_STATUS_CODE)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+CREATE INDEX PCP.DEBITS_NEW_N7 ON PCP.DEBITS_NEW
+(ID_ORDEN)
+LOGGING
+TABLESPACE INDX
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           );
+
+--  There is no statement for index PCP.SYS_C008487.
+--  The object is created when the parent object is created.
+
+ALTER TABLE PCP.DEBITS_NEW ADD (
+  CONSTRAINT FK_ORDEN_U1 
+  FOREIGN KEY (ID_ORDEN) 
+  REFERENCES PCP.ORDEN (ID_ORDEN)
+  ON DELETE CASCADE
+  ENABLE NOVALIDATE);
