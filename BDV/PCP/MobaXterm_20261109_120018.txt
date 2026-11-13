@@ -1,0 +1,2477 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:2.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-11-07 ? ? 21:39.29 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sat Nov  7 15:32:30 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ ls -ltr
+total 7960
+-rw-r--r--   1 oracle12 oinstall     131 Sep 13  2019 local.profile
+-rw-r--r--   1 oracle12 oinstall     166 Sep 13  2019 local.cshrc
+-rw-r--r--   1 oracle12 oinstall     170 Sep 13  2019 local.login
+-rw-rw-r--   1 oracle12 oinstall   11376 Jan  7  2020 pcp2.lst
+-rw-rw-r--   1 oracle12 oinstall    1642 Aug  1  2020 pfile-jc.ora
+-rw-rw-r--   1 oracle12 asmadmin    1643 Aug  1  2020 pfile-fd.ora
+-rw-rw-r--   1 oracle12 oinstall       0 Sep  9  2020 oracle12
+-rw-rw-r--   1 oracle12 oinstall      24 Dec 19  2020 xx
+-rw-rw-r--   1 oracle12 oinstall    4023 Mar  5  2021 log.sql
+-rw-rw-r--   1 oracle12 oinstall    1179 Apr  9  2021 lista
+-rw-rw-r--   1 oracle12 oinstall   11303 Jun  2  2022 newname.sql
+-rw-rw-r--   1 oracle12 oinstall    3526 Jun  4  2022 renlog.sql
+-rw-r-----   1 oracle12 oinstall  327964 Aug  7  2022 Script2.sql
+-rw-rw-r--   1 oracle12 oinstall     849 Dec 20  2022 proces.sql
+-rw-r-----   1 oracle12 oinstall    1526 Dec 21  2022 PCP_DOMIC.DOMIC_GET_ACCOUNTS.sql
+-rw-rw-r--   1 oracle12 oinstall   36501 Dec 23  2022 script.sql
+-rw-r-----   1 oracle12 oinstall     983 Jan 11  2023 resource.sql
+-rwxrwxrwx   1 oracle12 oinstall    1545 Jul 17  2023 consulta.sh
+drwxrwxr-x   2 oracle12 oinstall      10 Jul 27  2023 STP
+drwxrwxr-x   2 oracle12 oinstall      12 Aug 10  2023 FD
+-rw-rw-r--   1 oracle12 oinstall   34268 Aug 27  2023 0105.lis
+-rw-------   1 oracle12 oinstall    1885 Oct 14  2023 nohup.out.old
+-rw-rw-r--   1 oracle12 oinstall     215 Oct 15  2023 stat.sql
+drwxrwxr-x   5 oracle12 oinstall      15 Nov 30  2023 SOLUTOR
+-rw-rw-r--   1 oracle12 oinstall    1378 Nov 30  2023 memoria.sh
+-rw-rw-r--   1 oracle12 oinstall     216 Nov 30  2023 consultaMm.sql
+-rw-rw-r--   1 oracle12 oinstall     731 Dec 27  2023 prueba_arc.cmd
+-rw-rw-r--   1 oracle12 oinstall     580 Dec 27  2023 rman_RESTORE.log
+-rw-rw-r--   1 oracle12 oinstall    7007 Dec 27  2023 archive_pcp.log
+-rw-rw-r--   1 oracle12 oinstall    1503 Jan  9  2024 kty.sql
+-rw-rw-r--   1 oracle12 oinstall   74224 Jan 16  2024 awrinfo.txt
+-rw-rw-r--   1 oracle12 oinstall   13957 Jan 21  2024 respaldos_post_sun2317p.txt
+-rw-rw-r--   1 oracle12 oinstall 2375766 Jan 22  2024 html.lst
+-rw-rw-r--   1 oracle12 oinstall     116 Jan 2spool.lst
+-rw-rw-r--   1 oracle12 oinstall   58584 Jan 24  2024 2.lst
+-rw-rw-r--   1 oracle12 oinstall     120 Jan 24  2024 afiedt.buf
+-rw-rw-r--   1 oracle12 oinstall      79 Feb  9  2024 prueba.sql
+-rw-rw-r--   1 oracle12 oinstall     566 Feb  9  2024 prueba.lst
+-rw-rw-r--   1 oracle12 oinstall     355 Feb  9  2024 stadist.sql
+-rw-rw-r--   1 oracle12 oinstall     256 Feb 10  2024 19_statistic_all.lst
+-rw-rw-r--   1 oracle12 oinstall   14634 Feb 15  2024 PCP_150224_awrinfo.txt
+-rw-rw-r--   1 oracle12 oinstall     796 Feb 15  2024 DEBITS_PAYMENT_TYPE.sql
+-rw-rw-r--   1 oracle12 oinstall    1566 Feb 20  2024 plsql.sql
+-rw-rw-r--   1 oracle12 oinstall    1133 Feb 28  2024 limit_rac.htm
+-rw-rw-r--   1 oracle12 oinstall     819 Feb 28  2024 ashq.lst
+-rw-rw-r--   1 oracle12 oinstall     509 Mar  9  2024 proclist.sql
+drwxrwxr-x   2 oracle12 oinstall      11 Mar 10  2024 evidencias_memoria_parche
+-rw-rw-r--   1 oracle12 oinstall    1551 Mar 19  2024 resize_data.sql
+-rw-rw-r--   1 oracle12 oinstall     592 Apr  4  2024 scritp_flush.sql
+-rw-rw-r--   1 oracle12 oinstall     384 Apr  4  2024 scritp_afterFlush.sql
+-rw-rw-r--   1 oracle12 oinstall    2528 May 24  2024 backups_view.sql
+-rw-rw-r--   1 oracle12 oinstall    1165 May 30  2024 compile.sql
+drwxrwxr-x   2 oracle12 oinstall       4 Aug  9  2024 caracteristicas_bd
+drwxrwxr-x   2 oracle12 oinstall       4 Aug 20  2024 CRQ000000028006
+-rw-rw-r--   1 oracle12 oinstall     379 Aug 27  2024 creation_Index_270824.sql
+drwxrwxr-x   2 oracle12 oinstall       5 Sep 28  2024 CDC27092024
+-rw-rw-r--   1 oracle12 oinstall   16859 Oct  3  2024 pprocedure_move_payroll_to_txmodel.sql
+-rw-r-----   1 oracle12 oinstall  130022 Oct 17  2024 DOMIC_UPDATE_RESP_CUENTAS_BDV_FROM_HOST.sql
+-rw-r-----   1 oracle12 oinstall   44984 Oct 17  2024 DOMIC_UPDATE_ALL_1.sql
+drwxrwxr-x   3 oracle12 oinstall       4 Nov  1  2024 CDC01112024kl
+drwxrwxr-x   2 oracle12 oinstall       3 Dec 20  2024 scripts1
+drwxrwxr-x   2 oracle12 oinstall       8 Feb  4  2025 CDC04022025
+drwxrwxr-x   2 oracle12 oinstall       3 Feb 28  2025 CDC20250228
+-rw-rw-r--   1 oracle12 oinstall    2253 Mar 18  2025 expl_plan.sql
+drwxrwxr-x   2 oracle12 oinstall       4 Apr  7  2025 CDC20250407
+drwxrwxr-x   2 oracle12 oinstall       5 Jul 16  2025 CRQ34121
+drwxrwxr-x   2 oracle12 oinstall       3 Jul 29  2025 CRQ34293
+drwxrwxr-x   2 oracle12 oinstall       5 Aug  6  2025 ADSI
+drwxrwxr-x   4 oracle12 oinstall       4 Sep 25  2025 cdc250925
+drwxrwxr-x   2 oracle12 oinstall       4 Sep 29  2025 cdc20250929
+-rw-rw-r--   1 oracle12 oinstall    1179 Nov  6  2025 long_operation.sql
+-rw-r-----   1 oracle12 oinstall   13661 Nov  7  2025 SP_ATOMO37.sql
+drwxrwxr-x   2 oracle12 oinstall       6 Nov 20  2025 CDC20112025
+-rw-rw-r--   1 oracle12 oinstall    2530 Nov 25  2025 trigger.sql
+drwxrwxr-x   2 oracle12 oinstall       6 Dec  4  2025 CDC20251204
+drwxrwxr-x   2 oracle12 oinstall       5 Dec 12  2025 CRQ38542
+drwxrwxr-x   2 oracle12 oinstall       7 Feb 19  2026 CC190226
+-rw-r-----   1 oracle12 oinstall   13950 Mar  9  2026 DOMIC_GEN_TARJETAS_OB.sql
+drwxrwxr-x   4 oracle12 oinstall       4 Mar 24  2026 CC2403
+drwxrwxr-x   3 oracle12 oinstall      14 Mar 25  2026 CC25032026ym
+drwxrwxr-x   4 oracle12 oinstall       4 Mar 27  2026 CC40072
+drwxrwxr-x   2 oracle12 oinstall       4 Mar 27  2026 CC40012
+-rw-r-----   1 oracle12 oinstall    8727 Mar 31  2026 GEN_DATA_CCE_EVEN_CAM_PARA.sql
+-rw-rw-r--   1 oracle12 oinstall   47798 May  6  2026 PKG_COLLETION_ONLINE.sql
+-rw-rw-r--   1 oracle12 oinstall    4084 May  6  2026 PKG_COLLETION_ONLINE_1.sql
+-rw-rw-r--   1 oracle12 oinstall   47798 May  6  2026 PKG_COLLETION_ONLINE_2.sql
+drwxrwxr-x   2 oracle12 oinstall       9 May 20 10:02 script
+-rw-rw-r--   1 oracle12 oinstall  144827 May 20 10:37 12_exec_homologacion_permisologia.sql
+drwxrwxr-x   2 oracle12 oinstall      45 May 27 16:34 AWR
+drwxrwxr-x   2 oracle12 oinstall       3 Jun  1 20:39 CDC20260601
+-rw-rw-r--   1 oracle12 oinstall    2572 Jul 13 14:23 script_KH.sql
+drwxrwxr-x   2 oracle12 oinstall       4 Aug 13 15:03 CRQ42200
+-rw-rw-r--   1 oracle12 oinstall    1083 Sep 23 16:24 ampliar_ts.sql
+drwxrwxr-x   5 oracle12 oinstall      25 Oct  4 07:37 CRQ_MIGRACIÓN_HISTORICO
+-rw-rw-r--   1 oracle12 oinstall    6116 Oct  5 10:46 Pro_t_add_lote_bk.sql
+-rw-rw-r--   1 oracle12 oinstall    6277 Oct  5 11:17 Pro_t_add_lote.sql
+-rw-rw-r--   1 oracle12 oinstall    2833 Oct  5 11:57 Monitoreo_indices.sql
+drwxrwxr-x  26 oracle12 oinstall     142 Nov  3 19:01 scripts
+-rw-rw-r--   1 oracle12 oinstall   21664 Nov  4 16:39 DOMIC_IMPORT_EDI_DIRDEB_3.sql
+-rw-r-----   1 oracle12 oinstall    4432 Nov  4 16:43 DOMIC_IMPORT_EDI_DIRDEB_3.sql.zip
+drwxrwxr-x   2 oracle12 oinstall       6 Nov  5 15:01 CC_05112026
+-rw-------   1 oracle12 oinstall  124651 Nov  6 11:36 nohup.out
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$ df -h
+Filesystem             Size   Used  Available Capacity  Mounted on
+rpool/ROOT/solaris_20012021
+                        49G   9.4G        13G    43%    /
+/devices                 0K     0K         0K     0%    /devices
+/dev                     0K     0K         0K     0%    /dev
+ctfs                     0K     0K         0K     0%    /system/contract
+proc                     0K     0K         0K     0%    /proc
+mnttab                   0K     0K         0K     0%    /etc/mnttab
+swap                   533G   1.0M       533G     1%    /system/volatile
+objfs                    0K     0K         0K     0%    /system/object
+sharefs                  0K     0K         0K     0%    /etc/dfs/sharetab
+rpool/ROOT/solaris_20012021/var
+                        49G   525M        13G     4%    /var
+fd                       0K     0K         0K     0%    /dev/fd
+swap                   533G    14M       533G     1%    /tmp
+rpool/VARSHARE          49G   1.3G        13G    10%    /var/share
+EMAGENT                 29G    31K        28G     1%    /EMAGENT
+EXPORTDB               245G    31K        58G     1%    /EXPORTDB
+ORACLE                  98G    31K        35G     1%    /ORACLE
+EMAGENT/emagent         29G   1.3G        28G     5%    /emagent
+rpool/export            49G    32K        13G     1%    /export
+rpool/export/home       49G   2.0G        13G    14%    /export/home
+rpool/export/home/addm
+                        49G   147K        13G     1%    /export/home/addm
+rpool/export/home/backup
+                        49G    35K        13G     1%    /export/home/backup
+rpool/export/home/ct17751
+                        49G    35K        13G     1%    /export/home/ct17751
+rpool/export/home/ct23538
+                        49G    35K        13G     1%    /export/home/ct23538
+rpool/export/home/ct23679
+                        49G   323K        13G     1%    /export/home/ct23679
+rpool/export/home/ct24371
+                        49G    35K        13G     1%    /export/home/ct24371
+rpool/export/home/ct24372
+                        49G    35K        13G     1%    /export/home/ct24372
+rpool/export/home/ct24566
+                        49G    35K        13G     1%    /export/home/ct24566
+rpool/export/home/dimsysp
+                        49G   660K        13G     1%    /export/home/dimsysp
+rpool/export/home/grid12
+                        49G   122K        13G     1%    /export/home/grid12
+rpool/export/home/nm04188
+                        49G    35K        13G     1%    /export/home/nm04188
+rpool/export/home/nm05669
+                        49G    35K        13G     1%    /export/home/nm05669
+rpool/export/home/nm09461
+                        49G    35K        13G     1%    /export/home/nm09461
+rpool/export/home/nm16966
+                        49G    35K        13G     1%    /export/home/nm16966
+rpool/export/home/nm20091
+                        49G    35K        13G     1%    /export/home/nm20091
+rpool/export/home/nm22241
+                        49G    35K        13G     1%    /export/home/nm22241
+rpool/export/home/nm22874
+                        49G    38K        13G     1%    /export/home/nm22874
+rpool/export/home/nm25361
+                        49G    35K        13G     1%    /export/home/nm25361
+rpool/export/home/nm25492
+                        49G    35K        13G     1%    /export/home/nm25492
+rpool/export/home/nm25818
+                        49G    35K        13G     1%    /export/home/nm25818
+rpool/export/home/nm26856
+                        49G    35K        13G     1%    /export/home/nm26856
+rpool/export/home/nm29003
+                        49G    35K        13G     1%    /export/home/nm29003
+rpool/export/home/nm29099
+                        49G    35K        13G     1%    /export/home/nm29099
+rpool/export/home/nm29723
+                        49G    35K        13G     1%    /export/home/nm29723
+rpool/export/home/nm31095
+                        49G    37K        13G     1%    /export/home/nm31095
+rpool/export/home/nm32082
+                        49G   298K        13G     1%    /export/home/nm32082
+rpool/export/home/nm32287
+                        49G    35K        13G     1%    /export/home/nm32287
+rpool/export/home/nm33342
+                        49G    37K        13G     1%    /export/home/nm33342
+rpool/export/home/nm33690
+                        49G    35K        13G     1%    /export/home/nm33690
+rpool/export/home/nm34670
+                        49G    35K        13G     1%    /export/home/nm34670
+rpool/export/home/nm35706
+                        49G    38K        13G     1%    /export/home/nm35706
+rpool/export/home/nm36398
+                        49G    35K        13G     1%    /export/home/nm36398
+rpool/export/home/nm36871
+                        49G    35K        13G     1%    /export/home/nm36871
+rpool/export/home/nm36961
+                        49G    35K        13G     1%    /export/home/nm36961
+rpool/export/home/nm37503
+                        49G    47K        13G     1%    /export/home/nm37503
+rpool/export/home/nm38144
+                        49G    35K        13G     1%    /export/home/nm38144
+rpool/export/home/nm38549
+                        49G    35K        13G     1%    /export/home/nm38549
+rpool/export/home/nm39405
+                        49G    35K        13G     1%    /export/home/nm39405
+rpool/export/home/nm40465
+                        49G    36K        13G     1%    /export/home/nm40465
+rpool/export/home/nm40485
+                        49G    35K        13G     1%    /export/home/nm40485
+rpool/export/home/nm42166
+                        49G    36K        13G     1%    /export/home/nm42166
+rpool/export/home/oracle
+                        49G   273M        13G     3%    /export/home/oracle
+rpool/export/home/oracle12
+                        49G   139M        13G     2%    /export/home/oracle12
+EXPORTDB/exportdb      245G   187G        58G    77%    /exportdb
+ORACLE/oracle           98G    63G        35G    64%    /oracle
+rpool                   49G    73K        13G     1%    /rpool
+swappool                63G    31K       632M     1%    /swappool
+rpool/VARSHARE/zones    49G    31K        13G     1%    /system/zones
+rpool/VARSHARE/pkg      49G    32K        13G     1%    /var/share/pkg
+rpool/VARSHARE/pkg/repositories
+                        49G    31K        13G     1%    /var/share/pkg/repositories
+HISTORICO              488G    31K       354G     1%    /HISTORICO
+HISTORICO/historico    488G   134G       354G    28%    /historico
+172.27.56.157:/migracion2/
+                       7.6T   5.5T       2.1T    73%    /migracion2
+oracle12@sun2317p:/oracle12$ cd /exportdb/
+oracle12@sun2317p:/exportdb$
+oracle12@sun2317p:/exportdb$ ls -ltr
+total 6011675
+drwxrwxrwx   4 grid12   oinstall       7 Oct  5  2017 26625494
+-rw-r-----   1 oracle12 oinstall 2910846976 Oct 23  2023 CCL_PAY_TRANSACTION_HISTORICO.dmp
+-rw-rw-r--   1 oracle12 oinstall    5248 Jan  3  2024 awr-generator.sql
+-rw-rw-r--   1 oracle12 oinstall    3116 Jan  3  2024 awr-generate.sql
+-rwxr-xr-x   1 oracle12 oinstall   11407 Jan  3  2024 dbs_gawrr.sh
+drwxrwxr-x   2 oracle12 oinstall      13 Jan 19  2024 prueba_archive
+-rw-rw-r--   1 oracle12 oinstall 1811855 Feb 21  2024 PCP_21_FEB_2024_0800_0815_41069_41070.html
+-rw-rw-r--   1 oracle12 oinstall 1802885 Feb 21  2024 PCP_21_FEB_2024_0815_0830_41070_41071.html
+-rw-rw-r--   1 oracle12 oinstall 1874644 Feb 21  2024 PCP_21_FEB_2024_0830_0845_41071_41072.html
+-rw-rw-r--   1 oracle12 oinstall 2714526 Feb 21  2024 PCP_21_FEB_2024_0845_0901_41072_41073.html
+-rw-rw-r--   1 oracle12 oinstall 2746625 Feb 21  2024 PCP_21_FEB_2024_0901_0915_41073_41074.html
+-rw-rw-r--   1 oracle12 oinstall 2746518 Feb 21  2024 PCP_21_FEB_2024_0915_0930_41074_41075.html
+-rw-rw-r--   1 oracle12 oinstall 2714734 Feb 21  2024 PCP_21_FEB_2024_0930_0945_41075_41076.html
+drwxrwxr-x   5 oracle12 oinstall       5 Mar  1  2024 PCP
+-rwxrwxr-x   1 oracle12 oinstall 83526824 Mar  9  2024 p6880880_122010_SOLARIS64.zip
+-rwxrwxr-x   1 oracle12 oinstall 61027097 Mar  9  2024 p26625494_122010_SOLARIS64.zip
+drwxrwxr-x   2 oracle12 oinstall       6 Mar  9  2024 backups_binarios
+-rw-rw-r--   1 oracle12 oinstall 1562939 Mar 14  2024 PCP_14_MAR_2024_0845_0900_43157_43158.html
+-rw-rw-r--   1 oracle12 oinstall 1755125 Mar 14  2024 PCP_14_MAR_2024_0900_0915_43158_43159.html
+drwxrwxr-x   2 oracle12 oinstall       9 Dec  6  2025 AWR
+oracle12@sun2317p:/exportdb$ cd ..
+oracle12@sun2317p:/$
+oracle12@sun2317p:/$ cd /migracion2/
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$ ls -ltr
+total 1071
+-rwxrwxrwx   1 54321    54321       1178 Aug 25  2025 long_op.sql
+-rwxrwxrwx   1 oracle12 oinstall     316 Aug 26  2025 PARFILE_PAGOFH.par
+-rwxrwxrwx   1 oracle12 oinstall     236 Sep  2  2025 PARFILE_TABLAS_DMY.par
+-rwxrwxrwx   1 oracle12 oinstall   68055 Sep  2  2025 EXP_REG_LOG_Y_MOV_DMY.log
+-rwxrwxrwx   1 oracle12 oinstall  174854 Sep 11  2025 expdp_260825.log
+-rwxrwxrwx   1 oracle12 oinstall     347 Sep 11  2025 IMP_PARFILE_PAGOFH.par
+-rwxrwxrwx   1 54321    54321        299 Sep 18  2025 IMP_BDVX_REGISTRO_LOG.par
+-rw-r--r--   1 54321    54321        214 Sep 18  2025 afiedt.buf
+-rwxrwxrwx   1 54321    54321        313 Sep 18  2025 IMP_BDVX_REGISTRO_MOVIMIENTO_DIVISAS.par
+-rwxrwxrwx   1 54321    54321        454 Sep 20  2025 IMP_BDVX_LOG_NOTIFICACIONES.par
+-rw-r--r--   1 54321    54329      24062 Sep 20  2025 impdp_260825.log
+drwxrwxrwx   2 54321    54321         39 Jan 28  2026 BDVRELP
+drwxrwxrwx   2 54321    54321         20 Mar 16  2026 PCPH
+drwxrwxrwx   6 54321    54321          8 Mar 27  2026 REST_MOMA
+drwxrwxrwx   3 54323    54321        144 Apr  6  2026 BDVNETH
+drwxrwxrwx   2 oracle12 oinstall       3 May  7  2026 BK_TABLAS_DMY
+drwxrwxrwx   2 oracle12 oinstall       2 May  7  2026 PAGOFP_2023
+drwxrwxrwx   2 oracle12 oinstall      47 May 11  2026 PCP_restore2025
+drwxrwxrwx   2 54321    54321         14 May 21 15:33 BACKUP_PCPD_TABLES
+drwxrwxrwx   2 54321    54321          2 Jul 14 15:44 PCP_DOMIC_2026
+-rwxrwxrwx   1 54321    54321       9217 Jul 17 12:20 DDL_FALTANTES.sql
+drwxrwxrwx   4 oracle12 oinstall      23 Aug 11 15:27 REGCHQ_GRUPICIS
+drwxrwxrwx   2 oracle12 oinstall      29 Sep 10 16:08 PCP_2026
+drwxrwxrwx   2 oracle   oinstall      25 Sep 23 09:59 INTRNET_MIGRACION
+drwxrwxrwx   2 54321    54321         12 Sep 30 09:55 PCPD
+drwxrwxrwx   2 oracle12 oinstall      57 Oct  5 17:05 PCP_HIST
+drwxrwxrwx   2 oracle12 oinstall      11 Oct 22 12:55 DOMIC_EXPORT
+drwxrwxrwx   4 oracle12 oinstall       5 Oct 23 10:10 MIGRACION_SC
+drwxrwxrwx   2 13005    oinstall      14 Oct 24 10:33 SWATCHDB
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$ cd PCP
+-bash: cd: PCP: No such file or directory
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$ cd PCP_2026
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 1541628737
+-rwxrwxrwx   1 oracle12 oinstall     179 May 28 17:14 01_parfile_EXP_FULLL_DOMIC.par
+-rwxrwxrwx   1 oracle12 asmadmin 596730224640 May 28 18:10 EXP_FULLL_DOMIC_01.dmp
+-rwxrwxrwx   1 oracle12 asmadmin   61722 May 28 18:10 EXP_FULLL_DOMIC.log
+-rwxrwxrwx   1 oracle12 oinstall   59767 Jun  1 10:06 nohup.out_bk010626
+-rwxrwxrwx   1 oracle12 asmadmin 15101116416 Jul  9 11:07 EXPORT_PCP_20260709_12.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 18587361280 Jul  9 11:07 EXPORT_PCP_20260709_13.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 18063577088 Jul  9 11:07 EXPORT_PCP_20260709_10.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 18040995840 Jul  9 11:07 EXPORT_PCP_20260709_11.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 17466404864 Jul  9 11:07 EXPORT_PCP_20260709_14.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 17971834880 Jul  9 11:08 EXPORT_PCP_20260709_15.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 2428694528 Jul  9 11:08 EXPORT_PCP_20260709_05.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 10693337088 Jul  9 11:08 EXPORT_PCP_20260709_03.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 2978562048 Jul  9 11:08 EXPORT_PCP_20260709_02.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6656086016 Jul  9 11:08 EXPORT_PCP_20260709_04.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 2997886976 Jul  9 11:08 EXPORT_PCP_20260709_07.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 2263744512 Jul  9 11:08 EXPORT_PCP_20260709_16.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 18347220992 Jul  9 11:08 EXPORT_PCP_20260709_08.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 15936258048 Jul  9 11:09 EXPORT_PCP_20260709_06.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 20521377792 Jul  9 11:09 EXPORT_PCP_20260709_09.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 3930071040 Jul  9 11:09 EXPORT_PCP_20260709_01.dmp
+-rwxrwxrwx   1 oracle12 asmadmin   26299 Jul  9 11:09 EXPORT_PCP.log
+-rw-r--r--   1 54321    54329      37704 Jul 11 10:00 IMP_SCHEMA_PCP.LOG
+-rw-r--r--   1 54321    54321        452 Jul 14 15:53 IMP_SCHEMA_DOMIC.par
+-rw-r--r--   1 54321    54329      67023 Jul 16 18:43 IMP_SCHEMA_DOMIC.LOG
+-rw-------   1 54321    54321      84208 Jul 16 18:44 nohup.out
+-rw-r-----   1 oracle12 asmadmin 13803520 Sep 10 16:09 metadata_esquema_pcp.dmp
+-rw-r--r--   1 oracle12 asmadmin    2605 Sep 10 16:09 export_metadata.log
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ cd ..
+oracle12@sun2317p:/migracion2$ cd MIGRACION_SC
+oracle12@sun2317p:/MIGRACION_SC$ ls -ltr
+total 222
+-rw-rw-r--   1 oracle12 oinstall   10153 Oct  7 12:21 Tablas_existentes_PCP.txt
+drwxrwxrwx   2 oracle12 oinstall      18 Oct 23 10:58 BACKUP_TABLES_OLD
+drwxrwxrwx   6 oracle12 oinstall      55 Nov  7 17:24 PCP_2026
+oracle12@sun2317p:/MIGRACION_SC$ cd PCP_2026/
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 520538993
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321        612 Nov  4 16:10 CREACION_CONSTRAINTS.sh
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin 21008015360 Nov  6 11:33 EXP_SCHEMA_PCP_11.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21378142208 Nov  6 11:33 EXP_SCHEMA_PCP_09.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21378056192 Nov  6 11:33 EXP_SCHEMA_PCP_14.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21388984320 Nov  6 11:33 EXP_SCHEMA_PCP_10.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21366493184 Nov  6 11:33 EXP_SCHEMA_PCP_17.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21398372352 Nov  6 11:33 EXP_SCHEMA_PCP_12.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21430095872 Nov  6 11:33 EXP_SCHEMA_PCP_13.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 21731508224 Nov  6 11:33 EXP_SCHEMA_PCP_15.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 7008595968 Nov  6 11:35 EXP_SCHEMA_PCP_16.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6646439936 Nov  6 11:35 EXP_SCHEMA_PCP_02.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 5945757696 Nov  6 11:35 EXP_SCHEMA_PCP_06.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6930522112 Nov  6 11:36 EXP_SCHEMA_PCP_05.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6003351552 Nov  6 11:36 EXP_SCHEMA_PCP_20.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 22230081536 Nov  6 11:36 EXP_SCHEMA_PCP_08.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 5575802880 Nov  6 11:36 EXP_SCHEMA_PCP_03.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 7493750784 Nov  6 11:36 EXP_SCHEMA_PCP_19.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6314115072 Nov  6 11:36 EXP_SCHEMA_PCP_01.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6598373376 Nov  6 11:36 EXP_SCHEMA_PCP_07.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 6704242688 Nov  6 11:36 EXP_SCHEMA_PCP_04.dmp
+-rwxrwxrwx   1 oracle12 asmadmin 7777128448 Nov  6 11:36 EXP_SCHEMA_PCP_18.dmp
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321      15223 Nov  6 12:17 CREACION_INDICES.txt
+-rw-r--r--   1 54321    54321       7451 Nov  6 12:23 CREACION_CONSTRAINTS.txt
+-rw-r--r--   1 54321    54321       9096 Nov  6 12:37 CREACION_INDICES_.txt
+-rw-r--r--   1 54321    54321        137 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_02.txt
+-rw-r--r--   1 54321    54321        178 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_01.txt
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+drwxrwxrwx   2 54321    54321         12 Nov  7 17:20 txt
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+oracle12@sun2317p:/PCP_2026$ cat CORRER_ESTADISTICAS.sql
+spool /migracion2/MIGRACION_SC/PCP_2026/LOGS/ESTADISTICAS_PCP.txt
+
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Gathering statistics for PCPH schema...');
+  DBMS_STATS.GATHER_SCHEMA_STATS(
+    ownname => 'PCP',
+    estimate_percent => DBMS_STATS.AUTO_SAMPLE_SIZE,
+    method_opt => 'FOR ALL COLUMNS SIZE 1',
+    cascade => TRUE,
+    degree => 20,
+    NO_INVALIDATE => FALSE
+  );
+  COMMIT;
+  DBMS_OUTPUT.PUT_LINE('PCP');
+END;
+/
+
+spool off
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ timed out waiting for input: auto-logout
+Connection to sun2317p closed.
+                                                                                                                                                                                                                                       ?
+
+ ? 2026-11-07 ? ? 21:48.53 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sat Nov  7 21:39:20 2026 from 172.18.68.161
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$ ps -fea | grep pmon
+  grid12   2607      1   0   Jul 20 ?          55:00 asm_pmon_+ASM
+oracle12 174075      1   0   Nov 04 ?         546:31 ora_pmon_PCP
+oracle12 144056 143957   0 22:01:52 pts/2       0:00 grep pmon
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$ sqlplus / as sysydba
+
+SQL*Plus: Release 12.2.0.1.0 Production
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Use SQL*Plus to execute SQL, PL/SQL and SQL*Plus statements.
+
+Usage 1: sqlplus -H | -V
+
+    -H             Displays the SQL*Plus version and the
+                   usage help.
+    -V             Displays the SQL*Plus version.
+
+Usage 2: sqlplus [ [<option>] [{logon | /nolog}] [<start>] ]
+
+  <option> is: [-AC] [-C <version>] [-L] [-M "<options>"] [-NOLOGINTIME] [-R <level>]
+               [-S]
+
+    -AC            Enable Application Continuity.
+    -C <version>   Sets the compatibility of affected commands to the
+                   version specified by <version>.  The version has
+                   the form "x.y[.z]".  For example, -C 10.2.0
+    -L             Attempts to log on just once, instead of
+                   reprompting on error.
+    -M "<options>" Sets automatic HTML or CSV markup of output.  The options
+                   have the form:
+                   {HTML html_options|CSV csv_options}
+                   See SQL*Plus User's Guide for detailed HTML and CSV options.
+    -NOLOGINTIME   Don't display Last Successful Login Time.
+    -R <level>     Sets restricted mode to disable SQL*Plus commands
+                   that interact with the file system.  The level can
+                   be 1, 2 or 3.  The most restrictive is -R 3 which
+                   disables all user commands interacting with the
+                   file system.
+    -S             Sets silent mode which suppresses the display of
+                   the SQL*Plus banner, prompts, and echoing of
+                   commands.
+
+  <logon> is: {<username>[/<password>][@<connect_identifier>] | / }
+              [AS {SYSDBA | SYSOPER | SYSASM | SYSBACKUP | SYSDG | SYSKM | SYSRAC}] [EDITION=value]
+
+    Specifies the database account username, password and connect
+    identifier for the database connection.  Without a connect
+    identifier, SQL*Plus connects to the default database.
+
+    The AS SYSDBA, AS SYSOPER, AS SYSASM, AS SYSBACKUP, AS SYSDG,
+    AS SYSKM and AS SYSRAC options are database administration privileges.
+
+    <connect_identifier> can be in the form of Net Service Name
+    or Easy Connect.
+
+      @[<net_service_name> | [//]Host[:Port]/<service_name>]
+
+        <net_service_name> is a simple name for a service that resolves
+        to a connect descriptor.
+
+        Example: Connect to database using Net Service Name and the
+                 database net service name is ORCL.
+
+           sqlplus myusername/mypassword@ORCL
+
+        Host specifies the host name or IP address of the database
+        server computer.
+
+        Port specifies the listening port on the database server.
+
+        <service_name> specifies the service name of the database you
+        want to access.
+
+        Example: Connect to database using Easy Connect and the
+                 Service name is ORCL.
+
+           sqlplus myusername/mypassword@Host/ORCL
+
+    The /NOLOG option starts SQL*Plus without connecting to a
+    database.
+
+    The EDITION specifies the value for Session Edition.
+
+
+  <start> is: @<URL>|<filename>[.<ext>] [<parameter> ...]
+
+    Runs the specified SQL*Plus script from a web server (URL) or the
+    local file system (filename.ext) with specified parameters that
+    will be assigned to substitution variables in the script.
+
+When SQL*Plus starts, and after CONNECT commands, the site profile
+(e.g. $ORACLE_HOME/sqlplus/admin/glogin.sql) and the user profile
+(e.g. login.sql in the working directory) are run.  The files may
+contain SQL*Plus commands.
+
+Refer to the SQL*Plus User's Guide and Reference for more information.
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sat Nov 7 22:02:03 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+22:02:03 SYS@PCP> set line 240
+set time on
+set tim22:03:34 SYS@PCP> 22:03:34 SYS@PCP> i on
+col username format a20
+col22:03:34 SYS@PCP> 22:03:34 SYS@PCP>  service_name format a30
+col MAC22:03:34 SYS@PCP> HINE format a60
+select count(1),22:03:34 SYS@PCP>  username,service_name , inst_id, MACHINE,failover_type, failover_method from gv$session
+where username='PCP'
+ group by username22:03:34   2  22:03:34   3  , service_name, inst_id, machine, failover_type, failover_method
+ order by 2,3;22:03:35   4
+
+  COUNT(1) USERNAME             SERVICE_NAME                      INST_ID MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ---------- ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP                       1 BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        61 PCP                  PCP.BANVENEZ.CORP                       1 actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        60 PCP                  PCP.BANVENEZ.CORP                       1 actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        13 PCP                  PCP.BANVENEZ.CORP                       1 collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP                       1 consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP                       1 edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                      INST_ID MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ---------- ------------------------------------------------------------ ------------- ----------
+        10 PCP                  PCP.BANVENEZ.CORP                       1 loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP                       1 loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP                       1 loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP                       1 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP                       1 procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP                       1 procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP                       1 proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP                       1 proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                      INST_ID MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ---------- ------------------------------------------------------------ ------------- ----------
+        20 PCP                  PCP.BANVENEZ.CORP                       1 proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP                       1 process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP                       1 processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP                       1 reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                      INST_ID MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ---------- ------------------------------------------------------------ ------------- ----------
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP                       1 response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP                       1 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.04
+22:03:35 SYS@PCP> set pagesize 50
+22:03:52 SYS@PCP> /
+
+  COUNT(1) USERNAME             SERVICE_NAME                      INST_ID MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ---------- ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP                       1 BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        59 PCP                  PCP.BANVENEZ.CORP                       1 actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        59 PCP                  PCP.BANVENEZ.CORP                       1 actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        18 PCP                  PCP.BANVENEZ.CORP                       1 collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP                       1 consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP                       1 edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP                       1 loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP                       1 loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP                       1 loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP                       1 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP                       1 procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP                       1 procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP                       1 proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP                       1 proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP                       1 proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP                       1 process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP                       1 process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP                       1 processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP                       1 reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP                       1 response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP                       1 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP                       1 update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP                       1 vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.01
+22:03:53 SYS@PCP>
+22:03:54 SYS@PCP>
+22:03:54 SYS@PCP> set line 240
+set time on
+set tim22:05:18 SYS@PCP> 22:05:18 SYS@PCP> i on
+col username format a20
+col22:05:19 SYS@PCP> 22:05:19 SYS@PCP>  service_name format a30
+col MAC22:05:19 SYS@PCP> HINE format a60
+select count(1),22:05:19 SYS@PCP>  username,service_name , MACHINE,failover_type, failover_method from gv$session
+where username='22:05:19   2  PCP'
+ group by username, service22:05:19   3  _name, machine, failover_type, failover_method
+ order by 2,3;22:05:19   4
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        57 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        60 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        22 PCP                  PCP.BANVENEZ.CORP              collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP              consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP              loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.03
+22:05:19 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                                                                       ?
+
+ ? 2026-11-07 ? ? 22:10.40 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sat Nov  7 22:10:02 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ cd /migracion2/
+oracle12@sun2317p:/migracion2$
+oracle12@sun2317p:/migracion2$ ls -ltr
+total 1071
+-rwxrwxrwx   1 54321    54321       1178 Aug 25  2025 long_op.sql
+-rwxrwxrwx   1 oracle12 oinstall     316 Aug 26  2025 PARFILE_PAGOFH.par
+-rwxrwxrwx   1 oracle12 oinstall     236 Sep  2  2025 PARFILE_TABLAS_DMY.par
+-rwxrwxrwx   1 oracle12 oinstall   68055 Sep  2  2025 EXP_REG_LOG_Y_MOV_DMY.log
+-rwxrwxrwx   1 oracle12 oinstall  174854 Sep 11  2025 expdp_260825.log
+-rwxrwxrwx   1 oracle12 oinstall     347 Sep 11  2025 IMP_PARFILE_PAGOFH.par
+-rwxrwxrwx   1 54321    54321        299 Sep 18  2025 IMP_BDVX_REGISTRO_LOG.par
+-rw-r--r--   1 54321    54321        214 Sep 18  2025 afiedt.buf
+-rwxrwxrwx   1 54321    54321        313 Sep 18  2025 IMP_BDVX_REGISTRO_MOVIMIENTO_DIVISAS.par
+-rwxrwxrwx   1 54321    54321        454 Sep 20  2025 IMP_BDVX_LOG_NOTIFICACIONES.par
+-rw-r--r--   1 54321    54329      24062 Sep 20  2025 impdp_260825.log
+drwxrwxrwx   2 54321    54321         39 Jan 28  2026 BDVRELP
+drwxrwxrwx   2 54321    54321         20 Mar 16  2026 PCPH
+drwxrwxrwx   6 54321    54321          8 Mar 27  2026 REST_MOMA
+drwxrwxrwx   3 54323    54321        144 Apr  6  2026 BDVNETH
+drwxrwxrwx   2 oracle12 oinstall       3 May  7  2026 BK_TABLAS_DMY
+drwxrwxrwx   2 oracle12 oinstall       2 May  7  2026 PAGOFP_2023
+drwxrwxrwx   2 oracle12 oinstall      47 May 11  2026 PCP_restore2025
+drwxrwxrwx   2 54321    54321         14 May 21 15:33 BACKUP_PCPD_TABLES
+drwxrwxrwx   2 54321    54321          2 Jul 14 15:44 PCP_DOMIC_2026
+-rwxrwxrwx   1 54321    54321       9217 Jul 17 12:20 DDL_FALTANTES.sql
+drwxrwxrwx   4 oracle12 oinstall      23 Aug 11 15:27 REGCHQ_GRUPICIS
+drwxrwxrwx   2 oracle12 oinstall      29 Sep 10 16:08 PCP_2026
+drwxrwxrwx   2 oracle   oinstall      25 Sep 23 09:59 INTRNET_MIGRACION
+drwxrwxrwx   2 54321    54321         12 Sep 30 09:55 PCPD
+drwxrwxrwx   2 oracle12 oinstall      57 Oct  5 17:05 PCP_HIST
+drwxrwxrwx   2 oracle12 oinstall      11 Oct 22 12:55 DOMIC_EXPORT
+drwxrwxrwx   4 oracle12 oinstall       5 Oct 23 10:10 MIGRACION_SC
+drwxrwxrwx   2 13005    oinstall      14 Oct 24 10:33 SWATCHDB
+oracle12@sun2317p:/migracion2$ cd MIGRACION_SC
+oracle12@sun2317p:/MIGRACION_SC$
+oracle12@sun2317p:/MIGRACION_SC$
+oracle12@sun2317p:/MIGRACION_SC$ ls -ltr
+total 222
+-rw-rw-r--   1 oracle12 oinstall   10153 Oct  7 12:21 Tablas_existentes_PCP.txt
+drwxrwxrwx   2 oracle12 oinstall      18 Oct 23 10:58 BACKUP_TABLES_OLD
+drwxrwxrwx   7 oracle12 oinstall      36 Nov  7 22:11 PCP_2026
+oracle12@sun2317p:/MIGRACION_SC$
+oracle12@sun2317p:/MIGRACION_SC$
+oracle12@sun2317p:/MIGRACION_SC$
+oracle12@sun2317p:/MIGRACION_SC$ cd PCP_2026/
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 828
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321        612 Nov  4 16:10 CREACION_CONSTRAINTS.sh
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321      15223 Nov  6 12:17 CREACION_INDICES.txt
+-rw-r--r--   1 54321    54321       7451 Nov  6 12:23 CREACION_CONSTRAINTS.txt
+-rw-r--r--   1 54321    54321       9096 Nov  6 12:37 CREACION_INDICES_.txt
+-rw-r--r--   1 54321    54321        137 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_02.txt
+-rw-r--r--   1 54321    54321        178 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_01.txt
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+drwxrwxrwx   2 54321    54321         12 Nov  7 17:20 txt
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ rm CREACION_CONSTRAINTS.sh
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 825
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321      15223 Nov  6 12:17 CREACION_INDICES.txt
+-rw-r--r--   1 54321    54321       7451 Nov  6 12:23 CREACION_CONSTRAINTS.txt
+-rw-r--r--   1 54321    54321       9096 Nov  6 12:37 CREACION_INDICES_.txt
+-rw-r--r--   1 54321    54321        137 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_02.txt
+-rw-r--r--   1 54321    54321        178 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_01.txt
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+drwxrwxrwx   2 54321    54321         12 Nov  7 17:20 txt
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ more CREACION_INDICES.txt
+CREACION_INDICES
+
+Index created.
+
+Elapsed: 00:00:00.06
+
+Index altered.
+
+Elapsed: 00:00:00.01
+
+Index created.
+
+Elapsed: 00:00:09.66
+
+Index altered.
+
+Elapsed: 00:00:00.01
+
+Index created.
+
+Elapsed: 00:00:14.54
+
+Index altered.
+
+Elapsed: 00:00:00.00
+CREATE INDEX "PCP"."CREDITS_N6" ON "PCP"."CREDITS" ("BUSINESS_STATUS_CODE")
+
+Index created.
+
+Elapsed: 00:00:14.08
+
+Index altered.
+
+Elapsed: 00:00:00.00
+CREATE INDEX PCP.CREDITS_N7 ON PCP.CREDITS
+
+Index created.
+
+Elapsed: 00:00:15.99
+
+Index altered.
+
+Elapsed: 00:00:00.00
+CREATE INDEX "PCP"."CREDITS_N8" ON "PCP"."CREDITS" ("ID_DEBITS", "ID_CREDITS")
+
+Index created.
+
+Elapsed: 00:00:15.12
+
+Index altered.
+
+Elapsed: 00:00:00.00
+CREATE INDEX "PCP"."CREDITS_N3" ON "PCP"."CREDITS" ("PROCESS_DATE")
+
+Index created.
+
+Elapsed: 00:00:18.86
+
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 825
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321      15223 Nov  6 12:17 CREACION_INDICES.txt
+-rw-r--r--   1 54321    54321       7451 Nov  6 12:23 CREACION_CONSTRAINTS.txt
+-rw-r--r--   1 54321    54321       9096 Nov  6 12:37 CREACION_INDICES_.txt
+-rw-r--r--   1 54321    54321        137 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_02.txt
+-rw-r--r--   1 54321    54321        178 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_01.txt
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+drwxrwxrwx   2 54321    54321         12 Nov  7 17:20 txt
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ mv *.txt txt/
+mv: txt//CONSTRAINTS_AUDI_PROGRAMS_01.txt: override protection 644 (yes/no)?
+mv: txt//CONSTRAINTS_AUDI_PROGRAMS_02.txt: override protection 644 (yes/no)?
+mv: txt//CREACION_CONSTRAINTS.txt: override protection 644 (yes/no)?
+mv: txt//CREACION_INDICES_.txt: override protection 644 (yes/no)?
+mv: txt//CREACION_INDICES.txt: override protection 644 (yes/no)?
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 825
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321      15223 Nov  6 12:17 CREACION_INDICES.txt
+-rw-r--r--   1 54321    54321       7451 Nov  6 12:23 CREACION_CONSTRAINTS.txt
+-rw-r--r--   1 54321    54321       9096 Nov  6 12:37 CREACION_INDICES_.txt
+-rw-r--r--   1 54321    54321        137 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_02.txt
+-rw-r--r--   1 54321    54321        178 Nov  6 12:40 CONSTRAINTS_AUDI_PROGRAMS_01.txt
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+drwxrwxrwx   2 54321    54321         12 Nov  7 17:20 txt
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+oracle12@sun2317p:/PCP_2026$ mv *.txt txt/
+mv: txt//CONSTRAINTS_AUDI_PROGRAMS_01.txt: override protection 644 (yes/no)? yes
+mv: txt//CONSTRAINTS_AUDI_PROGRAMS_02.txt: override protection 644 (yes/no)? yes
+mv: txt//CREACION_CONSTRAINTS.txt: override protection 644 (yes/no)? yes
+mv: txt//CREACION_INDICES_.txt: override protection 644 (yes/no)? yes
+mv: txt//CREACION_INDICES.txt: override protection 644 (yes/no)? yes
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 755
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+drwxrwxrwx   2 54321    54321         12 Nov  7 22:27 txt
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ > nohup.out
+-bash: nohup.out: Permission denied
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 755
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+drwxrwxrwx   2 oracle12 oinstall      24 Nov  5 15:44 LOGS
+-rw-r--r--   1 54321    54329      67029 Nov  5 16:46 0PRUEBA_IMP_SCHEMA_PCP.log
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+-rw-r--r--   1 oracle12 asmadmin   31380 Nov  6 11:01 EXP_EST_PCP.log
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rwxrwxrwx   1 oracle12 asmadmin   54199 Nov  6 11:36 EXP_SCHEMA_PCP.log
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+drwxrwxrwx   2 54321    54321         12 Nov  7 22:27 txt
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ mv *.log LOGS/
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 453
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rw-r--r--   1 54321    54329      18760 Nov  6 12:00 IMP_METADATA_PCP.LOG
+-rw-r--r--   1 54321    54329      48820 Nov  6 12:07 IMP_DATA_PCP.LOG
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+drwxrwxrwx   2 54321    54321         12 Nov  7 22:27 txt
+drwxrwxrwx   2 oracle12 oinstall      25 Nov  7 22:29 LOGS
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ mv *.LOG LOGS/
+mv: LOGS//IMP_DATA_PCP.LOG: override protection 644 (yes/no)? yes
+mv: LOGS//IMP_METADATA_PCP.LOG: override protection 644 (yes/no)? yes
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ ls -ltr
+total 318
+-rwxrwxrwx   1 54321    54321       1175 Sep 16 15:55 LONG_OPERATION.sql
+-rwxrwxrwx   1 oracle12 oinstall     163 Sep 22 22:15 PARFILE_EXP_SCHEMA_PCP.par
+-rwxrwxrwx   1 oracle12 oinstall     396 Oct  7 12:20 Tablas_existentes.sql
+-rw-r--r--   1 54321    54321        550 Nov  2 16:36 PARFILE_IMP_METADATA.par
+-rw-r--r--   1 54321    54321        211 Nov  2 16:36 PARFILE_IMP_DATA.par
+-rw-r--r--   1 54321    54321        355 Nov  2 16:37 PARFILE_EXTRACT_DDL_INDEX.par
+-rw-r--r--   1 54321    54321        207 Nov  2 16:37 PARFILE_EXTRACT_DDL_CONSTRAINT.par
+drwxrwxrwx   2 54321    54321         11 Nov  4 09:35 DDL
+-rwxrwxrwx   1 54321    54321      15151 Nov  5 09:48 03-DDL_CONSTRAINTS_FALTANTES_PCP.sql
+-rwxrwxrwx   1 54321    54321      47219 Nov  5 09:48 01-DDL_INDEX_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321      22707 Nov  5 09:48 02-DDL_CONSTRAINTS_PCP_FULL.sql
+-rwxrwxrwx   1 54321    54321        604 Nov  5 12:53 04-DDL_CONSTRAINTS_AUDI_PROGRAMS_PCP.sql
+-rwxrwxrwx   1 54321    54321        298 Nov  5 12:56 05-CONSTRAINTS_AUDI_PROGRAMS_02.sql
+-rw-r--r--   1 54321    54321        492 Nov  5 15:43 PRUEBA_IMP_SCHEMA_PCP.par
+-rw-rw-r--   1 oracle12 oinstall     118 Nov  6 11:01 01_parfile_EST_PCP.par
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  6 11:09 dmp_2810
+-rw-------   1 54321    54321      47964 Nov  6 12:08 nohup.out
+-rw-r--r--   1 54321    54321        423 Nov  7 17:05 CORRER_ESTADISTICAS.sql
+-rwxrwxrwx   1 54321    54321       1869 Nov  7 17:21 COMPARACION_DE_OBJTS.sql
+-rwxrwxrwx   1 54321    54321        412 Nov  7 17:24 VERIFICACION_OBJTS_INVALIDOS.sql
+drwxrwxr-x   2 oracle12 oinstall      22 Nov  7 22:11 dmp_0611
+drwxrwxrwx   2 54321    54321         12 Nov  7 22:27 txt
+drwxrwxrwx   2 oracle12 oinstall      25 Nov  7 22:29 LOGS
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$
+oracle12@sun2317p:/PCP_2026$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sat Nov 7 22:30:19 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+22:30:19 SYS@PCP>
+22:30:20 SYS@PCP>
+22:30:20 SYS@PCP> @CORRER_ESTADISTICAS.sql
+
+Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-07 ? ? 22:35.56 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sat Nov  7 23:07:08 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sat Nov 7 23:36:46 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+23:36:46 SYS@PCP>
+23:38:29 SYS@PCP>
+23:38:29 SYS@PCP>
+23:38:29 SYS@PCP> SET LINESIZE 500
+COL spare4 FORM23:38:31 SYS@PCP> AT A230
+select spare4 from sys.u23:38:31 SYS@PCP> ser$ where name IN ('PCP');
+
+SPARE4
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                         ---------------------------------------
+S:FB2F1C4C484991EAB33F1494AB94E4F3A69F55DA9765616500A13763BA55;T:BB6A4D592218A8E02111D687253F5B9C2067CBCF027A0C48D9CE1CCA59CE4BB47DD72A9C4A54C22519885CCA5C49487C6C6D75D0E440AB4C0A2C63B9F99F3F                                         C9FB8391B3A5D51FC91687A02BE17B6D5D
+
+Elapsed: 00:00:00.01
+23:38:33 SYS@PCP> set line 240
+set time on
+set tim23:42:21 SYS@PCP> 23:42:21 SYS@PCP> i on
+col username format a20
+col23:42:21 SYS@PCP> 23:42:21 SYS@PCP>  service_name format a30
+col MACHINE format a60
+select count(1),23:42:21 SYS@PCP> 23:42:21 SYS@PCP>  username,service_name , MACHINE,failover_type, failover_method from gv$session
+where username='23:42:21   2  PCP'
+ group by username, service23:42:21   3  _name, machine, failover_type, failover_method
+ order by 2,3;23:42:21   4
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        13 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        12 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP              consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP              loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+        20 PCP                  PCP.BANVENEZ.CORP              proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         7 PCP                  PCP.BANVENEZ.CORP              process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+        15 PCP                  PCP.BANVENEZ.CORP              response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.03
+23:42:22 SYS@PCP>
+23:47:07 SYS@PCP>
+23:47:08 SYS@PCP>
+23:47:08 SYS@PCP>
+23:47:08 SYS@PCP> set o
+
+23:47:19 SYS@PCP>
+23:47:20 SYS@PCP>
+23:47:20 SYS@PCP> set line 240
+set time on
+set tim23:47:35 SYS@PCP> 23:47:35 SYS@PCP> i on
+set pagesize 50
+col usernam23:47:35 SYS@PCP> 23:47:35 SYS@PCP> e format a20
+col service_name fo23:47:35 SYS@PCP> rmat a30
+col MACHINE format a60
+23:47:35 SYS@PCP> 23:47:35 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+23:47:35   2  where username='PCP'
+ group by u23:47:35   3  sername, service_name, machine, failover_type, failover_method
+ order by 2,3;23:47:36   4
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP              consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP              loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.04
+23:47:36 SYS@PCP>
+23:47:37 SYS@PCP>
+23:47:37 SYS@PCP>
+23:47:37 SYS@PCP>
+23:47:37 SYS@PCP> /
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-5qhw2                                NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              actionspcpv4-78c667d87b-hvxbk                                NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              atomo37pcp-5b4fc9d66c-8vcch                                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              balanceinquiry-55b446c97f-x4fkn                              NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              collectcommissionpcp-deploy-7f66f6f9bf-xhqcz                 NONE          NONE
+        55 PCP                  PCP.BANVENEZ.CORP              consultas-tda-tcp-7657b6b496-tq8cb                           NONE          NONE
+         6 PCP                  PCP.BANVENEZ.CORP              creditodirectopcp-55b8c879d4-gg8n7                           NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              edi-proceso-lotes-58647d7d66-rtxst                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              envio-liquidacion-vpn-6579b4686b-nfjbq                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              loadfile-ivss-64697df6fc-ffld2                               NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-h4dgz                                 NONE          NONE
+        10 PCP                  PCP.BANVENEZ.CORP              loadfilepcp-5b95686b56-rz6jh                                 NONE          NONE
+        31 PCP                  PCP.BANVENEZ.CORP              loadfiletcptdapcpv3-7f97d9dc48-8bm65                         NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              pasaje-electronico-receive-76c9b7d858-n426r                  NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              patria-receive-7fdbb695ff-l67px                              NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              peaje-receive-78475fb7f5-ncqhm                               NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcp-74b74f44cc-jsv8h                       NONE          NONE
+         3 PCP                  PCP.BANVENEZ.CORP              procesamientorentapcpnew-65f5bf6568-wb674                    NONE          NONE
+        25 PCP                  PCP.BANVENEZ.CORP              proceso-bansta-555ffbdf9-6q2n9                               NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              proceso-edi-conversor-paymul-c99c9449b-hr8rk                 NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              proceso-fidec-567d668f44-wsbf6                               NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              process-alta-tda-tcp-7d676cb9c8-vmwn4                        NONE          NONE
+         5 PCP                  PCP.BANVENEZ.CORP              process-comission-asigna-cf85889dd-bbzjm                     NONE          NONE
+         7 PCP                  PCP.BANVENEZ.CORP              process-pago-proveedores-6cdcf899df-8qpjq                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-55d459699d-ff8cm                                  NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-exclusiva-6c8bdd8c6c-48ldg                        NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              processops-retry-66d665bbc-l6v2d                             NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              processops-tda-tcp-95cd65974-v9x2j                           NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              receive-mipasaje-bdv-84d9895d66-sljwj                        NONE          NONE
+        11 PCP                  PCP.BANVENEZ.CORP              reporte-crm-7746cdf744-lvzcf                                 NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-alta-tda-tcp-6f5554b75d-8bm52                       NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-emision-tda-tcp-54588d47b8-gpt7t                    NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              response-ops-all-567d7d56bb-vt462                            NONE          NONE
+        20 PCP                  PCP.BANVENEZ.CORP              response-ops-tda-tcp-5dcf8c8b59-smqnf                        NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+        15 PCP                  PCP.BANVENEZ.CORP              update-tda-tcp-6dc8987878-x72gw                              NONE          NONE
+        40 PCP                  PCP.BANVENEZ.CORP              vpn-metro-9c5dc4cbc-d77v7                                    NONE          NONE
+
+39 rows selected.
+
+Elapsed: 00:00:00.04
+23:49:17 SYS@PCP> set line 240
+set time on
+set tim23:50:46 SYS@PCP> 23:50:46 SYS@PCP> i on
+set pagesize 50
+col usernam23:50:46 SYS@PCP> 23:50:46 SYS@PCP> e format a20
+col service_name fo23:50:46 SYS@PCP> rmat a30
+col MACHINE format a60
+23:50:46 SYS@PCP> 23:50:46 SYS@PCP> select count(1) from v$session
+w23:50:46   2  here username='PCP'
+ group by username;23:50:46   3
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.04
+23:50:47 SYS@PCP>
+23:50:47 SYS@PCP>
+23:50:48 SYS@PCP>
+23:50:48 SYS@PCP>
+23:50:48 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.03
+23:51:19 SYS@PCP>
+23:51:20 SYS@PCP>
+23:51:20 SYS@PCP>
+23:51:20 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.03
+23:51:21 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.03
+23:52:05 SYS@PCP>
+23:52:06 SYS@PCP>
+23:52:06 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.03
+23:53:16 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.03
+23:55:42 SYS@PCP>
+23:55:43 SYS@PCP>
+23:55:43 SYS@PCP>
+23:55:43 SYS@PCP> /
+
+  COUNT(1)
+----------
+       637
+
+Elapsed: 00:00:00.02
+23:55:44 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.01
+23:59:03 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.01
+23:59:06 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.01
+00:00:21 SYS@PCP>
+00:00:22 SYS@PCP>
+00:00:22 SYS@PCP>
+00:00:22 SYS@PCP>
+00:00:22 SYS@PCP>
+00:00:22 SYS@PCP>
+00:00:38 SYS@PCP>
+00:00:38 SYS@PCP>
+00:00:38 SYS@PCP>
+00:00:39 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.00
+00:00:39 SYS@PCP>
+00:00:40 SYS@PCP>
+00:00:40 SYS@PCP>
+00:00:40 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.01
+00:03:06 SYS@PCP>
+00:03:06 SYS@PCP>
+00:03:07 SYS@PCP>
+00:03:07 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.00
+00:03:52 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.01
+00:04:06 SYS@PCP>
+00:04:07 SYS@PCP>
+00:04:07 SYS@PCP>
+00:04:07 SYS@PCP> /
+
+  COUNT(1)
+----------
+         3
+
+Elapsed: 00:00:00.00
+00:04:11 SYS@PCP>
+00:04:11 SYS@PCP>
+00:04:11 SYS@PCP>
+00:04:12 SYS@PCP> set line 240
+set time on
+set tim00:04:21 SYS@PCP> 00:04:21 SYS@PCP> i on
+set pagesize 50
+col usernam00:04:21 SYS@PCP> 00:04:21 SYS@PCP> e format a20
+col service_name fo00:04:21 SYS@PCP> rmat a30
+col MACHINE format a60
+00:04:21 SYS@PCP> 00:04:21 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+00:04:21   2  where username='PCP'
+ group by u00:04:21   3  sername, service_name, machine, failover_type, failover_method
+ 00:04:21   4  order by 2,3;
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+
+Elapsed: 00:00:00.01
+00:04:23 SYS@PCP>
+00:04:23 SYS@PCP>
+00:04:23 SYS@PCP>
+00:04:24 SYS@PCP>
+00:04:24 SYS@PCP> /
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+
+Elapsed: 00:00:00.00
+00:07:08 SYS@PCP>
+00:07:09 SYS@PCP>
+00:07:09 SYS@PCP>
+00:07:10 SYS@PCP> /
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+
+Elapsed: 00:00:00.00
+00:11:52 SYS@PCP> /
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                  PCP.BANVENEZ.CORP              BANVENEZ\SC1_MZ1_JANLB_                                      NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                  PCP.BANVENEZ.CORP              seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+
+Elapsed: 00:00:00.01
+00:12:43 SYS@PCP>
+00:12:44 SYS@PCP>
+00:12:44 SYS@PCP>
+00:12:44 SYS@PCP>
+00:12:44 SYS@PCP> SET LINESIZE 200
+COLUMN spid FOR00:13:05 SYS@PCP> MAT A10
+COLUMN username FORMAT A00:13:05 SYS@PCP> 10
+COLUMN program FORMAT A45
+
+SELECT s.inst_id,
+       s.sid,
+  00:13:05 SYS@PCP> 00:13:05 SYS@PCP> 00:13:05 SYS@PCP> 00:13:05   2  00:13:05   3       s.serial#,
+       p.spid,
+ 00:13:05   4  00:13:05   5        p.pid,
+       s.username,
+00:13:05   6  00:13:05   7         s.program,
+       s.LOGON00:13:05   8  _TIME,
+       s.MODULE
+FROM   gv00:13:05   9  00:13:05  10  $session s
+       JOIN gv$proces00:13:05  11  s p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE s.us00:13:05  12  ername in ('PCP')
+--where SID = 00:13:05  13  '24'
+order by s.username, s.LOGON_TIME;00:13:05  14
+
+   INST_ID        SID    SERIAL# SPID              PID USERNAME   PROGRAM                                       LOGON_TIM MODULE
+---------- ---------- ---------- ---------- ---------- ---------- --------------------------------------------- --------- ----------------------------------------------------------------
+         1         68      43570 149039           2040 PCP        JDBC Thin Client                              05-NOV-26 JDBC Thin Client
+         1      10132       9462 150353           2032 PCP        JDBC Thin Client                              06-NOV-26 JDBC Thin Client
+         1       5100      29874 127877           1736 PCP        Toad.exe                                      07-NOV-26 TOAD 14.0.75.662
+
+Elapsed: 00:00:00.02
+00:13:06 SYS@PCP>
+00:13:07 SYS@PCP>
+00:13:07 SYS@PCP>
+00:13:07 SYS@PCP> set head OFF
+set feed off
+
+SELEC00:13:18 SYS@PCP> 00:13:18 SYS@PCP> 00:13:18 SYS@PCP> T 'ALTER SYSTEM KILL SESSION ' || ''''|| s.sid || ',' || s.serial#
+|| ''';'
+FROM   gv$session s
+00:13:18   2  00:13:18   3  00:13:18   4  JOIN gv$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+00:13:18   5  WHERE s.username in ('PCP')
+--WH00:13:18   6  ERE s.username ='USU_MSI'
+order 00:13:18   7  by s.username, s.LOGON_TIME;
+
+ALTER SYSTEM KILL SESSION '68,43570';
+ALTER SYSTEM KILL SESSION '10132,9462';
+ALTER SYSTEM KILL SESSION '5100,29874';
+Elapsed: 00:00:00.02
+00:13:18 SYS@PCP>
+00:13:19 SYS@PCP>
+00:13:19 SYS@PCP>
+00:13:19 SYS@PCP> ALTER SYSTEM KILL SESSION '68,43570';
+ALTER SYSTEM KILL SESSION '10132,9462';
+ALTER SYSTEM KILL SESSION '5100,29874';
+Elapsed: 00:00:00.00
+00:13:29 SYS@PCP> Elapsed: 00:00:00.00
+00:13:29 SYS@PCP> Elapsed: 00:00:00.01
+00:13:29 SYS@PCP>
+00:13:29 SYS@PCP>
+00:13:30 SYS@PCP>
+00:13:30 SYS@PCP>
+00:13:30 SYS@PCP>
+00:13:30 SYS@PCP> set line 240
+set time on
+set tim00:13:36 SYS@PCP> 00:13:36 SYS@PCP> i on
+set pagesize 50
+col usernam00:13:36 SYS@PCP> 00:13:36 SYS@PCP> e format a20
+col service_name fo00:13:36 SYS@PCP> rmat a30
+col MACHINE format a60
+00:13:36 SYS@PCP> 00:13:36 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+00:13:36   2  where username='PCP'
+ group by u00:13:36   3  sername, service_name, machine, failover_type, failover_method
+ order by 2,3;00:13:36   4
+
+         1 PCP                                                 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                                                 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+Elapsed: 00:00:00.01
+00:13:36 SYS@PCP>
+00:13:37 SYS@PCP>
+00:13:37 SYS@PCP>
+00:13:37 SYS@PCP> /
+
+         1 PCP                                                 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                                                 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+Elapsed: 00:00:00.01
+00:13:42 SYS@PCP>
+00:13:42 SYS@PCP>
+00:13:43 SYS@PCP>
+00:13:43 SYS@PCP>
+00:13:55 SYS@PCP>
+00:13:55 SYS@PCP>
+00:13:55 SYS@PCP> SET LINESIZE 200
+COLUMN spid FOR00:14:14 SYS@PCP> MAT A10
+COLUMN username FORMAT A00:14:14 SYS@PCP> 10
+COLUMN program FORMAT A45
+
+SE00:14:14 SYS@PCP> 00:14:14 SYS@PCP> 00:14:14 SYS@PCP> LECT s.inst_id,
+       s.sid,
+  00:14:14   2  00:14:14   3       s.serial#,
+       p.spid,
+ 00:14:14   4  00:14:14   5        p.pid,
+       s.username,
+00:14:14   6  00:14:14   7         s.program,
+       s.LOGON00:14:14   8  _TIME,
+       s.MODULE
+FROM   gv00:14:14   9  00:14:14  10  $session s
+       JOIN gv$proces00:14:14  11  s p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE s.us00:14:14  12  ername in ('PCP')
+--where SID = 00:14:14  13  '24'
+order by s.username, s.LOGO00:14:14  14  N_TIME;
+
+         1         68      43570 149039           2040 PCP        JDBC Thin Client                              05-NOV-26
+         1      10132       9462 150353           2032 PCP        JDBC Thin Client                              06-NOV-26
+Elapsed: 00:00:00.01
+00:14:14 SYS@PCP>
+00:14:15 SYS@PCP>
+00:14:16 SYS@PCP> set line 240
+set time on
+set tim00:14:24 SYS@PCP> 00:14:24 SYS@PCP> i on
+set pagesize 50
+col usernam00:14:24 SYS@PCP> 00:14:24 SYS@PCP> e format a20
+col service_name fo00:14:24 SYS@PCP> rmat a30
+col MACHINE format a60
+00:14:25 SYS@PCP> 00:14:25 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+00:14:25   2  where username='PCP'
+ group by u00:14:25   3  sername, service_name, machine, failover_type, failover_method
+ 00:14:25   4  order by 2,3;
+
+         1 PCP                                                 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                                                 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+Elapsed: 00:00:00.01
+00:14:25 SYS@PCP>
+00:14:25 SYS@PCP>
+00:14:25 SYS@PCP> SET LINESIZE 200
+COLUMN spid FOR00:14:44 SYS@PCP> MAT A10
+COLUMN username FORMAT A00:14:44 SYS@PCP> 10
+COLUMN program FORMAT A45
+
+SE00:14:44 SYS@PCP> 00:14:44 SYS@PCP> 00:14:44 SYS@PCP> LECT s.inst_id,
+       s.sid,
+  00:14:45   2  00:14:45   3       s.serial#,
+       p.spid,
+ 00:14:45   4  00:14:45   5        p.pid,
+       s.username,
+00:14:45   6  00:14:45   7         s.program,
+       s.LOGON00:14:45   8  _TIME,
+       s.MODULE
+FROM   gv00:14:45   9  00:14:45  10  $session s
+       JOIN gv$proces00:14:45  11  s p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE s.us00:14:45  12  ername in ('PCP')
+--where SID = 00:14:45  13  '24'
+order by s.username, s.LOGON_TIME;00:14:45  14
+
+         1         68      43570 149039           2040 PCP        JDBC Thin Client                              05-NOV-26
+         1      10132       9462 150353           2032 PCP        JDBC Thin Client                              06-NOV-26
+Elapsed: 00:00:00.01
+00:14:45 SYS@PCP>
+00:14:46 SYS@PCP>
+00:14:46 SYS@PCP>
+00:14:46 SYS@PCP>
+00:14:46 SYS@PCP> set head OFF
+set feed off
+
+SELEC00:14:58 SYS@PCP> 00:14:58 SYS@PCP> 00:14:58 SYS@PCP> T 'ALTER SYSTEM KILL SESSION ' || ''''|| s.sid || ',' || s.serial#
+|| ''';'
+FROM   gv$session s
+00:14:58   2  00:14:58   3  00:14:58   4  JOIN gv$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+00:14:58   5  WHERE s.username in ('PCP')
+--WH00:14:58   6  ERE s.username ='USU_MSI'
+order 00:14:58   7  by s.username, s.LOGON_TIME;
+
+ALTER SYSTEM KILL SESSION '68,43570';
+ALTER SYSTEM KILL SESSION '10132,9462';
+Elapsed: 00:00:00.01
+00:14:58 SYS@PCP>
+00:14:58 SYS@PCP>
+00:14:59 SYS@PCP>
+00:14:59 SYS@PCP>
+00:14:59 SYS@PCP> ALTER SYSTEM KILL SESSION '68,43570';
+Elapsed: 00:00:00.00
+00:15:03 SYS@PCP>
+00:15:03 SYS@PCP>
+00:15:03 SYS@PCP>
+00:15:04 SYS@PCP>
+00:15:04 SYS@PCP> ALTER SYSTEM KILL SESSION '10132,9462';
+Elapsed: 00:00:00.00
+00:15:07 SYS@PCP>
+00:15:08 SYS@PCP>
+00:15:08 SYS@PCP>
+00:15:08 SYS@PCP>
+00:15:08 SYS@PCP>
+00:15:08 SYS@PCP> set line 240
+set time on
+set tim00:15:13 SYS@PCP> 00:15:13 SYS@PCP> i on
+set pagesize 50
+col usernam00:15:13 SYS@PCP> 00:15:13 SYS@PCP> e format a20
+col service_name fo00:15:13 SYS@PCP> rmat a30
+col MACHINE format a60
+00:15:13 SYS@PCP> 00:15:13 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+00:15:13   2  where username='PCP'
+ group by u00:15:13   3  sername, service_name, machine, failover_type, failover_method
+ 00:15:14   4  order by 2,3;
+
+         1 PCP                                                 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                                                 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+Elapsed: 00:00:00.00
+00:15:14 SYS@PCP>
+00:15:14 SYS@PCP>
+00:15:14 SYS@PCP>
+00:16:15 SYS@PCP>
+00:16:15 SYS@PCP> Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+You have new mail in /var/mail/oracle12
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Nov 8 00:16:27 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+00:16:27 SYS@PCP> set line 240
+set time on
+set tim00:16:32 SYS@PCP> 00:16:32 SYS@PCP> i on
+set pagesize 50
+col usernam00:16:32 SYS@PCP> 00:16:32 SYS@PCP> e format a20
+col service_name fo00:16:32 SYS@PCP> rmat a30
+col MACHINE format a60
+00:16:32 SYS@PCP> 00:16:32 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+00:16:32   2  where username='PCP'
+ group by u00:16:32   3  sername, service_name, machine, failover_type, failover_method
+ order by 2,3;00:16:32   4
+
+  COUNT(1) USERNAME             SERVICE_NAME                   MACHINE                                                      FAILOVER_TYPE FAILOVER_M
+---------- -------------------- ------------------------------ ------------------------------------------------------------ ------------- ----------
+         1 PCP                                                 pcpadmin-5b9467c6f-46sgt                                     NONE          NONE
+         1 PCP                                                 seguridad-bdv-deploy-v20-d968b598-fgpf8                      NONE          NONE
+
+Elapsed: 00:00:00.01
+00:16:33 SYS@PCP>
+00:16:34 SYS@PCP>
+00:16:34 SYS@PCP> SET LINESIZE 200
+COLUMN spid FOR00:16:41 SYS@PCP> MAT A10
+COLUMN username FORMAT A00:16:41 SYS@PCP> 10
+COLUMN program FORMAT A45
+
+SE00:16:41 SYS@PCP> 00:16:41 SYS@PCP> 00:16:41 SYS@PCP> LECT s.inst_id,
+       s.sid,
+  00:16:41   2  00:16:41   3       s.serial#,
+       p.spid,
+ 00:16:41   4  00:16:41   5        p.pid,
+       s.username,
+00:16:41   6  00:16:41   7         s.program,
+       s.LOGON00:16:41   8  _TIME,
+       s.MODULE
+FROM   gv00:16:41   9  00:16:41  10  $session s
+       JOIN gv$proces00:16:41  11  s p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE s.us00:16:41  12  ername in ('PCP')
+--where SID = 00:16:41  13  '24'
+order by s.username, s.LOGON_TIME;00:16:41  14
+
+   INST_ID        SID    SERIAL# SPID              PID USERNAME   PROGRAM                                       LOGON_TIM MODULE
+---------- ---------- ---------- ---------- ---------- ---------- --------------------------------------------- --------- ----------------------------------------------------------------
+         1         68      43570 149039           2040 PCP        JDBC Thin Client                              05-NOV-26
+         1      10132       9462 150353           2032 PCP        JDBC Thin Client                              06-NOV-26
+
+Elapsed: 00:00:00.01
+00:16:42 SYS@PCP>
+00:16:42 SYS@PCP>
+00:16:42 SYS@PCP>
+00:16:42 SYS@PCP> set head OFF
+set feed off
+
+SELEC00:17:00 SYS@PCP> 00:17:00 SYS@PCP> 00:17:00 SYS@PCP> T 'ALTER SYSTEM KILL SESSION ' || ''''|| s.sid || ',' || s.serial#
+|| ''';'
+FROM   gv$session s
+00:17:00   2  00:17:00   3  00:17:00   4  JOIN gv$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+00:17:00   5  WHERE s.username in ('PCP')
+--WH00:17:00   6  ERE s.username ='USU_MSI'
+order 00:17:00   7  by s.username, s.LOGON_TIME;
+
+ALTER SYSTEM KILL SESSION '68,43570';
+ALTER SYSTEM KILL SESSION '10132,9462';
+Elapsed: 00:00:00.01
+00:17:00 SYS@PCP>
+00:17:00 SYS@PCP>
+00:17:01 SYS@PCP>
+00:17:01 SYS@PCP>
+00:17:01 SYS@PCP>
+00:17:01 SYS@PCP> ALTER SYSTEM KILL SESSION '68,43570' IMMEDIATE;
+Elapsed: 00:00:00.06
+00:17:28 SYS@PCP>
+00:17:29 SYS@PCP>
+00:17:30 SYS@PCP>
+00:17:30 SYS@PCP> ALTER SYSTEM KILL SESSION '10132,9462' IMMEDIATE;
+Elapsed: 00:00:00.06
+00:17:44 SYS@PCP>
+00:17:44 SYS@PCP>
+00:17:44 SYS@PCP>
+00:17:44 SYS@PCP>
+00:17:45 SYS@PCP> SET LINESIZE 200
+COLUMN spid FOR00:17:50 SYS@PCP> MAT A10
+COLUMN username FORMAT A00:17:50 SYS@PCP> 10
+COLUMN program FORMAT A45
+
+SE00:17:50 SYS@PCP> 00:17:50 SYS@PCP> 00:17:50 SYS@PCP> LECT s.inst_id,
+       s.sid,
+  00:17:50   2  00:17:50   3       s.serial#,
+       p.spid,
+ 00:17:50   4  00:17:50   5        p.pid,
+       s.username,
+00:17:50   6  00:17:50   7         s.program,
+       s.LOGON00:17:50   8  _TIME,
+       s.MODULE
+FROM   gv00:17:50   9  00:17:50  10  $session s
+       JOIN gv$proces00:17:50  11  s p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE s.us00:17:50  12  ername in ('PCP')
+--where SID = 00:17:50  13  '24'
+order by s.username, s.LOGON_TIME;00:17:50  14
+Elapsed: 00:00:00.01
+00:17:51 SYS@PCP>
+00:17:51 SYS@PCP>
+00:17:51 SYS@PCP>
+00:17:52 SYS@PCP>
+00:17:52 SYS@PCP>
+00:17:52 SYS@PCP>
+00:17:52 SYS@PCP>
+00:17:52 SYS@PCP>
+00:17:52 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                                                                       ?
+
+ ? 2026-11-08 ? ? 00:23.13 ? ? /home/mobaxterm ?
+                                                                                                                                                                                                                                       ?
+
+
+ ? 2026-11-08 ? ? 00:48.20 ? ? /home/mobaxterm ?
+                                                                                                                                                                                                                                       ?
+
+
+ ? 2026-11-08 ? ? 00:48.20 ? ? /home/mobaxterm ?
+                                                                                                                                                                                                                                       ?
+
+ ? 2026-11-08 ? ? 00:48.20 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 00:39:32 2026 from 172.18.68.161
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ timed out waiting for input: auto-logout
+Connection to sun2317p closed.
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 00:53.28 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 00:52:53 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$ sqlplus / a sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Use SQL*Plus to execute SQL, PL/SQL and SQL*Plus statements.
+
+Usage 1: sqlplus -H | -V
+
+    -H             Displays the SQL*Plus version and the
+                   usage help.
+    -V             Displays the SQL*Plus version.
+
+Usage 2: sqlplus [ [<option>] [{logon | /nolog}] [<start>] ]
+
+  <option> is: [-AC] [-C <version>] [-L] [-M "<options>"] [-NOLOGINTIME] [-R <level>]
+               [-S]
+
+    -AC            Enable Application Continuity.
+    -C <version>   Sets the compatibility of affected commands to the
+                   version specified by <version>.  The version has
+                   the form "x.y[.z]".  For example, -C 10.2.0
+    -L             Attempts to log on just once, instead of
+                   reprompting on error.
+    -M "<options>" Sets automatic HTML or CSV markup of output.  The options
+                   have the form:
+                   {HTML html_options|CSV csv_options}
+                   See SQL*Plus User's Guide for detailed HTML and CSV options.
+    -NOLOGINTIME   Don't display Last Successful Login Time.
+    -R <level>     Sets restricted mode to disable SQL*Plus commands
+                   that interact with the file system.  The level can
+                   be 1, 2 or 3.  The most restrictive is -R 3 which
+                   disables all user commands interacting with the
+                   file system.
+    -S             Sets silent mode which suppresses the display of
+                   the SQL*Plus banner, prompts, and echoing of
+                   commands.
+
+  <logon> is: {<username>[/<password>][@<connect_identifier>] | / }
+              [AS {SYSDBA | SYSOPER | SYSASM | SYSBACKUP | SYSDG | SYSKM | SYSRAC}] [EDITION=value]
+
+    Specifies the database account username, password and connect
+    identifier for the database connection.  Without a connect
+    identifier, SQL*Plus connects to the default database.
+
+    The AS SYSDBA, AS SYSOPER, AS SYSASM, AS SYSBACKUP, AS SYSDG,
+    AS SYSKM and AS SYSRAC options are database administration privileges.
+
+    <connect_identifier> can be in the form of Net Service Name
+    or Easy Connect.
+
+      @[<net_service_name> | [//]Host[:Port]/<service_name>]
+
+        <net_service_name> is a simple name for a service that resolves
+        to a connect descriptor.
+
+        Example: Connect to database using Net Service Name and the
+                 database net service name is ORCL.
+
+           sqlplus myusername/mypassword@ORCL
+
+        Host specifies the host name or IP address of the database
+        server computer.
+
+        Port specifies the listening port on the database server.
+
+        <service_name> specifies the service name of the database you
+        want to access.
+
+        Example: Connect to database using Easy Connect and the
+                 Service name is ORCL.
+
+           sqlplus myusername/mypassword@Host/ORCL
+
+    The /NOLOG option starts SQL*Plus without connecting to a
+    database.
+
+    The EDITION specifies the value for Session Edition.
+
+
+  <start> is: @<URL>|<filename>[.<ext>] [<parameter> ...]
+
+    Runs the specified SQL*Plus script from a web server (URL) or the
+    local file system (filename.ext) with specified parameters that
+    will be assigned to substitution variables in the script.
+
+When SQL*Plus starts, and after CONNECT commands, the site profile
+(e.g. $ORACLE_HOME/sqlplus/admin/glogin.sql) and the user profile
+(e.g. login.sql in the working directory) are run.  The files may
+contain SQL*Plus commands.
+
+Refer to the SQL*Plus User's Guide and Reference for more information.
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Nov 8 00:59:01 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+00:59:01 SYS@PCP>
+00:59:01 SYS@PCP>
+00:59:01 SYS@PCP>
+00:59:02 SYS@PCP>
+00:59:02 SYS@PCP> ALTER USER PCP ACCOUNT LOCK;
+
+User altered.
+
+Elapsed: 00:00:00.07
+00:59:09 SYS@PCP>
+00:59:10 SYS@PCP>
+00:59:10 SYS@PCP>
+00:59:10 SYS@PCP> ALTER SYSTEM DISABLE RESTRICTED SESSION;
+
+System altered.
+
+Elapsed: 00:00:00.20
+00:59:59 SYS@PCP>
+01:00:01 SYS@PCP>
+01:00:01 SYS@PCP>
+01:00:01 SYS@PCP>
+01:00:01 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 01:05.22 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 00:58:46 2026 from 172.18.68.161
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 01:27.15 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 01:21:50 2026 from 172.18.68.161
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Nov 8 01:36:32 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+01:36:32 SYS@PCP> SET LINESIZE 500
+COL spare4 FORMAT A230
+select s01:36:37 SYS@PCP> 01:36:37 SYS@PCP> pare4 from sys.user$ where name IN ('PCP');.
+
+01:36:40 SYS@PCP> SET LINESIZE 500
+COL spare4 FORM01:36:42 SYS@PCP> AT A230
+select spare4 from sys.u01:36:42 SYS@PCP> ser$ where name IN ('PCP');
+
+SPARE4
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------                                         ---------------------------------------
+S:FB2F1C4C484991EAB33F1494AB94E4F3A69F55DA9765616500A13763BA55;T:BB6A4D592218A8E02111D687253F5B9C2067CBCF027A0C48D9CE1CCA59CE4BB47DD72A9C4A54C22519885CCA5C49487C6C6D75D0E440AB4C0A2C63B9F99F3F                                         C9FB8391B3A5D51FC91687A02BE17B6D5D
+
+Elapsed: 00:00:00.00
+01:36:42 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 01:42.02 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 01:36:25 2026 from 172.18.68.161
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Nov 8 01:44:02 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+01:44:02 SYS@PCP> set line 240
+set time on
+set tim01:44:05 SYS@PCP> 01:44:05 SYS@PCP> i on
+set pagesize 50
+col usernam01:44:05 SYS@PCP> 01:44:05 SYS@PCP> e format a20
+col service_name fo01:44:05 SYS@PCP> rmat a30
+col MACHINE format a60
+01:44:05 SYS@PCP> 01:44:05 SYS@PCP> select count(1) from v$session
+w01:44:05   2  here username='PCP'
+ group by username;01:44:05   3
+
+no rows selected
+
+Elapsed: 00:00:00.01
+01:44:05 SYS@PCP>
+01:44:06 SYS@PCP>
+01:44:06 SYS@PCP>
+01:44:06 SYS@PCP>
+01:44:06 SYS@PCP> set line 240
+set time on
+set tim01:45:25 SYS@PCP> 01:45:25 SYS@PCP> i on
+set pagesize 50
+col usernam01:45:25 SYS@PCP> 01:45:25 SYS@PCP> e format a20
+col service_name fo01:45:25 SYS@PCP> rmat a30
+col MACHINE format a60
+01:45:25 SYS@PCP> 01:45:25 SYS@PCP> select count(1), username,service_name , MACHINE,failover_type, failover_method from gv$session
+01:45:25   2  where username='PCP'
+ group by u01:45:25   3  sername, service_name, machine, failover_type, failover_method
+ 01:45:25   4  order by 2,3;
+
+no rows selected
+
+Elapsed: 00:00:00.01
+01:45:25 SYS@PCP>
+01:45:26 SYS@PCP>
+01:45:26 SYS@PCP>
+01:45:27 SYS@PCP>
+01:45:27 SYS@PCP>
+01:46:59 SYS@PCP>
+01:46:59 SYS@PCP> /
+
+no rows selected
+
+Elapsed: 00:00:00.01
+01:47:00 SYS@PCP>
+01:47:00 SYS@PCP>
+01:47:00 SYS@PCP>
+01:47:00 SYS@PCP> /
+
+no rows selected
+
+Elapsed: 00:00:00.00
+01:47:25 SYS@PCP>
+01:47:26 SYS@PCP>
+01:47:26 SYS@PCP>
+01:47:26 SYS@PCP>
+01:47:26 SYS@PCP> /
+
+no rows selected
+
+Elapsed: 00:00:00.00
+01:48:34 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 01:53.55 ? ? /home/mobaxterm ?
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 02:14.32 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 02:01:48 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$ timed out waiting for input: auto-logout
+Connection to sun2317p closed.
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 02:19.44 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados. El uso que realice
+de este recurso esta siendo monitoreado."
+Last login: Sun Nov  8 02:14:26 2026 from 172.18.68.157
+
+EL ACCESO A ESTE SERVIDOR ES SOLO PARA PERSONAS DEBIDAMENTE
+
+         AUTORIZADAS POR EL BANCO DE VENEZUELA
+
+USTED ESTA INGRESANDO AL SERVIDOR SUN2317P AMBIENTE PRODUCCION
+
+"AVISO: El acceso no autorizado o el uso indebido de este recurso,
+incumple con las politicas corporativas que conllevan a sanciones
+y/o la suspension de los privilegios otorgados."
+
+You have new mail.
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$
+oracle12@sun2317p:/oracle12$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Sun Nov 8 03:12:25 2026
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+03:12:25 SYS@PCP> SELECT column_name, nullable
+FRO03:13:03   2  M   dba_tab_columns
+WHERE  owner = 'PCP' AND table_name = 'STG_P03:13:04   3  ROVIDER'
+AND    column_name = 'ID_NUM_REQUEST';03:13:04   4
+
+COLUMN_NAME                                                                                                                      N
+-------------------------------------------------------------------------------------------------------------------------------- -
+ID_NUM_REQUEST                                                                                                                   N
+
+Elapsed: 00:00:00.44
+03:13:04 SYS@PCP>
+03:13:05 SYS@PCP>
+03:13:05 SYS@PCP> SELECT DBMS_METADATA.GET_DDL('TABLE','STG_PROVIDER','PCP') FROM dual;
+
+DBMS_METADATA.GET_DDL('TABLE','STG_PROVIDER','PCP')
+--------------------------------------------------------------------------------
+
+  CREATE TABLE "PCP"."STG_PROVIDER"
+   (    "ID_NUM_REQUEST" VARCHAR2(58) NOT NUL
+
+
+Elapsed: 00:00:04.91
+03:13:14 SYS@PCP>
+03:13:15 SYS@PCP>
+03:13:15 SYS@PCP> SELECT COUNT(*) FROM PCP.STG_PROVIDER WHERE ID_NUM_REQUEST IS NULL;
+
+  COUNT(*)
+----------
+         0
+
+Elapsed: 00:00:00.00
+03:17:44 SYS@PCP>
+03:17:45 SYS@PCP> Received disconnect from 180.183.202.99 port 22:2: Timeout, your session not responding.
+Disconnected from 180.183.202.99 port 22
+                                                                                                                                                                                              ?
+
+ ? 2026-11-08 ? ? 03:23.06 ? ? /home/mobaxterm ? ssh -legacy oracle12@sun2317p

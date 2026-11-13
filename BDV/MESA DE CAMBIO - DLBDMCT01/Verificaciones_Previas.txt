@@ -1,0 +1,885 @@
+1. Solicitud de registro en DSN
+
+2. Solicitud de Discos
+DATA 200GB
+FRA 20GB
+ASM 20GB
+REDO01 40GB
+REDO02 40GB
+
+3. Validaciones SO
+
+uname -a
+Linux dlbdmct01 5.14.0-687.42.1.el9_8.x86_64 #1 SMP PREEMPT_DYNAMIC Sun Aug 23 21:35:07 EDT 2026 x86_64 x86_64 x86_64 GNU/Linux
+
+
+hostnamectl
+ Static hostname: dlbdmct01
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: d5f22ccb1b404a79aeb20493f1837c60
+         Boot ID: 827a6e2ff58c4c02adbe2f995b444156
+  Virtualization: vmware
+Operating System: Red Hat Enterprise Linux 9.8 (Plow)
+     CPE OS Name: cpe:/o:redhat:enterprise_linux:9::baseos
+          Kernel: Linux 5.14.0-687.42.1.el9_8.x86_64
+    Architecture: x86-64
+ Hardware Vendor: VMware, Inc.
+  Hardware Model: VMware20,1
+Firmware Version: VMW201.00V.24504846.B64.2501180339
+
+
+
+sudo rpm -qa kernel*
+kernel-modules-core-5.14.0-570.12.1.el9_6.x86_64
+kernel-core-5.14.0-570.12.1.el9_6.x86_64
+kernel-modules-5.14.0-570.12.1.el9_6.x86_64
+kernel-5.14.0-570.12.1.el9_6.x86_64
+kernel-tools-libs-5.14.0-687.42.1.el9_8.x86_64
+kernel-modules-core-5.14.0-687.42.1.el9_8.x86_64
+kernel-core-5.14.0-687.42.1.el9_8.x86_64
+kernel-modules-5.14.0-687.42.1.el9_8.x86_64
+kernel-5.14.0-687.42.1.el9_8.x86_64
+kernel-tools-5.14.0-687.42.1.el9_8.x86_64
+kernel-headers-5.14.0-687.42.1.el9_8.x86_64
+
+
+sudo ls -l /boot/vmlinuz*
+-rwxr-xr-x. 1 root root 14915704 Jan 21  2026 /boot/vmlinuz-0-rescue-d5f22ccb1b404a79aeb20493f1837c60
+-rwxr-xr-x. 1 root root 14915704 Apr  4  2025 /boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64
+-rwxr-xr-x. 1 root root 15186728 Aug 23 21:41 /boot/vmlinuz-5.14.0-687.42.1.el9_8.x86_64
+
+
+sudo grubby --info /boot/vmlinuz-5.14.0*
+index=1
+kernel="/boot/vmlinuz-5.14.0-570.12.1.el9_6.x86_64"
+args="ro resume=/dev/mapper/rhel-swap rd.lvm.lv=rhel/root rd.lvm.lv=rhel/swap crashkernel=1G-2G:192M,2G-64G:256M,64G-:512M audit=1 audit_backlog_limit=8192"
+root="/dev/mapper/rhel-root"
+initrd="/boot/initramfs-5.14.0-570.12.1.el9_6.x86_64.img"
+title="Red Hat Enterprise Linux (5.14.0-570.12.1.el9_6.x86_64) 9.6 (Plow)"
+id="d5f22ccb1b404a79aeb20493f1837c60-5.14.0-570.12.1.el9_6.x86_64"
+
+
+sudo grubby --default-kernel
+/boot/vmlinuz-5.14.0-687.42.1.el9_8.x86_64
+
+
+--	Desactivar el SELinux
+
+cp -p /etc/selinux/config /etc/selinux/config.original
+vi /etc/selinux/config
+	SELINUX=permissive
+
+restorecon -Rv /
+touch /.autorelabel
+Reiniciar el servidor
+
+--	Asegurarse que el ssh este activo y funcionando
+
+systemctl status sshd.service
+systemctl start sshd.service
+systemctl enable sshd.service
+rpm -qa | grep ssh
+
+--	Modificar el scp
+
+cp -p /usr/bin/scp /usr/bin/scp-original
+echo "/usr/bin/scp-original -T \$*" > /usr/bin/scp
+chmod 555 /usr/bin/scp
+cat /usr/bin/scp
+
+-- Validar memoria SWAP
+
+grep SwapTotal /proc/meminfo
+
+-- Validar memoria RAM
+
+grep MemTotal /proc/meminfo
+
+-- Verificación del área temporal y espacio en disco
+df -h /tmp
+df -h
+
+
+-- Validar ntp o chrony
+
+--Validar el status del servicio:
+--systemctl status ntpd
+--
+--Validar el pool de conexiones del ntp
+--systemctl status ntpd
+--ntpq -p
+
+Con chrony
+systemctl status chronyd
+chronyc sources
+
+
+
+4. Validar que perl esté instalado
+
+which perl
+perl -v
+
+Si no está instalado:
+dnf -y install perl
+
+5. Instalar prerequisitos del binario de base de datos 19c
+
+dnf install -y bc
+dnf install -y binutils
+dnf install -y compat-openssl11
+dnf install -y device-mapper-multipath
+dnf install -y elfutils-libelf
+dnf install -y elfutils-libelf-devel
+dnf install -y fontconfig
+dnf install -y gcc
+dnf install -y gcc-c++
+dnf install -y glibc
+dnf install -y glibc-devel
+dnf install -y initscripts
+dnf install -y java-devel
+dnf install -y kernel-uek-devel
+dnf install -y ksh
+dnf install -y libaio
+dnf install -y libaio-devel
+dnf install -y libasan
+dnf install -y libgcc
+dnf install -y libibverbs
+dnf install -y liblsan
+dnf install -y libnsl
+dnf install -y libnsl.i686
+dnf install -y libnsl2
+dnf install -y libnsl2.i686
+dnf install -y librdmacm
+dnf install -y libstdc++
+dnf install -y libstdc++-devel
+dnf install -y libvirt-libs
+dnf install -y libX11
+dnf install -y libXau
+dnf install -y libxcb
+dnf install -y libxcrypt-compat
+dnf install -y libXext
+dnf install -y libXi
+dnf install -y libXrender
+dnf install -y libXtst
+dnf install -y make
+dnf install -y nfs-utils
+dnf install -y numactl
+dnf install -y oracleasm
+dnf install -y policycoreutils
+dnf install -y policycoreutils-python-utils
+dnf install -y rng-tools
+dnf install -y smartmontools
+dnf install -y sysstat
+dnf install -y unixODBC
+dnf install -y unixODBC-devel
+dnf install -y zlib-devel
+
+dnf install -y atop
+dnf install -y dstat
+dnf install -y nmon
+dnf install -y htop
+
+dnf install -y rsync
+dnf install -y bind-utils 
+dnf install -y xorg-x11-utils 
+dnf install -y xorg-x11-xauth
+
+
+dnf install -y python3-pycurl
+
+
+
+
+5. Validar Usuarios
+
+id -a oracle19
+id -a grid
+grep oracle19 /etc/group
+grep grid /etc/group
+
+
+54321 oinstall
+54322 dba
+54323 oper
+54324 backupdba
+54325 dgdba
+54326 kmdba
+54327 asmdba
+54328 asmoper
+54329 asmadmin
+54330 racdba
+
+uid=54323(oracle19) gid=54329(asmadmin) groups=
+54329(asmadmin),
+54322(dba),
+54323(oper),
+54324(backupdba),
+54325(dgdba),
+54326(kmdba),
+54327(asmdba),
+54328(asmoper),
+54330(racdba)
+
+uid=54322(grid) gid=54327(asmdba) groups=
+54327(asmdba),
+54328(asmoper),
+54329(asmadmin),
+54330(racdba)
+
+
+Crear el password de cada user
+
+passwd oracle19
+oracle1
+
+passwd grid
+oracle1
+
+
+6. Subir los archivos necesarios al servidor
+
+RPM
+rsync -Pathv RPM_RHEL9_OL9/ oracle19@180.183.174.107:/exportdb/instalacion/rpm/
+
+BINARIOS
+rsync -Pathv V982063-01-oracle.zip V982068-01-grid.zip oracle19@180.183.174.107:/exportdb/instalacion/binarios/
+
+PARCHES
+rsync -Pathv 19_32 oracle19@180.183.174.107:/exportdb/instalacion/parches
+
+AHF
+rsync -Pathv AHF-LINUX_v26.1.0.zip oracle19@180.183.174.107:/exportdb/instalacion/ahf
+
+CVU
+rsync -Pathv cvupack_host.zip oracle19@180.183.174.107:/exportdb/instalacion/
+
+7. Instalar paquetes RPM
+
+rpm -Uvh oracle-database-preinstall-19c-1.0-1.el9.x86_64.rpm
+
+--Configurar el KSplice para update de sistema operativo sin downtime
+rpm -ivh uptrack-1.2.80-0.el9.noarch.rpm
+
+
+--Instalar el paquete oracleasm-support y oracleasmlib
+rpm -Uvh oracleasm-support-3.1.1-3.el9.x86_64.rpm
+rpm -Uvh oracleasmlib-3.1.1-1.el9.x86_64.rpm
+
+8. Verificar variables de kernel
+
+/etc/sysctl.d/99-oracle-database-preinstall-19c-sysctl.conf
+
+# sysctl settings are defined through files in
+# /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/.
+#
+# Vendors settings live in /usr/lib/sysctl.d/.
+# To override a whole file, create a new file with the same in
+# /etc/sysctl.d/ and put new settings there. To override
+# only specific settings, add a file with a lexically later
+# name in /etc/sysctl.d/ and put new settings there.
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+
+# oracle-database-preinstall-19c setting for fs.file-max is 6815744
+fs.file-max = 6815744
+
+# oracle-database-preinstall-19c setting for kernel.sem is '250 32000 100 128'
+kernel.sem = 250 32000 100 128
+
+# oracle-database-preinstall-19c setting for kernel.shmmni is 4096
+kernel.shmmni = 4096
+
+# oracle-database-preinstall-19c setting for kernel.shmall is 1073741824 on x86_64
+kernel.shmall = 1073741824
+
+# oracle-database-preinstall-19c setting for kernel.shmmax is 4398046511104 on x86_64
+kernel.shmmax = 4398046511104
+
+# oracle-database-preinstall-19c setting for kernel.panic_on_oops is 1 per Orabug 19212317
+kernel.panic_on_oops = 1
+
+
+
+Verificar limits
+
+Configurar los limits "Si no se ha instalado o no se ha podido instalar el paquete oracle-database-preinstall-19c"
+
+vi /etc/security/limits.d/oracle-database-preinstall-19c.conf
+
+# oracle-database-preinstall-19c setting for nofile soft limit is 4096
+oracle   soft   nofile    4096
+
+# oracle-database-preinstall-19c setting for nofile hard limit is 65536
+oracle   hard   nofile    65536
+
+# oracle-database-preinstall-19c setting for nproc soft limit is 16384
+# refer orabug15971421 for more info.
+oracle   soft   nproc    16384
+
+# oracle-database-preinstall-19c setting for nproc hard limit is 16384
+oracle   hard   nproc    16384
+
+# oracle-database-preinstall-19c setting for stack soft limit is 10240KB
+oracle   soft   stack    10240
+
+# oracle-database-preinstall-19c setting for stack hard limit is 32768KB
+oracle   hard   stack    32768
+
+# oracle-database-preinstall-19c setting for memlock hard limit is maximum of 128GB on x86_64 or 3GB on x86 OR 90 % of RAM
+oracle   hard   memlock    134217728
+
+# oracle-database-preinstall-19c setting for memlock soft limit is maximum of 128GB on x86_64 or 3GB on x86 OR 90% of RAM
+oracle   soft   memlock    134217728
+
+# oracle-database-preinstall-19c setting for data soft limit is 'unlimited'
+oracle   soft   data    unlimited
+
+# oracle-database-preinstall-19c setting for data hard limit is 'unlimited'
+oracle   hard   data    unlimited
+
+
+Nota: oracle soft nofile es de 4096 de acuerdo a la recomendación de Oracle
+
+-- Crear los limits para grid
+
+cd /etc/security/limits.d
+cat oracle-database-preinstall-19c.conf | sed 's/oracle /grid /g' > oracle-grid-user-preinstall-19c.conf
+
+8. Configurar el rgnd
+
+cd /usr/lib/systemd/system
+cp -p rngd.service rngd.service.original
+
+vi rngd.service
+
+[Service]
+#ExecStart=/usr/sbin/rngd -f $RNGD_ARGS ---> Este parametro debe estar comentado
+
+ ---------> Agregar al archivo
+
+
+systemctl daemon-reload
+systemctl start rngd
+systemctl status rngd
+
+9.	Detener el avahi daemon -- No estaba 
+
+systemctl status avahi-daemon
+systemctl stop avahi-daemon
+systemctl disable avahi-daemon
+
+
+10.	Verificar que session required pam_limits.so exista para garantizar el uso de los limits al iniciar sesión el usuario
+
+cat /etc/pam.d/login
+
+Si no existe la siguiente línea, proceder a agregarla
+
+
+cp -p /etc/pam.d/login  /etc/pam.d/login-original
+
+vi /etc/pam.d/login
+# Requerido para la instalacion de Oracle 19C 
+session required pam_limits.so
+
+
+11. Habilitar el io_uring
+
+
+echo "kernel.io_uring_disabled = 0">>/etc/sysctl.conf
+
+sysctl -p
+
+12. Validar que /tmp no tenga la propiedad noexec
+
+mount | grep /tmp
+
+13. Validacion de SO a nivel de redes.
+
+--Consultar el hostname de los nodos con el siguiente comando: 
+
+hostname
+ping $(hostname)
+
+-- Verificar IPs y tarjetas de red
+
+ifconfig -a	
+nmcli connection show
+	
+-- Desactivar el firewall
+
+systemctl status firewalld
+systemctl stop firewalld
+systemctl disable firewalld
+
+-- Verificar de la resolución de nombre DNS
+
+nslookup $(hostname)
+
+-- Verificar archivo /etc/hosts
+
+cat /etc/hosts
+
+Nota: No debe existir el hostname apuntando a la dirección de loopback, sea la 127.0.0.1 o la ::1
+
+Se deben agregar los hostnames con las ip correspondientes al archivo hosts
+
+En este caso la ip de la tarjeta solo anfitrión es 192.168.56.121 y el hostname es OL9SRVLABBD01
+Ejemplo:
+
+vi /etc/hosts
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+180.183.174.107 dlbdmct01       dlbdmct01.banvendes.corp
+
+
+-- Verificar que este configurado el X11 y eliminar el timeout para el ssh
+
+
+cp -p /etc/ssh/sshd_config /etc/ssh/sshd_config.original
+
+vi /etc/ssh/sshd_config
+
+Verificar que esté configurado los parámetros 
+x11forwarding yes
+LoginGraceTime 0
+
+X11Forwarding yes
+
+X11Forwarding yes
+
+
+Nota: De no estar descomentados dichos parámetros, descomentarlo y reiniciar el servicio sshd.
+
+systemctl restart sshd
+
+
+14. Preparacion de Directorios.
+
+mkdir -p /oracle/app/oraInventory
+mkdir -p /oracle/app/grid
+mkdir -p /oracle/app/product/19c/grid
+mkdir -p /oracle/app/oracle/product/19c/db1
+
+
+Asignar los owner y la permisologia a los directorios
+
+chown -R grid:oinstall /oracle/
+chown -R oracle19:oinstall /oracle/app/oracle
+chmod -R 775 /oracle/
+
+
+
+
+15.	Configurar las etiquetas de los discos de ASM
+
+systemctl start oracleasm.service
+/usr/sbin/oracleasm init
+/usr/sbin/oracleasm configure -i
+
+Se deben ingresar las siguientes opciones solicitadas de forma secuencial:
+  grid
+  asmadmin
+  y
+  y
+  4096
+  y
+
+systemctl status oracleasm
+systemctl restart oracleasm
+systemctl status oracleasm
+
+
+Si se desea cambiar el max disks
+
+oracleasm configure --maxdisks 4096
+systemctl restart oracleasm
+
+
+
+16. Configurar las etiquetas de los discos de ASM
+
+-- PArticionar discos
+
+Ver los discos presentes
+lsblk -fm
+
+sdb     	100G root  disk  brw-rw----
+sdf         100G root disk   brw-rw----
+
+sde         10G  root  disk  brw-rw----
+sdg         10G  root  disk  brw-rw----
+sdh         10G  root  disk  brw-rw----
+sdi         10G  root  disk  brw-rw----
+
+sdj         20G  root  disk  brw-rw----
+sdk         20G  root  disk  brw-rw----
+
+sdl         20G  root  disk  brw-rw----
+sdm         20G  root  disk  brw-rw----
+
+
+
+Para consultar por rango de discos 
+Ejemplo del rango sdb al sdg
+lsblk -fm `ls -1 /dev/sd[b-e]` | sort -k1
+
+
+Particionar disco de forma manual, para este ejemplo, se hará con el disco sdb. Hacer este paso para todos los discos a particionar.
+
+fdisk /dev/sdb
+-- fdisk /dev/sdf
+-- fdisk /dev/sde
+-- fdisk /dev/sdg
+-- fdisk /dev/sdh
+-- fdisk /dev/sdi
+-- fdisk /dev/sdj
+-- fdisk /dev/sdk
+-- fdisk /dev/sdl
+fdisk /dev/sdm
+
+
+1.-p
+2.-n
+3.-p
+4.-1
+5.-número de primer cilindro
+6.-número de último cilindro
+7.-w
+
+
+-- Crear discos de ASM
+
+--sdb     	100G
+--sdf       100G
+--sde         10G
+--sdg         10G
+--sdh         10G
+--sdi         10G
+--sdj         20G
+--sdk         20G
+--sdl         20G
+--sdm         20G
+
+DATA 200GB
+/usr/sbin/oracleasm createdisk DATA_ULTRAS01 /dev/sdb1
+/usr/sbin/oracleasm createdisk DATA_ULTRAS02 /dev/sdf1
+
+FRA 20GB
+/usr/sbin/oracleasm createdisk FRA_ULTRAS01 /dev/sde1
+/usr/sbin/oracleasm createdisk FRA_ULTRAS02 /dev/sdg1
+
+ASM 20GB
+/usr/sbin/oracleasm createdisk ASM_01 /dev/sdh1
+/usr/sbin/oracleasm createdisk ASM_02 /dev/sdi1
+
+REDO01 40GB
+/usr/sbin/oracleasm createdisk REDO01_ULTRAS01 /dev/sdj1
+/usr/sbin/oracleasm createdisk REDO01_ULTRAS02 /dev/sdk1
+
+REDO02 40GB
+/usr/sbin/oracleasm createdisk REDO02_ULTRAS01 /dev/sdl1
+/usr/sbin/oracleasm createdisk REDO02_ULTRAS02 /dev/sdm1
+
+-- Listar discos de ASM
+/usr/sbin/oracleasm scandisks
+/usr/sbin/oracleasm listdisks
+
+
+17. Acciones previas a la instalación
+
+-- Usuario oracle19
+
+cd
+cp -p .bash_profile .bash_profile.original
+
+cat <<EOF >> .bash_profile
+if [ -t 0 ];then 
+  stty intr ^C 
+fi
+
+export ORACLE_BASE=/oracle/app/oracle
+export ORACLE_HOME=/oracle/app/oracle/product/19c/db1
+# export ORACLE_SID=
+export LD_LIBRARY_PATH=\$ORACLE_HOME/lib
+export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/bin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/openwin/bin:/usr/ucb:\$ORACLE_HOME/bin:\$ORACLE_HOME/OPatch:\$ORACLE_HOME/suptools/oratop:.
+export CV_ASSUME_DISTID=RHEL8
+export SRVM_DISABLE_MTTRANS=true
+export HISTTIMEFORMAT="%G-%m-%dT%T "
+export EDITOR=vim
+export TEMP=/tmp
+export TMPDIR=/tmp
+umask 022
+ulimit -t unlimited
+ulimit -f unlimited
+ulimit -d unlimited
+ulimit -v unlimited
+EOF
+
+source .bash_profile
+
+
+-- Usuario grid
+
+cd
+cp -p .bash_profile .bash_profile.original
+
+cat <<EOF>> .bash_profile
+if [ -t 0 ];then 
+  stty intr ^C 
+fi
+
+export ORACLE_BASE=/oracle/app/grid
+export ORACLE_HOME=/oracle/app/product/19c/grid
+# export ORACLE_SID=+ASM
+export LD_LIBRARY_PATH=\$ORACLE_HOME/lib
+export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/openwin/bin:/usr/ucb:\$ORACLE_HOME/bin:\$ORACLE_HOME/OPatch:.
+export CV_ASSUME_DISTID=RHEL8
+export SRVM_DISABLE_MTTRANS=true
+export HISTTIMEFORMAT="%G-%m-%dT%T "
+export EDITOR=vim
+export TEMP=/tmp
+export TMPDIR=/tmp
+umask 022
+ulimit -t unlimited
+ulimit -f unlimited
+ulimit -d unlimited
+ulimit -v unlimited
+EOF
+
+
+source .bash_profile
+
+-- Usuario root
+
+cd
+cp -p .bash_profile .bash_profile.original
+
+cat <<EOT >>.bash_profile
+umask 022
+ulimit -t unlimited
+ulimit -f unlimited
+ulimit -d unlimited
+#ulimit -s unlimited
+ulimit -v unlimited
+
+if [ -t 0 ]; then
+  stty intr ^C
+fi
+
+export CV_ASSUME_DISTID=OL8
+export SRVM_DISABLE_MTTRANS=true
+export HISTTIMEFORMAT="%G-%m-%dT%T "
+export CV_ASSUME_DISTID=RHEL8
+EOT
+
+
+source .bash_profile
+
+-- Validar limits
+
+Con los usuarios oracle19 y grid
+
+ulimit -Sa
+ulimit -Ha
+
+-- Descomprimir los binarios de grid y oracle
+
+Usuario oracle
+
+cd /oracle/app/oracle/product/19c/db1
+unzip -q /exportdb/instalacion/binarios/V982063-01-oracle.zip
+
+
+Usuario grid
+
+cd /oracle/app/product/19c/grid
+unzip -q /exportdb/instalacion/binarios/V982068-01-grid.zip
+
+
+-- Instalar el CVUDISK
+Con root
+
+cd /oracle/app/product/19c/grid/cv/rpm
+rpm -ivh cvuqdisk-1.0.10-1.rpm
+
+-- Comprobar el estado de los prerrequisitos con el cluvfy
+
+Usuario grid
+
+cd /oracle/app/product/19c/grid
+./runcluvfy.sh stage -pre hacfg
+
+
+usermod -g oinstall -G dba grid
+
+Nota: compat-libcap1 y el compat-libstdc++ está deprecated para OL9, por lo cual se puede omitir y continuar
+
+
+-- Actualizar OPatch (ORACLE-GRID)
+
+con root 
+
+chmod 777 -R /exportdb/instalacion/parches 
+
+Con oracle19
+
+export BINARY_DIR=/exportdb/instalacion/binarios
+export OPATH_DIR=/exportdb/instalacion/parches/19_32
+ls -d $ORACLE_HOME && cd $ORACLE_HOME
+
+ls -ld $OPATH_DIR/p6880880_190000_Linux-x86-64.zip
+mv OPatch OPatch.Original
+unzip -q $OPATH_DIR/p6880880_190000_Linux-x86-64.zip
+$ORACLE_HOME/OPatch/opatch version
+
+Con grid
+
+export BINARY_DIR=/exportdb/instalacion/binarios
+export OPATH_DIR=/exportdb/instalacion/parches/19_32
+ls -d $ORACLE_HOME && cd $ORACLE_HOME
+
+
+ls -ld $OPATH_DIR/p6880880_190000_Linux-x86-64.zip
+mv OPatch OPatch.Original
+unzip -q $OPATH_DIR/p6880880_190000_Linux-x86-64.zip
+$ORACLE_HOME/OPatch/opatch version
+
+
+18. Instalar GRID
+
+-- Para GRID y ORACLE se requiere que la version de parche sea 19.22 o superior
+-- Descomprimir los parches
+
+export PATCH_TOP_DIR=/exportdb/instalacion/parches/19_32
+
+ls -ld $PATCH_TOP_DIR/p39467003_190000_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p39222882_190000_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p38723830_1932000DBRU_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p38238416_1932000DBRU_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p34774667_1932000DBRU_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p39971265_1932000DBRU_Linux-x86-64.zip
+ls -ld $PATCH_TOP_DIR/p29213893_1932000DBRU_Generic.zip
+
+export PATCH_TOP_DIR=/exportdb/instalacion/parches/19_32
+cd $PATCH_TOP_DIR
+for f in p39467003_190000_Linux-x86-64.zip \
+         p39222882_190000_Linux-x86-64.zip \
+         p38723830_1932000DBRU_Linux-x86-64.zip \
+         p38238416_1932000DBRU_Linux-x86-64.zip \
+         p34774667_1932000DBRU_Linux-x86-64.zip \
+         p39971265_1932000DBRU_Linux-x86-64.zip \
+         p29213893_1932000DBRU_Generic.zip
+do
+  [ -f "$f" ] && unzip -q -o $f -x PatchSearch.xml || echo "FALTA: $f"
+done
+
+chmod -R 777 $PATCH_TOP_DIR/3* $PATCH_TOP_DIR/2*
+--drwxrwxr-x. 4 oracle oinstall 89 Sep 15 12:12 /exportdb/
+chown -R grid:oinstall $PATCH_TOP_DIR
+
+-- Aplicar RU grid
+
+export PATCH_TOP_DIR=/exportdb/instalacion/parches/19_32
+export CV_ASSUME_DISTID=RHEL8
+echo $ORACLE_HOME
+
+$ORACLE_HOME/gridSetup.sh -applyRU $PATCH_TOP_DIR/39467003 \
+               -applyOneOffs $PATCH_TOP_DIR/38723830
+
+
+-- Correr verificaciones de los prerequisitos
+
+$ORACLE_HOME/runcluvfy.sh -version
+
+# Salida
+Version 19.0.0.0.0 Build 070326x8664
+Full version 19.32.0.0.0
+
+
+export CV_ASSUME_DISTID=RHEL8
+$ORACLE_HOME/runcluvfy.sh stage -pre hacfg
+
+-- Se tuvo que configurar la herramienta vnc
+-- Iniciar gridSetup
+
+$ORACLE_HOME/gridSetup.sh
+
+-- Creacion de Diskgroups
+
+*****************************************
+
+-- Configurar Listener uruario grid
+NETCA - 
+(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dlbdmct01)(PORT=1555)))
+
+
+ALTER SYSTEM SET LOCAL_LISTENER='(ADDRESS=(PROTOCOL=TCP)(HOST=dlbdmct01)(PORT=1555))';
+
+ALTER SYSTEM REGISTER;
+
+
+
+----- Instalar ORACLE
+---Validar los limits oracle
+
+ulimit -a
+
+
+-- Ejecutar el instalador
+
+Se debe aplicar el DB RU + OCW + OJVM + MRP + ONE-OFFs
+
+
+ PATCH_TOP_DIR=/exportdb/instalacion/parches/19_32
+
+******
+
+P=/exportdb/instalacion/parches/19_32
+MRP_LIST=$(ls -d $P/39971265/[0-9]*/ 2>/dev/null | sed 's#/$##' | paste -sd,)
+[ -z "$MRP_LIST" ] && MRP_LIST=$P/39971265
+
+echo $MRP_LIST
+
+$ORACLE_HOME/runInstaller -applyRU $P/39467003/39472050 \
+               -applyOneOffs $P/39467003/39526364,$P/39222882,$MRP_LIST,$P/38723830,$P/34774667,$P/29213893
+
+-- Despues de parchar se iniciara la interfaz grafica de instalacion.
+
+
+
+--Agregar el ORACLE_SID en los profiles
+
+Ejecuctar en el home del usuario
+
+sed -i.nd.$(date '+%Y%m%d') \
+"s/^# export ORACLE_SID=.*/export ORACLE_SID=$(ps -ef | grep pmon | grep -viE "+asm|mgmtdb|grep" | cut -d_ -f3)/" ~/.bash_profile
+
+
+-- Modificar el glogin
+
+cd $ORACLE_HOME/sqlplus/admin
+
+cp -p glogin.sql glogin.sql.jr.$(date +'%Y%m%d')
+
+cat <<EOF >> glogin.sql
+SET TIMI ON
+SET TIME ON
+SET LINE 180
+--ALTER SESSION SET NLS_DATE_FORMAT = 'DD-MM-RRRR HH24:MI:SS';
+SET SQLPROMPT '&_USER.@&_CONNECT_IDENTIFIER.> '
+EOF
+
+
+
+
+
+*****
+Nombre de Instancia - Se elige acá
+Nombre de esquemas ULTRASEC*******
+Nombre de Tbs
+DATA_ULTRASEC
+INDX_ULTRASEC

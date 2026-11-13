@@ -1,0 +1,895 @@
+************************************************************************************************
+Servidor - IPs
+************************************************************************************************
+
+Cluster 
+Nodo 1
+PLBDMCT01 - 172.27.88.140
+ssh administrator@PLBDMCT01
+
+Nodo 2
+PLBDMCT02 - 172.27.88.141
+ssh administrator@PLBDMCT02
+
+
+************************************************************************************************
+SOLICITUD_IPS_CLUSTER
+************************************************************************************************
+
+
+....Direccionamiento IP
+
+Correo 1 10-11-12
+Solicitud de DNS - Produccion
+
+Correo 2 Solicitud de IPs  (VIP y SCAN)
+
+Buen dia,
+La presente es para solicitar direcciones IPs en el ambiente de PRODUCCION con el fin de crear el cluster del Proyecto Mesa de Cambio
+
+3 IPs de SCAN
+2 IPs de VIP
+
+
+Correo 3 
+
+--Buenas tardes,
+--
+--Se valido el servidor y se observo que no cuenta con las interfaces de InterConnect.
+--Por favor crear dichas interfaces para el clúster de Base de Datos con MTU9600. 
+
+
+Buenas tardes, 
+
+Gracias por el apoyo compañeros de redes 
+
+Compañeros de soporte Windows se requiere de su apoyo para solicitar de su apoyo para la configuración 
+de las siguientes IP y la configuración de las Intra-Clúster para el clúster de Base de Datos con MTU9600.
+
+
+
+Coreeo 4 
+Buenas tardes,
+Gracias por la gestión.
+
+Compañeros de windows, se requiere lo siguiente:
+
+Registro DNS (Ambiente Calidad)
+ 
+VIP
+--180.183.168.123 clbdhpcpdom01-vip clbdhpcpdom01-vip.banvenqa.com
+--180.183.168.124 clbdhpcpdom02-vip clbdhpcpdom02-vip.banvenqa.com
+ 
+ 
+Es necesario crear en modo round robin lo siguiente:
+Calidad
+ 
+--LX010QSCAN
+--180.183.168.120
+--180.183.168.121
+--180.183.168.122
+ 
+ 
+Alias del Clustername:
+ 
+LX010QSCAN CLUSTERLX010Q
+
+
+---- Veriricar
+
+
+
+
+************************************************************************************************
+SOLICITUD_DISCOS
+************************************************************************************************
+
+4 discos  de 500GB cada uno para DATA
+2 discos  de 500GB cada uno para FRA
+10 discos de 20GB cada uno para REDO
+2 discos  de 10Gb cada uno para OCRVOTE
+2 discos  de 50GB cada uno para MGMT
+
+
+************************************************************************************************
+DATABASE_NAME
+************************************************************************************************
+ULTSECP
+
+
+************************************************************************************************
+VERIFICACIONES_SO
+************************************************************************************************
+--Comprobar que Secure Boot esté deshabilitado
+mokutil --sb-state
+
+--Debe estar desabilitado.
+
+***fstab y espacio del tmp
+
+--Validación de memoria
+--SWAP
+grep SwapTotal /proc/meminfo
+
+--RAM
+grep MemTotal /proc/meminfo
+
+--Verificación del área temporal y espacio en disco
+df -h /tmp
+df -h
+
+------------------------------------------------------------------------------------------------
+
+
+--Comprobar la arquitectura del sistema operativo
+
+uname -a
+hostnamectl
+
+------------------------------------------------------------------------------------------------
+-- Modificar el Kernel en caso de ser necesario
+
+-- Comprobar los nucleos disponibles 
+sudo rpm -qa kernel*
+sudo ls -l /boot/vmlinuz*
+
+-- Identificar un núcleo de kernel especifico 
+sudo grubby --info /boot/vmlinuz-5.14.0*
+sudo grubby --info=ALL
+
+-- Comprobar el núcleo predeterminado de arranque
+sudo grubby --default-kernel
+
+-- Verificar el kernel que se esta ejecutando en la maquina
+sudo uname -r
+
+-- Cambiar el núcleo predeterminado 
+
+grubby --set-default /boot/vmlinuz-5.14.0-611.5.1.el9_7.x86_64
+
+-- Nota: El cambio surte efecto inmediatamente y persiste después de reiniciar el sistema.
+
+-- Reiniciar el sistema 
+reboot
+
+------------------------------------------------------------------------------------------------
+--Desactivar el SELinux
+
+sed -i.JR.$(date +'%Y%m%d') \
+-e 's/^SELINUX=enforcing$/SELINUX=permissive/' \
+-e 's/^SELINUX=disabled$/SELINUX=permissive/' /etc/selinux/config
+
+cat /etc/selinux/config
+
+--Reetiquetado del setlinux
+restorecon -Rv /
+touch /.autorelabel
+
+--Reiniciar el servidor
+reboot
+
+------------------------------------------------------------------------------------------------
+--Asegurarse que el ssh este activo y funcionando
+
+systemctl status sshd.service
+systemctl start sshd.service
+systemctl enable sshd.service
+rpm -qa | grep ssh
+
+------------------------------------------------------------------------------------------------
+Modificar el scp
+
+cp -p /usr/bin/scp /usr/bin/scp.nd.20261012
+cat <<EOF > /usr/bin/scp
+#!/bin/bash
+/usr/bin/scp-original -T -O "\$@"
+
+
+cat /usr/bin/scp
+chmod 555 /usr/bin/scp
+
+
+Usar "$@" y no $*, para que las rutas con espacios o comillas lleguen intactas.
+Simular lo que hace CVU:
+
+ssh clbdkb02 "mkdir -p /tmp/prueba_scp"
+scp /etc/hosts clbdkb02:"'/tmp/prueba_scp//hosts'" && echo OK
+ssh clbdkb02 "ls -l /tmp/prueba_scp; rm -rf /tmp/prueba_scp"
+
+------------------------------------------------------------------------------------------------
+Validar que perl esté instalado
+
+which perl
+perl -v
+
+Si no está instalado:
+dnf -y install perl
+
+------------------------------------------------------------------------------------------------
+Instalar prerequisitos del binario de base de datos 19c
+
+dnf install -y bc
+dnf install -y binutils
+dnf install -y compat-openssl11
+dnf install -y device-mapper-multipath
+dnf install -y elfutils-libelf
+dnf install -y elfutils-libelf-devel
+dnf install -y fontconfig
+dnf install -y gcc
+dnf install -y gcc-c++
+dnf install -y glibc
+dnf install -y glibc-devel
+dnf install -y initscripts
+dnf install -y java-devel
+dnf install -y kernel-uek-devel
+dnf install -y ksh
+dnf install -y libaio
+dnf install -y libaio-devel
+dnf install -y libasan
+dnf install -y libgcc
+dnf install -y libibverbs
+dnf install -y liblsan
+dnf install -y libnsl
+dnf install -y libnsl.i686
+dnf install -y libnsl2
+dnf install -y libnsl2.i686
+dnf install -y librdmacm
+dnf install -y libstdc++
+dnf install -y libstdc++-devel
+dnf install -y libvirt-libs
+dnf install -y libX11
+dnf install -y libXau
+dnf install -y libxcb
+dnf install -y libxcrypt-compat
+dnf install -y libXext
+dnf install -y libXi
+dnf install -y libXrender
+dnf install -y libXtst
+dnf install -y make
+dnf install -y nfs-utils
+dnf install -y numactl
+dnf install -y oracleasm
+dnf install -y policycoreutils
+dnf install -y policycoreutils-python-utils
+dnf install -y rng-tools
+dnf install -y smartmontools
+dnf install -y sysstat
+dnf install -y unixODBC
+dnf install -y unixODBC-devel
+dnf install -y zlib-devel
+
+dnf install -y rsync
+dnf install -y bind-utils 
+dnf install -y xorg-x11-utils 
+dnf install -y xorg-x11-xauth
+dnf install -y python3-pycurl
+
+--REPOSITORIO EPEL
+dnf install -y atop
+dnf install -y dstat
+dnf install -y nmon
+dnf install -y htop
+
+------------------------------------------------------------------------------------------------
+--USUARIOS ORACLE-ORACLE19-GRID
+
+--Eliminar usuarios
+userdel -r oracle
+userdel -r oracle19
+userdel -r grid
+
+--Elimnar grupos - excepto dba
+
+groupdel asmadmin
+groupdel asmdba
+groupdel asmoper
+groupdel oper
+groupdel backupdba
+groupdel dgdba
+groupdel kmdba
+groupdel racdba
+groupdel oinstall
+--groupdel dba
+
+
+--Agregar grupos
+
+groupadd -g 54321 oinstall
+groupadd -g 54322 dba
+groupadd -g 54323 oper
+groupadd -g 54324 backupdba
+groupadd -g 54325 dgdba
+groupadd -g 54326 kmdba
+groupadd -g 54327 asmdba
+groupadd -g 54328 asmoper
+groupadd -g 54329 asmadmin
+groupadd -g 54330 racdba
+
+--Agregar usuarios
+
+useradd -u 54321 -g oinstall -G dba,asmdba,backupdba,dgdba,kmdba,racdba,oper,asmoper,asmadmin -c "Oracle Database" oracle19
+useradd -u 54321 -g oinstall -G dba,asmdba,backupdba,dgdba,kmdba,racdba,oper,asmoper,asmadmin -c "Oracle Database" oracle
+
+useradd -u 54322 -g oinstall -G asmadmin,asmdba,asmoper,racdba,dba -c "Grid Infrastructure" grid
+
+useradd -u 54323 -g oinstall -G dba,racdba -c "Agent Cloud Control" oracle
+
+usermod -g oinstall -G asmadmin,asmdba,asmoper,racdba,dba -c "Grid Infrastructure" grid
+usermod -g oinstall -G oinstall -c "Agent Cloud Control" oracle
+
+-- Crear el password de cada user
+
+export TEMP_PASS="oracle1"
+echo -e "${TEMP_PASS}\n${TEMP_PASS}\n" | passwd oracle19
+echo -e "${TEMP_PASS}\n${TEMP_PASS}\n" | passwd grid
+echo -e "${TEMP_PASS}\n${TEMP_PASS}\n" | passwd oracle
+
+unset TEMP_PASS
+
+------------------------------------------------------------------------------------------------
+--Subir los archivos necesarios al servidor
+
+Crear ruta para subir instaladores 
+
+mkdir -p /exportdb/instalacion/{rpm,parches,ahf}
+PLBDMCT01 - 172.27.88.140
+
+RPM
+rsync -Pathv RPM_RHEL9_OL9/ oracle19@180.183.174.107:/exportdb/instalacion/rpm/
+
+BINARIOS
+rsync -Pathv V982063-01-oracle.zip V982068-01-grid.zip oracle19@180.183.174.107:/exportdb/instalacion/binarios/
+
+PARCHES
+rsync -Pathv 19_32 oracle19@180.183.174.107:/exportdb/instalacion/parches
+
+AHF
+rsync -Pathv AHF-LINUX_v26.1.0.zip oracle19@180.183.174.107:/exportdb/instalacion/ahf
+
+CVU
+rsync -Pathv cvupack_host.zip oracle19@180.183.174.107:/exportdb/instalacion/
+
+
+------------------------------------------------------------------------------------------------
+--Instalar paquetes RPM
+cd /exportdb/instalacion/rpm/
+
+rpm -Uvh oracle-database-preinstall-19c-1.0-1.el9.x86_64.rpm
+
+--Configurar el KSplice para update de sistema operativo sin downtime
+rpm -ivh uptrack-1.2.80-0.el9.noarch.rpm
+
+
+--Instalar el paquete oracleasm-support y oracleasmlib
+rpm -Uvh oracleasm-support-3.1.1-3.el9.x86_64.rpm
+rpm -Uvh oracleasmlib-3.1.1-1.el9.x86_64.rpm
+
+
+
+------------------------------------------------------------------------------------------------
+--Habilitar io_uring
+grep -q "kernel.io_uring_disabled = 0" /etc/sysctl.conf || echo "kernel.io_uring_disabled = 0" >> /etc/sysctl.conf
+
+
+
+------------------------------------------------------------------------------------------------
+--Ajustes en las variables del Kernel.
+
+--Validar 99-oracle-database-preinstall-19c-sysctl.conf
+ls -ld /etc/sysctl.d/99-oracle-database-preinstall-19c-sysctl.conf
+
+cat <<EOF > /etc/sysctl.d/99-oracle-database-preinstall-19c-sysctl.conf
+# sysctl settings are defined through files in
+# /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/.
+#
+# Vendors settings live in /usr/lib/sysctl.d/.
+# To override a whole file, create a new file with the same in
+# /etc/sysctl.d/ and put new settings there. To override
+# only specific settings, add a file with a lexically later
+# name in /etc/sysctl.d/ and put new settings there.
+#
+# For more information, see sysctl.conf(5) and sysctl.d(5).
+
+# oracle-database-preinstall-19c setting for fs.file-max is 6815744
+fs.file-max = 6815744
+
+# oracle-database-preinstall-19c setting for kernel.sem is '250 32000 100 128'
+kernel.sem = 250 32000 100 128
+
+# oracle-database-preinstall-19c setting for kernel.shmmni is 4096
+kernel.shmmni = 4096
+
+# oracle-database-preinstall-19c setting for kernel.shmall is 1073741824 on x86_64
+kernel.shmall = 1073741824
+
+# oracle-database-preinstall-19c setting for kernel.shmmax is 4398046511104 on x86_64
+kernel.shmmax = 4398046511104
+
+# oracle-database-preinstall-19c setting for kernel.panic_on_oops is 1 per Orabug 19212317
+kernel.panic_on_oops = 1
+
+# oracle-database-preinstall-19c setting for net.core.rmem_default is 262144
+net.core.rmem_default = 262144
+
+# oracle-database-preinstall-19c setting for net.core.rmem_max is 4194304
+net.core.rmem_max = 4194304
+
+# oracle-database-preinstall-19c setting for net.core.wmem_default is 262144
+net.core.wmem_default = 262144
+
+# oracle-database-preinstall-19c setting for net.core.wmem_max is 1048576
+net.core.wmem_max = 1048576
+
+# oracle-database-preinstall-19c setting for net.ipv4.conf.all.rp_filter is 2
+net.ipv4.conf.all.rp_filter = 2
+
+# oracle-database-preinstall-19c setting for net.ipv4.conf.default.rp_filter is 2
+net.ipv4.conf.default.rp_filter = 2
+
+# oracle-database-preinstall-19c setting for fs.aio-max-nr is 1048576
+fs.aio-max-nr = 1048576
+
+# oracle-database-preinstall-19c setting for net.ipv4.ip_local_port_range is 9000 65500
+net.ipv4.ip_local_port_range = 9000 65500
+EOF
+
+-- Setear los parametros configurados
+
+/sbin/sysctl -p
+
+-- Agregamos los ajustes de los limits de oracle
+
+--**Si no se ha instalado o no se ha podido instalar** el paquete oracle-database-preinstall-19c
+
+ls -ld /etc/security/limits.d/oracle-database-preinstall-19c.conf
+
+cat <<EOF> /etc/security/limits.d/oracle-database-preinstall-19c.conf
+# oracle-database-preinstall-19c setting for nofile soft limit is 4096
+oracle19   soft   nofile    4096
+
+# oracle-database-preinstall-19c setting for nofile hard limit is 65536
+oracle19   hard   nofile    65536
+
+# oracle-database-preinstall-19c setting for nproc soft limit is 16384
+# refer orabug15971421 for more info.
+oracle19   soft   nproc    16384
+
+# oracle-database-preinstall-19c setting for nproc hard limit is 16384
+oracle19   hard   nproc    16384
+
+# oracle-database-preinstall-19c setting for stack soft limit is 10240KB
+oracle19   soft   stack    10240
+
+# oracle-database-preinstall-19c setting for stack hard limit is 32768KB
+oracle19   hard   stack    32768
+
+# oracle-database-preinstall-19c setting for memlock hard limit is maximum of 128GB on x86_64 or 3GB on x86 OR 90 % of RAM
+oracle19   hard   memlock    134217728
+
+# oracle-database-preinstall-19c setting for memlock soft limit is maximum of 128GB on x86_64 or 3GB on x86 OR 90% of RAM
+oracle19   soft   memlock    134217728
+
+# oracle-database-preinstall-19c setting for data soft limit is 'unlimited'
+oracle19   soft   data    unlimited
+
+# oracle-database-preinstall-19c setting for data hard limit is 'unlimited'
+oracle19   hard   data    unlimited
+EOF
+
+--Incluir limits del usuario Grid
+--Crear los limits para Grid
+cd /etc/security/limits.d
+cat oracle-database-preinstall-19c.conf | sed 's/oracle /grid /g' > oracle-grid-user-preinstall-19c.conf
+cat oracle-database-preinstall-19c.conf | sed 's/oracle19 /grid /g' > oracle-grid-user-preinstall-19c.conf
+
+--Crear los limits para oracle agent cloud
+cd /etc/security/limits.d
+cat oracle-database-preinstall-19c.conf | sed 's/oracle19 /oracle /g' > oracle-agent-user-preinstall-19c.conf
+
+--Crear los limits para oracle19
+cd /etc/security/limits.d
+cat oracle-database-preinstall-19c.conf | sed 's/oracle /oracle19 /g' > oracle-oracle19-user-preinstall-19c.conf
+cat oracle-database-preinstall-19c.conf | sed 's/oracle19 /oracle /g' > oracle-oracle19-user-preinstall-19c.conf
+
+--Darle permisos a los archivos limits
+
+cd /etc/security/limits.d
+chmod 644 oracle-*.conf
+ls -ltr
+
+
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+************************************************************************************************
+
+************************************************************************************************
+
+
+
+
+
