@@ -1,0 +1,997 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:0.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-11-12 ? ? 13:08.16 ? ? /home/mobaxterm ? ssh oracle19@plclsa01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+Last login: Thu Nov 12 12:32:06 2026
+Ultimo login al Sistema: oracle19 pts/0        172.18.68.161    Thu Nov 12 13:08   still logged in
+
+wtmp begins Sun Dec  1 23:05:42 2024
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. CCENLP       = dbccenlp
+ 2. IDENTTYP     = dbidenttyp
+ 3. STOKENP      = dbstokenp
+
+
+[oracle19@plclsa01 ~]$ dbccenlp
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Nov 12 13:08:14 2026
+Version 19.23.0.0.0
+
+Copyright (c) 1982, 2023, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.23.0.0.0
+
+13:08:14 SYS@CCENLP1>
+13:08:15 SYS@CCENLP1>
+13:08:15 SYS@CCENLP1>
+13:08:15 SYS@CCENLP1>
+13:16:00 SYS@CCENLP1>
+13:16:01 SYS@CCENLP1>
+13:16:01 SYS@CCENLP1>
+13:16:01 SYS@CCENLP1> CREATE TABLE CCENLNP.CCL_ALIAS
+(13:16:36   2
+  RIF      VARCHAR2(15 BYTE)   13:16:36   3                   NOT NULL,
+  ALI13:16:36   4  AS    VARCHAR2(15 BYTE)                    NOT NULL,
+  CUENTA   13:16:36   5  VARCHAR2(20 BYTE),
+  STATUS   VARCHAR2(4 BYTE),
+  DEBITO   VARCH13:16:36   6  13:16:36   7  AR2(10 BYTE),
+  CREDITO  VARCHAR13:16:36   8  2(10 BYTE),
+  FECHA    DATE
+)
+TA13:16:36   9  13:16:36  10  13:16:36  11  BLESPACE DATA_CCENLP
+RESULT_CACH13:16:36  12  E (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRAN13:16:36  13  13:16:36  14  13:16:36  15  13:16:36  16  S   255
+STORAGE    (
+            INITIAL          64K
+          13:16:36  17  13:16:36  18  13:16:36  19    NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+     13:16:36  20  13:16:36  21  13:16:36  22  13:16:36  23         BUFFER_POOL      DEFAULT
+            FLASH_CACHE      DEF13:16:36  24  AULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+LOGGING
+13:16:36  25  13:16:36  26  13:16:36  27  13:16:36  28  NOCOMPRESS
+NOCACHE
+NOPARALLEL
+MONITORING;13:16:36  29  13:16:36  30  13:16:36  31
+
+Table created.
+
+Elapsed: 00:00:00.04
+13:16:37 SYS@CCENLP1> ALTER TABLE CCENLNP.CCL_ALIAS ADD (
+  PRIMARY KEY
+  (ALIAS)
+  USING INDEX CCENLNP.PK_CCL_ALIAS
+ 13:16:43   2  13:16:43   3  13:16:43   4  13:16:43   5   ENABLE VALIDATE);
+ALTER TABLE CCENLNP.CCL_ALIAS ADD (
+*
+ERROR at line 1:
+ORA-01418: specified index does not exist
+
+
+Elapsed: 00:00:00.00
+13:16:43 SYS@CCENLP1>
+13:16:43 SYS@CCENLP1>
+13:17:04 SYS@CCENLP1>
+13:17:05 SYS@CCENLP1>
+13:17:05 SYS@CCENLP1> CREATE UNIQUE INDEX CCENLNP.IDX_ALIAS ON CCENLNP.CCL_ALIAS
+(RIF, CUENTA)
+LOGGING
+TABLESPACE INDX13:18:02   2  13:18:02   3  13:18:02   4  _CCENLP
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+ 13:18:02   5  13:18:02   6  13:18:02   7  13:18:02   8  13:18:02   9             INITIAL          64K
+13:18:02  10              NEXT             1M
+            MINEXTENTS       1
+ 13:18:02  11  13:18:02  12             MAXEXTENTS       UNLIMITED
+            PCTINCREASE   13:18:02  13     0
+            BUFFER_POOL      DEFAULT
+            FLASH_CACH13:18:02  14  13:18:02  15  E      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;13:18:02  16  13:18:02  17  13:18:02  18
+
+Index created.
+
+Elapsed: 00:00:00.01
+13:18:03 SYS@CCENLP1>
+13:18:03 SYS@CCENLP1>
+13:18:04 SYS@CCENLP1>
+CREATE UNIQUE INDEX CCENLNP.PK_13:18:10 SYS@CCENLP1> CCL_ALIAS ON CCENLNP.CCL_ALIAS
+(13:18:10   2  ALIAS)
+LOGGING
+TABLESPACE INDX_C13:18:10   3  13:18:10   4  CENLP
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+   13:18:10   5  13:18:10   6  13:18:10   7  13:18:10   8  13:18:10   9           INITIAL          64K
+            NEXT             1M
+  13:18:10  10  13:18:10  11            MINEXTENTS       1
+            MAXEXTENTS       UNLIMI13:18:10  12  TED
+            PCTINCREASE      0
+            BUFFER_POOL      13:18:10  13  13:18:10  14  DEFAULT
+            FLASH_CACHE      DEFAULT
+            CELL_FL13:18:10  15  13:18:10  16  ASH_CACHE DEFAULT
+           )
+NOPARALLEL;13:18:10  17  13:18:10  18
+
+Index created.
+
+Elapsed: 00:00:00.01
+13:18:10 SYS@CCENLP1>
+13:18:10 SYS@CCENLP1>
+13:18:11 SYS@CCENLP1> ALTER TABLE CCENLNP.CCL_ALIAS ADD (
+  PRIMARY KEY
+  (ALIAS)
+  US13:18:17   2  13:18:17   3  13:18:17   4  ING INDEX CCENLNP.PK_CCL_ALIAS
+  ENABLE VALIDATE);13:18:17   5
+
+Table altered.
+
+Elapsed: 00:00:00.01
+13:18:18 SYS@CCENLP1> CREATE TABLE CCENLNP.CCL_AUDITORIA
+(
+  RIF              VARCHAR2(15 BYTE)            NOT NULL,
+  A13:18:48   2  13:18:48   3  13:18:48   4  LIAS            VARCHAR2(15 BYTE)            NOT NULL,
+  CUENTA 13:18:48   5            VARCHAR2(20 BYTE),
+  RESULTADO        VARCHAR2(50 BYTE13:18:48   6  ),
+  ACCION           VARCHAR2(50 BYTE),
+  CODIGO_SERVICIO  VARC13:18:48   7  13:18:48   8  HAR2(2 BYTE),
+  CANAL           13:18:48   9   VARCHAR2(2 BYTE),
+  IP_ORIGEN        VARCHAR2(100 BYTE),
+  NOMB13:18:48  10  13:18:48  11  RE_ORIGEN    VARCHAR2(150 BYTE),
+  FECHA            TIMESTAMP(6)
+)
+TABLESPACE DATA_CCENLP
+RESULT13:18:48  12  13:18:48  13  13:18:48  14  13:18:48  15  _CACHE (MODE DEFAULT)
+PCTUSED   13:18:48  16   0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+      13:18:48  17  13:18:48  18  13:18:48  19  13:18:48  20  13:18:48  21        INITIAL          64K
+            NEXT             1M
+     13:18:48  22  13:18:48  23         MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED13:18:48  24
+            PCTINCREASE      0
+            BUFFER_POOL      DEF13:18:48  25  13:18:48  26  AULT
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH13:18:48  27  13:18:48  28  _CACHE DEFAULT
+           )
+LOGGING
+NOCOMPRESS
+NOCACHE
+NOPARAL13:18:48  29  13:18:48  30  13:18:48  31  13:18:48  32  13:18:48  33  LEL
+MONITORING;13:18:48  34
+
+Table created.
+
+Elapsed: 00:00:00.01
+13:18:49 SYS@CCENLP1>
+13:18:49 SYS@CCENLP1>
+13:18:49 SYS@CCENLP1>
+13:18:49 SYS@CCENLP1> CREATE UNIQUE INDEX CCENLNP.IDX_AUDITORIA ON CCENLNP.CCL_AUDITORIA
+(RIF, CUENTA, ALIAS)
+LOGGING
+TABLESPACE INDX_CCENLP
+PCTFREE    13:18:54   2  13:18:54   3  13:18:54   4  13:18:54   5  10
+INITRANS   2
+MAXTRANS   255
+S13:18:54   6  13:18:54   7  13:18:54   8  TORAGE    (
+            INITIAL          64K
+            NEXT   13:18:54   9  13:18:54  10            1M
+            MINEXTENTS       1
+            MAXEXTEN13:18:54  11  13:18:54  12  TS       UNLIMITED
+            PCTINCREASE      0
+            BU13:18:54  13  13:18:54  14  FFER_POOL      DEFAULT
+            FLASH_CACHE      DEFAULT
+    13:18:54  15  13:18:54  16          CELL_FLASH_CACHE DEFAULT
+           )
+NOPARALLEL;
+13:18:54  17  13:18:54  18
+Index created.
+
+Elapsed: 00:00:00.01
+13:18:54 SYS@CCENLP1>
+13:18:55 SYS@CCENLP1> CREATE TABLE CCENLNP.CCL_SERVICE_MODEL
+(
+  CHANNEL             V13:19:41   2  13:19:41   3  ARCHAR2(2 BYTE),
+  CODE_SERVICE        VARCHAR2(6 BYTE),
+  STATE13:19:41   4  13:19:41   5                 VARCHAR2(1 BYTE),
+  AMOUNT_MIN          NUMBER,
+ 13:19:41   6  13:19:41   7   AMOUNT_MAX          NUMBER,
+  SERIAL_CODE         VARCHAR2(5 BYTE),
+  DEBIT_CODE          VARCHAR2(4 BYTE),
+  CREDIT_CODE         VARCHAR2(4 BYTE),
+  TYPE_COM 13:19:41   8  13:19:41   9  13:19:41  10  13:19:41  11             VARCHAR2(2 BYTE),
+  D13:19:41  12  ESCRIPTION         VARCHAR2(20 BYTE),
+  MODALITY_PERSON     VARC13:19:42  13  HAR2(2 BYTE),
+  SUBTYPE             VARCHAR2(3 BYTE),
+  MODALITY13:19:42  14  13:19:42  15  _OPERATION  VARCHAR2(4 BYTE)
+)
+TABLESPACE DATA_CCENLP
+RESULT_CAC13:19:42  16  13:19:42  17  13:19:42  18  HE (MODE DEFAULT)
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRA13:19:42  19  13:19:42  20  13:19:42  21  13:19:42  22  NS   255
+STORAGE    (
+          13:19:42  23  13:19:42  24    INITIAL          64K
+            NEXT             1M
+         13:19:42  25  13:19:42  26     MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+   13:19:42  27  13:19:42  28           PCTINCREASE      0
+            BUFFER_POOL      DEFAULT13:19:42  29
+            FLASH_CACHE      DEFAULT
+            CELL_FLASH_CAC13:19:42  30  13:19:42  31  HE DEFAULT
+           )
+LOGGING
+NOCOMPRESS
+NOCACHE
+NOPARALLEL
+13:19:42  32  13:19:42  33  13:19:42  34  13:19:42  35  13:19:42  36  13:19:42  37  MONITORING;
+
+Table created.
+
+Elapsed: 00:00:00.01
+13:19:42 SYS@CCENLP1>
+13:19:43 SYS@CCENLP1> ALTER TABLE CCENLNP.CCL_SERVICE_MODEL ADD (
+  CONSTRAINT CCL_SERVICE_PK3
+  PRIMARY KEY
+  (CHANNE13:20:15   2  13:20:15   3  13:20:15   4  L, CODE_SERVICE, MODALITY_PERSON, SUBTYPE, MODALITY_OPERATION)
+ 13:20:15   5   USING INDEX CCENLNP.CCL_SERVICE_PK3
+  ENABLE VALIDATE);13:20:15   6
+ALTER TABLE CCENLNP.CCL_SERVICE_MODEL ADD (
+*
+ERROR at line 1:
+ORA-01418: specified index does not exist
+
+
+Elapsed: 00:00:00.01
+13:20:15 SYS@CCENLP1> CREATE UNIQUE INDEX CCENLNP.CCL_SERVICE_PK3 ON CCENLNP.CCL_SERVICE_MODEL
+(CHANNEL, CODE_SERVICE,13:20:24   2   MODALITY_PERSON, SUBTYPE, MODALITY_OPERATION)
+LOGGING
+TABLESPAC13:20:24   3  13:20:24   4  E INDX_CCENLP
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE 13:20:24   5  13:20:24   6  13:20:24   7  13:20:24   8     (
+            INITIAL          64K
+            NEXT          13:20:24   9  13:20:24  10     1M
+            MINEXTENTS    13:20:25  11     1
+            MAXEXTENTS       UNLIMITED
+            PCTINCRE13:20:25  12  13:20:25  13  ASE      0
+            BUFFER_POOL      DEFAULT
+            FLAS13:20:25  14  13:20:25  15  H_CACHE      DEFAULT
+            CELL_FLASH_CACHE DEFAULT
+      13:20:25  16  13:20:25  17       )
+NOPARALLEL;
+13:20:25  18
+Index created.
+
+Elapsed: 00:00:00.01
+13:20:25 SYS@CCENLP1>
+13:20:25 SYS@CCENLP1> ALTER TABLE CCENLNP.CCL_SERVICE_MODEL ADD (
+  CONSTRAINT CCL_SER13:20:30   2  VICE_PK3
+  PRIMARY KEY
+  (CHANNE13:20:30   3  13:20:30   4  L, CODE_SERVICE, MODALITY_PERSON, SUBTYPE, MODALITY_OPERATION)
+ 13:20:30   5   USING INDEX CCENLNP.CCL_SERVICE_PK3
+  ENABLE VALIDATE);13:20:30   6
+
+Table altered.
+
+Elapsed: 00:00:00.01
+13:20:30 SYS@CCENLP1>
+13:20:30 SYS@CCENLP1>
+13:20:31 SYS@CCENLP1> CREATE TABLE CCENLNP.CCL_ERROR_MAPPER_ALIAS
+(
+  CODIGO       VAR13:20:38   2  13:20:38   3  CHAR2(4 BYTE),
+  DESCRIPCION  VA13:20:38   4  RCHAR2(100 BYTE),
+  ERROR_MAPER  VARCHAR2(4000 BYTE)
+)
+TABLESPAC13:20:38   5  13:20:38   6  13:20:38   7  E DATA_CCENLP
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS  13:20:38   8  13:20:38   9  13:20:38  10  13:20:38  11   255
+STORAGE    (
+            INITIAL          64K
+            N13:20:38  12  13:20:38  13  13:20:38  14  EXT             1M
+            MINEXTENTS       1
+            MA13:20:38  15  13:20:38  16  XEXTENTS       UNLIMITED
+            PCTINCREASE      0
+        13:20:38  17  13:20:38  18      BUFFER_POOL      DEFAULT
+           )
+LOGGING
+NOCOMPRESS
+NOCACHE;
+13:20:38  19  13:20:38  20  13:20:38  21  13:20:38  22
+Table created.
+
+Elapsed: 00:00:00.01
+13:20:38 SYS@CCENLP1>
+13:20:38 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_SEARCH_ERROR_MAPPER_ALIAS (
+   LIST_ERROR_MAPPER    O13:21:35   2  UT SYS_REFCURSOR,
+   COD_RET              OUT VARCHAR2,
+   DE_CO13:21:35   3  13:21:35   4  DRET            OUT VARCHAR2)
+AS
+
+
+BEGIN
+
+      OPEN LIST_ERROR_13:21:35   5  13:21:35   6  13:21:35   7  13:21:35   8  13:21:35   9  13:21:35  10  MAPPER FOR
+      SELECT CODIGO, DESCRIPCION, ERROR_MAPER FROM CC13:21:36  11  ENLNP.CCL_ERROR_MAPPER_ALIAS;
+
+
+   COD_RET := '00';
+   DE_CODRET13:21:36  12  13:21:36  13  13:21:36  14  13:21:36  15   := 'Consulta realizada satisfactoriamente';
+
+EXCEPTION
+   WH13:21:36  16  13:21:36  17  13:21:36  18  EN NO_DATA_FOUND
+   THEN
+      COD_RET := '02';
+      DE_CODRET 13:21:36  19  13:21:36  20  13:21:36  21  := 'No hay datos para la consulta ';
+END PR_CCL_SEARCH_ERROR_MAPPER_ALIAS;
+/13:21:36  22  13:21:36  23
+
+Procedure created.
+
+Elapsed: 00:00:00.08
+13:21:36 SYS@CCENLP1>
+13:21:37 SYS@CCENLP1>
+13:21:37 SYS@CCENLP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.23.0.0.0
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$ ls -ltr
+total 31404
+-rw-r--r--. 1 oracle19 oinstall    19912 Oct 19  2024 db.rsp
+-rw-r-----. 1 oracle19 oinstall    27143 Oct 21  2024 dbca.rsp
+-rw-r-----. 1 oracle19 oinstall    27218 Oct 29  2024 dbca_ccenlp.rsp
+-rw-r--r--. 1 oracle19 oinstall      520 Nov 14  2024 history.log
+-rw-r--r--. 1 oracle19 oinstall  1449083 Dec 17  2024 awrrpt_1_3564_3565.html
+-rw-r--r--. 1 oracle19 oinstall  1314080 Dec 17  2024 awrrpt_rac_3564_3565.html
+-rw-r--r--. 1 oracle19 oinstall      620 Jan 27  2025 can_TMP_MERCANTIL_GP17.log
+-rw-r-----. 1 oracle19 oinstall    27283 Oct 20  2025 dbca_stokenp.rsp
+-rw-r-----. 1 oracle19 oinstall    27308 Nov 27  2025 dbca_identtyp.rsp
+-r--r-----. 1 oracle19 oinstall 14618503 Nov 27  2025 orachk_plclsa01_IDENTTYP_112725_120045.zip
+-r--r-----. 1 oracle19 oinstall 14616392 Nov 28  2025 orachk_plclsa01_IDENTTYP_112825_092850.zip
+-rw-r--r--. 1 oracle19 asmadmin     3320 Dec 16  2025 initIDENTTYP_161225.ora
+-rw-r--r--. 1 oracle19 oinstall       79 May 27 11:06 afiedt.buf
+-rwxrwxr-x. 1 oracle19 oinstall     2494 Jul 27 14:11 generate_menu_bd.sh
+drwxr-x---. 6 oracle19 oinstall      169 Sep  8 14:38 scripts
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$
+[oracle19@plclsa01 ~]$ cd scripts/
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$ ls -ltr
+total 24
+-rw-r-----. 1 oracle19 oinstall  148 Oct 11  2024 login.sql
+drwxr-xr-x. 2 oracle19 oinstall 4096 Feb 20  2025 cc
+drwxr-xr-x. 2 oracle19 oinstall 4096 Apr  3  2025 cdc_030425
+drwxr-xr-x. 2 oracle19 oinstall    6 Jul  3  2025 reportes
+-rw-r-----. 1 root     root       24 Nov 18  2025 discos.txt
+-rw-r--r--. 1 oracle19 oinstall   31 Jan 16  2026 consulta.sql
+-rw-r--r--. 1 oracle19 oinstall 2239 Sep  8 14:38 CREATE_TABLE_CCL_AFFILIATION_PDM3.sql
+drwxr-xr-x. 2 oracle19 oinstall  100 Nov  9 10:33 tablespaces
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$ vi PR_CCL_BUSINESS_RULES_DEBIT_INST.sql
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Nov 12 13:23:07 2026
+Version 19.23.0.0.0
+
+Copyright (c) 1982, 2023, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.23.0.0.0
+
+13:23:07 SYS@CCENLP1> @PR_CCL_BUSINESS_RULES_DEBIT_INST.sql
+
+Procedure created.
+
+Elapsed: 00:00:00.07
+13:23:15 SYS@CCENLP1>
+13:23:16 SYS@CCENLP1>
+13:23:16 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_CHECK_ALIAS(
+    RIF 13:23:27   2                IN    CCENLNP.CCL_ALIAS.RIF%TYPE,
+    LISTALIAS         OUT   SYS_REFCURSOR,
+    C13:23:27   3  13:23:27   4  OD_RET           OUT   VARCHAR2,
+    DE_CODRET         OUT   VAR13:23:27   5  CHAR2)
+AS
+    v_RIF               CCENLNP.CCL_ALIAS.RIF%TYPE;
+  13:23:27   6  13:23:27   7  13:23:27   8    v_ALISTRANSACTION   INTEGER;
+    NO_HAY_DATOS        EXCEPTION13:23:27   9  ;
+BEGIN
+
+    CASE
+        WHEN RIF = '' OR RIF IS NULL
+        T13:23:27  10  13:23:27  11  13:23:27  12  13:23:27  13  13:23:27  14  HEN
+            RAISE NO_HAY_DAT13:23:27  15  OS;
+        ELSE
+            v_RIF := RIF;
+    END CASE;
+
+
+ 13:23:27  16  13:23:27  17  13:23:27  18  13:23:27  19  13:23:27  20  13:23:27  21     --------------------------------------------------------------------------
+    -- SELECCIONA DATOS PARA EL CURSOR            13:23:27  22                            --
+   13:23:27  23   --------------------------------------------------------------------------
+    SELECT COUNT (0)13:23:27  24
+      INTO v_ALISTRANSACTION
+      FROM CCL_ALIAS p
+     WHERE 13:23:27  25  13:23:27  26  13:23:27  27  p.RIF =  v_RIF;
+
+    IF (v_ALISTRANSACTION = 0)
+    THEN
+       13:23:27  28  13:23:27  29  13:23:27  30  13:23:27  31   RAISE NO_HAY_DATOS;
+    END IF;
+
+    OPEN LISTALIAS FOR
+       13:23:27  32  13:23:27  33  13:23:27  34  13:23:27  35   SELECT RIF         AS  ID,
+               ALIAS       AS  ALIS,13:23:27  36
+               CUENTA      AS  ACCOUNT,
+               STATUS  13:23:27  37  13:23:27  38      AS  STATUS,
+               DEBITO      AS  STATUSDEBIT,
+    13:23:27  39  13:23:27  40             CREDITO     AS  STATUSCREDIT,
+               FECHA   13:23:27  41      AS  FECHA
+         FROM CCL_ALIAS p
+        WHERE p.RIF =  v13:23:27  42  13:23:27  43  _RIF;
+
+
+    COD_RET := '00';
+    DE_CODRET := 'Consulta realizad13:23:28  44  13:23:28  45  13:23:28  46  13:23:28  47  a satisfactoriamente';
+EXCEPTION
+    WHEN NO_HAY_DATOS
+    THEN
+13:23:28  48  13:23:28  49  13:23:28  50  13:23:28  51          COD_RET := '01';
+        DE_CODRET := 'No existe alias r13:23:28  52  egistrado';
+END PR_CCL_CHECK_ALIAS;
+/
+13:23:28  53  13:23:28  54
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:23:28 SYS@CCENLP1>
+13:23:28 SYS@CCENLP1>
+13:23:28 SYS@CCENLP1>
+13:23:29 SYS@CCENLP1>
+13:23:29 SYS@CCENLP1> ~!
+SP2-0042: unknown command "~!" - rest of line ignored.
+13:23:40 SYS@CCENLP1> !
+[oracle19@plclsa01 scripts]$ vi PR_CCL_BUSINESS_RULES_INST.sql
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$ exit
+
+13:24:28 SYS@CCENLP1> @PR_CCL_BUSINESS_RULES_INST.sql
+
+Procedure created.
+
+Elapsed: 00:00:00.02
+13:24:32 SYS@CCENLP1>
+13:24:33 SYS@CCENLP1>
+13:24:33 SYS@CCENLP1>
+13:24:33 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_CHECK_ALIAS_AC(
+    A13:24:48   2  LIAS             IN    CCENLNP.CCL_ALIAS.ALIAS %TYPE,
+    CUENTA            IN    CCENLNP.CCL_AL13:24:48   3  IAS.CUENTA%TYPE,
+    RIF               IN    CCENLNP.CCL_ALIAS.R13:24:48   4  IF%TYPE,
+    COD_RET           OUT   VARCHAR2,
+    DE_CODRET    13:24:48   5  13:24:48   6       OUT   VARCHAR2)
+AS
+    v_ALIAS             CCENLNP.CCL_ALIAS.ALIAS %TYPE;
+    v_CUENTA            CCENLNP.CCL_ALIAS.CUENTA%13:24:48   7  13:24:48   8  13:24:48   9  TYPE;
+    v_RIF               CC13:24:48  10  ENLNP.CCL_ALIAS.RIF%TYPE;
+    v_13:24:48  11  ALISTRANSACTION   INTEGER := 0;
+    v_CUENTATRANSACTION INTEGER 13:24:48  12  := 0;
+    ALIAS_NO_EXISTENTE  EXCEPTION;
+    CUENTA_EXISTENTE   13:24:48  13  13:24:48  14   EXCEPTION;
+    DATOS_INVALIDOS     EXCEPTION;
+BEGIN
+
+    CASE
+ 13:24:49  15  13:24:49  16  13:24:49  17  13:24:49  18  13:24:49  19         WHEN ALIAS = '' OR ALIAS IS NULL
+        THEN
+           13:24:49  20  13:24:49  21   RAISE DATOS_INVALIDOS;
+        ELSE
+            v_ALIAS := ALIA13:24:49  22  13:24:49  23  S;
+    END CASE;
+
+    CASE
+        WHEN CUENTA = '' OR CUENT13:24:49  24  13:24:49  25  13:24:49  26  13:24:49  27  A IS NULL
+        THEN
+            RAISE DATOS_INVALIDOS;
+      13:24:49  28  13:24:49  29  13:24:49  30    ELSE
+            v_CUENTA := CUENTA;
+    END CASE;
+
+    CA13:24:49  31  13:24:49  32  13:24:49  33  13:24:49  34  SE
+        WHEN RIF = '' OR RIF 13:24:49  35  IS NULL
+        THEN
+            RAISE DATOS_INVALIDOS;
+        13:24:49  36  13:24:49  37  13:24:49  38  ELSE
+            v_RIF := RIF;
+    END CASE;
+
+
+    ---------13:24:49  39  13:24:49  40  13:24:49  41  13:24:49  42  13:24:49  43  -----------------------------------------------------------------
+    -- SELECCIONA DATOS PARA EL CURSOR                        13:24:49  44                --
+    -------------------------------------------13:24:49  45  -------------------------------
+    SELECT COUNT (0)
+      INTO 13:24:49  46  13:24:49  47  v_ALISTRANSACTION
+      FROM CCL_ALIAS p
+     WHERE p.ALIAS =  v13:24:49  48  13:24:49  49  _ALIAS;
+
+    IF (v_ALISTRANSACTION = 0)
+    THEN
+        RAISE A13:24:49  50  13:24:49  51  13:24:49  52  13:24:49  53  LIAS_NO_EXISTENTE;
+    END IF;
+
+     SELECT COUNT (0)
+      INTO v_CUENTATRANSACTION
+      F13:24:49  54  13:24:49  55  13:24:49  56  13:24:49  57  13:24:49  58  ROM CCL_ALIAS p
+     WHERE P.CUENTA =  v_CUENTA
+           AND P13:24:49  59  13:24:49  60  .RIF = v_RIF
+           AND P.AL13:24:49  61  IAS <> v_ALIAS;
+
+    IF (v_CUENTATRANSACTION > 0)
+    THEN
+        RAISE CUENTA_EXISTENTE;
+    END IF;
+
+
+    COD_RET := '00'13:24:49  62  13:24:49  63  13:24:49  64  13:24:49  65  13:24:49  66  13:24:49  67  13:24:49  68  13:24:49  69  ;
+    DE_CODRET := 'Consulta realizada satisfactoriamente';
+EXCE13:24:49  70  13:24:49  71  PTION
+    WHEN ALIAS_NO_EXISTENTE
+    THEN
+        COD_RET := '013:24:49  72  13:24:49  73  13:24:49  74  1';
+        DE_CODRET := 'Alias no registrado';
+    WHEN CUENTA_13:24:49  75  13:24:49  76  EXISTENTE
+    THEN
+        COD_R13:24:49  77  13:24:49  78  ET := '02';
+        DE_CODRET := 'Cuenta ya asociada a un alias'13:24:49  79  ;
+    WHEN DATOS_INVALIDOS
+    THEN
+        COD_RET := '03';
+   13:24:49  80  13:24:49  81  13:24:49  82  13:24:49  83       DE_CODRET := 'Alias o cuenta no validos';
+END PR_CCL_CHECK_ALIAS_AC;
+/
+13:24:49  84  13:24:49  85
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:24:49 SYS@CCENLP1>
+13:24:50 SYS@CCENLP1>
+13:24:50 SYS@CCENLP1>
+13:24:50 SYS@CCENLP1>
+13:24:50 SYS@CCENLP1>
+13:24:55 SYS@CCENLP1>
+13:24:55 SYS@CCENLP1>
+13:24:55 SYS@CCENLP1>
+13:24:55 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_DELETE_ALIAS(
+    ALI13:25:39   2  AS             IN    CCENLNP.CCL_ALIAS.ALIAS%TYPE,
+    COD_RET           OUT   VARCHAR2,
+    DE_13:25:39   3  13:25:39   4  CODRET         OUT   VARCHAR2)
+AS
+    v_ALIAS             CCENLN13:25:39   5  13:25:39   6  P.CCL_ALIAS.ALIAS %TYPE;
+    NO_HAY_DATOS        EXCEPTION;
+    13:25:39   7  13:25:39   8  PARAMETRO_NULO      EXCEPTION;
+BEGIN
+
+    CASE
+        WHEN ALIA13:25:39   9  13:25:39  10  13:25:39  11  13:25:39  12  S IS NULL
+        THEN
+            RAISE PARAMETRO_NULO;
+       13:25:39  13  13:25:39  14  13:25:39  15   ELSE
+            v_ALIAS := ALIAS;
+    END CASE;
+
+
+    13:25:39  16  13:25:39  17  13:25:39  18  13:25:39  19  13:25:39  20  DELETE FROM CCENLNP.CCL_ALIAS p
+13:25:39  21       WHERE P.ALIAS = v_ALIAS;
+  13:25:39  22
+     IF SQL%ROWCOUNT = 0 THE13:25:39  23  N
+        RAISE NO_HAY_DATOS;
+    END IF;
+
+
+    COD_RET   := '0013:25:39  24  13:25:39  25  13:25:39  26  13:25:39  27  13:25:39  28  ';
+    DE_CODRET := 'Alias eliminado satisfactoriamente';
+
+E13:25:39  29  13:25:39  30  13:25:39  31  XCEPTION
+    WHEN PARAMETRO_NULO THEN
+        COD_RET   := '02';13:25:39  32  13:25:39  33
+        DE_CODRET := 'El alias provisto no es válido o está v13:25:39  34  acío';
+
+    WHEN NO_HAY_DATOS
+    THEN
+        COD_RET 13:25:40  35  13:25:40  36  13:25:40  37  13:25:40  38  := '01';
+        DE_CODRET := 'No existe el alias registrado par13:25:40  39  a eliminar';
+END PR_CCL_DELETE_ALIAS;
+/
+13:25:40  40  13:25:40  41
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:25:40 SYS@CCENLP1>
+13:25:41 SYS@CCENLP1>
+13:25:41 SYS@CCENLP1>
+13:25:41 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_INSERT_ALIAS(
+    V_A13:25:57   2  LIAS         IN   CCENLNP.CCL_ALIAS.ALIAS%TYPE,
+    V_RIF           IN   CCENLNP.CCL_ALIAS.R13:25:57   3  IF%TYPE,
+    V_CUENTA        IN   CCENLNP.CCL_ALIAS.CUENTA13:25:57   4  %TYPE,
+    V_STATUS        IN   CCENLNP.CCL_ALIAS.STATUS%TYP13:25:57   5  E,
+    V_DEBITO        IN   CCENLNP.CCL_ALIAS.DEBITO %TYPE,
+13:25:57   6  13:25:57   7      V_CREDITO       IN   CCENLNP.CCL_ALIAS.CREDITO%TYPE,
+
+
+    COD_RET         OUT VARCHAR2,13:25:57   8  13:25:57   9  13:25:57  10
+    DE_CODRET       OUT VARCHAR2
+
+) AS
+    ANO VARCHAR2(4);
+   13:25:57  11  13:25:57  12  13:25:57  13  13:25:57  14  13:25:57  15   MES VARCHAR2(2);
+    FECHA_SISTEMA DATE;
+BEGIN
+
+    FECHA_SISTE13:25:57  16  13:25:57  17  13:25:57  18  13:25:57  19  MA := CURRENT_DATE;
+
+    INSERT INTO CCL_ALIAS (
+     ALIAS
+    13:25:57  20  13:25:57  21  13:25:57  22  13:25:57  23  ,RIF
+    ,CUENTA
+    ,STATUS
+    ,DEBITO    13:25:57  24  13:25:57  25  13:25:57  26
+    ,CREDITO
+    ,FECHA
+    ) VALUES
+    (
+     V_ALIAS
+    ,V_RIF
+    ,V_CUENTA
+    ,V_STATUS
+    ,13:25:57  27  13:25:57  28  13:25:57  29  13:25:57  30  13:25:57  31  13:25:57  32  13:25:57  33  13:25:57  34  13:25:57  35  V_DEBITO
+    ,V_CREDITO
+    ,FECHA_SISTEMA
+     );13:25:57  36  13:25:57  37  13:25:57  38
+
+  COD_RET := '00';
+  DE_CODRET := 'Alias creado satisfact13:25:57  39  13:25:57  40  13:25:57  41  oriamente ';
+  COMMIT;
+EXCEPTION
+WHEN DUP_VAL_ON_INDEX
+THEN COD_13:25:57  42  13:25:57  43  13:25:57  44  13:25:57  45  RET    := '91';
+     DE_CODRET := 'Alias ya existente';
+END PR_C13:25:57  46  13:25:57  47  CL_INSERT_ALIAS;
+/
+13:25:57  48
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:25:57 SYS@CCENLP1>
+13:25:57 SYS@CCENLP1>
+13:25:58 SYS@CCENLP1>
+13:25:58 SYS@CCENLP1>
+13:25:58 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_SEARCH_ALIAS(
+    ALI13:26:06   2  S              IN    CCENLNP.CCL_ALIAS.ALIAS %TYPE,
+    LISTALIAS         OUT   SYS_REFCURSOR,
+ 13:26:06   3  13:26:06   4     COD_RET           OUT   VARCHAR2,
+    DE_CODRET         OUT  13:26:06   5   VARCHAR2)
+AS
+    v_ALIS              CCENLNP.CCL_ALIAS.ALIAS %T13:26:06   6  13:26:06   7  YPE;
+    v_ALISTRANSACTION   INTEGER := 0;
+    NO_HAY_DATOS        EXCEPTION;
+BEGIN
+
+    CASE
+        WHEN ALIS = '' OR ALIS IS 13:26:06   8  13:26:06   9  13:26:06  10  13:26:06  11  13:26:06  12  13:26:06  13  NULL
+        THEN
+            RAISE NO_HAY_DATOS;
+        ELSE
+ 13:26:06  14  13:26:06  15  13:26:06  16  13:26:06  17             v_ALIS := ALIS;
+    END CASE;
+
+
+    -------------13:26:06  18  13:26:06  19  13:26:06  20  13:26:06  21  -------------------------------------------------------------
+  13:26:06  22    -- SELECCIONA DATOS PARA EL CURSOR                                      --
+    -----------------------------------------------13:26:06  23  ---------------------------
+    SELECT COUNT (0)
+      INTO v_AL13:26:06  24  13:26:06  25  ISTRANSACTION
+      FROM CCL_ALIAS p
+     WHERE p.ALIAS =  v_ALI13:26:06  26  13:26:06  27  S;
+
+    IF (v_ALISTRANSACTION = 0)
+    THEN
+        RAISE NO_HAY13:26:06  28  13:26:06  29  13:26:06  30  13:26:06  31  _DATOS;
+    END IF;
+
+    OPEN LISTALIAS FOR
+        SELECT P.RIF13:26:06  32  13:26:06  33  13:26:06  34  13:26:06  35         AS  ID,
+               P.ALIAS     AS  ALIS,
+            13:26:06  36  13:26:06  37     P.CUENTA    AS  ACCOUNT,
+    13:26:06  38             P.STATUS    AS  STATUS,
+               P.DEBITO    AS13:26:06  39    STATUSDEBIT,
+               P.CREDITO   AS  STATUSCREDIT,
+    13:26:06  40  13:26:06  41             P.FECHA     AS  FECHA
+         FROM CCL_ALIAS p
+     13:26:06  42  13:26:06  43     WHERE p.ALIAS =  v_ALIS;
+
+
+    COD_RET := '00';
+    DE_CODRET13:26:06  44  13:26:06  45  13:26:06  46  13:26:06  47   := 'Consulta realizada satisfactoriamente';
+EXCEPTION
+    WHEN 13:26:06  48  13:26:06  49  NO_HAY_DATOS
+    THEN
+        COD_RET := '01';
+        DE_CODRET13:26:06  50  13:26:06  51  13:26:06  52   := 'No existen alias registrados';
+END PR_CCL_SEARCH_ALIAS;
+/
+13:26:06  53  13:26:06  54
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:26:06 SYS@CCENLP1>
+13:26:07 SYS@CCENLP1>
+13:26:07 SYS@CCENLP1>
+13:26:07 SYS@CCENLP1>
+13:26:17 SYS@CCENLP1>
+13:26:17 SYS@CCENLP1>
+13:26:17 SYS@CCENLP1>
+13:26:17 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_SEARCH_ALIAS_AC(
+    ALIAS             IN    CCENLNP.13:26:19   2  CCL_ALIAS.ALIAS %TYPE,
+    CUENTA            IN    CCENLNP.CCL_A13:26:19   3  LIAS.CUENTA%TYPE,
+    RIF               IN    CCENLNP.CCL_ALIAS.13:26:19   4  RIF%TYPE,
+    COD_RET           OUT   VARCHAR2,
+    DE_CODRET   13:26:19   5  13:26:19   6        OUT   VARCHAR2)
+AS
+    v_ALIAS             CCENLNP.CCL_ALI13:26:19   7  13:26:19   8  AS.ALIAS %TYPE;
+    v_CUENTA    13:26:19   9          CCENLNP.CCL_ALIAS.CUENTA%TYPE;
+    v_RIF               C13:26:19  10  CENLNP.CCL_ALIAS.RIF%TYPE;
+    v_ALISTRANSACTION   INTEGER := 0;13:26:19  11
+    v_CUENTATRANSACTION INTEGER := 0;
+    ALIAS_EXISTENTE     E13:26:19  12  13:26:19  13  XCEPTION;
+    CUENTA_EXISTENTE    EXCEPTION;
+    DATOS_INVALIDOS13:26:19  14  13:26:19  15       EXCEPTION;
+BEGIN
+
+    CASE
+        WHEN ALIAS = '' OR ALIAS13:26:19  16  13:26:19  17  13:26:19  18  13:26:19  19   IS NULL
+        THEN
+            RAISE DATOS_INVALIDOS;
+       13:26:19  20  13:26:19  21  13:26:19  22   ELSE
+            v_ALIAS := ALIAS;
+    END CASE;
+
+    CASE
+13:26:19  23  13:26:19  24  13:26:19  25  13:26:19  26  13:26:19  27          WHEN CUENTA = '' OR CUENTA IS NULL
+        THEN
+        13:26:19  28  13:26:19  29      RAISE DATOS_INVALIDOS;
+        ELSE
+            v_CUENTA := 13:26:19  30  13:26:19  31  CUENTA;
+    END CASE;
+
+    CASE
+        WHEN RIF = '' OR RIF13:26:19  32  13:26:19  33  13:26:19  34  13:26:19  35   IS NULL
+        THEN
+          13:26:19  36  13:26:19  37    RAISE DATOS_INVALIDOS;
+        ELSE
+            v_RIF := RIF;
+13:26:19  38  13:26:19  39  13:26:19  40      END CASE;
+
+
+    ------------------------------------------------------------------------13:26:19  41  13:26:19  42  13:26:19  43  --
+    -- SELECCIONA DATOS PARA EL CURSOR                       13:26:19  44                 --
+    ----------13:26:19  45  ----------------------------------------------------------------
+    SELECT COUNT (0)
+      INTO13:26:19  46  13:26:19  47   v_ALISTRANSACTION
+      FROM CCL_ALIAS p
+     WHERE p.ALIAS =  13:26:19  48  13:26:19  49  v_ALIAS;
+
+    IF (v_ALISTRANSACT13:26:19  50  13:26:19  51  ION > 0)
+    THEN
+        RAISE ALIAS_EXISTENTE;
+    END IF;
+   13:26:19  52  13:26:19  53  13:26:19  54  13:26:19  55
+     SELECT COUNT (0)
+      INTO v_CUENTATRANSACTION
+      FRO13:26:19  56  13:26:19  57  13:26:19  58  M CCL_ALIAS p
+     WHERE P.CUENTA =  v_CUENTA
+           AND P.R13:26:19  59  13:26:19  60  IF = v_RIF;
+
+    IF (v_CUENTATRANSACTION > 0)
+    THEN
+     13:26:19  61  13:26:19  62  13:26:19  63  13:26:19  64     RAISE CUENTA_EXISTENTE;
+    E13:26:19  65  ND IF;
+
+
+    COD_RET := '00';
+    DE_CODRET := 'Consulta realiza13:26:19  66  13:26:19  67  13:26:19  68  13:26:19  69  da satisfactoriamente';
+EXCEPTIO13:26:19  70  N
+    WHEN ALIAS_EXISTENTE
+    T13:26:20  71  13:26:20  72  HEN
+        COD_RET := '01';
+        DE_CODRET := 'Alias ya regi13:26:20  73  13:26:20  74  strado';
+    WHEN CUENTA_EXISTENTE
+    THEN
+        COD_RET := '13:26:20  75  13:26:20  76  13:26:20  77  02';
+        DE_CODRET := 'Cuenta ya asociada a un alias';
+    W13:26:20  78  13:26:20  79  HEN DATOS_INVALIDOS
+    THEN
+   13:26:20  80  13:26:20  81       COD_RET := '03';
+        DE_CODRET := 'Alias o cuenta no va13:26:20  82  lidos';
+END PR_CCL_SEARCH_ALIAS_AC;
+/
+13:26:20  83  13:26:20  84
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:26:20 SYS@CCENLP1>
+13:26:20 SYS@CCENLP1>
+13:26:20 SYS@CCENLP1>
+13:26:21 SYS@CCENLP1>
+13:26:21 SYS@CCENLP1>
+13:26:21 SYS@CCENLP1> CREATE OR REPLACE PROCEDURE CCENLNP.PR_CCL_UPDATE_ALIAS (
+   ALI13:26:56   2  AS             IN     CCENLNP.CCL_ALIAS.ALIAS%TYPE,
+   CUENTA   13:26:56   3           IN     CCENLNP.CCL_ALIAS.CUENTA%TYPE,
+   STATUS        13:26:56   4      IN     CCENLNP.CCL_ALIAS.STATUS%TYPE,
+   COD_RET            13:26:56   5           OUT VARCHAR2,
+   DE_CODRET                   OUT VARCHA13:26:56   6  R2)
+AS
+   V_ESTATUS      CCENLNP.CCL_ALIAS.STATUS%TYPE;
+   V_ALI13:26:56   7  13:26:56   8  13:26:56   9  AS        CCENLNP.CCL_ALIAS.ALIAS%TYPE;
+   V_CUENTA       CCENLNP.CCL_ALIAS.CUENTA%TYPE;
+   V_CU13:26:56  10  13:26:56  11  ENTA_ACT   CCENLNP.CCL_ALIAS.CUENTA%TYPE;
+   ESTADO_NULO    EXCEPTION;
+   NO_EXISTE      EXCEPTI13:26:56  12  13:26:56  13  ON;
+   v_COUNT        INTEGER;
+BEGIN
+   CASE
+      WHEN STATUS =13:26:56  14  13:26:56  15  13:26:56  16  13:26:56  17   '' OR STATUS IS NULL
+      THEN13:26:56  18
+         RAISE ESTADO_NULO;
+      ELSE
+         V_ESTATUS := ST13:26:56  19  13:26:56  20  13:26:56  21  ATUS;
+   END CASE;
+
+       CASE
+        WHEN ALIAS = '' OR AL13:26:56  22  13:26:56  23  13:26:56  24  13:26:56  25  IAS IS NULL
+        THEN
+            RAISE NO_EXISTE;
+        EL13:26:56  26  13:26:56  27  13:26:56  28  SE
+            V_ALIAS := ALIAS;
+    END CASE;
+
+    CASE
+   13:26:56  29  13:26:56  30  13:26:56  31  13:26:56  32  13:26:56  33       WHEN CUENTA = '' OR CUENTA IS NULL
+        THEN
+           13:26:56  34  13:26:56  35   RAISE NO_EXISTE;
+        ELSE
+            V_CUENTA := CUENTA;
+    END CASE;
+
+    BEGIN
+        SELECT CUENTA
+          INTO13:26:56  36  13:26:56  37  13:26:56  38  13:26:56  39  13:26:56  40  13:26:56  41  13:26:56  42   V_CUENTA_ACT
+          FROM CCL_ALIAS p
+         WHERE P.ALIAS 13:26:56  43  13:26:56  44  = V_ALIAS;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+       13:26:56  45  13:26:56  46  13:26:56  47       RAISE NO_EXISTE;
+    END;
+
+
+    IF V_CUENTA_ACT <> V_CUENTA13:26:57  48  13:26:57  49  13:26:57  50  13:26:57  51   THEN
+        UPDATE CCL_ALIAS
+           SET STATUS = V_ESTATUS13:26:57  52  13:26:57  53  ,
+               FECHA = SYSTIM13:26:57  54  ESTAMP,
+               CUENTA = V_CUENTA
+         WHERE ALIAS =13:26:57  55  13:26:57  56   V_ALIAS;
+    ELSE
+        UPDATE CCL_ALIAS
+           SET STATU13:26:57  57  13:26:57  58  13:26:57  59  S = V_ESTATUS,
+               FECHA = SYSTIMESTAMP
+         WHE13:26:57  60  13:26:57  61  RE ALIAS = V_ALIAS;
+    END IF;
+
+
+   COMMIT;
+   COD_RET := '00';13:26:57  62  13:26:57  63  13:26:57  64  13:26:57  65  13:26:57  66
+   DE_CODRET := 'Estado actualizado satisfactoriamente ';
+
+E13:26:57  67  13:26:57  68  13:26:57  69  XCEPTION
+   WHEN ESTADO_NULO
+   THEN
+      COD_RET := '01';
+    13:26:57  70  13:26:57  71  13:26:57  72  13:26:57  73    DE_CODRET := 'Estado no valido';
+   WHEN NO_EXISTE
+   THEN
+   13:26:57  74  13:26:57  75  13:26:57  76     COD_RET := '01';
+      DE_CODRET := 'No existe alias';
+END PR13:26:57  77  13:26:57  78  _CCL_UPDATE_ALIAS;
+/
+13:26:57  79
+Procedure created.
+
+Elapsed: 00:00:00.01
+13:26:57 SYS@CCENLP1>
+13:26:57 SYS@CCENLP1>
+13:26:58 SYS@CCENLP1>
+13:26:58 SYS@CCENLP1>
+13:26:58 SYS@CCENLP1>
+13:26:58 SYS@CCENLP1>
+13:26:58 SYS@CCENLP1>
+13:26:59 SYS@CCENLP1>
+13:26:59 SYS@CCENLP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.23.0.0.0
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$
+[oracle19@plclsa01 scripts]$ logout
+Connection to plclsa01 closed.
+
+
+ ? 2026-11-12 ? ? 13:30.47 ? ? /home/mobaxterm ?

@@ -1,0 +1,52 @@
+
+**************************************************************************************
+
+
+vi EXPORT_RORAIMA_ESTIMATE.par
+
+SCHEMAS=RORAIMA
+DIRECTORY=MIGRACION
+ESTIMATE_ONLY=YES
+DUMPFILE=EXPORT_RORAIMA_%T_%L.dmp
+LOGFILE=EXPORT_RORAIMA_131126.log
+EXCLUDE=STATISTICS
+PARALLEL=10
+CLUSTER=N
+LOGTIME=ALL
+
+
+
+nohup expdp SYSTEM/oracle1 PARFILE=EXPORT_RORAIMA_ESTIMATE.par &
+ expdp SYSTEM/oracle1 ATTACH=SYS_EXPORT_FULL_02
+
+vi EXPORT_RORAIMA.parEXPORT_RORAIMA_20261113_
+SCHEMAS=RORAIMA
+DIRECTORY=MIGRACION
+DUMPFILE=EXPORT_RORAIMA_%T_%L.dmp
+LOGFILE=EXPORT_RORAIMA_131126.log
+EXCLUDE=STATISTICS
+PARALLEL=6
+CLUSTER=N
+LOGTIME=ALL
+
+nohup expdp SYSTEM/oracle1 PARFILE=EXPORT_RORAIMA.par &
+ expdp SYSTEM/oracle1 ATTACH=SYS_EXPORT_SCHEMA_04
+
+
+**************************************************************************************
+
+
+EXPORT_RORAIMA_20261113_01.dmp
+
+
+DIRECTORY=MIGRACION
+SCHEMAS=RORAIMA
+LOGFILE=IMPORT_RORAIMA_131126.LOG
+DUMPFILE=EXPORT_RORAIMA_20261113_%L.dmp
+PARALLEL=32
+LOGTIME=ALL
+
+nohup impdp system/oracle1 parfile=IMP_PCP_20260709.par &
+
+
+**************************************************************************************

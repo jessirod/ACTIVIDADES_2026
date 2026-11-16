@@ -1,0 +1,2227 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:1.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-11-14 ? ? 23:48.30 ? ? /home/mobaxterm ? ssh oracle19@plbdtrz01
+
+
+
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Sat Nov 14 23:48:43 2026
+
+
+
+Ultimo login al Sistema: oracle19 pts/4        172.18.68.161    Sat Nov 14 23:48   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. DCSP         = dbdcsp
+ 2. TRZSP        = dbtrzsp
+
+
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ dbtrzsp
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 14 23:49:00 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+23:49:00 SYS@TRZSP1>
+23:49:29 SYS@TRZSP1>
+23:49:29 SYS@TRZSP1>
+23:49:29 SYS@TRZSP1> COL USERNAME FORMAT A15
+23:49:32 SYS@TRZSP1> SELECT
+23:49:32   2    s.username,
+23:49:32   3    s.sid,
+23:49:32   4    s.serial#,
+23:49:32   5    s.blocking_session,
+23:49:32   6    l.type,
+23:49:32   7    l.lmode,
+23:49:32   8    l.request,
+23:49:32   9    s.seconds_in_wait
+23:49:32  10  FROM
+23:49:33  11    v$session s
+23:49:33  12    JOIN v$lock l ON l.sid = s.sid
+23:49:33  13  WHERE
+23:49:33  14    s.blocking_session IS NOT NULL
+23:49:33  15  ORDER BY
+23:49:33  16    s.blocking_session;
+
+no rows selected
+
+Elapsed: 00:00:00.44
+23:49:35 SYS@TRZSP1>
+23:49:36 SYS@TRZSP1>
+23:49:36 SYS@TRZSP1>
+23:49:37 SYS@TRZSP1>
+23:49:37 SYS@TRZSP1> ./dbs_gawrr.sh s=78487 e=78498
+SP2-0734: unknown command beginning "./dbs_gawr..." - rest of line ignored.
+23:51:58 SYS@TRZSP1>
+
+23:52:06 SYS@TRZSP1>
+23:52:06 SYS@TRZSP1>
+23:52:06 SYS@TRZSP1>
+
+23:52:10 SYS@TRZSP1>
+23:52:10 SYS@TRZSP1>
+23:52:10 SYS@TRZSP1>
+23:52:10 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Nov 14 23:52:51 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+23:52:51 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ ls -ltr
+total 342720
+-rw-r--r--.  1 oracle19 asmadmin     2542 Jul  8  2024 spfile_TRZSP_20240707.ora
+-rw-r--r--.  1 oracle19 asmadmin     2448 Jul  9  2024 spfile_DCSP_20240707.ora
+-rw-r--r--.  1 oracle19 asmadmin     3415 Jul 10  2024 resp_spfile_trzsp_20240710.ora
+-rw-r--r--.  1 oracle19 asmadmin     3261 Jul 10  2024 resp_spfile_dcsp_20240710.ora
+-rw-r-----.  1 oracle19 oinstall    23245 Aug 19  2024 analisis_v3.sql
+drwxr-xr-x.  2 oracle19 oinstall     4096 Sep  1  2024 TRANZAXIS_NUEVO
+-rw-r--r--.  1 oracle19 oinstall     2526 Sep  5  2024 backups_view.sql
+-rw-r--r--.  1 oracle19 oinstall     9413 Sep 23  2024 salida_drop.sql
+-rw-r--r--.  1 oracle19 asmadmin     3493 Sep 24  2024 pfile_TRZSP_20240924.ora
+drwxr-xr-x.  2 oracle19 oinstall     4096 Sep 25  2024 CDC20240925
+-rw-r--r--.  1 oracle19 asmadmin     3606 Oct  1  2024 pfile_TRZSP_NEW_011024.ora
+-rwxrwxrwx.  1 oracle19 oinstall 17514980 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_103930.zip
+-rwxrwxrwx.  1 oracle19 oinstall 22134535 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_121115.zip
+-rwxrwxrwx.  1 oracle19 oinstall 17490932 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_165446.zip
+-rw-r--r--.  1 oracle19 asmadmin     3930 Oct  9  2024 spfileTRZSP.resp_2024_10_09.ora.al
+-rw-r--r--.  1 oracle19 oinstall    64203 Oct 17  2024 ashrpt_1_1017_0015.html
+drwxr-xr-x.  2 oracle19 oinstall     4096 Oct 22  2024 utils
+-rw-r--r--.  1 oracle19 oinstall  3450416 Oct 27  2024 awrrpt_1_6587_6588.html
+-rw-r--r--.  1 oracle19 oinstall  3404885 Oct 27  2024 awrrpt_1_6588_6589.html
+-rw-r-----.  1 oracle19 oinstall     5337 Oct 29  2024 PKG_CONCILIACIONES+PROCEDURE+GET_MOVEMENT_CON.txt
+-rw-r-----.  1 oracle19 oinstall     5337 Oct 29  2024 conciliaciones.sql
+-rw-r--r--.  1 oracle19 oinstall  4035685 Nov 23  2024 awrrpt_1_9228_9229.html
+-rw-r--r--.  1 oracle19 oinstall  4945419 Nov 23  2024 awrrpt_1_9229_9230.html
+-rw-r--r--.  1 oracle19 oinstall    45207 Nov 23  2024 TRZSP1_ashrpt_23_NOV_2024_2015_2030.html
+-rw-r--r--.  1 oracle19 oinstall  1543718 Nov 24  2024 awrrpt_rac_9228_9229.html
+-rw-r--r--.  1 oracle19 oinstall  1595133 Nov 24  2024 awrrpt_rac_9229_9230.html
+-rw-r--r--.  1 oracle19 oinstall  3128674 Nov 24  2024 awrrpt_1_9352_9353.html
+-rw-r--r--.  1 oracle19 oinstall  2844827 Nov 24  2024 awrrpt_1_9369_9370.html
+-rw-r--r--.  1 oracle19 oinstall  2755695 Nov 24  2024 awrrpt_1_9372_9373.html
+-rw-r--r--.  1 oracle19 oinstall  3036577 Nov 25  2024 awrrpt_1_9173_9174.html
+-rw-r--r--.  1 oracle19 oinstall  3750038 Nov 25  2024 awrrpt_1_9365_9366.html
+drwxr-xr-x.  2 oracle19 oinstall     4096 Nov 26  2024 discos
+-rw-r--r--.  1 oracle19 oinstall  1651157 Jan  2  2025 dcsp_2025.html
+-rw-r--r--.  1 oracle19 oinstall  3442968 Jan  2  2025 trzsp_2025.html
+-rw-r-----.  1 oracle19 oinstall    26075 Jan 10  2025 analisis_v4.sql
+-rw-r--r--.  1 oracle19 oinstall   182287 Jan 10  2025 oracle_DCSP_reporte_inventario.html
+-rw-r--r--.  1 oracle19 oinstall     6941 Jan 22  2025 select.sql
+-rw-r--r--.  1 oracle19 oinstall  5276246 Jan 23  2025 awrrpt_1_15104_15105.html
+-rw-r--r--.  1 oracle19 oinstall  2105320 Feb 17  2025 awrrpt_1_17156_17157.html
+-rw-r--r--.  1 oracle19 oinstall  1984501 Feb 17  2025 awrrpt_1_17157_17158.html
+-rw-r--r--.  1 oracle19 oinstall  2245730 Feb 17  2025 awrrpt_1_17158_17159.html
+-rw-r--r--.  1 oracle19 oinstall    44443 May  5  2025 ashrpt_1_0505_1400.html.html
+-rw-r--r--.  1 oracle19 oinstall    15003 May  5  2025 acuzzb47r3smy,awrsqlrpt_1_24888_24892.html
+-rw-r--r--.  1 oracle19 oinstall    42081 May  6  2025 ashrpt_1_0505_1330.html
+-rw-r--r--.  1 oracle19 oinstall 46873405 May  6  2025 plbdtrz01.tfa_srdc_ora600_Tue_May_06_10_00_18_VET_2025.zip
+-rw-r--r--.  1 oracle19 oinstall      119 Jul  4  2025 query.sql
+-rw-r--r--.  1 oracle19 oinstall    59369 Sep  4  2025 ashrpt_1_0904_1833.html
+-rw-r--r--.  1 oracle19 oinstall      165 Sep 19  2025 parfile_export.par
+-rw-r--r--.  1 oracle19 oinstall     1110 Jan 17  2026 space.sql
+-rw-r--r--.  1 oracle19 oinstall 27627520 Feb 19  2026 TX_N3_190226.tar
+-rw-r--r--.  1 oracle19 oinstall 31150080 Feb 19  2026 TX_N2_190226.tar
+drwxr-xr-x.  2 oracle19 oinstall     4096 Feb 19  2026 TX_N1_190226
+-rw-r--r--.  1 oracle19 oinstall 60887040 Feb 19  2026 TX_N1_190226.tar
+-rw-r--r--.  1 oracle19 oinstall  9998868 Apr 24  2026 awrrpt_1_58867_58868.html
+-rw-r--r--.  1 oracle19 oinstall  7310133 Apr 24  2026 awrrpt_1_58882_58883.html
+-rw-r--r--.  1 oracle19 oinstall  7295983 Apr 24  2026 awrrpt_1_58885_58886.html
+-rw-r--r--.  1 oracle19 oinstall  9997444 May 14  2026 awrrpt_1_60818_60819.html
+-rw-r--r--.  1 oracle19 oinstall  6277630 May 14  2026 awrrpt_1_60821_60822.html
+-rw-r--r--.  1 oracle19 oinstall  9997806 May 14  2026 awrrpt_1_60815_60816.html
+-rw-r--r--.  1 oracle19 oinstall  4492112 May 14  2026 awrrpt_1_60825_60826.html
+-rw-r--r--.  1 oracle19 oinstall  3026953 May 15  2026 awrrpt_1_60837_60838.html
+-rw-r--r--.  1 oracle19 oinstall  3275499 May 15  2026 awrrpt_1_60842_60843.html
+-rw-r--r--.  1 oracle19 oinstall       65 May 31 13:13 afiedt.buf
+-rwxrwxr-x.  1 oracle19 oinstall     2494 Jul 27 14:15 generate_menu_bd.sh
+-rw-r--r--.  1 oracle19 oinstall     1752 Sep  7 11:21 script_cnsulta.sql
+-rw-r--r--.  1 oracle19 oinstall 13666654 Sep  7 11:28 salida_07092026.csv
+-rw-r-----.  1 oracle19 oinstall     2110 Sep 15 11:24 08.3_BACKOFFICE_PROCEDURE_JOB.sql
+-rw-r--r--.  1 oracle19 oinstall       82 Sep 15 11:25 BACKOFFICE_PROCEDURE_JOB.lst
+-rw-r--r--.  1 oracle19 oinstall     3339 Oct 15 09:06 show_tablespa.sql
+drwxr-xr-x. 14 oracle19 oinstall     4096 Oct 17 15:39 scripts
+-rw-r--r--.  1 oracle19 oinstall      904 Nov  5 20:51 tablsp.sql
+drwxr-xr-x.  3 oracle19 oinstall    12288 Nov 14 23:53 awr
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ cd scripts
+[oracle19@plbdtrz01 scripts]$ pwd
+/home/oracle19/scripts
+[oracle19@plbdtrz01 scripts]$ vi diag_contencion_rac_trzsp.sql
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ sqlplus / as sysdba @diag_contencion_rac_trzsp.sql
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Nov 15 00:19:42 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+
+Session altered.
+
+Elapsed: 00:00:00.00
+
+===================================================================
+1. ACTIVIDAD ASH POR MINUTO E INSTANCIA (busca que nodo arranca primero)
+===================================================================
+old   9:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   9:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old  10:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new  10:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+MINUTO            INST TOTAL_SES IDX_CONTENTION  GC_BUSY      ITL      CPU
+----------------- ---- --------- -------------- -------- -------- --------
+14-NOV 21:00         1       262              1        5        0       58
+14-NOV 21:00         2         9              0        0        0        8
+14-NOV 21:00         3       323              0      191        0       51
+14-NOV 21:01         1       178              1        0        0       80
+14-NOV 21:01         2        13              0        0        0       13
+14-NOV 21:01         3       734              1      482        0       79
+14-NOV 21:02         1       158              0        1        0       71
+14-NOV 21:02         2         6              0        0        0        5
+14-NOV 21:02         3       154              0       87        0       34
+14-NOV 21:03         1       139              0        0        0       69
+14-NOV 21:03         2         9              0        0        0        9
+14-NOV 21:03         3       211              1      100        0       67
+14-NOV 21:04         1       163              2        0        0       78
+14-NOV 21:04         2         6              0        0        0        5
+14-NOV 21:04         3       272              0      174        2       34
+14-NOV 21:05         1       118              1        0        0       71
+14-NOV 21:05         2         8              0        0        0        7
+14-NOV 21:05         3       700              0      401        0       94
+14-NOV 21:06         1       125              0        1        0       78
+14-NOV 21:06         2        10              0        0        0       10
+14-NOV 21:06         3       207              0       61        0       41
+14-NOV 21:07         1       427              4        1        0       57
+14-NOV 21:07         2        11              0        0        0        8
+14-NOV 21:07         3       303              0      177        0       32
+14-NOV 21:08         1       127              0        2        0       63
+14-NOV 21:08         2        11              0        0        0        9
+14-NOV 21:08         3       413              0      267        0       38
+14-NOV 21:09         1       163              0        5        0       73
+14-NOV 21:09         2         5              0        0        0        5
+14-NOV 21:09         3       548              1      379        0       62
+14-NOV 21:10         1       160              3        0        0       60
+14-NOV 21:10         2         7              0        0        0        5
+14-NOV 21:10         3     1,047              0      757        0       50
+14-NOV 21:11         1       176              1        0        0       74
+14-NOV 21:11         2         6              0        0        0        5
+14-NOV 21:11         3       287              0      181        0       32
+14-NOV 21:12         1       189              0        0        0       79
+14-NOV 21:12         2         9              0        0        0        8
+14-NOV 21:12         3       454              0      304        0       45
+14-NOV 21:13         1       102              1        0        0       76
+14-NOV 21:13         2        10              0        0        0        8
+14-NOV 21:13         3       382              1      229        0       59
+14-NOV 21:14         1       118              0        0        0       68
+14-NOV 21:14         2         8              0        0        0        7
+14-NOV 21:14         3       512              0      347        0       50
+14-NOV 21:15         1       117              1        0        0       58
+14-NOV 21:15         2         9              0        0        0        8
+14-NOV 21:15         3       169              2       14        4       58
+14-NOV 21:16         1       107              1        0        0       58
+14-NOV 21:16         2         9              0        0        0        7
+14-NOV 21:16         3       436              0      260        0       57
+14-NOV 21:17         1       141              0        2        0       77
+14-NOV 21:17         2        10              0        0        0        9
+14-NOV 21:17         3       394              1      237        0       60
+14-NOV 21:18         1       117              0        1        0       56
+14-NOV 21:18         2        14              0        0        0       13
+14-NOV 21:18         3        62              0       19        0       25
+14-NOV 21:19         1       105              0        1        0       65
+14-NOV 21:19         2        13              0        0        0       13
+14-NOV 21:19         3       410              1      235        0       47
+14-NOV 21:20         1       120              0        0        0       53
+14-NOV 21:20         2        12              0        0        0       11
+14-NOV 21:20         3       178              0      112        0       38
+14-NOV 21:21         1       117              0        0        0       60
+14-NOV 21:21         2        13              0        0        0       11
+14-NOV 21:21         3       315              0      158        0       35
+14-NOV 21:22         1       112              0        3        0       51
+14-NOV 21:22         2        15              0        0        0       15
+14-NOV 21:22         3        72              0       30        0       22
+14-NOV 21:23         1       106              0        1        0       68
+14-NOV 21:23         2        11              0        0        0        8
+14-NOV 21:23         3       231              0      149        0       42
+14-NOV 21:24         1       156              1        0        0       77
+14-NOV 21:24         2        12              0        0        0       10
+14-NOV 21:24         3       182              0      121        0       27
+14-NOV 21:25         1       103              0        0        0       50
+14-NOV 21:25         2         8              0        0        0        6
+14-NOV 21:25         3       145              0       91        0       30
+14-NOV 21:26         1       962            413       49      237       73
+14-NOV 21:26         2        22              0        0        0       19
+14-NOV 21:26         3       309              1      195        0       55
+14-NOV 21:27         1     1,268            242      568       55       92
+14-NOV 21:27         2     1,316             82      768      116       14
+14-NOV 21:27         3       953            217      369       42       64
+14-NOV 21:28         1       146             63        0        0       55
+14-NOV 21:28         2       952             65      328       59       13
+14-NOV 21:28         3     1,898              0    1,058        0       91
+14-NOV 21:29         1     2,931          1,437      167      178      107
+14-NOV 21:29         2     1,610            537      879        0        8
+14-NOV 21:29         3       517              4      260       17       65
+14-NOV 21:30         1     4,932          2,520    1,510      275       70
+14-NOV 21:30         2     3,171            924    1,894       10       14
+14-NOV 21:30         3       519             16      284       37       20
+14-NOV 21:31         1     2,213            703      471       14      184
+14-NOV 21:31         2     1,575            343      754       88       24
+14-NOV 21:31         3       486              0      279        0       67
+14-NOV 21:32         1     2,650          1,030      535       94      106
+14-NOV 21:32         2        83             10       26        8        7
+14-NOV 21:32         3       171              0      110        0       29
+14-NOV 21:33         1     1,168            855      226        2       50
+14-NOV 21:33         2        10              0        0        0        2
+14-NOV 21:33         3       160              0       46        0       64
+14-NOV 21:34         1     2,755            708    1,188      497       97
+14-NOV 21:34         2     1,520            225      717       48       30
+14-NOV 21:34         3       578              6      248        0      103
+14-NOV 21:35         1       147             38        0        0       34
+14-NOV 21:35         2        10              0        0        0        8
+14-NOV 21:35         3       808              0      359        0       50
+14-NOV 21:36         1     3,053          1,931      542        3       69
+14-NOV 21:36         2     1,559            618      311       54       52
+14-NOV 21:36         3       830              9      441        0       84
+14-NOV 21:37         1     4,244          1,332    1,977        0       78
+14-NOV 21:37         2     1,704            697      751        3        5
+14-NOV 21:37         3        63             12       17        1       13
+14-NOV 21:38         1       915            526       78        6       85
+14-NOV 21:38         2       618             89      391        4       12
+14-NOV 21:38         3       815              2      376        0       46
+14-NOV 21:39         1     3,551            870    1,069       99      104
+14-NOV 21:39         2     2,880            597    1,180      211        9
+14-NOV 21:39         3       754             94      412       17        6
+14-NOV 21:40         1     3,909          1,582      470       56       54
+14-NOV 21:40         2     2,653            748    1,389        7        5
+14-NOV 21:40         3     1,411             32      745        6       65
+14-NOV 21:41         1     1,245            799      269        0       59
+14-NOV 21:41         2     1,217            389      628        0        6
+14-NOV 21:41         3     1,435             47      608        0       78
+14-NOV 21:42         1        97              5       14        0       42
+14-NOV 21:42         2         8              0        0        0        7
+14-NOV 21:42         3       506              0      334        0       18
+14-NOV 21:43         1       119              2        0        0       75
+14-NOV 21:43         2         9              0        0        0        6
+14-NOV 21:43         3       571              0      305        0       44
+14-NOV 21:44         1     1,245            532      228       96       44
+14-NOV 21:44         2     1,541            171    1,017       88       21
+14-NOV 21:44         3       151              0       46        0       63
+14-NOV 21:45         1       166              1        1        0       83
+14-NOV 21:45         2         9              0        0        0        8
+14-NOV 21:45         3       549              0      369        0       59
+14-NOV 21:46         1       110              1        0        0       64
+14-NOV 21:46         2        14              0        0        0       10
+14-NOV 21:46         3        98              0       39        0       36
+14-NOV 21:47         1       137              1        1        0       58
+14-NOV 21:47         2         6              0        0        0        5
+14-NOV 21:47         3       485              0      294        0       58
+14-NOV 21:48         1       121              0        0        0       55
+14-NOV 21:48         2         8              0        0        0        6
+14-NOV 21:48         3       265              0      143       13       38
+14-NOV 21:49         1        95              1        0        0       52
+14-NOV 21:49         2        15              0        0        0       10
+14-NOV 21:49         3       486              0      346        0       45
+14-NOV 21:50         1       110              0        0        0       67
+14-NOV 21:50         2         4              0        0        0        3
+14-NOV 21:50         3       512              0      325        0       45
+14-NOV 21:51         1     1,707            936      156       12       86
+14-NOV 21:51         2       485             91      101      185       25
+14-NOV 21:51         3       383             72      203        0       17
+14-NOV 21:52         1     2,256          1,001      542      550       57
+14-NOV 21:52         2       692             77      402       49        8
+14-NOV 21:52         3     1,072              0      703        0       87
+14-NOV 21:53         1     2,465            584    1,343      348       51
+14-NOV 21:53         2     1,394             58      875      100        7
+14-NOV 21:53         3       479              0      132        0       75
+14-NOV 21:54         1       183              2        3        0       76
+14-NOV 21:54         2         8              0        0        0        7
+14-NOV 21:54         3       658              2      413        0       76
+14-NOV 21:55         1       261              3       29       51       73
+14-NOV 21:55         2         5              0        0        0        4
+14-NOV 21:55         3       394              0      255        4       48
+14-NOV 21:56         1     1,429             88      808      379       45
+14-NOV 21:56         2     1,506             29    1,194       23       14
+14-NOV 21:56         3       230              2      154        0       34
+14-NOV 21:57         1       830             59       59      267       88
+14-NOV 21:57         2        15              0        0        0        8
+14-NOV 21:57         3       147              0       78        0       26
+14-NOV 21:58         1       102              1        0        0       56
+14-NOV 21:58         2         9              0        0        0        6
+14-NOV 21:58         3        62              0       42        0       13
+14-NOV 21:59         1        98              1        0        0       49
+14-NOV 21:59         2         5              0        0        0        3
+14-NOV 21:59         3       730              0      427        0       83
+14-NOV 22:00         1       154              0        1        0       66
+14-NOV 22:00         2        14              0        0        0        8
+14-NOV 22:00         3        31              0        0        0       19
+14-NOV 22:01         1       112              2        0        0       48
+14-NOV 22:01         2        13              0        0        0        7
+14-NOV 22:01         3       408              0      214        0       73
+14-NOV 22:02         1       114              1        0        0       38
+14-NOV 22:02         2         9              0        0        0        7
+14-NOV 22:02         3       297              0      122        0       53
+14-NOV 22:03         1       123              0        0        0       44
+14-NOV 22:03         2         9              0        0        0        9
+14-NOV 22:03         3       169              1       77        0       42
+14-NOV 22:04         1       136              0        1        0       49
+14-NOV 22:04         2         7              0        0        0        6
+14-NOV 22:04         3       243              0      162        0       38
+14-NOV 22:05         1        92              0        0        0       48
+14-NOV 22:05         2        12              0        0        0       10
+
+MINUTO            INST TOTAL_SES IDX_CONTENTION  GC_BUSY      ITL      CPU
+----------------- ---- --------- -------------- -------- -------- --------
+14-NOV 22:05         3       241              0      151        0       36
+14-NOV 22:06         1       135              1        4        0       61
+14-NOV 22:06         2         8              0        0        0        6
+14-NOV 22:06         3       315              0      140        0       69
+14-NOV 22:07         1     2,975            949    1,057      414       40
+14-NOV 22:07         2     1,549            457      658       41       20
+14-NOV 22:07         3       505              6      155      181       17
+14-NOV 22:08         1     1,519            717      204        0      105
+14-NOV 22:08         2     1,704            254      862        0        5
+14-NOV 22:08         3       580             52      236        0       64
+14-NOV 22:09         1        73              0        0        0       41
+14-NOV 22:09         2         9              0        0        0        7
+14-NOV 22:09         3       297              1      168        1       33
+14-NOV 22:10         1     1,586            829       65      457       66
+14-NOV 22:10         2       556             15      450        9        5
+14-NOV 22:10         3       417              0      235        0       46
+14-NOV 22:11         1     1,591            354      509        0       54
+14-NOV 22:11         2       551             20      174      244       14
+14-NOV 22:11         3       266              2      129        0       33
+14-NOV 22:12         1     1,066            541      240        4       84
+14-NOV 22:12         2        30              0        2        0       15
+14-NOV 22:12         3     1,405              3      970      206       12
+14-NOV 22:13         1     1,794            901      521       50       65
+14-NOV 22:13         2     1,562            440      821       74       25
+14-NOV 22:13         3       257             44       34        0       48
+14-NOV 22:14         1       145              0        1        0       70
+14-NOV 22:14         2        13              0        0        0       10
+14-NOV 22:14         3       412              1      293        0       53
+14-NOV 22:15         1       126              0        2        0       70
+14-NOV 22:15         2        11              0        0        0        7
+14-NOV 22:15         3       127              0       40        0       44
+14-NOV 22:16         1     1,938            836      787       63       58
+14-NOV 22:16         2     1,535            357      890        0       12
+14-NOV 22:16         3       764              0      589        0       22
+14-NOV 22:17         1       292              1      187        0       55
+14-NOV 22:17         2        14              0        0        0       12
+14-NOV 22:17         3       174              0      124        0       34
+14-NOV 22:18         1        85              1        1        0       46
+14-NOV 22:18         2        12              0        0        0        9
+14-NOV 22:18         3       262              0      111        0       44
+14-NOV 22:19         1     1,324            479      565      121       32
+14-NOV 22:19         2     1,264            172      829        0        9
+14-NOV 22:19         3       153              3       93        0       22
+14-NOV 22:20         1     2,760          1,174    1,091      253       49
+14-NOV 22:20         2     1,547            226      815       56       20
+14-NOV 22:20         3       704             62      456        0       38
+14-NOV 22:21         1     2,422          1,595      713        0       36
+14-NOV 22:21         2     1,182            377      658        5        7
+14-NOV 22:21         3     1,059             13      619      111       11
+14-NOV 22:22         1        94              1        4        0       46
+14-NOV 22:22         2       846            154      521        0       10
+14-NOV 22:22         3       301              6      148        0       62
+14-NOV 22:23         1     1,809            584      873        0       81
+14-NOV 22:23         2       806             49      643        0       23
+14-NOV 22:23         3       675              0      349        0       19
+14-NOV 22:24         1       851            276      459        0       33
+14-NOV 22:24         2        15              0        0        0       15
+14-NOV 22:24         3       617              0      329       98       18
+14-NOV 22:25         1     1,281            892      221       64       37
+14-NOV 22:25         2       967             13      593        0       25
+14-NOV 22:25         3       766             34      388       57       76
+14-NOV 22:26         1     2,435          1,403      534       18       35
+14-NOV 22:26         2     1,095            261      565        0       40
+14-NOV 22:26         3        90              2       44        0       17
+14-NOV 22:27         1       595             38      195      144       70
+14-NOV 22:27         2     1,255            212      703        0       10
+14-NOV 22:27         3       594             13      410        0       24
+14-NOV 22:28         1     2,809          1,128      670      552       46
+14-NOV 22:28         2     1,610             73      841       67       30
+14-NOV 22:28         3       300             11      120        0       73
+14-NOV 22:29         1       882            126      506      139       48
+14-NOV 22:29         2        25              1        0        0        7
+14-NOV 22:29         3       194              0      120        0       34
+14-NOV 22:30         1        74              0        0        0       39
+14-NOV 22:30         2         9              0        0        0        6
+14-NOV 22:30         3       169              1       48        2       62
+14-NOV 22:31         1        89              0        0        0       54
+14-NOV 22:31         2         9              0        0        0        8
+14-NOV 22:31         3        27              0        0        0       20
+14-NOV 22:32         1       100              0        1        0       43
+14-NOV 22:32         2        11              0        0        0       10
+14-NOV 22:32         3        86              0       29        0       34
+14-NOV 22:33         1        71              0        0        0       35
+14-NOV 22:33         2        13              0        0        0       11
+14-NOV 22:33         3       214              0      113        0       64
+14-NOV 22:34         1        56              0        0        0       40
+14-NOV 22:34         2        12              0        0        0       10
+14-NOV 22:34         3        61              0       17        0       32
+14-NOV 22:35         1        88              0        0        0       47
+14-NOV 22:35         2         9              0        0        0        7
+14-NOV 22:35         3       192              0       97        0       43
+14-NOV 22:36         1        77              1        1        0       46
+14-NOV 22:36         2         6              0        0        0        5
+14-NOV 22:36         3       280              0      183        0       46
+14-NOV 22:37         1        56              0        0        0       40
+14-NOV 22:37         2         9              0        0        0        7
+14-NOV 22:37         3       328              0      211        0       57
+14-NOV 22:38         1        71              0        1        0       30
+14-NOV 22:38         2        12              0        0        0       10
+14-NOV 22:38         3       105              0       47        0       36
+14-NOV 22:39         1        70              0        0        0       44
+14-NOV 22:39         2        11              0        0        0        6
+14-NOV 22:39         3       135              0       73        0       34
+14-NOV 22:40         1        71              0        0        0       42
+14-NOV 22:40         2        11              0        0        0        5
+14-NOV 22:40         3        20              0        0        0       13
+14-NOV 22:41         1        59              0        0        0       37
+14-NOV 22:41         2         8              0        0        0        5
+14-NOV 22:41         3       673              1      420        0       75
+14-NOV 22:42         1        92              0        0        0       36
+14-NOV 22:42         2        10              0        0        0        6
+14-NOV 22:42         3       155              0      112        0       21
+14-NOV 22:43         1        84              2        0        0       47
+14-NOV 22:43         2        10              0        0        0        9
+14-NOV 22:43         3       266              0      170        0       42
+14-NOV 22:44         1        46              0        0        0       29
+14-NOV 22:44         2         8              0        0        0        7
+14-NOV 22:44         3       244              0      176        0       33
+14-NOV 22:45         1       217            136        0        0       46
+14-NOV 22:45         2        10              0        0        0        8
+14-NOV 22:45         3       109              0       43        0       41
+14-NOV 22:46         1        62              1        0        0       30
+14-NOV 22:46         2         7              0        0        0        6
+14-NOV 22:46         3       176              0       98        0       49
+14-NOV 22:47         1        59              0        0        0       18
+14-NOV 22:47         2         8              0        0        0        6
+14-NOV 22:47         3        23              0        0        0       16
+14-NOV 22:48         1        61              0        0        0       32
+14-NOV 22:48         2         8              0        0        0        6
+14-NOV 22:48         3       237              0      149        0       40
+14-NOV 22:49         1        74              1        0        0       38
+14-NOV 22:49         2        11              0        1        0        7
+14-NOV 22:49         3       399              0      246        0       38
+14-NOV 22:50         1       657            401       18       47       74
+14-NOV 22:50         2       414             87      192       54        6
+14-NOV 22:50         3       138              0       68        0       37
+14-NOV 22:51         1       953            681      212        4       25
+14-NOV 22:51         2        11              0        0        1        5
+14-NOV 22:51         3       160              1      132        0       16
+14-NOV 22:52         1        53              0        0        0       31
+14-NOV 22:52         2        18              0        0        0       15
+14-NOV 22:52         3       645              1      389        0       93
+14-NOV 22:53         1     1,563            477      657      224       48
+14-NOV 22:53         2     1,100            199      583      130        6
+14-NOV 22:53         3       455              3      314        5       13
+14-NOV 22:54         1     2,487            787    1,356      114       41
+14-NOV 22:54         2     1,375            667      214      124        7
+14-NOV 22:54         3       263             56      123       18       23
+14-NOV 22:55         1       150             90        0        0       18
+14-NOV 22:55         2        25              2        0        0       12
+14-NOV 22:55         3       134              0       36        0       53
+14-NOV 22:56         1     1,460          1,092      299        0       31
+14-NOV 22:56         2       506             21      143        0       17
+14-NOV 22:56         3       517             27      389        0        9
+14-NOV 22:57         1     1,936            778      555      141       42
+14-NOV 22:57         2     1,172            143      738       26        9
+14-NOV 22:57         3       277             13      106       41       20
+14-NOV 22:58         1     2,297          1,303      512       26       74
+14-NOV 22:58         2     2,196            661      974       46       24
+14-NOV 22:58         3       997             55      286      166       22
+14-NOV 22:59         1     2,542          1,972      405        0       44
+14-NOV 22:59         2     1,649            306      854        0        7
+14-NOV 22:59         3       223              1      118        0       41
+14-NOV 23:00         1     2,383          1,118      540       80       65
+14-NOV 23:00         2     1,966            764      820        0       30
+14-NOV 23:00         3        90              2       11        7       46
+14-NOV 23:01         1     2,661          1,474      589      242       42
+14-NOV 23:01         2     2,597            431    1,521      165        9
+14-NOV 23:01         3        24              0        0        0       19
+14-NOV 23:02         1     3,220          1,260    1,023      275       52
+14-NOV 23:02         2       585             21      287      108       17
+14-NOV 23:02         3       453              1      278        4       14
+14-NOV 23:03         1     3,290          1,035      821      321       86
+14-NOV 23:03         2     1,131             26      911       44        9
+14-NOV 23:03         3       359            103      152        0       13
+14-NOV 23:04         1        53              0        0        0       23
+14-NOV 23:04         2        10              0        0        0       10
+14-NOV 23:04         3       135              0       58        0       35
+14-NOV 23:05         1       116              1        1       38       48
+14-NOV 23:05         2        10              0        0        0        8
+14-NOV 23:05         3       226              4      128        0       35
+14-NOV 23:06         1     1,660            683      210       21       92
+14-NOV 23:06         2        26              4        2        0        8
+14-NOV 23:06         3       126              0       25        0       38
+14-NOV 23:07         1     3,389          2,097      613       50       52
+14-NOV 23:07         2     1,642            371      792      104        9
+14-NOV 23:07         3       549             15      207        0       37
+14-NOV 23:08         1     3,159          1,968      702      285       46
+14-NOV 23:08         2     1,884            402      972      178        8
+14-NOV 23:08         3     1,362            105      685       16        7
+14-NOV 23:09         1       179              4       80        0       42
+14-NOV 23:09         2        10              0        0        0        9
+14-NOV 23:09         3       219             72       62        0       16
+14-NOV 23:10         1        60              0        0        0       29
+14-NOV 23:10         2        12              0        0        0       11
+14-NOV 23:10         3        45              0       13        0       18
+14-NOV 23:11         1        53              1        0        0       37
+
+MINUTO            INST TOTAL_SES IDX_CONTENTION  GC_BUSY      ITL      CPU
+----------------- ---- --------- -------------- -------- -------- --------
+14-NOV 23:11         2         4              0        0        0        4
+14-NOV 23:11         3       537              1      323        0       60
+14-NOV 23:12         1        39              1        0        0       19
+14-NOV 23:12         2         6              0        0        0        6
+14-NOV 23:12         3        12              0        0        0       11
+14-NOV 23:13         1     1,739            698      437        8       42
+14-NOV 23:13         2       823             30      589       71       25
+14-NOV 23:13         3        95              8       39        0       14
+14-NOV 23:14         1       603            354      159        7       31
+14-NOV 23:14         2       548             46      370        0        8
+14-NOV 23:14         3        65              3       26        0       11
+14-NOV 23:15         1     1,158            415      382      112       75
+14-NOV 23:15         2       238              6      104        0       10
+14-NOV 23:15         3        35              0        4        0       16
+14-NOV 23:16         1     1,024            738       61      117       40
+14-NOV 23:16         2       113              0       17        2       12
+14-NOV 23:16         3        54              0       21        0       21
+14-NOV 23:17         1     2,099            837      580      101       24
+14-NOV 23:17         2     1,469            109      987       45       24
+14-NOV 23:17         3       799             11      629       13        8
+14-NOV 23:18         1        50              0        0        0       25
+14-NOV 23:18         2         7              0        0        0        7
+14-NOV 23:18         3       203              0      119        0       44
+14-NOV 23:19         1        29              0        0        0       16
+14-NOV 23:19         2        15              0        0        0       10
+14-NOV 23:19         3        32              0        0        0       18
+14-NOV 23:20         1        55              1        1        0       22
+14-NOV 23:20         2        16              1        0        0       12
+14-NOV 23:20         3       106              0       52        0       36
+14-NOV 23:21         1        30              1        0        0       21
+14-NOV 23:21         2        11              0        0        0       11
+14-NOV 23:21         3        22              0        0        0       16
+14-NOV 23:22         1        34              0        0        0       18
+14-NOV 23:22         2        12              0        0        0       11
+14-NOV 23:22         3        13              0        0        0       11
+14-NOV 23:23         1     2,126            467      753      385       27
+14-NOV 23:23         2       579             19      279        2       18
+14-NOV 23:23         3       550              0      269        0       37
+14-NOV 23:24         1       647            283        0      177       34
+14-NOV 23:24         2       264              1      215        0        9
+14-NOV 23:24         3       543              0      306       42       21
+14-NOV 23:25         1        37              0        0        0       25
+14-NOV 23:25         2         7              0        0        0        6
+14-NOV 23:25         3       161              0       57        0       67
+14-NOV 23:26         1        39              1        0        0       24
+14-NOV 23:26         2        12              0        0        0        7
+14-NOV 23:26         3       204              0      107        0       65
+14-NOV 23:27         1     1,878            874      570       60       36
+14-NOV 23:27         2       730            172       76        1       50
+14-NOV 23:27         3       345              0      145        0       63
+14-NOV 23:28         1        66              0        0        0       34
+14-NOV 23:28         2        11              0        1        0        6
+14-NOV 23:28         3        54              0       16        0       19
+14-NOV 23:29         1        60              0        0        0       23
+14-NOV 23:29         2        12              0        0        0       11
+14-NOV 23:29         3        81              0       56        0       15
+14-NOV 23:30         1        72              1        0        0       34
+14-NOV 23:30         2        12              0        0        0        9
+14-NOV 23:30         3       229              0      114        0       21
+14-NOV 23:31         1        45              0        1        0       25
+14-NOV 23:31         2        10              0        0        0       10
+14-NOV 23:31         3        19              0        0        0       14
+14-NOV 23:32         1        41              0        0        0       28
+14-NOV 23:32         2         6              0        0        0        5
+14-NOV 23:32         3       136              0       78        0       43
+14-NOV 23:33         1        33              0        0        0       22
+14-NOV 23:33         2        10              0        0        0        5
+14-NOV 23:33         3        78              0       37        0       22
+14-NOV 23:34         1        60              0        0        0       32
+14-NOV 23:34         2        11              0        0        0        8
+14-NOV 23:34         3       250              0      114        0       42
+14-NOV 23:35         1        33              0        0        0       24
+14-NOV 23:35         2        12              0        0        0       10
+14-NOV 23:35         3        53              0       15        0       19
+14-NOV 23:36         1        46              0        0        0       37
+14-NOV 23:36         2         9              0        0        0        8
+14-NOV 23:36         3        24              0        0        0       20
+14-NOV 23:37         1        36              0        0        0       28
+14-NOV 23:37         2         8              0        0        0        7
+14-NOV 23:37         3       734              0      405        0       93
+14-NOV 23:38         1        42              0        0        0       27
+14-NOV 23:38         2         9              0        0        0        8
+14-NOV 23:38         3        19              0        0        0       17
+14-NOV 23:39         1        41              0        0        0       31
+14-NOV 23:39         2         7              0        0        0        5
+14-NOV 23:39         3        29              0        0        0       20
+14-NOV 23:40         1        37              0        0        0       20
+14-NOV 23:40         2        10              0        0        0        8
+14-NOV 23:40         3        46              0       20        1       18
+14-NOV 23:41         1        56              0        0        1       30
+14-NOV 23:41         2         8              0        0        0        6
+14-NOV 23:41         3       109              0       56        0       26
+14-NOV 23:42         1     1,706          1,124      127        6       56
+14-NOV 23:42         2       244              8      147        0       27
+14-NOV 23:42         3       267             32       54        0       44
+14-NOV 23:43         1     1,393            913      273       16       47
+14-NOV 23:43         2       367            102      110        0       17
+14-NOV 23:43         3       816             94      413       47       22
+14-NOV 23:44         1       223            142        1        0       41
+14-NOV 23:44         2        41              1       10        0        8
+14-NOV 23:44         3       189              0      120        0       33
+
+495 rows selected.
+
+Elapsed: 00:00:10.01
+
+===================================================================
+2. EN QUE INSTANCIA ESTAN LOS BLOQUEADORES (waiter vs blocker)
+===================================================================
+old   6:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   6:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old   7:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new   7:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+EVENT                            INST_WAITER INST_BLOCKER   MUESTRAS
+-------------------------------- ----------- ------------ ----------
+enq: TX - index contention                 1            1     50,613
+gc buffer busy acquire                     1            1     21,796
+gc buffer busy acquire                     3            3     19,236
+gc buffer busy acquire                     2            2     18,293
+enq: TX - index contention                 2            2     10,017
+gc buffer busy acquire                     3                   9,932
+gc buffer busy release                     2                   9,881
+enq: TX - allocate ITL entry               1            1      7,852
+gc buffer busy release                     2            2      6,642
+gc buffer busy release                     1                   6,494
+enq: TX - index contention                 1                   4,388
+gc buffer busy release                     1            1      3,804
+enq: TX - index contention                 2                   3,187
+gc buffer busy release                     3                   2,693
+enq: TX - row lock contention              1            1      2,338
+enq: TX - allocate ITL entry               2            2      2,161
+gc buffer busy acquire                     1                   1,584
+enq: TX - allocate ITL entry               3            3      1,140
+enq: TX - index contention                 3            3      1,079
+gc buffer busy acquire                     2                     723
+gc buffer busy release                     3            3        550
+enq: TX - allocate ITL entry               2                     469
+enq: TX - allocate ITL entry               1                     431
+enq: TX - row lock contention              1                     354
+enq: TX - index contention                 1            2        318
+enq: TX - index contention                 3                     265
+enq: TX - row lock contention              2            2        263
+enq: TX - index contention                 2            1        202
+enq: TX - row lock contention              2                     165
+enq: TX - contention                       1            1        142
+
+30 rows selected.
+
+Elapsed: 00:00:01.04
+
+===================================================================
+3. QUE HACEN LOS BLOQUEADORES (evento y estado del blocker en ASH)
+===================================================================
+old   7:  WHERE w.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   7:  WHERE w.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old   8:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new   8:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+INST_BLOCKER BLK_EVENT                                BLK_STAT BLK_PROGRAM                    BLK_MODULE                                 MUESTRAS
+------------ ---------------------------------------- -------- ------------------------------ ---------------------------------------- ----------
+           1 gc buffer busy acquire                   WAITING  JDBC Thin Client               Instance#121/Arte#51/Unit#380|Tr#2611151        683
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#223/Arte#21/Unit#1015|Tr#261115        510
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#222/Arte#87/Unit#381|Tr#2611151        489
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#21/Arte#35/Unit#44|Tr#261115058        476
+           1 db file sequential read                  WAITING  JDBC Thin Client               Instance#444/Arte#115/Unit#383|Tr#261115        472
+           1 gc current multi block request           WAITING  JDBC Thin Client               Instance#444/Arte#25/Unit#383|Tr#2611151        424
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#11/Arte#68/Unit#36|Tr#261115133        420
+           1 gc current multi block request           WAITING  JDBC Thin Client               Instance#445/Arte#70                            416
+           1 buffer busy waits                        WAITING  JDBC Thin Client               Instance#223/Arte#89/Unit#1015|Tr#261115        392
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#223/Arte#139/Unit#1015|Tr#26111        391
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#122/Arte#126/Unit#1014|Tr#26111        382
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#121/Arte#2                             378
+           1 gc current multi block request           WAITING  JDBC Thin Client               Instance#122/Arte#4/Unit#1014|Tr#2611150        374
+           1 gc buffer busy acquire                   WAITING  JDBC Thin Client               Instance#445/Arte#100/Unit#996|Tr#261115        367
+           1 gc current multi block request           WAITING  JDBC Thin Client               Instance#121/Arte#2                             340
+           1 gc buffer busy acquire                   WAITING  JDBC Thin Client               Instance#11/Arte#148/Unit#36|Tr#26111506        336
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#121/Arte#30/Unit#380|Tr#2611151        327
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#223/Arte#81/Unit#1015|Tr#261115        326
+           1 gc buffer busy acquire                   WAITING  JDBC Thin Client               Instance#122/Arte#31/Unit#1014|Tr#261115        311
+           1 enq: TX - allocate ITL entry             WAITING  JDBC Thin Client               Instance#222/Arte#76/Unit#381|Tr#2611151        307
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#445/Arte#70/Unit#996|Tr#2611151        298
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#445/Arte#37/Unit#996|Tr#2611151        283
+           2 buffer busy waits                        WAITING  JDBC Thin Client               Instance#222/Arte#65/Unit#381|Tr#2611150        283
+           1 gc current grant busy                    WAITING  JDBC Thin Client               Instance#334/Arte#118/Unit#995|Tr#261115        282
+           1 gc buffer busy acquire                   WAITING  JDBC Thin Client               Instance#222/Arte#89/Unit#381|Tr#2611150        278
+
+25 rows selected.
+
+Elapsed: 00:00:06.41
+
+===================================================================
+4. SQL TOP POR INSTANCIA EN LA VENTANA (que corre en nodos 2 y 3)
+===================================================================
+old   7:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   7:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old   8:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new   8:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+      INST SQL_ID         SQL_OPNAME   TOP_EVENT                             MUESTRAS
+---------- -------------- ------------ ----------------------------------- ----------
+         3 5q7d183g3yaja  SELECT       gc buffer busy acquire                  21,441
+         1 fv64wpap4jrjd  INSERT       enq: TX - index contention              19,417
+         2 5q7d183g3yaja  SELECT       gc buffer busy acquire                   8,444
+         3 5q7d183g3yaja  SELECT       latch: cache buffers chains              7,078
+         1 cv84u7ww1smaw  INSERT       enq: TX - index contention               6,824
+         1 fv64wpap4jrjd  INSERT       buffer busy waits                        5,829
+         1 fv64wpap4jrjd  INSERT       gc buffer busy acquire                   4,733
+         2 fv64wpap4jrjd  INSERT       enq: TX - index contention               4,725
+         1 g90h76kmcrqrm  INSERT       enq: TX - index contention               4,694
+         1 bjuf14d7m8cb0  INSERT       enq: TX - index contention               4,434
+         1 fv64wpap4jrjd  INSERT       gc buffer busy release                   4,153
+         1 18tzmwsht44ku  INSERT       enq: TX - index contention               3,991
+         1 acuzzb47r3smy  INSERT       enq: TX - index contention               3,935
+         1 acuzzb47r3smy  INSERT       enq: TX - allocate ITL entry             3,804
+         2 fv64wpap4jrjd  INSERT       gc buffer busy release                   3,772
+         1 fv64wpap4jrjd  INSERT       latch: cache buffers chains              3,519
+         1 6kk17n03k22db  INSERT       enq: TX - index contention               3,413
+         1 bjuf14d7m8cb0  INSERT       enq: TX - allocate ITL entry             3,353
+         2 cv84u7ww1smaw  INSERT       enq: TX - index contention               3,204
+         1 gmnjmwb490gca  INSERT       gc buffer busy acquire                   3,161
+         1 gmnjmwb490gca  INSERT       enq: TX - index contention               3,056
+         2 fv64wpap4jrjd  INSERT       gc buffer busy acquire                   2,974
+         2 g90h76kmcrqrm  INSERT       gc buffer busy release                   2,897
+         2 cv84u7ww1smaw  INSERT       gc buffer busy release                   2,877
+         1                             ON CPU                                   2,871
+         1 acuzzb47r3smy  INSERT       gc buffer busy acquire                   2,365
+         1 bjuf14d7m8cb0  INSERT       gc buffer busy acquire                   2,358
+         2 bjuf14d7m8cb0  INSERT       gc buffer busy release                   2,152
+         1 cv84u7ww1smaw  INSERT       gc buffer busy acquire                   1,950
+         2 bjuf14d7m8cb0  INSERT       enq: TX - allocate ITL entry             1,945
+         1 bh7hd1n85vtn2  INSERT       gc buffer busy acquire                   1,830
+         1 g90h76kmcrqrm  INSERT       gc buffer busy acquire                   1,807
+         1                             gcs log flush sync                       1,806
+         2 cv84u7ww1smaw  INSERT       gc buffer busy acquire                   1,731
+         1 a32jsnnw1sptt  UPDATE       enq: TX - row lock contention            1,638
+         2 fv64wpap4jrjd  INSERT       buffer busy waits                        1,526
+         3 a30bj2czj96as  SELECT       gc buffer busy acquire                   1,462
+         2 g90h76kmcrqrm  INSERT       enq: TX - index contention               1,385
+         1 bh7hd1n85vtn2  INSERT       enq: TX - index contention               1,370
+         1 g1f8b5tygmary  INSERT       enq: TX - index contention               1,357
+
+40 rows selected.
+
+Elapsed: 00:00:01.13
+
+===================================================================
+5. SECUENCIAS DEL ESQUEMA TX (ORDER o CACHE bajo en RAC = punto caliente)
+===================================================================
+
+SEQUENCE_O SEQUENCE_NAME                         CACHE_SIZE ORDER SCALE          LAST_NUMBER
+---------- ----------------------------------- ------------ ----- ----- --------------------
+TX         SQN_ISSUINGCREDITLIMITID                      20 Y     N                        1
+TX         SQN_PERSOJOBHISTORYID                         20 Y     N                        1
+TX         SQN_RDX_EASSESSIONID                          20 Y     N                   93,941
+TX         SQN_RDX_AC_APIUSERSESSIONID                   20 Y     N                        1
+TX         SQN_RDX_CM_REVISIONMETAID                     20 Y     N                      521
+TX         SQN_ISSUINGTYPECREDITLIMITID                  20 Y     N                        1
+TX         SQN_RDX_AC_APIACCESSPROFILEID                 20 Y     N                        1
+TX         SQN_CORPORATIONBANKPROPSID                    20 Y     N                       21
+TX         SQN_INACTIVERELEASEFEATUREID                  20 Y     N                        1
+TX         SQN_RCCASESTATUSID                            20 Y     N                        1
+TX         SQN_RCFRAUDTYPEID                             20 Y     N                        1
+TX         SQN_CASOPERUSERPARAMID                        20 Y     N                        1
+TX         SQN_TERMSNAPSHOTID                            20 Y     N                    1,001
+TX         SQN_CRYPTOPRINTFIELDID                        20 Y     N                        1
+TX         SQN_LOYALTYSTATUSID                           20 Y     N                        1
+TX         SQN_LOYALTYSTATUSSCHEMEID                     20 Y     N                        1
+TX         SQN_RESERVESUBPORTFOLIOID                     20 Y     N                        1
+TX         SQN_RESSUBPORTFOLIOSCHEMEID                   20 Y     N                        1
+TX         SQN_COLLECTIONTRIGGERID                       20 Y     N                        1
+TX         SQN_COLLECTIONRULEID                          20 Y     N                        1
+TX         SQN_TRCHRVLCRDMPDELTAID                       20 Y     N                        1
+TX         SQN_CONTRACTTYPESTATEMENTID                   20 Y     N                        1
+TX         SQN_RDX_CM_SNAPSHOTTABLEID                    20 N     N                        1
+TX         SQN_RDX_TST_AUDIT                             20 N     N                        1
+TX         SQN_EXTCARD                                   20 N     N                        1
+TX         SQN_BATCHTYPEID                               20 N     N                    1,521
+TX         SQN_ISSUEID                                   20 N     N                       21
+TX         SQN_NOTIFYTYPEID                              20 N     N                        1
+TX         SQN_RDX_JS_SCHDUNITJOBID                      20 N     N                    3,030
+TX         SQN_LOANPAYMENTSCHEDULEID                     20 N     N                        1
+TX         SQN_INTERFACETRANSEQNSPK                      20 N     N                        1
+TX         SQN_CREDITLINEMPID                            20 N     N                        1
+TX         SQN_PAYEEDIRITEMID                            20 N     N                        1
+TX         SQN_TRCHRVLCRDDDSCHEMAID                      20 N     N                        1
+TX         SQN_RDX_SB_TRANSFORMSTAGEID                   20 N     N                      566
+TX         SQN_OPERATIONLISTCODE                         20 N     N                      221
+TX         SQN_RRN                                       20 N     N                        1
+TX         SQN_TESTCASEEXECUTIONID                       20 N     N                        1
+TX         SQN_CREDITLINECLITEMID                        20 N     N                        1
+TX         SQN_CREDITLINECLSCHEMEID                      20 N     N                        1
+TX         SQN_REP_GENERIC                               20 N     N                        1
+TX         SQN_INTERFACETRANSEQMASTERCARD                20 N     N                        1
+TX         SQN_RDX_JS_CALENDARITEMID                     20 N     N                      250
+TX         SQN_RDX_WF_PROCESSLINKID                      20 N     N                        1
+TX         SQN_COLLECTIONCASESTATESCHEMAI                20 N     N                        1
+TX         SQN_CONTRACTDELQSTATEID                       20 N     N                        1
+TX         SQN_RCSTATTYPE                                20 N     N                        1
+TX         SQN_SCORINGSELECTORID                         20 N     N                        1
+TX         SQN_RDX_CM_SEGMENTID                          20 N     N                       41
+TX         SQN_CASACCTMAPITEMID                          20 N     N                        1
+TX         SQN_STATEMENTCHANNELID                        20 N     N                        1
+TX         SQN_TRCHRVLCRDQUALLEVELID                     20 N     N                        1
+TX         SQN_CREDITLINEENTRYCATID                      20 N     N                        1
+TX         SQN_CREDITLINEREPAYID                         20 N     N                        1
+TX         SQN_FRAUDREGISTRYID                           20 N     N                        1
+TX         SQN_RDX_QUEUESAFMESSSEQ                       20 N     N                  556,774
+TX         SQN_CREDITLINEMINPAYID                        20 N     N                        1
+TX         SQN_DEVICEMODELID                             20 N     N                        1
+TX         SQN_NETWORKID                                 20 N     N                       21
+TX         SQN_RDX_PC_CHANNELGSMMODEMID                  20 N     N                        1
+TX         SQN_EXCEPTIONALCARDID                         20 N     N                        1
+TX         SQN_CREDITLINEDDID                            20 N     N                        1
+TX         SQN_INSTACCTMAPITEMID                         20 N     N                        1
+TX         SQN_RCALERT                                   20 N     N                        1
+TX         SQN_PAYEEVOUCHERDENOMID                       20 N     N                        1
+TX         SQN_SMSTERMINALMESSAGEID                      20 N     N                        1
+TX         SQN_BATCHTYPEDIRID                            20 N     N                        1
+TX         SQN_DOMAINID                                  20 N     N                       41
+TX         SQN_RDX_INSTANCEID                            20 N     N                      162
+TX         SQN_TERMBATCHID                               20 N     N                        1
+TX         SQN_TESTCLEARINGFILEID                        20 N     N                        1
+TX         SQN_TOKENPRODUCTID                            20 N     N                      161
+TX         SQN_RDX_JS_INTERVALSCHDITEMID                 20 N     N                       21
+TX         SQN_HOUSERANGEID                              20 N     N                        1
+TX         SQN_ATTACHMENTPAGEID                          20 N     N                        1
+TX         SQN_STANDINGORDERCONDITION                    20 N     N                        1
+TX         SQN_STATEMENTTYPEID                           20 N     N                        1
+TX         SQN_XDCCONFIGENVID                            20 N     N                       21
+TX         SQN_HOPPERID                                  20 N     N                        1
+TX         SQN_SUBJECTQUALCATEGORYID                     20 N     N                        1
+TX         SQN_RDX_JS_INTERVALSCHDID                     20 N     N                       41
+TX         SQN_AREAID                                    20 N     N                        1
+TX         SQN_CONTRACTSTRATEGYINSTANCEID                20 N     N                        1
+TX         SQN_CARDREADERID                              20 N     N                        1
+TX         SQN_RDX_JS_EVENTSCHDITEMID                    20 N     N                      770
+TX         SQN_BRANCHCAPABILITYID                        20 N     N                        1
+TX         SQN_CARDDESIGNELEMENTID                       20 N     N                        1
+TX         SQN_INTERFACEID                               20 N     N                    1,972
+TX         SQN_NOTIFYMESSAGETEMPLATEID                   20 N     N                        1
+TX         SQN_PAYEEPARAMTEMPLATEID                      20 N     N                        1
+TX         SQN_TRCHRVLCRDMPID                            20 N     N                        1
+TX         SQN_RDX_CM_REVISIONID                         20 N     N                    5,365
+TX         SQN_TRCHRVLCRDREPAYSCHEMEID                   20 N     N                        1
+TX         SQN_CARDCHIPTYPEID                            20 N     N                        1
+TX         SQN_COLLECTIONCASESTATEID                     20 N     N                        1
+TX         SQN_NOTIFYBUILDERID                           20 N     N                        1
+TX         SQN_RDX_TST_SQNTEDCPARENT                     20 N     N                        1
+TX         SQN_NOTIFYDELIVERYSCHEMEITEMID                20 N     N                        1
+TX         SQN_PAYEEDIRTOPICID                           20 N     N                        1
+TX         SQN_RCMORATORIUM                              20 N     N                        1
+TX         SQN_ROUTEID                                   20 N     N                      182
+TX         SQN_TRANPLANID                                20 N     N                        1
+TX         SQN_RDX_WF_FORMLOGID                          20 N     N                        1
+TX         SQN_CREDITLINEREPAYITEMID                     20 N     N                        1
+TX         SQN_EXCSUBJECTREGISTRYVERID                   20 N     N                        1
+TX         SQN_NETWORSTRUCTUREID                         20 N     N                        1
+TX         SQN_XDCIMAGE                                  20 N     N                      121
+TX         SQN_PARAMSECNO                                20 N     N                      521
+TX         SQN_CONTRACTTARIFFPLANHISTID                  20 N     N                        1
+TX         SQN_FEEACCOUNTINGRULEID                       20 N     N                        1
+TX         SQN_RDX_SM_METRICTYPEID                       20 N     N                    1,306
+TX         SQN_ACQ_TRANSITION                            20 N     N                        1
+TX         SQN_OPTIONID                                  20 N     N                       41
+TX         SQN_TAXSCHEMEID                               20 N     N                        1
+TX         SQN_PAYMENTHOLIDAYSHISTORYID                  20 N     N                        1
+TX         SQN_RDX_SB_PIPELINENODEID                     20 N     N                      896
+TX         SQN_RDX_TST_SQNTEDCCHILD                      20 N     N                        1
+TX         SQN_ISSUETYPEID                               20 N     N                        3
+TX         SQN_CRYPTOROOTID                              20 N     N                       21
+TX         SQN_PAYEEGATEID                               20 N     N                        1
+TX         SQN_CBAHOSTID                                 20 N     N                       42
+TX         SQN_RDX_LICENSEREPORTID                       20 N     N                      382
+TX         SQN_STREETID                                  20 N     N                        1
+TX         SQN_POSTINGFUSIONSCHEMECODE                   20 N     N                        1
+TX         SQN_TRANCLASSIFIERID                          20 N     N                        1
+TX         SQN_RDX_PROFILERLOGID                         20 N     N                        1
+TX         SQN_SUBJECT2SUBJECTID                         20 N     N                        1
+TX         SQN_TERMINALID                                20 N     N                      261
+TX         SQN_ISSUECOMMENTID                            20 N     N                        1
+TX         SQN_APPLICATIONMESSAGEID                      20 N     N                        1
+TX         SQN_INVOICEID                                 20 N     N                        1
+TX         SQN_RDX_TST_DURABLEENTITYID                   20 N     N                        1
+TX         SQN_CASHDENOMID                               20 N     N                       21
+TX         SQN_SCORINGPRODUCTID                          20 N     N                        1
+TX         SQN_RDX_REPORTPARAMID                         20 N     N                        1
+TX         SQN_CREDITLINEMPITEMDEBTID                    20 N     N                        1
+TX         SQN_TERMCASHPROFILEITEMID                     20 N     N                        1
+TX         SQN_RDX_AE_BULKPROCID                         20 N     N                        1
+TX         SQN_RDX_CM_PACKETID                           20 N     N                       41
+TX         SQN_CARDDESIGNID                              20 N     N                       21
+TX         SQN_CASCODE                                   20 N     N                       62
+TX         SQN_SUBJECTNOTEID                             20 N     N                        1
+TX         SQN_TESTCASETRANSITIONID                      20 N     N                        1
+TX         SQN_CASHFORECASTSEQUENCE                      20 N     N                        1
+TX         SQN_RESERVEQUALCATSCHEMEID                    20 N     N                        1
+TX         SQN_IMPORTDATASTATISTICID                     20 N     N                    3,725
+TX         SQN_TESTCASEPARAMETERID                       20 N     N                        1
+TX         SQN_RDX_WF_PROCESSID                          20 N     N                        1
+TX         SQN_TRCHRVLCRDCLSCHEMEID                      20 N     N                        1
+TX         SQN_STATEMENTACCOMPANYINGTEXTI                20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT398                       20 N     N                       18
+TX         SQN_RDX_PC_EVENTSUBSCRIPTIONID                20 N     N                      161
+TX         SQN_APPLICATIONTYPEDIRID                      20 N     N                        1
+TX         SQN_CBAHOSTINTERFACESID                       20 N     N                      141
+TX         SQN_INSTACCTMAPID                             20 N     N                        1
+TX         SQN_REJECTTRANID                              20 N     N                       41
+TX         SQN_RDX_SM_SNMPMANAGERID                      20 N     N                        1
+TX         SQN_PAYEECONSUMERID                           20 N     N                        1
+TX         SQN_SETTLETRANCHEFOLDER                       20 N     N                        1
+TX         SQN_TICKLERID                                 20 N     N                        1
+TX         SQN_TRUSTEDPAYEE                              20 N     N                        1
+TX         SQN_TERMADAPTERID                             20 N     N                       21
+TX         SQN_USERLEXEMEID                              20 N     N                        1
+TX         SQN_RDX_AE_OUTINTERFACEID                     20 N     N                        1
+TX         SQN_CASSETTESETID                             20 N     N                       21
+TX         SQN_APPLICATIONTYPEID                         20 N     N                        1
+TX         SQN_COLLECTIONACTIONID                        20 N     N                        1
+TX         SQN_PAYEEBILLID                               20 N     N                        1
+TX         SQN_SHARDINGOBJRANGEID                        20 N     N                        1
+TX         SQN_BANKCODEID                                20 N     N                       21
+TX         SQN_CARDPRODUCTPANRANGEID                     20 N     N                       81
+TX         SQN_ISO8583STAN_UNIT399                       20 N     N                        2
+TX         SQN_RDX_TST_INHERITANCENODESEQ                20 N     N                        1
+TX         SQN_CITYID                                    20 N     N                        1
+TX         SQN_TESTCLEARINGRECORDID                      20 N     N                        1
+TX         SQN_RDX_CLASSLOADINGPROFILEITE                20 N     N                        1
+TX         SQN_CRYPTOPRINTFORMATID                       20 N     N                        1
+TX         SQN_RDX_AC_APIACCESSSCHEMEID                  20 N     N                       21
+TX         SQN_ISO8583STAN_UNIT414                       20 N     N                  163,774
+TX         SQN_BRANCHID                                  20 N     N                       21
+TX         SQN_XDCOPERATIONID                            20 N     N                       81
+TX         SQN_INTERFACETRANSEQCUP                       20 N     N                        1
+TX         SQN_RDX_AC_PARTITIONGROUPID                   20 N     N                        1
+TX         SQN_TERMCASHPROFILEID                         20 N     N                       21
+TX         SQN_RDX_AE_BULKPROCTYPEID                     20 N     N                        1
+TX         SQN_APPLICATIONTYPEDIRITEMID                  20 N     N                        1
+TX         SQN_RDX_COUNTERID                             20 N     N                       21
+TX         SQN_RDX_REPORTPUBLISTID                       20 N     N                      101
+TX         SQN_RCDETECTOR                                20 N     N                        1
+TX         SQN_RDX_SYSTEM_ID                             20 N     N                        2
+TX         SQN_EXCSUBJECTDOCID                           20 N     N                        1
+TX         SQN_EXCSUBJECTID                              20 N     N                        1
+TX         SQN_RDX_ST_STATCELLID                         20 N     N                  322,398
+TX         SQN_CASOPERHANDLERID                          20 N     N                      161
+TX         SQN_ISO8583STAN_UNIT91                        20 N     N                        0
+TX         SQN_NOTIFYSUBSCRIPTIONID                      20 N     N                        1
+TX         SQN_SMSHANDLERID                              20 N     N                        1
+
+SEQUENCE_O SEQUENCE_NAME                         CACHE_SIZE ORDER SCALE          LAST_NUMBER
+---------- ----------------------------------- ------------ ----- ----- --------------------
+TX         SQN_EXCSUBJECTAKAID                           20 N     N                        1
+TX         SQN_NOTIFYADDRESSID                           20 N     N                        1
+TX         SQN_RATEID                                    20 N     N                       81
+TX         SQN_REVOKEDSUBJDOCID                          20 N     N                        1
+TX         SQN_NOTIFYBUILDSCHEMEID                       20 N     N                        1
+TX         SQN_RDX_JS_EVENTSCHDID                        20 N     N                      790
+TX         SQN_CARDPRODUCTKEYID                          20 N     N                      401
+TX         SQN_CONTRACTSTRATEGYTYPEID                    20 N     N                        1
+TX         SQN_RDX_REPORTPUBTOPICID                      20 N     N                       81
+TX         SQN_CONTRACT2SUBJECTID                        20 N     N                        1
+TX         SQN_EXCEPTIONALCARDRANGEID                    20 N     N                        1
+TX         SQN_NETWORKSTRUCTUREVERID                     20 N     N                        1
+TX         SQN_RATEGROUPID                               20 N     N                       21
+TX         SQN_TRCHRVLCRDDEBTCATID                       20 N     N                        1
+TX         SQN_CREDITLIMITCATEGORYID                     20 N     N                        1
+TX         SQN_TESTCASETRANSITIONEXECID                  20 N     N                        1
+TX         SQN_TRCHRVLCRDENTRYCATSCHEMEID                20 N     N                        1
+TX         SQN_RDX_REPORTPUBID                           20 N     N                    1,241
+TX         SQN_RDX_SB_PIPELINEID                         20 N     N                      562
+TX         SQN_CREDITLINEDEBTCATID                       20 N     N                        1
+TX         SQN_SUBJECTCONTACTADDRESSID                   20 N     N                        1
+TX         SQN_RDX_INSTPROPID                            20 N     N                      183
+TX         SQN_RDX_TST_DMTESTCHILDID                     20 N     N                        1
+TX         SQN_CASHFORECASTALGOSEQUENCE                  20 N     N                        1
+TX         SQN_PAYEEPARAMID                              20 N     N                        1
+TX         SQN_TARIFFID                                  20 N     N                        1
+TX         SQN_INSTALLMENTPLANRULEID                     20 N     N                        1
+TX         SQN_RDX_CLASSLOADINGPROFILEID                 20 N     N                        1
+TX         SQN_RDX_MQPROCESSRORSEQ                       20 N     N                        1
+TX         SQN_EXCSUBJECTRIDID                           20 N     N                        1
+TX         SQN_TRANPREPROCESSORID                        20 N     N                       21
+TX         SQN_TERMCONFIGID                              20 N     N                       21
+TX         SQN_CASHFORECASTITEMSEQUENCE                  20 N     N                        1
+TX         SQN_COMMONRATEVERID                           20 N     N                        1
+TX         SQN_TARIFFTABLECELLID                         20 N     N                        1
+TX         SQN_STANDINGORDERTYPEDIRITEM                  20 N     N                        1
+TX         SQN_TOKENALIASID                              20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT93                        20 N     N                        0
+TX         SQN_RDX_PC_NOTIFICATIONSENDERI                20 N     N                      161
+TX         SQN_REGIONID                                  20 N     N                        1
+TX         SQN_TRCHRVLCRDMPSCHEME                        20 N     N                        1
+TX         SQN_COFCONSENT                                20 N     N                4,208,419
+TX         SQN_XDCOPERDECLINERESULTID                    20 N     N                      221
+TX         SQN_RDX_AC_USERGROUP2ROLEID                   20 N     N                      801
+TX         SQN_INSTNETWORKACQSEGMENTID                   20 N     N                        1
+TX         SQN_TRCHRVLCRDCLITEMID                        20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT150                       20 N     N                  266,435
+TX         SQN_RDX_SAP_ID                                20 N     N                    1,092
+TX         SQN_RDX_TST_DMTESTID                          20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT474                       20 N     N                       20
+TX         SQN_RDX_TESTCASEID                            20 N     N                    1,061
+TX         SQN_EXCSUBJECTREGISTRYID                      20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT397                       20 N     N                  183,778
+TX         SQN_ISO8583STAN_UNIT475                       20 N     N                       40
+TX         SQN_RDX_LOCKHANDLESEQ                         20 N     N                        1
+TX         SQN_STANDINGORDERAMTALGOID                    20 N     N                        1
+TX         SQN_NETWORKREGID                              20 N     N                       41
+TX         SQN_RESERVERATERULEID                         20 N     N                        1
+TX         SQN_TRANPOSTPROCESSORID                       20 N     N                      361
+TX         SQN_RDX_WF_FORMID                             20 N     N                        1
+TX         SQN_XDCTRANDECLINERESULTID                    20 N     N                      441
+TX         SQN_RDX_UPGRADEWARNINGID                      20 N     N                       61
+TX         SQN_DOCIMAGEID                                20 N     N                       61
+TX         SQN_RCPARAMTYPE                               20 N     N                        1
+TX         SQN_RESERVEQUALCATEGORYID                     20 N     N                        1
+TX         SQN_INTERFACEARNSEQ                           20 N     N                    1,901
+TX         SQN_APPLICATIONPHASEID                        20 N     N                        1
+TX         SQN_REVOKEDSUBJDOCREGISTRYID                  20 N     N                        1
+TX         SQN_TARIFFPLANCODE                            20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT453                       20 N     N               34,329,623
+TX         SQN_RDX_UNITID                                20 N     N                    1,072
+TX         SQN_STANDINGORDERTYPEDIR                      20 N     N                        1
+TX         SQN_CONTRACTTYPEID                            20 N     N                      242
+TX         SQN_ICHGCONTRACTINTERFACESID                  20 N     N                      162
+TX         SQN_NETWORKMEMBERID                           20 N     N                       21
+TX         SQN_TRANHISTVIEWITEM                          20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT473                       20 N     N                       61
+TX         SQN_INVOICETYPEID                             20 N     N                        1
+TX         SQN_OPERATIONID                               20 N     N                      761
+TX         SQN_PROFILEID                                 20 N     N                      161
+TX         SQN_TRANHISTVIEWSCHEMEID                      20 N     N                        1
+TX         SQN_RDX_MESSAGEQUEUEID                        20 N     N                       21
+TX         SQN_NOTIFYDELIVERYSCHEMEID                    20 N     N                        1
+TX         SQN_ISO8583STAN_UNIT412                       20 N     N                   91,914
+TX         SQN_ENTRYPARTCLASSIFIERID                     20 N     N                        1
+TX         SQN_POSTINGFUSIONSCHEMEITEMID                 20 N     N                        1
+TX         SQN_RCOBJECT                                  20 N     N                        1
+TX         SQN_TERMSETTINGSID                            20 N     N                       21
+TX         SQN_CONTRACTDELQSCHEMAID                      20 N     N                        1
+TX         SQN_EXCSUBJECTADDRESSID                       20 N     N                        1
+TX         SQN_TARIFFVERID                               20 N     N                        1
+TX         SQN_RDX_CM_SNAPSHOTRECID                      20 N     N                        1
+TX         SQN_DEVICEID                                  20 N     N                        1
+TX         SQN_SUBJECTESTATEID                           20 N     N                  923,218
+TX         SQN_MONFOLDERID                               20 N     N                       41
+TX         SQN_PAYMENTTEMPLATEID                         20 N     N                        1
+TX         SQN_APPLICATIONID                             20 N     N                        1
+TX         SQN_RDX_JS_CALENDARID                         20 N     N                       70
+TX         SQN_TOKENPACKAGE                              20 N     N                        1
+TX         SQN_RDX_NETCHANNELID                          20 N     N                      965
+TX         SQN_DIGITIZEDCARDDEVICEBINDING                20 N     N                        1
+TX         SQN_IPADDRESSRANGEID                          20 N     N                        1
+TX         SQN_RANGETABLEID                              20 N     N                      162
+TX         SQN_XDCUSERREFINEID                           20 N     N                       41
+TX         SQN_PAYEEVOUCHERID                            20 N     N                        1
+TX         SQN_SCORINGMODULE                             20 N     N                        1
+TX         SQN_TOKENFACTORYID                            20 N     N                        1
+TX         SQN_RDX_CM_ITEMID                             20 N     N                      141
+TX         SQN_DIGITIZEDCARDID                           20 N     N                        1
+TX         SQN_RDX_ST_STATBLOCKID                        20 N     N                      481
+TX         SQN_RCSCHEMEID                                20 N     N                        1
+TX         SQN_INTERFACETRANSEQVISA                      20 N     N                        1
+TX         SQN_RDX_AE_INCINTERFACEID                     20 N     N                      121
+TX         SQN_RDX_USERREPORTVERSIONID                   20 N     N                    1,222
+TX         SQN_RESERVEQUALRULEID                         20 N     N                        1
+TX         SQN_NOTIFYTYPEOPTIONID                        20 N     N                        1
+TX         SQN_SCORINGSCHEME                             20 N     N                        1
+TX         SQN_TERMNDCMODELFAMILYID                      20 N     N                        1
+TX         SQN_RDX_SB_XPATHTABLEID                       20 N     N                        1
+TX         SQN_INSTITUTIONID                             20 N     N                      201
+TX         SQN_ISO8583STAN_UNIT472                       20 N     N                      110
+TX         SQN_ISO8583STAN_UNIT553                       20 N     N                    2,080
+TX         SQN_ISO8583STAN_UNIT554                       20 N     N                       40
+TX         SQN_ISO8583STAN_UNIT555                       20 N     N                       40
+TX         SQN_ISO8583STAN_UNIT563                       20 N     N                       20
+TX         SQN_ISO8583STAN_UNIT556                       20 N     N                       40
+TX         SQN_ISO8583STAN_UNIT592                       20 N     N                  203,023
+TX         SQN_ISO8583STAN_UNIT557                       20 N     N                    2,000
+TX         SQN_ISO8583STAN_UNIT593                       20 N     N                  260,623
+TX         SQN_ISO8583STAN_UNIT595                       20 N     N                    1,174
+TX         SQN_ISO8583STAN_UNIT612                       20 N     N                    3,134
+TX         SQN_ISO8583STAN_UNIT632                       20 N     N                    2,620
+TX         SQN_ISO8583STAN_UNIT652                       20 N     N                       20
+TX         SQN_ISO8583STAN_UNIT673                       20 N     N                       20
+TX         SQN_ISO8583STAN_UNIT674                       20 N     N                       40
+TX         SQN_ISO8583STAN_UNIT678                       20 N     N                       20
+TX         SQN_ISO8583STAN_UNIT675                       20 N     N                       20
+TX         SQN_ISO8583STAN_UNIT792                       20 N     N                  266,640
+TX         SQN_ISO8583STAN_UNIT912                       20 N     N                      560
+TX         SQN_ISO8583STAN_UNIT914                       20 N     N                      560
+TX         SQN_ISO8583STAN_UNIT915                       20 N     N                      920
+TX         SQN_ISO8583STAN_UNIT932                       20 N     N                        0
+TX         SQN_ISO8583STAN_UNIT952                       20 N     N                        0
+TX         SQN_ISO8583STAN_UNIT972                       20 N     N                        0
+TX         SQN_ISO8583STAN_UNIT973                       20 N     N                        0
+TX         SQN_ISO8583STAN_UNIT1052                      20 N     N                   54,960
+TX         SQN_RDX_AU_AUDITLOGID                        100 N     N                   45,916
+TX         SQN_HOLDID                                   100 N     N               62,790,138
+TX         SQN_RDX_AC_USER2ROLEID                       100 N     N                   39,285
+TX         SQN_POSTINGSEQ                               100 N     N                        1
+TX         SQN_TRANCHEDELTAID                           100 N     N                        1
+TX         SQN_BATCHSTATECALLBACKID                     100 N     N                  178,597
+TX         SQN_RDX_AU_USERACTIONID                      100 N     N                        1
+TX         SQN_TRANID                                   100 N     N                        1
+TX         SQN_TRCHRVLCRDTRANCHEID                      100 N     N                        1
+TX         SQN_RDX_AE_EXTMESSSEQ                        100 N     N                        1
+TX         SQN_RDX_USERFUNCID                           100 N     N                   19,391
+TX         SQN_RDX_AE_BULKITEMID                        100 N     N                        1
+TX         SQN_BATCHID                                  100 N     N                   87,845
+TX         SQN_RDX_AE_ACTIONSEQ                         200 N     N                        1
+TX         SQN_REFILLCYCLEID                            500 N     N                  230,747
+TX         SQN_RDX_SM_OPERSTATCOUNTERID                 500 N     N                  155,479
+TX         SQN_RDX_PC_MESSAGEID                         500 N     N                  472,623
+TX         SQN_BATCHLOGID                               500 N     N                  345,890
+TX         SQN_TRANIDSEQ                                500 N     N                   68,155
+TX         SQN_RANGEID                                1,000 N     N                2,538,128
+TX         SQN_BATCHTHREADID                          1,000 N     N                3,079,311
+TX         SQN_CRYPTOKEYID                           10,000 N     N               45,132,637
+TX         SQN_ISO8583STAN_UNIT394                   10,000 N     N            2,038,509,203
+TX         SQN_CONTRACT2CONTRACTID                   10,000 N     N              108,458,739
+TX         SQN_ACCOUNTID                             10,000 N     N               33,991,447
+TX         SQN_SUBJECTID                             10,000 N     N               23,303,607
+TX         SQN_PERSONAUTHQAID                        10,000 N     N              135,432,145
+TX         SQN_TOKENID                               10,000 N     N               69,197,041
+TX         SQN_ISO8583STAN_UNIT90                    10,000 N     N                  980,753
+TX         SQN_TERMCOMMANDID                         10,000 N     N               10,581,467
+TX         SQN_CONTRACTID                            10,000 N     N               92,092,304
+TX         SQN_ISO8583STAN_UNIT92                    10,000 N     N                  940,654
+TX         SQN_SUBJECTDOCID                          10,000 N     N               23,304,295
+TX         SQN_RDX_SM_METRICSTATEID                  10,000 N     N              112,584,958
+TX         SQN_ISO8583STAN_UNIT395                   10,000 N     N            2,020,483,552
+TX         SQN_ISO8583STAN_UNIT396                   10,000 N     N            2,050,392,329
+TX         SQN_TERMJOURNALID                         30,000 N     N              366,546,050
+TX         SQN_RDX_EVENTLOGID                        30,000 N     N           20,022,191,324
+TX         SQN_RDX_ARTERQID                          30,000 N     N                   99,999
+TX         SQN_RDX_SM_METRICHISTID                   30,000 N     N            2,302,578,417
+TX         SQN_OBJPROPLOGCHANGEID                    30,000 N     N            1,687,341,064
+TX         SQN_RDX_JS_JOBID                          30,000 N     N           14,901,097,404
+TX         SQN_BATCHJOBID                            30,000 N     N           17,824,856,461
+TX         SQN_POSTINGID                             30,000 N     N           58,113,748,357
+
+387 rows selected.
+
+Elapsed: 00:00:00.04
+
+===================================================================
+6. INITRANS DE LAS PARTICIONES DE INDICES CALIENTES (dia 2026_11_14)
+===================================================================
+
+INDEX_NAME                       PARTITION_NAME             INI_TRANS PCT_FREE BLEVEL LAST_ANALYZED
+-------------------------------- -------------------------- --------- -------- ------ --------------------
+IDX_DOER_MATCH                   DOER_2026_11_10                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_11                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_12                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_13                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_14                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_15                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_16                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_17                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_18                    2       10
+IDX_DOER_MATCH                   DOER_2026_11_19                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_10                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_11                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_12                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_13                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_14                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_15                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_16                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_17                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_18                    2       10
+IDX_DOER_PARTY                   DOER_2026_11_19                    2       10
+PK_DOER                          DOER_2026_11_10                    2       10
+PK_DOER                          DOER_2026_11_11                    2       10
+PK_DOER                          DOER_2026_11_12                    2       10
+PK_DOER                          DOER_2026_11_13                    2       10
+PK_DOER                          DOER_2026_11_14                    2       10
+PK_DOER                          DOER_2026_11_15                    2       10
+PK_DOER                          DOER_2026_11_16                    2       10
+PK_DOER                          DOER_2026_11_17                    2       10
+PK_DOER                          DOER_2026_11_18                    2       10
+PK_DOER                          DOER_2026_11_19                    2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_10              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_11              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_12              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_13              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_14              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_15              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_16              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_17              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_18              2       10
+PK_DOEREXTMSG                    DOEREXTMSG_2026_11_19              2       10
+PK_ENTRY                         ENTRY_2026_11_10                   2       10
+PK_ENTRY                         ENTRY_2026_11_11                   2       10
+PK_ENTRY                         ENTRY_2026_11_12                   2       10
+PK_ENTRY                         ENTRY_2026_11_13                   2       10
+PK_ENTRY                         ENTRY_2026_11_14                   2       10
+PK_ENTRY                         ENTRY_2026_11_15                   2       10
+PK_ENTRY                         ENTRY_2026_11_16                   2       10
+PK_ENTRY                         ENTRY_2026_11_17                   2       10
+PK_ENTRY                         ENTRY_2026_11_18                   2       10
+PK_ENTRY                         ENTRY_2026_11_19                   2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_10               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_11               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_12               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_13               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_14               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_15               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_16               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_17               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_18               2       10
+PK_ENTRYPART                     ENTRYPART_2026_11_19               2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_10              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_11              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_12              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_13              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_14              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_15              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_16              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_17              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_18              2       10
+PK_INTRANLINK                    INTRANLINK_2026_11_19              2       10
+PK_TRAN                          TRAN_2026_11_10                    2       10
+PK_TRAN                          TRAN_2026_11_11                    2       10
+PK_TRAN                          TRAN_2026_11_12                    2       10
+PK_TRAN                          TRAN_2026_11_13                    2       10
+PK_TRAN                          TRAN_2026_11_14                    2       10
+PK_TRAN                          TRAN_2026_11_15                    2       10
+PK_TRAN                          TRAN_2026_11_16                    2       10
+PK_TRAN                          TRAN_2026_11_17                    2       10
+PK_TRAN                          TRAN_2026_11_18                    2       10
+PK_TRAN                          TRAN_2026_11_19                    2       10
+
+80 rows selected.
+
+Elapsed: 00:00:00.03
+
+INDEX_NAME                       INI_TRANS PCT_FREE INDEX_TYPE
+-------------------------------- --------- -------- ---------------------------
+IDX_INTERFACEREPEATLOG_JOBTIME           2       10 FUNCTION-BASED NORMAL
+PK_POSTING                               2       10 NORMAL
+PK_RDX_JS_JOBPARAM                       2       10 NORMAL
+PK_RDX_JS_JOBQUEUE                     225       10 NORMAL
+
+4 rows selected.
+
+Elapsed: 00:00:00.02
+
+===================================================================
+7. CAMBIOS RECIENTES EN OBJETOS DEL ESQUEMA TX (ultimos 7 dias)
+===================================================================
+
+OBJECT_NAME                         SUBOBJECT_NAME             OBJECT_TYPE        LAST_DDL_TIME
+----------------------------------- -------------------------- ------------------ --------------------
+RDX_JS_THREADEDJOB                                             TABLE              15-NOV-2026 00:13:44
+RDX_JS_THREADEDJOBPARAM                                        TABLE              15-NOV-2026 00:13:44
+HOLDACTION                                                     TABLE              14-NOV-2026 01:30:33
+ENTRY                                                          TABLE              14-NOV-2026 01:30:33
+UNDONEENTRY                                                    TABLE              14-NOV-2026 01:30:33
+UNDONEENTRYPART                                                TABLE              14-NOV-2026 01:30:33
+ENTRYPARTOUTLINK                                               TABLE              14-NOV-2026 01:30:33
+ENTRYPARTINLINK                                                TABLE              14-NOV-2026 01:30:33
+UNDONEHOLDACTION                                               TABLE              14-NOV-2026 01:30:33
+ENTRYPART                                                      TABLE              14-NOV-2026 01:30:33
+UNDONEPOSTING                                                  TABLE              14-NOV-2026 01:30:33
+DOEREXTMSG                                                     TABLE              14-NOV-2026 01:30:26
+TRAN                                                           TABLE              14-NOV-2026 01:30:05
+OUTTRANLINK                                                    TABLE              14-NOV-2026 01:30:05
+INTRANLINK                                                     TABLE              14-NOV-2026 01:30:05
+TRANLOANVAL                                                    TABLE              14-NOV-2026 01:30:05
+DOER                                                           TABLE              14-NOV-2026 01:30:04
+RDX_AU_USERACTION                                              TABLE              14-NOV-2026 01:30:03
+RDX_AE_EXTMESS                                                 TABLE              14-NOV-2026 01:30:03
+RDX_SM_OPERSTATCOUNTER                                         TABLE              14-NOV-2026 01:30:03
+RDX_EVENTCONTEXT                                               TABLE              14-NOV-2026 01:30:02
+RDX_EVENTLOG                                                   TABLE              14-NOV-2026 01:30:02
+RDX_AE_ACTION                                                  TABLE              14-NOV-2026 01:30:02
+RDX_AU_AUDITLOG                                                TABLE              14-NOV-2026 01:30:01
+
+24 rows selected.
+
+Elapsed: 00:00:00.02
+
+===================================================================
+8. DISTRIBUCION DE SESIONES POR INSTANCIA, SERVICIO Y MAQUINA
+===================================================================
+
+INST_ID SERVICE_NAME    MACHINE                             SESIONES  ACTIVAS
+------- --------------- ----------------------------------- -------- --------
+      3 TRZSP           BANVENEZ\SC1MZ2JANT6                       1        0
+      1 TRZSP           cpprloltxapp01                           327       12
+      2 TRZSP           cpprloltxapp01                           405        2
+      3 TRZSP           cpprloltxapp01                           367       74
+      1 TRZSP           cpprloltxapp02                           362        7
+      2 TRZSP           cpprloltxapp02                           370        2
+      3 TRZSP           cpprloltxapp02                           364       53
+      1 TRZSP           cpprloltxapp03                           397        7
+      2 TRZSP           cpprloltxapp03                           333        1
+      3 TRZSP           cpprloltxapp03                           358       73
+      1 TRZSP           cpprloltxapp04                           378        5
+      2 TRZSP           cpprloltxapp04                           347        0
+      3 TRZSP           cpprloltxapp04                           365       47
+      1 SYS$USERS       plbdtrz01.banvenez.corp                   11        2
+      1 TRZSP           plbdtrz01.banvenez.corp                    1        0
+      2 SYS$USERS       plbdtrz01.banvenez.corp                    1        1
+      3 SYS$USERS       plbdtrz01.banvenez.corp                    1        1
+      2 SYS$USERS       plbdtrz02.banvenez.corp                    7        0
+      3 SYS$USERS       plbdtrz03.banvenez.corp                    9        1
+      1 TRZSP           plcloudc01.banvenez.corp                   2        0
+
+20 rows selected.
+
+Elapsed: 00:00:00.02
+
+===================================================================
+9. BLOQUES PERDIDOS E INTERCONNECT POR INSTANCIA
+===================================================================
+
+INST_ID NAME                                                VALUE
+------- ---------------------------------------- ----------------
+      1 gc blocks corrupt                                       0
+      2 gc blocks corrupt                                       0
+      3 gc blocks corrupt                                       0
+      1 gc blocks lost                                     28,195
+      2 gc blocks lost                                        476
+      3 gc blocks lost                                      4,385
+      1 gc claim blocks lost                                  144
+      2 gc claim blocks lost                                    0
+      3 gc claim blocks lost                                    0
+      1 gc cr blocks received                       1,449,899,215
+      2 gc cr blocks received                       2,392,915,846
+      3 gc cr blocks received                      10,193,330,885
+      1 gc current blocks received                  3,433,194,897
+      2 gc current blocks received                    376,448,683
+      3 gc current blocks received                  4,475,171,282
+
+15 rows selected.
+
+Elapsed: 00:00:00.29
+00:20:01 SYS@TRZSP1>
+00:20:13 SYS@TRZSP1>
+00:20:13 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ ls -ltr
+total 149368
+-rw-r--r--. 1 oracle19 oinstall       148 Jul 11  2024 login.sql
+-rwxr-xr-x. 1 oracle19 oinstall       588 Sep  5  2024 depur_act.sql
+-rwxr-xr-x. 1 oracle19 oinstall       295 Sep  5  2024 action_dep.sh
+drwxr-xr-x. 2 oracle19 oinstall      4096 Oct  7  2024 test_index
+-rw-r-----. 1 oracle19 oinstall     10805 Oct 22  2024 PR_DUPLI_BUSINESS_RULE_CHANGE_V1.sql
+-rw-r-----. 1 oracle19 oinstall      1261 Oct 22  2024 EMP_CHANGE.sql
+-rwxr-xr-x. 1 oracle19 oinstall      3131 Nov 19  2024 add_adrci_automatic.sh
+drwxr-xr-x. 2 oracle19 oinstall      4096 Nov 19  2024 cleaning
+drwxr-xr-x. 2 oracle19 oinstall      4096 Dec 12  2024 cdc_20241211
+drwxr-xr-x. 2 oracle19 oinstall      4096 Jan 21  2025 statisticas_backoffice
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb  4  2025 limpieza
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb 21  2025 cc
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb 24  2025 procedures_backup
+drwxr-xr-x. 2 root     root          4096 Apr 15  2025 discos
+drwxr-xr-x. 2 oracle19 oinstall      4096 Jul 28  2025 CRQ34332
+drwxr-xr-x. 3 oracle19 oinstall      4096 Sep 20  2025 CDCS
+-rw-r--r--. 1 oracle19 oinstall       442 May 14  2026 validate.cmd
+-rw-------. 1 oracle19 oinstall        54 May 14  2026 nohup.out
+-rw-r--r--. 1 oracle19 oinstall     10148 May 14  2026 validate.log
+drwxr-xr-x. 3 oracle19 oinstall      4096 May 31 20:13 reportes
+-rw-r--r--. 1 oracle19 oinstall        21 Jun  5 14:18 movement_hist_20260605.csv
+-rw-r--r--. 1 oracle19 oinstall       625 Jun  5 14:41 spoolof.sql
+-rw-r--r--. 1 oracle19 oinstall 105467788 Jun  5 14:43 movement_20260605.csv
+-rw-r--r--. 1 oracle19 oinstall  47247028 Jun 10 11:53 movement_hist_100626.csv
+-rw-r--r--. 1 oracle19 oinstall      6420 Oct  1 14:45 DF_RBS_TRAN.sql
+drwxrwxrwx. 2 oracle19 oinstall      4096 Oct 17 15:45 SPOOL_TX
+-rw-r--r--. 1 oracle19 oinstall      9033 Nov 15 00:19 diag_contencion_rac_trzsp.sql
+-rw-r--r--. 1 oracle19 oinstall     99822 Nov 15 00:20 diag_contencion_rac_trzsp.log
+[oracle19@plbdtrz01 scripts]$ timed out                                                                                                                                                                                                  waiting for input: auto-logout
+Connection to plbdtrz01 closed.
+                                      ?
+
+ ? /home/mobaxterm ?
+ ? 2026-11-15 ? ? 00:35.16 ? ssh oracle19@plbdtrz01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Sun Nov 15 00:44:04 2026
+Ultimo login al Sistema: oracle19 pts/3        172.18.68.161    Sun Nov 15 00:44   still logged in
+
+wtmp begins Wed Apr 16 08:13:53 2025
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. DCSP         = dbdcsp
+ 2. TRZSP        = dbtrzsp
+
+
+[oracle19@plbdtrz01 ~]$ dbtrzsp
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ netstat -s | grep -iE "reassembl|receive errors|buffer errors"
+    959627387 reassemblies required
+    318206008 packets reassembled ok
+    156 packet reassemblies failed
+    0 packet receive errors
+    0 receive buffer errors
+    510 send buffer errors
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ ethtool -S
+ethtool: bad command line argument(s)
+For more information run ethtool -h
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Nov 15 00:49:20 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+00:49:20 SYS@TRZSP1> set line 240
+00:49:22 SYS@TRZSP1> set pagesize 20
+00:49:22 SYS@TRZSP1> set time on
+00:49:22 SYS@TRZSP1> set timi on
+00:49:22 SYS@TRZSP1> col username format a20
+00:49:23 SYS@TRZSP1> col service_name format a20
+00:49:23 SYS@TRZSP1> col MACHINE format a60
+00:49:23 SYS@TRZSP1> select count(1), username,service_name , inst_id, MACHINE, status from gv$session
+00:49:23   2  where username='TX'
+ group by us00:49:23   3  ername, service_name, inst_id, machine , status
+00:49:23   4   order by 2,3
+/00:49:23   5
+
+  COUNT(1) USERNAME             SERVICE_NAME            INST_ID MACHINE                                                                                                                                                                     STATUS
+---------- -------------------- -------------------- ---------- -----------------------------------------------                                                                                                                         ------------- --------
+       326 TX                   TRZSP                         1 cpprloltxapp01                                                                                                                                                              INACTIVE
+       361 TX                   TRZSP                         1 cpprloltxapp02                                                                                                                                                              INACTIVE
+       397 TX                   TRZSP                         1 cpprloltxapp03                                                                                                                                                              INACTIVE
+         1 TX                   TRZSP                         1 cpprloltxapp04                                                                                                                                                              ACTIVE
+       377 TX                   TRZSP                         1 cpprloltxapp04                                                                                                                                                              INACTIVE
+         1 TX                   TRZSP                         2 cpprloltxapp01                                                                                                                                                              ACTIVE
+       403 TX                   TRZSP                         2 cpprloltxapp01                                                                                                                                                              INACTIVE
+       369 TX                   TRZSP                         2 cpprloltxapp02                                                                                                                                                              INACTIVE
+       333 TX                   TRZSP                         2 cpprloltxapp03                                                                                                                                                              INACTIVE
+       347 TX                   TRZSP                         2 cpprloltxapp04                                                                                                                                                              INACTIVE
+       366 TX                   TRZSP                         3 cpprloltxapp01                                                                                                                                                              INACTIVE
+       363 TX                   TRZSP                         3 cpprloltxapp02                                                                                                                                                              INACTIVE
+       358 TX                   TRZSP                         3 cpprloltxapp03                                                                                                                                                              INACTIVE
+       365 TX                   TRZSP                         3 cpprloltxapp04                                                                                                                                                              INACTIVE
+
+14 rows selected.
+
+Elapsed: 00:00:00.02
+00:49:23 SYS@TRZSP1>
+00:49:24 SYS@TRZSP1>
+00:49:25 SYS@TRZSP1>
+00:49:25 SYS@TRZSP1> /
+
+  COUNT(1) USERNAME             SERVICE_NAME            INST_ID MACHINE                                                      STATUS
+---------- -------------------- -------------------- ---------- ------------------------------------------------------------ --------
+         2 TX                   TRZSP                         1 cpprloltxapp01                                               ACTIVE
+       324 TX                   TRZSP                         1 cpprloltxapp01                                               INACTIVE
+       361 TX                   TRZSP                         1 cpprloltxapp02                                               INACTIVE
+         1 TX                   TRZSP                         1 cpprloltxapp03                                               ACTIVE
+       396 TX                   TRZSP                         1 cpprloltxapp03                                               INACTIVE
+         1 TX                   TRZSP                         1 cpprloltxapp04                                               ACTIVE
+       377 TX                   TRZSP                         1 cpprloltxapp04                                               INACTIVE
+         1 TX                   TRZSP                         2 cpprloltxapp01                                               ACTIVE
+       403 TX                   TRZSP                         2 cpprloltxapp01                                               INACTIVE
+       369 TX                   TRZSP                         2 cpprloltxapp02                                               INACTIVE
+       333 TX                   TRZSP                         2 cpprloltxapp03                                               INACTIVE
+       347 TX                   TRZSP                         2 cpprloltxapp04                                               INACTIVE
+       366 TX                   TRZSP                         3 cpprloltxapp01                                               INACTIVE
+       363 TX                   TRZSP                         3 cpprloltxapp02                                               INACTIVE
+       358 TX                   TRZSP                         3 cpprloltxapp03                                               INACTIVE
+       365 TX                   TRZSP                         3 cpprloltxapp04                                               INACTIVE
+
+16 rows selected.
+
+Elapsed: 00:00:00.01
+00:49:35 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ ls -ltr
+total 342720
+-rw-r--r--.  1 oracle19 asmadmin     2542 Jul  8  2024 spfile_TRZSP_20240707.ora
+-rw-r--r--.  1 oracle19 asmadmin     2448 Jul  9  2024 spfile_DCSP_20240707.ora
+-rw-r--r--.  1 oracle19 asmadmin     3415 Jul 10  2024 resp_spfile_trzsp_20240710.ora
+-rw-r--r--.  1 oracle19 asmadmin     3261 Jul 10  2024 resp_spfile_dcsp_20240710.ora
+-rw-r-----.  1 oracle19 oinstall    23245 Aug 19  2024 analisis_v3.sql
+drwxr-xr-x.  2 oracle19 oinstall     4096 Sep  1  2024 TRANZAXIS_NUEVO
+-rw-r--r--.  1 oracle19 oinstall     2526 Sep  5  2024 backups_view.sql
+-rw-r--r--.  1 oracle19 oinstall     9413 Sep 23  2024 salida_drop.sql
+-rw-r--r--.  1 oracle19 asmadmin     3493 Sep 24  2024 pfile_TRZSP_20240924.ora
+drwxr-xr-x.  2 oracle19 oinstall     4096 Sep 25  2024 CDC20240925
+-rw-r--r--.  1 oracle19 asmadmin     3606 Oct  1  2024 pfile_TRZSP_NEW_011024.ora
+-rwxrwxrwx.  1 oracle19 oinstall 17514980 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_103930.zip
+-rwxrwxrwx.  1 oracle19 oinstall 22134535 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_121115.zip
+-rwxrwxrwx.  1 oracle19 oinstall 17490932 Oct  3  2024 orachk_plbdtrz01_TRZSP_100324_165446.zip
+-rw-r--r--.  1 oracle19 asmadmin     3930 Oct  9  2024 spfileTRZSP.resp_2024_10_09.ora.al
+-rw-r--r--.  1 oracle19 oinstall    64203 Oct 17  2024 ashrpt_1_1017_0015.html
+drwxr-xr-x.  2 oracle19 oinstall     4096 Oct 22  2024 utils
+-rw-r--r--.  1 oracle19 oinstall  3450416 Oct 27  2024 awrrpt_1_6587_6588.html
+-rw-r--r--.  1 oracle19 oinstall  3404885 Oct 27  2024 awrrpt_1_6588_6589.html
+-rw-r-----.  1 oracle19 oinstall     5337 Oct 29  2024 PKG_CONCILIACIONES+PROCEDURE+GET_MOVEMENT_CON.txt
+-rw-r-----.  1 oracle19 oinstall     5337 Oct 29  2024 conciliaciones.sql
+-rw-r--r--.  1 oracle19 oinstall  4035685 Nov 23  2024 awrrpt_1_9228_9229.html
+-rw-r--r--.  1 oracle19 oinstall  4945419 Nov 23  2024 awrrpt_1_9229_9230.html
+-rw-r--r--.  1 oracle19 oinstall    45207 Nov 23  2024 TRZSP1_ashrpt_23_NOV_2024_2015_2030.html
+-rw-r--r--.  1 oracle19 oinstall  1543718 Nov 24  2024 awrrpt_rac_9228_9229.html
+-rw-r--r--.  1 oracle19 oinstall  1595133 Nov 24  2024 awrrpt_rac_9229_9230.html
+-rw-r--r--.  1 oracle19 oinstall  3128674 Nov 24  2024 awrrpt_1_9352_9353.html
+-rw-r--r--.  1 oracle19 oinstall  2844827 Nov 24  2024 awrrpt_1_9369_9370.html
+-rw-r--r--.  1 oracle19 oinstall  2755695 Nov 24  2024 awrrpt_1_9372_9373.html
+-rw-r--r--.  1 oracle19 oinstall  3036577 Nov 25  2024 awrrpt_1_9173_9174.html
+-rw-r--r--.  1 oracle19 oinstall  3750038 Nov 25  2024 awrrpt_1_9365_9366.html
+drwxr-xr-x.  2 oracle19 oinstall     4096 Nov 26  2024 discos
+-rw-r--r--.  1 oracle19 oinstall  1651157 Jan  2  2025 dcsp_2025.html
+-rw-r--r--.  1 oracle19 oinstall  3442968 Jan  2  2025 trzsp_2025.html
+-rw-r-----.  1 oracle19 oinstall    26075 Jan 10  2025 analisis_v4.sql
+-rw-r--r--.  1 oracle19 oinstall   182287 Jan 10  2025 oracle_DCSP_reporte_inventario.html
+-rw-r--r--.  1 oracle19 oinstall     6941 Jan 22  2025 select.sql
+-rw-r--r--.  1 oracle19 oinstall  5276246 Jan 23  2025 awrrpt_1_15104_15105.html
+-rw-r--r--.  1 oracle19 oinstall  2105320 Feb 17  2025 awrrpt_1_17156_17157.html
+-rw-r--r--.  1 oracle19 oinstall  1984501 Feb 17  2025 awrrpt_1_17157_17158.html
+-rw-r--r--.  1 oracle19 oinstall  2245730 Feb 17  2025 awrrpt_1_17158_17159.html
+-rw-r--r--.  1 oracle19 oinstall    44443 May  5  2025 ashrpt_1_0505_1400.html.html
+-rw-r--r--.  1 oracle19 oinstall    15003 May  5  2025 acuzzb47r3smy,awrsqlrpt_1_24888_24892.html
+-rw-r--r--.  1 oracle19 oinstall    42081 May  6  2025 ashrpt_1_0505_1330.html
+-rw-r--r--.  1 oracle19 oinstall 46873405 May  6  2025 plbdtrz01.tfa_srdc_ora600_Tue_May_06_10_00_18_VET_2025.zip
+-rw-r--r--.  1 oracle19 oinstall      119 Jul  4  2025 query.sql
+-rw-r--r--.  1 oracle19 oinstall    59369 Sep  4  2025 ashrpt_1_0904_1833.html
+-rw-r--r--.  1 oracle19 oinstall      165 Sep 19  2025 parfile_export.par
+-rw-r--r--.  1 oracle19 oinstall     1110 Jan 17  2026 space.sql
+-rw-r--r--.  1 oracle19 oinstall 27627520 Feb 19  2026 TX_N3_190226.tar
+-rw-r--r--.  1 oracle19 oinstall 31150080 Feb 19  2026 TX_N2_190226.tar
+drwxr-xr-x.  2 oracle19 oinstall     4096 Feb 19  2026 TX_N1_190226
+-rw-r--r--.  1 oracle19 oinstall 60887040 Feb 19  2026 TX_N1_190226.tar
+-rw-r--r--.  1 oracle19 oinstall  9998868 Apr 24  2026 awrrpt_1_58867_58868.html
+-rw-r--r--.  1 oracle19 oinstall  7310133 Apr 24  2026 awrrpt_1_58882_58883.html
+-rw-r--r--.  1 oracle19 oinstall  7295983 Apr 24  2026 awrrpt_1_58885_58886.html
+-rw-r--r--.  1 oracle19 oinstall  9997444 May 14  2026 awrrpt_1_60818_60819.html
+-rw-r--r--.  1 oracle19 oinstall  6277630 May 14  2026 awrrpt_1_60821_60822.html
+-rw-r--r--.  1 oracle19 oinstall  9997806 May 14  2026 awrrpt_1_60815_60816.html
+-rw-r--r--.  1 oracle19 oinstall  4492112 May 14  2026 awrrpt_1_60825_60826.html
+-rw-r--r--.  1 oracle19 oinstall  3026953 May 15  2026 awrrpt_1_60837_60838.html
+-rw-r--r--.  1 oracle19 oinstall  3275499 May 15  2026 awrrpt_1_60842_60843.html
+-rw-r--r--.  1 oracle19 oinstall       65 May 31 13:13 afiedt.buf
+-rwxrwxr-x.  1 oracle19 oinstall     2494 Jul 27 14:15 generate_menu_bd.sh
+-rw-r--r--.  1 oracle19 oinstall     1752 Sep  7 11:21 script_cnsulta.sql
+-rw-r--r--.  1 oracle19 oinstall 13666654 Sep  7 11:28 salida_07092026.csv
+-rw-r-----.  1 oracle19 oinstall     2110 Sep 15 11:24 08.3_BACKOFFICE_PROCEDURE_JOB.sql
+-rw-r--r--.  1 oracle19 oinstall       82 Sep 15 11:25 BACKOFFICE_PROCEDURE_JOB.lst
+-rw-r--r--.  1 oracle19 oinstall     3339 Oct 15 09:06 show_tablespa.sql
+-rw-r--r--.  1 oracle19 oinstall      904 Nov  5 20:51 tablsp.sql
+drwxr-xr-x.  3 oracle19 oinstall    12288 Nov 14 23:53 awr
+drwxr-xr-x. 14 oracle19 oinstall     4096 Nov 15 00:19 scripts
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$
+[oracle19@plbdtrz01 ~]$ cd scripts
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ ls -ltr
+total 149368
+-rw-r--r--. 1 oracle19 oinstall       148 Jul 11  2024 login.sql
+-rwxr-xr-x. 1 oracle19 oinstall       588 Sep  5  2024 depur_act.sql
+-rwxr-xr-x. 1 oracle19 oinstall       295 Sep  5  2024 action_dep.sh
+drwxr-xr-x. 2 oracle19 oinstall      4096 Oct  7  2024 test_index
+-rw-r-----. 1 oracle19 oinstall     10805 Oct 22  2024 PR_DUPLI_BUSINESS_RULE_CHANGE_V1.sql
+-rw-r-----. 1 oracle19 oinstall      1261 Oct 22  2024 EMP_CHANGE.sql
+-rwxr-xr-x. 1 oracle19 oinstall      3131 Nov 19  2024 add_adrci_automatic.sh
+drwxr-xr-x. 2 oracle19 oinstall      4096 Nov 19  2024 cleaning
+drwxr-xr-x. 2 oracle19 oinstall      4096 Dec 12  2024 cdc_20241211
+drwxr-xr-x. 2 oracle19 oinstall      4096 Jan 21  2025 statisticas_backoffice
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb  4  2025 limpieza
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb 21  2025 cc
+drwxr-xr-x. 2 oracle19 oinstall      4096 Feb 24  2025 procedures_backup
+drwxr-xr-x. 2 root     root          4096 Apr 15  2025 discos
+drwxr-xr-x. 2 oracle19 oinstall      4096 Jul 28  2025 CRQ34332
+drwxr-xr-x. 3 oracle19 oinstall      4096 Sep 20  2025 CDCS
+-rw-r--r--. 1 oracle19 oinstall       442 May 14  2026 validate.cmd
+-rw-------. 1 oracle19 oinstall        54 May 14  2026 nohup.out
+-rw-r--r--. 1 oracle19 oinstall     10148 May 14  2026 validate.log
+drwxr-xr-x. 3 oracle19 oinstall      4096 May 31 20:13 reportes
+-rw-r--r--. 1 oracle19 oinstall        21 Jun  5 14:18 movement_hist_20260605.csv
+-rw-r--r--. 1 oracle19 oinstall       625 Jun  5 14:41 spoolof.sql
+-rw-r--r--. 1 oracle19 oinstall 105467788 Jun  5 14:43 movement_20260605.csv
+-rw-r--r--. 1 oracle19 oinstall  47247028 Jun 10 11:53 movement_hist_100626.csv
+-rw-r--r--. 1 oracle19 oinstall      6420 Oct  1 14:45 DF_RBS_TRAN.sql
+drwxrwxrwx. 2 oracle19 oinstall      4096 Oct 17 15:45 SPOOL_TX
+-rw-r--r--. 1 oracle19 oinstall      9033 Nov 15 00:19 diag_contencion_rac_trzsp.sql
+-rw-r--r--. 1 oracle19 oinstall     99822 Nov 15 00:20 diag_contencion_rac_trzsp.log
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ vi diag_fase2_trzsp.sql
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ sqlplus / as sysdba @diag_fase2_trzsp.sql
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Nov 15 00:53:10 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+
+===================================================================
+1A. TEXTO DEL SQL 5q7d183g3yaja
+===================================================================
+
+SQL_TEXT
+------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                            --------------------------------------------
+/* accWVMGGINLYDNRDISQAAAAAAAAAA*/
+Select
+INTRANLINK.PREVTRANID as prevTranId,
+INTRANLINK.CLASSIFICATION as classificationStr,
+INTRANLINK.KIND as kind
+From
+INTRANLINK
+Where
+INTRANLINK.TRANID = :1
+and  INTRANLINK.KIND = :2
+order by INTRANLINK.PREVTRANID asc
+
+
+1 row selected.
+
+Elapsed: 00:00:00.01
+
+===================================================================
+1B. OBJETOS Y BLOQUES QUE ESPERA 5q7d183g3yaja (por instancia)
+===================================================================
+old   9:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   9:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old  10:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new  10:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+INST OBJECT_NAME                      SUBOBJECT_NAME           OBJECT_TYPE      FILE_BLK               MUESTRAS
+---- -------------------------------- ------------------------ ---------------- -------------------- ----------
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  2441/452625                 557
+   1                                                                            75/19264                    399
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  614/1880730                 397
+   2                                                                            704/1245162                 384
+   2                                                                            710/26464                   300
+   2                                                                            710/1186461                 298
+   2                                                                            715/1409438                 298
+   2                                                                            708/34320                   291
+   2                                                                            702/53272                   281
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  2442/477935                 264
+   2                                                                            702/1408415                 259
+   2                                                                            4/1194207                   253
+   2                                                                            703/1308171                 242
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  614/1880859                 242
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  2441/452922                 237
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  2442/478046                 233
+   3 PK_INTRANLINK                    INTRANLINK_2026_11_14    INDEX PARTITION  614/1880099                 222
+   2                                                                            709/55560                   198
+   1                                                                            70/47944                    181
+   2                                                                            721/1249463                 180
+
+20 rows selected.
+
+Elapsed: 00:00:01.08
+
+===================================================================
+2. BLOQUES GC PERDIDOS POR SNAPSHOT E INSTANCIA (ultimos 7 dias)
+===================================================================
+
+SNAP_TIME         INST LOST_DELTA
+----------------- ---- ----------
+08-NOV 18:30         1         12
+08-NOV 18:30         3          6
+08-NOV 19:00         3          2
+08-NOV 19:15         3         10
+08-NOV 19:30         1          3
+08-NOV 19:45         3          2
+14-NOV 21:30         1          1
+14-NOV 23:00         1         12
+14-NOV 23:15         2          8
+14-NOV 23:15         1         35
+14-NOV 23:15         3          3
+15-NOV 00:00         3          4
+15-NOV 00:00         1         90
+15-NOV 00:00         2          1
+
+14 rows selected.
+
+Elapsed: 00:00:02.81
+
+===================================================================
+3. RAFAGAS DEL NODO 2: CONEXIONES QUE SE ACTIVAN (session y maquina)
+===================================================================
+old   6:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('&fec_ini', 'DD-MON-YYYY HH24:MI')
+new   6:  WHERE h.sample_time BETWEEN TO_TIMESTAMP('14-NOV-2026 21:00', 'DD-MON-YYYY HH24:MI')
+old   7:                          AND TO_TIMESTAMP('&fec_fin', 'DD-MON-YYYY HH24:MI')
+new   7:                          AND TO_TIMESTAMP('14-NOV-2026 23:45', 'DD-MON-YYYY HH24:MI')
+
+MACHINE              APP_INST         SESIONES_DIST   MUESTRAS
+-------------------- ---------------- ------------- ----------
+cpprloltxapp02       Instance#222                93      9,913
+cpprloltxapp01       Instance#121                94      9,586
+cpprloltxapp02       Instance#223                82      8,275
+cpprloltxapp03       Instance#334                85      8,086
+cpprloltxapp03       Instance#333                82      7,673
+cpprloltxapp01       Instance#122                81      7,641
+cpprloltxapp04       Instance#445                74      7,190
+cpprloltxapp04       Instance#444                72      6,685
+cpprloltxapp01       Instance#10                 21        955
+cpprloltxapp01       Instance#11                 74        393
+cpprloltxapp04       Instance#414                64        331
+cpprloltxapp01       Instance#111                67        290
+cpprloltxapp02       Instance#212                78        287
+cpprloltxapp03       Instance#31                 71        210
+cpprloltxapp04       Instance#41                 45        139
+cpprloltxapp02       Instance#21                 59        125
+cpprloltxapp03       Instance#30                  9        109
+cpprloltxapp03       Instance#313                59        105
+cpprloltxapp02       Instance#20                  4         75
+cpprloltxapp01       Instance#112                11         40
+cpprloltxapp04       Instance#424                 8         39
+cpprloltxapp03       Instance#32                 10         35
+cpprloltxapp02       Instance#22                 10         35
+cpprloltxapp04       Instance#42                  9         35
+cpprloltxapp04       Instance#40                 13         31
+cpprloltxapp02       Instance#232                 8         30
+cpprloltxapp02       Instance#23                 12         28
+cpprloltxapp03       Instance#323                 8         25
+cpprloltxapp04       Instance#43                  7         21
+cpprloltxapp03       Instance#33                  7         21
+
+30 rows selected.
+
+Elapsed: 00:00:01.46
+00:53:15 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$
+[oracle19@plbdtrz01 scripts]$ pwd
+/home/oracle19/scripts
+[oracle19@plbdtrz01 scripts]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sun Nov 15 00:55:38 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+00:55:38 SYS@TRZSP1> set line 240
+set time on
+set tim00:55:41 SYS@TRZSP1> 00:55:41 SYS@TRZSP1> i on
+col inst_id format 99999
+co00:55:41 SYS@TRZSP1> 00:55:41 SYS@TRZSP1> l total_sesiones format 99999999
+
+SELECT inst_id, count(1) AS to00:55:41 SYS@TRZSP1> 00:55:41 SYS@TRZSP1> tal_sesiones
+FROM gv$session
+WHE00:55:41   2  00:55:41   3  RE username = 'TX'
+GROUP BY inst00:55:41   4  _id
+ORDER BY inst_id;
+
+/00:55:41   5
+INST_ID TOTAL_SESIONES
+------- --------------
+      1           1462
+      2           1453
+      3           1452
+
+Elapsed: 00:00:00.01
+00:55:42 SYS@TRZSP1> 00:55:42 SYS@TRZSP1>
+
+INST_ID TOTAL_SESIONES
+------- --------------
+      1           1465
+      2           1456
+      3           1455
+
+Elapsed: 00:00:00.01
+00:55:43 SYS@TRZSP1>
+00:55:43 SYS@TRZSP1>
+00:55:45 SYS@TRZSP1>
+00:55:45 SYS@TRZSP1>   select inst_id, service_name, machine, count(*) sesiones
+  fro00:57:59   2  m   gv$session
+  where  username00:57:59   3   = 'TX'
+  group  by inst_id, ser00:57:59   4  vice_name, machine
+  order  by 1, 2, 3;00:57:59   5
+
+INST_ID SERVICE_NAME                                                     MACHINE                                                            SESIONES
+------- ---------------------------------------------------------------- ---------------------------------------------------------------- ----------
+      1 TRZSP                                                            cpprloltxapp01                                                          326
+      1 TRZSP                                                            cpprloltxapp02                                                          361
+      1 TRZSP                                                            cpprloltxapp03                                                          398
+      1 TRZSP                                                            cpprloltxapp04                                                          379
+      2 TRZSP                                                            cpprloltxapp01                                                          404
+      2 TRZSP                                                            cpprloltxapp02                                                          369
+      2 TRZSP                                                            cpprloltxapp03                                                          334
+      2 TRZSP                                                            cpprloltxapp04                                                          348
+      3 TRZSP                                                            cpprloltxapp01                                                          366
+      3 TRZSP                                                            cpprloltxapp02                                                          363
+      3 TRZSP                                                            cpprloltxapp03                                                          359
+
+INST_ID SERVICE_NAME                                                     MACHINE                                                            SESIONES
+------- ---------------------------------------------------------------- ---------------------------------------------------------------- ----------
+      3 TRZSP                                                            cpprloltxapp04                                                          366
+
+12 rows selected.
+
+Elapsed: 00:00:00.02
+00:58:00 SYS@TRZSP1>
+00:58:03 SYS@TRZSP1>
+00:58:03 SYS@TRZSP1>
+00:58:03 SYS@TRZSP1>
+00:58:03 SYS@TRZSP1>
+00:58:04 SYS@TRZSP1> set pg
+
+00:58:08 SYS@TRZSP1> set pages 20
+00:58:18 SYS@TRZSP1>
+00:58:20 SYS@TRZSP1>
+00:58:20 SYS@TRZSP1> /
+
+INST_ID SERVICE_NAME                                                     MACHINE                                                            SESIONES
+------- ---------------------------------------------------------------- ---------------------------------------------------------------- ----------
+      1 TRZSP                                                            cpprloltxapp01                                                          326
+      1 TRZSP                                                            cpprloltxapp02                                                          361
+      1 TRZSP                                                            cpprloltxapp03                                                          397
+      1 TRZSP                                                            cpprloltxapp04                                                          378
+      2 TRZSP                                                            cpprloltxapp01                                                          404
+      2 TRZSP                                                            cpprloltxapp02                                                          369
+      2 TRZSP                                                            cpprloltxapp03                                                          333
+      2 TRZSP                                                            cpprloltxapp04                                                          347
+      3 TRZSP                                                            cpprloltxapp01                                                          366
+      3 TRZSP                                                            cpprloltxapp02                                                          363
+      3 TRZSP                                                            cpprloltxapp03                                                          358
+      3 TRZSP                                                            cpprloltxapp04                                                          365
+
+12 rows selected.
+
+Elapsed: 00:00:00.01
+00:58:21 SYS@TRZSP1>
+00:58:22 SYS@TRZSP1>
+00:58:22 SYS@TRZSP1> S
+SP2-0042: unknown command "S" - rest of line ignored.
+01:11:03 SYS@TRZSP1>
+01:11:04 SYS@TRZSP1>
+01:11:04 SYS@TRZSP1>
+01:11:04 SYS@TRZSP1>
+01:11:05 SYS@TRZSP1>
+01:11:05 SYS@TRZSP1> SET LINESIZE 200 PAGESIZE 100
+01:11:32 SYS@TRZSP1> ALTER SESSION SET nls_date_format = 'DD-MON-YYYY HH24:MI';
+
+Session altered.
+
+Elapsed: 00:00:00.00
+01:11:32 SYS@TRZSP1>
+COL inst_id         FORMAT 999
+01:11:32 SYS@TRZSP1> 01:11:32 SYS@TRZSP1> COL instance_name   FORMAT a12
+01:11:32 SYS@TRZSP1> COL startup_time    FORMAT a18
+01:11:32 SYS@TRZSP1> SELECT i.inst_id
+01:11:32   2        ,i.instance_name
+01:11:32   3        ,i.startup_time
+01:11:32   4    FROM gv$instance i
+01:11:32   5   ORDER BY i.inst_id
+01:11:32   6  /
+
+INST_ID INSTANCE_NAM STARTUP_TIME
+------- ------------ ------------------
+      1 TRZSP1       15-OCT-2026 00:22
+      2 TRZSP2       15-OCT-2026 00:49
+      3 TRZSP3       15-OCT-2026 01:09
+
+Elapsed: 00:00:00.01
+01:11:32 SYS@TRZSP1>
+01:11:32 SYS@TRZSP1> COL machine         FORMAT a16
+01:11:32 SYS@TRZSP1> COL sesiones        FORMAT 99,999
+01:11:32 SYS@TRZSP1> COL activas         FORMAT 99,999
+01:11:33 SYS@TRZSP1> COL ociosas_5min    FORMAT 99,999
+01:11:33 SYS@TRZSP1> COL prom_ocio_seg   FORMAT 9,999,999
+01:11:33 SYS@TRZSP1> COL logon_min       FORMAT a18
+01:11:33 SYS@TRZSP1> COL logon_max       FORMAT a18
+01:11:33 SYS@TRZSP1> SELECT s.inst_id
+01:11:33   2        ,s.machine
+01:11:33   3        ,COUNT(1) sesiones
+01:11:33   4        ,SUM(DECODE(s.status, 'ACTIVE', 1, 0)) activas
+01:11:33   5        ,SUM(CASE WHEN s.status = 'INACTIVE' AND s.last_call_et > 300 THEN 1 ELSE 0 END) ociosas_5min
+01:11:33   6        ,ROUND(AVG(CASE WHEN s.status = 'INACTIVE' THEN s.last_call_et END)) prom_ocio_seg
+      ,01:11:33   7  MIN(s.logon_time) logon_min
+01:11:33   8        ,MAX(s.logon_time) logon_max
+  FROM gv$session s
+ WHERE s.01:11:33   9  01:11:33  10  service_name = 'TRZSP'
+01:11:33  11     AND s.type = 'USER'
+ GROUP BY s.inst_id
+01:11:33  12  01:11:33  13           ,s.machine
+01:11:33  14   ORDER BY s.machine
+01:11:33  15           ,s.inst_id
+01:11:33  16  /
+
+INST_ID MACHINE          SESIONES ACTIVAS OCIOSAS_5MIN PROM_OCIO_SEG LOGON_MIN          LOGON_MAX
+------- ---------------- -------- ------- ------------ ------------- ------------------ ------------------
+      3 BANVENEZ\SC1MZ2J        1       0            0             2 14-NOV-2026 23:37  14-NOV-2026 23:37
+        ANT6
+
+      1 cpprloltxapp01        327       2            0             5 15-OCT-2026 00:31  15-NOV-2026 01:11
+      2 cpprloltxapp01        405       1            3            12 15-OCT-2026 00:55  15-NOV-2026 01:11
+      3 cpprloltxapp01        367       1            0             4 16-OCT-2026 16:46  15-NOV-2026 01:11
+      1 cpprloltxapp02        361       0            1             6 15-OCT-2026 00:31  15-OCT-2026 00:38
+      2 cpprloltxapp02        369       0            2            10 15-OCT-2026 00:55  14-NOV-2026 23:55
+      3 cpprloltxapp02        363       0            0             3 17-OCT-2026 11:12  14-NOV-2026 23:15
+      1 cpprloltxapp03        397       0            0             6 15-OCT-2026 00:31  15-OCT-2026 00:34
+      2 cpprloltxapp03        333       0            1             8 15-OCT-2026 00:55  14-NOV-2026 22:21
+      3 cpprloltxapp03        358       0            0             3 17-OCT-2026 11:12  14-NOV-2026 23:07
+      1 cpprloltxapp04        378       4            2             8 15-OCT-2026 00:31  15-OCT-2026 00:41
+      2 cpprloltxapp04        347       0            3            10 15-OCT-2026 00:55  14-NOV-2026 23:56
+      3 cpprloltxapp04        365       0            0             4 17-OCT-2026 11:54  14-NOV-2026 23:55
+      1 plbdtrz01.banven        1       0            1           745 22-OCT-2026 08:58  22-OCT-2026 08:58
+        ez.corp
+
+      1 plcloudc01.banve        2       0            1         2,111 14-NOV-2026 23:29  15-NOV-2026 01:04
+        nez.corp
+
+
+15 rows selected.
+
+Elapsed: 00:00:00.02
+01:11:33 SYS@TRZSP1>
+01:11:34 SYS@TRZSP1>
+01:11:35 SYS@TRZSP1>
+01:11:35 SYS@TRZSP1> col MACHINE format a30
+01:12:29 SYS@TRZSP1> /
+
+INST_ID MACHINE                        SESIONES ACTIVAS OCIOSAS_5MIN PROM_OCIO_SEG LOGON_MIN          LOGON_MAX
+------- ------------------------------ -------- ------- ------------ ------------- ------------------ ------------------
+      3 BANVENEZ\SC1MZ2JANT6                  1       0            0             2 14-NOV-2026 23:37  14-NOV-2026 23:37
+      1 cpprloltxapp01                      326       2            0             5 15-OCT-2026 00:31  15-OCT-2026 00:35
+      2 cpprloltxapp01                      404       1            4            11 15-OCT-2026 00:55  14-NOV-2026 23:15
+      3 cpprloltxapp01                      366       0            0             4 16-OCT-2026 16:46  12-NOV-2026 19:40
+      1 cpprloltxapp02                      361       0            1             6 15-OCT-2026 00:31  15-OCT-2026 00:38
+      2 cpprloltxapp02                      369       0            2            10 15-OCT-2026 00:55  14-NOV-2026 23:55
+      3 cpprloltxapp02                      363       0            0             4 17-OCT-2026 11:12  14-NOV-2026 23:15
+      1 cpprloltxapp03                      397       0            0             5 15-OCT-2026 00:31  15-OCT-2026 00:34
+      2 cpprloltxapp03                      333       0            1             9 15-OCT-2026 00:55  14-NOV-2026 22:21
+      3 cpprloltxapp03                      358       0            0             4 17-OCT-2026 11:12  14-NOV-2026 23:07
+      1 cpprloltxapp04                      378       0            2             8 15-OCT-2026 00:31  15-OCT-2026 00:41
+      2 cpprloltxapp04                      347       0            3            10 15-OCT-2026 00:55  14-NOV-2026 23:56
+      3 cpprloltxapp04                      365       0            0             4 17-OCT-2026 11:54  14-NOV-2026 23:55
+      1 plbdtrz01.banvenez.corp               1       0            1           802 22-OCT-2026 08:58  22-OCT-2026 08:58
+      1 plcloudc01.banvenez.corp              2       0            1         2,138 14-NOV-2026 23:29  15-NOV-2026 01:04
+
+15 rows selected.
+
+Elapsed: 00:00:00.01
+01:12:31 SYS@TRZSP1>
+01:19:40 SYS@TRZSP1>
+01:19:41 SYS@TRZSP1>
+01:19:41 SYS@TRZSP1> SET LINESIZE 200 PAGESIZE 200
+CO01:19:42 SYS@TRZSP1> L hora_logon  FORMAT a15
+COL ins01:19:42 SYS@TRZSP1> t_id     FORMAT 999
+COL machine 01:19:42 SYS@TRZSP1>     FORMAT a16
+COL conexiones  F01:19:42 SYS@TRZSP1> ORMAT 99,999
+SELECT TO_CHAR(TRUN01:19:43 SYS@TRZSP1> C(s.logon_time, 'HH24'), 'DD-MON HH24:MI') hora_logon
+      ,s.i01:19:43   2  nst_id
+      ,s.machine
+      ,C01:19:43   3  01:19:43   4  OUNT(1) conexiones
+  FROM gv$ses01:19:43   5  sion s
+ WHERE s.service_name = '01:19:43   6  TRZSP'
+   AND s.type = 'USER'
+  01:19:43   7  01:19:43   8   AND s.logon_time >= TO_DATE('12-NOV-2026', 'DD-MON-YYYY')
+ GROU01:19:43   9  P BY TRUNC(s.logon_time, 'HH24')
+         ,s.inst_id
+         ,s01:19:43  10  01:19:43  11  .machine
+ ORDER BY TRUNC(s.logon01:19:43  12  _time, 'HH24')
+         ,s.inst_01:19:43  13  id
+         ,s.machine
+/01:19:43  14  01:19:43  15
+
+HORA_LOGON      INST_ID MACHINE          CONEXIONES
+--------------- ------- ---------------- ----------
+12-NOV 19:00          3 cpprloltxapp01            3
+12-NOV 19:00          3 cpprloltxapp02            2
+12-NOV 19:00          3 cpprloltxapp03            1
+12-NOV 19:00          3 cpprloltxapp04            1
+13-NOV 18:00          3 cpprloltxapp02            1
+14-NOV 17:00          3 cpprloltxapp04            1
+14-NOV 18:00          3 cpprloltxapp04            1
+14-NOV 21:00          2 cpprloltxapp01            1
+14-NOV 21:00          3 cpprloltxapp02            1
+14-NOV 21:00          3 cpprloltxapp03            1
+14-NOV 21:00          3 cpprloltxapp04            1
+14-NOV 22:00          2 cpprloltxapp01            2
+14-NOV 22:00          2 cpprloltxapp02            1
+14-NOV 22:00          2 cpprloltxapp03            1
+14-NOV 22:00          2 cpprloltxapp04            1
+14-NOV 22:00          3 cpprloltxapp02            2
+14-NOV 22:00          3 cpprloltxapp04            2
+14-NOV 23:00          1 plcloudc01.banve          1
+                        nez.corp
+
+14-NOV 23:00          2 cpprloltxapp01            1
+14-NOV 23:00          2 cpprloltxapp02            1
+14-NOV 23:00          2 cpprloltxapp04            3
+14-NOV 23:00          3 BANVENEZ\SC1MZ2J          1
+                        ANT6
+
+14-NOV 23:00          3 cpprloltxapp02            2
+14-NOV 23:00          3 cpprloltxapp03            1
+14-NOV 23:00          3 cpprloltxapp04            1
+15-NOV 01:00          1 plcloudc01.banve          2
+                        nez.corp
+
+
+26 rows selected.
+
+Elapsed: 00:00:00.01
+01:19:45 SYS@TRZSP1> col MACHINE format a30
+01:20:03 SYS@TRZSP1> /
+
+HORA_LOGON      INST_ID MACHINE                        CONEXIONES
+--------------- ------- ------------------------------ ----------
+12-NOV 19:00          3 cpprloltxapp01                          3
+12-NOV 19:00          3 cpprloltxapp02                          2
+12-NOV 19:00          3 cpprloltxapp03                          1
+12-NOV 19:00          3 cpprloltxapp04                          1
+13-NOV 18:00          3 cpprloltxapp02                          1
+14-NOV 17:00          3 cpprloltxapp04                          1
+14-NOV 18:00          3 cpprloltxapp04                          1
+14-NOV 21:00          2 cpprloltxapp01                          1
+14-NOV 21:00          3 cpprloltxapp02                          1
+14-NOV 21:00          3 cpprloltxapp03                          1
+14-NOV 21:00          3 cpprloltxapp04                          1
+14-NOV 22:00          2 cpprloltxapp01                          2
+14-NOV 22:00          2 cpprloltxapp02                          1
+14-NOV 22:00          2 cpprloltxapp03                          1
+14-NOV 22:00          2 cpprloltxapp04                          1
+14-NOV 22:00          3 cpprloltxapp02                          2
+14-NOV 22:00          3 cpprloltxapp04                          2
+14-NOV 23:00          1 plcloudc01.banvenez.corp                1
+14-NOV 23:00          2 cpprloltxapp01                          1
+14-NOV 23:00          2 cpprloltxapp02                          1
+14-NOV 23:00          2 cpprloltxapp04                          3
+14-NOV 23:00          3 BANVENEZ\SC1MZ2JANT6                    1
+14-NOV 23:00          3 cpprloltxapp02                          2
+14-NOV 23:00          3 cpprloltxapp03                          1
+14-NOV 23:00          3 cpprloltxapp04                          1
+15-NOV 01:00          1 plcloudc01.banvenez.corp                2
+
+26 rows selected.
+
+Elapsed: 00:00:00.01
+01:20:05 SYS@TRZSP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdtrz01 scripts]$

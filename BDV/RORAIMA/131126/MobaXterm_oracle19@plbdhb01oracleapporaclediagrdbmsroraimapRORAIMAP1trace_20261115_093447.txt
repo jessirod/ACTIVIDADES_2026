@@ -1,0 +1,1111 @@
+     +--------------------------------------------------------------------+
+     ¦                  • MobaXterm Professional v25.4 •                  ¦
+     ¦              (X server, SSH client and network tools)              ¦
+     ¦                                                                    ¦
+     ¦ ? Your computer drives are accessible through the /drives path     ¦
+     ¦ ? Your DISPLAY is set to 172.18.68.161:0.0                         ¦
+     ¦ ? When using SSH, your remote DISPLAY is automatically forwarded   ¦
+     ¦ ? Each command status is specified by a special symbol (? or ?)    ¦
+     ¦                                                                    ¦
+     ¦             Registered to Jessika Rodriguez (1 user)               ¦
+     +--------------------------------------------------------------------+
+
+ ? 2026-11-13 ? ? 15:54.00 ? ? /home/mobaxterm ? ssh oracle19@plbdhb01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Fri Nov 13 15:54:03 2026 from 172.18.68.161
+Ultimo login al Sistema: oracle19 pts/2        172.18.68.161    Fri Nov 13 15:54   still logged in
+
+wtmp begins Thu Oct 30 11:40:02 2025
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. MONEXP       = dbmonexp
+ 2. RORAIMAP     = dbroraimap
+
+
+[oracle19@plbdhb01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Nov 13 15:56:13 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+15:56:14 SYS@CANALP1> Disconnected
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ ls -ltr
+total 156
+-rw-r--r--. 1 oracle19 oinstall 19921 May  4  2024 db.rsp
+-rw-r-----. 1 oracle19 oinstall 27240 May  6  2024 db1.rsp
+-rw-r-----. 1 oracle19 oinstall 27240 May  6  2024 dbca.rsp
+-rw-r--r--. 1 oracle19 oinstall  2527 Dec 12  2024 backups_view.sql
+drwxr-xr-x. 2 oracle19 oinstall  4096 May  6  2025 test_cluster
+-rw-r--r--. 1 oracle19 asmadmin  3077 Nov  6  2025 CANALP_jr_061125.ora
+drwxr-xr-x. 3 oracle19 oinstall  4096 Mar  3  2026 scripts
+-rw-r-----. 1 oracle19 oinstall 27349 Mar  3  2026 dbca_monexp.rsp
+-rw-r-----. 1 oracle19 oinstall 27362 Mar  3  2026 dbca_roraimap.rsp
+-rw-r-----. 1 oracle19 oinstall  2259 Mar  4  2026 redo_create.sql
+-rwxr-xr-x. 1 oracle19 oinstall  2490 Aug 25 16:38 generate_menu_bd.sh
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ ls -la
+total 252
+drwx------.  8 oracle19 oinstall  4096 Nov 13 15:54 .
+drwxr-xr-x. 27 root     root      4096 May 15 15:18 ..
+-rw-r--r--.  1 oracle19 oinstall  2527 Dec 12  2024 backups_view.sql
+-rw-------.  1 oracle19 oinstall 34290 Nov 12 15:26 .bash_history
+-rw-r--r--.  1 oracle19 oinstall    18 Aug  2  2022 .bash_logout
+-rw-r--r--.  1 oracle19 oinstall   883 Aug 25 16:39 .bash_profile
+-rw-r--r--.  1 oracle19 oinstall   721 May  6  2024 .bash_profile.nd.20240903
+-rw-r--r--.  1 oracle19 oinstall   141 Aug  2  2022 .bash_profile.original
+-rw-r--r--.  1 oracle19 oinstall   573 Aug 25 16:39 .bashrc
+-rw-r--r--.  1 oracle19 oinstall   573 Aug 25 16:39 .bashrc.nd.20260825
+-rw-r--r--.  1 oracle19 asmadmin  3077 Nov  6  2025 CANALP_jr_061125.ora
+-rw-r-----.  1 oracle19 oinstall 27240 May  6  2024 db1.rsp
+-rw-r-----.  1 oracle19 oinstall 27349 Mar  3  2026 dbca_monexp.rsp
+-rw-r-----.  1 oracle19 oinstall 27362 Mar  3  2026 dbca_roraimap.rsp
+-rw-r-----.  1 oracle19 oinstall 27240 May  6  2024 dbca.rsp
+-rw-r--r--.  1 oracle19 oinstall 19921 May  4  2024 db.rsp
+-rwxr-xr-x.  1 oracle19 oinstall  2490 Aug 25 16:38 generate_menu_bd.sh
+drwxr-xr-x.  3 oracle19 oinstall  4096 May  4  2024 .java
+-rw-r--r--.  1 oracle19 oinstall   172 Oct  4  2022 .kshrc
+-rwxr-xr-x.  1 oracle19 oinstall   396 Aug 25 16:39 .menu
+drwxr-xr-x.  2 oracle19 oinstall  4096 May  5  2024 .oracle_jre_usage
+-rw-r-----.  1 oracle19 oinstall  2259 Mar  4  2026 redo_create.sql
+drwxr-xr-x.  3 oracle19 oinstall  4096 Mar  3  2026 scripts
+drwx------.  2 oracle19 oinstall  4096 Apr 30  2024 .ssh
+drwx------.  2 oracle19 oinstall  4096 Apr 25  2024 .ssh.old
+drwxr-xr-x.  2 oracle19 oinstall  4096 May  6  2025 test_cluster
+-rw-------.  1 oracle19 oinstall   324 Nov 13 15:54 .Xauthority
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ vi .bash_profile
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ source .bash_profile
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. MONEXP       = dbmonexp
+ 2. RORAIMAP     = dbroraimap
+
+
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ dbroraimap
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Nov 13 15:56:52 2026
+Version 19.28.0.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+
+15:56:52 SYS@RORAIMAP1>
+15:56:53 SYS@RORAIMAP1>
+15:56:53 SYS@RORAIMAP1>
+15:56:53 SYS@RORAIMAP1>
+15:56:54 SYS@RORAIMAP1> set pagesize 100
+set linesize 4015:57:01 SYS@RORAIMAP1> 0
+col OWNER for a15
+col DIRECTOR15:57:01 SYS@RORAIMAP1> 15:57:01 SYS@RORAIMAP1> Y_NAME for a40
+col DIRECTORY_PAT15:57:01 SYS@RORAIMAP1> H for a70
+select OWNER, DIRECTOR15:57:01 SYS@RORAIMAP1> Y_NAME, DIRECTORY_PATH from all_directories;
+
+OWNER           DIRECTORY_NAME                           DIRECTORY_PATH
+--------------- ---------------------------------------- ----------------------------------------------------------------------
+SYS             DBMS_OPTIM_LOGDIR                        /oracle/app/oracle/product/19c/db1/cfgtoollogs
+SYS             DBMS_OPTIM_ADMINDIR                      /oracle/app/oracle/product/19c/db1/rdbms/admin
+SYS             SDO_DIR_WORK
+SYS             SDO_DIR_ADMIN                            /oracle/app/oracle/product/19c/db1/md/admin
+SYS             XMLDIR                                   /oracle/app/oracle/product/19c/db1/rdbms/xml
+SYS             XSDDIR                                   /oracle/app/oracle/product/19c/db1/rdbms/xml/schema
+SYS             OPATCH_INST_DIR                          /oracle/app/oracle/product/19c/db1/OPatch
+SYS             ORACLE_OCM_CONFIG_DIR2                   /oracle/app/oracle/product/19c/db1/ccr/state
+SYS             ORACLE_BASE                              /oracle/app/oracle
+SYS             ORACLE_HOME                              /oracle/app/oracle/product/19c/db1
+SYS             ORACLE_OCM_CONFIG_DIR                    /oracle/app/oracle/product/19c/db1/ccr/state
+SYS             DATA_PUMP_DIR                            /oracle/app/oracle/product/19c/db1/rdbms/log/
+SYS             OPATCH_SCRIPT_DIR                        /oracle/app/oracle/product/19c/db1/QOpatch
+SYS             OPATCH_LOG_DIR                           /oracle/app/oracle/product/19c/db1/rdbms/log
+SYS             JAVA$JOX$CUJS$DIRECTORY$                 /oracle/app/oracle/product/19c/db1/javavm/admin/
+
+15 rows selected.
+
+Elapsed: 00:00:00.02
+15:57:02 SYS@RORAIMAP1>
+15:57:03 SYS@RORAIMAP1>
+15:57:03 SYS@RORAIMAP1>
+15:57:03 SYS@RORAIMAP1> CREATE OR REPLACE DIRECTORY MIGRACION AS '/exportdb/RORAIMA/IMPORT_131126';
+GRANT READ,WRITE ON
+Directory created.
+
+Elapsed: 00:00:00.01
+15:58:29 SYS@RORAIMAP1> DIRECTORY MIGRACION TO SYSTEM;
+
+Grant succeeded.
+
+Elapsed: 00:00:00.01
+15:58:30 SYS@RORAIMAP1>
+15:58:30 SYS@RORAIMAP1>
+15:58:30 SYS@RORAIMAP1>
+15:58:30 SYS@RORAIMAP1>
+15:58:30 SYS@RORAIMAP1>
+15:58:31 SYS@RORAIMAP1>
+15:58:31 SYS@RORAIMAP1> shyow pa¿
+
+16:01:05 SYS@RORAIMAP1>
+16:01:05 SYS@RORAIMAP1>
+16:01:05 SYS@RORAIMAP1>
+16:01:05 SYS@RORAIMAP1>
+16:01:05 SYS@RORAIMAP1>
+16:01:05 SYS@RORAIMAP1> show parameter cpu
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+cpu_count                            integer     192
+cpu_min_count                        string      192
+parallel_threads_per_cpu             integer     1
+resource_manager_cpu_allocation      integer     0
+16:01:11 SYS@RORAIMAP1>
+16:01:12 SYS@RORAIMAP1>
+16:01:12 SYS@RORAIMAP1>
+16:01:12 SYS@RORAIMAP1> COLUMN object_name FORMAT A50
+co16:04:56 SYS@RORAIMAP1> lumn OWNER format a30
+set pagesi16:04:56 SYS@RORAIMAP1> ze 1000
+SELECT owner
+      ,obje16:04:56 SYS@RORAIMAP1> 16:04:56   2  ct_type
+      ,object_name
+     16:04:56   3  16:04:56   4   ,status
+ FROM dba_objects
+WHERE16:04:56   5  16:04:56   6   status = 'INVALID'
+ORDER BY own16:04:56   7  er, object_type, object_name;
+
+no rows selected
+
+Elapsed: 00:00:00.03
+16:04:56 SYS@RORAIMAP1> col comp_name format a50
+col status format a10
+select co16:06:00 SYS@RORAIMAP1> 16:06:00 SYS@RORAIMAP1> mp_name, version, VERSION_FULL, status from dba_registry;
+
+COMP_NAME                                          VERSION                        VERSION_FULL                   STATUS
+-------------------------------------------------- ------------------------------ ------------------------------ ----------
+Oracle Database Catalog Views                      19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Packages and Types                 19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Real Application Clusters                   19.0.0.0.0                     19.28.0.0.0                    VALID
+JServer JAVA Virtual Machine                       19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle XDK                                         19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Java Packages                      19.0.0.0.0                     19.28.0.0.0                    VALID
+OLAP Analytic Workspace                            19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle XML Database                                19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Workspace Manager                           19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Text                                        19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Multimedia                                  19.0.0.0.0                     19.28.0.0.0                    VALID
+Spatial                                            19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle OLAP API                                    19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Label Security                              19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Vault                              19.0.0.0.0                     19.28.0.0.0                    VALID
+
+15 rows selected.
+
+Elapsed: 00:00:00.01
+16:06:01 SYS@RORAIMAP1>
+16:06:02 SYS@RORAIMAP1>
+16:06:02 SYS@RORAIMAP1>
+16:06:03 SYS@RORAIMAP1> /
+
+COMP_NAME                                          VERSION                        VERSION_FULL                   STATUS
+-------------------------------------------------- ------------------------------ ------------------------------ ----------
+Oracle Database Catalog Views                      19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Packages and Types                 19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Real Application Clusters                   19.0.0.0.0                     19.28.0.0.0                    VALID
+JServer JAVA Virtual Machine                       19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle XDK                                         19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Java Packages                      19.0.0.0.0                     19.28.0.0.0                    VALID
+OLAP Analytic Workspace                            19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle XML Database                                19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Workspace Manager                           19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Text                                        19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Multimedia                                  19.0.0.0.0                     19.28.0.0.0                    VALID
+Spatial                                            19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle OLAP API                                    19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Label Security                              19.0.0.0.0                     19.28.0.0.0                    VALID
+Oracle Database Vault                              19.0.0.0.0                     19.28.0.0.0                    VALID
+
+15 rows selected.
+
+Elapsed: 00:00:00.00
+16:17:59 SYS@RORAIMAP1>
+16:18:00 SYS@RORAIMAP1>
+16:18:00 SYS@RORAIMAP1>
+16:18:01 SYS@RORAIMAP1> Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.28.0.0.0
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ ls -ltr
+total 156
+-rw-r--r--. 1 oracle19 oinstall 19921 May  4  2024 db.rsp
+-rw-r-----. 1 oracle19 oinstall 27240 May  6  2024 db1.rsp
+-rw-r-----. 1 oracle19 oinstall 27240 May  6  2024 dbca.rsp
+-rw-r--r--. 1 oracle19 oinstall  2527 Dec 12  2024 backups_view.sql
+drwxr-xr-x. 2 oracle19 oinstall  4096 May  6  2025 test_cluster
+-rw-r--r--. 1 oracle19 asmadmin  3077 Nov  6  2025 CANALP_jr_061125.ora
+drwxr-xr-x. 3 oracle19 oinstall  4096 Mar  3  2026 scripts
+-rw-r-----. 1 oracle19 oinstall 27349 Mar  3  2026 dbca_monexp.rsp
+-rw-r-----. 1 oracle19 oinstall 27362 Mar  3  2026 dbca_roraimap.rsp
+-rw-r-----. 1 oracle19 oinstall  2259 Mar  4  2026 redo_create.sql
+-rwxr-xr-x. 1 oracle19 oinstall  2490 Aug 25 16:38 generate_menu_bd.sh
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ cd /exportdb/RORAIMA/
+[oracle19@plbdhb01 RORAIMA]$
+[oracle19@plbdhb01 RORAIMA]$ ls -ltr
+total 4
+drwxr-xr-x. 2 oracle19 oinstall 4096 Nov 13 16:06 IMPORT_131126
+[oracle19@plbdhb01 RORAIMA]$
+[oracle19@plbdhb01 RORAIMA]$
+[oracle19@plbdhb01 RORAIMA]$
+[oracle19@plbdhb01 RORAIMA]$
+[oracle19@plbdhb01 RORAIMA]$ cd IMPORT_131126/
+[oracle19@plbdhb01 IMPORT_131126]$
+[oracle19@plbdhb01 IMPORT_131126]$
+[oracle19@plbdhb01 IMPORT_131126]$ ls -ltr
+total 102656
+-rw-r-----. 1 oracle19 oinstall 14905344 Nov 13 15:59 EXPORT_RORAIMA_20261113_01.dmp
+-rw-r-----. 1 oracle19 oinstall 20623360 Nov 13 15:59 EXPORT_RORAIMA_20261113_02.dmp
+-rw-r-----. 1 oracle19 oinstall 58273792 Nov 13 15:59 EXPORT_RORAIMA_20261113_03.dmp
+-rw-r-----. 1 oracle19 oinstall  6008832 Nov 13 15:59 EXPORT_RORAIMA_20261113_04.dmp
+-rw-r-----. 1 oracle19 oinstall   294912 Nov 13 15:59 EXPORT_RORAIMA_20261113_05.dmp
+-rw-r-----. 1 oracle19 oinstall  3796992 Nov 13 15:59 EXPORT_RORAIMA_20261113_06.dmp
+-rw-r--r--. 1 oracle19 oinstall      134 Nov 13 16:04 IMPORT_RORAIMA.par
+-rw-r--r--. 1 oracle19 asmadmin   603807 Nov 13 16:07 IMPORT_RORAIMA_131126.LOG
+-rw-------. 1 oracle19 oinstall   603279 Nov 13 16:07 nohup.out
+[oracle19@plbdhb01 IMPORT_131126]$
+[oracle19@plbdhb01 IMPORT_131126]$
+[oracle19@plbdhb01 IMPORT_131126]$
+[oracle19@plbdhb01 IMPORT_131126]$ timed out waiting for input: auto-logout
+Connection to plbdhb01 closed.
+                                                                                                                                                                           ?
+
+ ? 2026-11-13 ? ? 16:33.17 ? ? /home/mobaxterm ? ssh oracle19@plbdhb01
+
+***************************************************************************************
+**                            BANCO DE VENEZUELA                                     **
+**  AVISO: para acceder a este sistema necesita estar previamente autorizado,        **
+**  estando usted estrictamente limitado al uso indicado en dicha autorizacion. El   **
+**  acceso no autorizado a este sistema o el uso indebido del mismo esta prohibido   **
+**  y es contrario a la legislacion vigente. El uso que realice de este sistema      **
+**  esta siendo monitoreado.                                                         **
+***************************************************************************************
+
+-----------------------------------------------------------------------------
+| AVISO: ha accedido a un sistema restringido, propiedad de Banco de        |
+| Venezuela S.A. Banco Universal.                                           |
+| Necesita tener autorizacion antes de usarlo, estando usted limitado       |
+| estrictamente al uso indicado en dicha autorizacion. El acceso no         |
+| autorizado a este sistema o el uso indebido del mismo esta prohibido y    |
+| es contrario a  la Politica de Seguridad corporativa y a la legislacion   |
+| vigente.                                                                  |
+-----------------------------------------------------------------------------
+Last login: Fri Nov 13 15:54:09 2026 from 172.18.68.161
+Ultimo login al Sistema: oracle19 pts/2        172.18.68.161    Fri Nov 13 16:42   still logged in
+
+wtmp begins Thu Oct 30 11:40:02 2025
+
+==============================
+ CONNECT TO DATABASE
+==============================
+
+ 1. MONEXP       = dbmonexp
+ 2. RORAIMAP     = dbroraimap
+
+
+[oracle19@plbdhb01 ~]$ dbroraimap
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+(reverse-i-search)`trac': cd $ORACLE_BASE/diag/rdbms/canalp/CANALP1/trace/
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$
+[oracle19@plbdhb01 ~]$ cd $ORACLE_BASE/diag/rdbms/ro
+-bash: cd: /oracle/app/oracle/diag/rdbms/ro: No such file or directory
+[oracle19@plbdhb01 ~]$ cd $ORACLE_BASE/diag/rdbms/roraimap/RORAIMAP1/trace/
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$ ls -ltr
+total 38096
+-rw-r--r--. 1 oracle19 asmadmin        0 Mar 11  2026 sbtio.log
+drwxr-xr-x. 6 oracle19 oinstall     4096 Nov  1 00:00 BACKUP_ALERT
+-rw-r-----. 1 oracle19 asmadmin      871 Nov 13 00:00 RORAIMAP1_dia0_3573872_base_1.trm
+-rw-r-----. 1 oracle19 asmadmin     2470 Nov 13 00:00 RORAIMAP1_dia0_3573872_base_1.trc
+-rw-r-----. 1 oracle19 asmadmin     1258 Nov 13 01:31 RORAIMAP1_vkrm_3573858.trm
+-rw-r-----. 1 oracle19 asmadmin     3858 Nov 13 01:31 RORAIMAP1_vkrm_3573858.trc
+-rw-r-----. 1 oracle19 asmadmin      868 Nov 13 02:00 RORAIMAP1_gen0_3573836.trm
+-rw-r-----. 1 oracle19 asmadmin     1186 Nov 13 02:00 RORAIMAP1_gen0_3573836.trc
+-rw-r-----. 1 oracle19 asmadmin      993 Nov 13 09:04 RORAIMAP1_lmss_3573995_3574104.trm
+-rw-r-----. 1 oracle19 asmadmin     1516 Nov 13 09:04 RORAIMAP1_lmss_3573995_3574104.trc
+-rw-r-----. 1 oracle19 asmadmin     1071 Nov 13 10:08 RORAIMAP1_lmst_3574001_3574162.trm
+-rw-r-----. 1 oracle19 asmadmin     1906 Nov 13 10:08 RORAIMAP1_lmst_3574001_3574162.trc
+-rw-r-----. 1 oracle19 asmadmin      898 Nov 13 11:47 RORAIMAP1_lmon_3573874.trm
+-rw-r-----. 1 oracle19 asmadmin     1271 Nov 13 11:47 RORAIMAP1_lmon_3573874.trc
+-rw-r-----. 1 oracle19 asmadmin      851 Nov 13 11:47 RORAIMAP1_diag_3573849_255.trm
+-rw-r-----. 1 oracle19 asmadmin     1089 Nov 13 11:47 RORAIMAP1_diag_3573849_255.trc
+-rw-r-----. 1 oracle19 asmadmin     1038 Nov 13 11:47 RORAIMAP1_diag_3573849.trm
+-rw-r-----. 1 oracle19 asmadmin     1712 Nov 13 11:47 RORAIMAP1_diag_3573849.trc
+-rw-r-----. 1 oracle19 asmadmin     1166 Nov 13 11:56 RORAIMAP1_lmsr_3573990_3574103.trm
+-rw-r-----. 1 oracle19 asmadmin     2335 Nov 13 11:56 RORAIMAP1_lmsr_3573990_3574103.trc
+-rw-r-----. 1 oracle19 asmadmin      878 Nov 13 15:42 RORAIMAP1_pmon_3573722.trm
+-rw-r-----. 1 oracle19 asmadmin     1158 Nov 13 15:42 RORAIMAP1_pmon_3573722.trc
+-rw-r-----. 1 oracle19 asmadmin      893 Nov 13 15:59 RORAIMAP1_dbw0_3574192.trm
+-rw-r-----. 1 oracle19 asmadmin     1934 Nov 13 15:59 RORAIMAP1_dbw0_3574192.trc
+-rw-r-----. 1 oracle19 asmadmin     1147 Nov 13 16:02 RORAIMAP1_lms7_3573902_3573928.trm
+-rw-r-----. 1 oracle19 asmadmin     2284 Nov 13 16:02 RORAIMAP1_lms7_3573902_3573928.trc
+-rw-r-----. 1 oracle19 asmadmin     1467 Nov 13 16:02 RORAIMAP1_lms6_3573898_3573921.trm
+-rw-r-----. 1 oracle19 asmadmin     3887 Nov 13 16:02 RORAIMAP1_lms6_3573898_3573921.trc
+-rw-r-----. 1 oracle19 asmadmin     1374 Nov 13 16:05 RORAIMAP1_lms5_3573895_3573910.trm
+-rw-r-----. 1 oracle19 asmadmin     3456 Nov 13 16:05 RORAIMAP1_lms5_3573895_3573910.trc
+-rw-r-----. 1 oracle19 asmadmin      879 Nov 13 16:06 RORAIMAP1_ora_1405760.trm
+-rw-r-----. 1 oracle19 asmadmin     1156 Nov 13 16:06 RORAIMAP1_ora_1405760.trc
+-rw-r-----. 1 oracle19 asmadmin     1021 Nov 13 16:07 RORAIMAP1_m001_3577753.trm
+-rw-r-----. 1 oracle19 asmadmin    81344 Nov 13 16:07 RORAIMAP1_m001_3577753.trc
+-rw-r-----. 1 oracle19 asmadmin      929 Nov 13 16:07 RORAIMAP1_dm00_1406120.trm
+-rw-r-----. 1 oracle19 asmadmin     2090 Nov 13 16:07 RORAIMAP1_dm00_1406120.trc
+-rw-r-----. 1 oracle19 asmadmin      946 Nov 13 16:09 RORAIMAP1_ora_1349616.trm
+-rw-r-----. 1 oracle19 asmadmin     1820 Nov 13 16:09 RORAIMAP1_ora_1349616.trc
+-rw-r-----. 1 oracle19 asmadmin    70199 Nov 13 16:24 RORAIMAP1_lmsa_3573918_3573946.trm
+-rw-r-----. 1 oracle19 asmadmin   374021 Nov 13 16:24 RORAIMAP1_lmsa_3573918_3573946.trc
+-rw-r-----. 1 oracle19 asmadmin     5907 Nov 13 16:24 RORAIMAP1_lmd0_3573878.trm
+-rw-r-----. 1 oracle19 asmadmin    24038 Nov 13 16:24 RORAIMAP1_lmd0_3573878.trc
+-rw-r-----. 1 oracle19 asmadmin     7142 Nov 13 16:26 RORAIMAP1_ipc0_3573734.trm
+-rw-r-----. 1 oracle19 asmadmin    25721 Nov 13 16:26 RORAIMAP1_ipc0_3573734.trc
+-rw-r-----. 1 oracle19 asmadmin      869 Nov 13 16:27 RORAIMAP1_ora_1457549.trm
+-rw-r-----. 1 oracle19 asmadmin     1154 Nov 13 16:27 RORAIMAP1_ora_1457549.trc
+-rw-r-----. 1 oracle19 asmadmin   264940 Nov 13 16:31 RORAIMAP1_lmsu_3574004_3574157.trm
+-rw-r-----. 1 oracle19 asmadmin  1415302 Nov 13 16:31 RORAIMAP1_lmsu_3574004_3574157.trc
+-rw-r-----. 1 oracle19 asmadmin   180334 Nov 13 16:33 RORAIMAP1_lms2_3573884_3573899.trm
+-rw-r-----. 1 oracle19 asmadmin   959015 Nov 13 16:33 RORAIMAP1_lms2_3573884_3573899.trc
+-rw-r-----. 1 oracle19 asmadmin   217228 Nov 13 16:33 RORAIMAP1_lmsc_3573927_3573943.trm
+-rw-r-----. 1 oracle19 asmadmin  1164918 Nov 13 16:33 RORAIMAP1_lmsc_3573927_3573943.trc
+-rw-r-----. 1 oracle19 asmadmin   199722 Nov 13 16:33 RORAIMAP1_lmsn_3573977_3574026.trm
+-rw-r-----. 1 oracle19 asmadmin  1065967 Nov 13 16:33 RORAIMAP1_lmsn_3573977_3574026.trc
+-rw-r-----. 1 oracle19 asmadmin   135875 Nov 13 16:33 RORAIMAP1_lmsq_3573987_3574098.trm
+-rw-r-----. 1 oracle19 asmadmin   728890 Nov 13 16:33 RORAIMAP1_lmsq_3573987_3574098.trc
+-rw-r-----. 1 oracle19 asmadmin    89834 Nov 13 16:33 RORAIMAP1_lms9_3573913_3573936.trm
+-rw-r-----. 1 oracle19 asmadmin   477400 Nov 13 16:33 RORAIMAP1_lms9_3573913_3573936.trc
+-rw-r-----. 1 oracle19 asmadmin    22263 Nov 13 16:34 RORAIMAP1_lmd3_3574174.trm
+-rw-r-----. 1 oracle19 asmadmin    99643 Nov 13 16:34 RORAIMAP1_lmd3_3574174.trc
+-rw-r-----. 1 oracle19 asmadmin   172775 Nov 13 16:38 RORAIMAP1_lmsf_3573939_3573954.trm
+-rw-r-----. 1 oracle19 asmadmin   911768 Nov 13 16:38 RORAIMAP1_lmsf_3573939_3573954.trc
+-rw-r-----. 1 oracle19 asmadmin    81991 Nov 13 16:38 RORAIMAP1_lms0_3573880_3573888.trm
+-rw-r-----. 1 oracle19 asmadmin   435048 Nov 13 16:38 RORAIMAP1_lms0_3573880_3573888.trc
+-rw-r-----. 1 oracle19 asmadmin   283375 Nov 13 16:38 RORAIMAP1_lmso_3573981_3574003.trm
+-rw-r-----. 1 oracle19 asmadmin  1521248 Nov 13 16:38 RORAIMAP1_lmso_3573981_3574003.trc
+-rw-r-----. 1 oracle19 asmadmin    81974 Nov 13 16:38 RORAIMAP1_lmsv_3574009_3574160.trm
+-rw-r-----. 1 oracle19 asmadmin   439961 Nov 13 16:38 RORAIMAP1_lmsv_3574009_3574160.trc
+-rw-r-----. 1 oracle19 asmadmin   263666 Nov 13 16:38 RORAIMAP1_lmsb_3573920_3573951.trm
+-rw-r-----. 1 oracle19 asmadmin  1416345 Nov 13 16:38 RORAIMAP1_lmsb_3573920_3573951.trc
+-rw-r-----. 1 oracle19 asmadmin   180837 Nov 13 16:38 RORAIMAP1_lms1_3573882_3573897.trm
+-rw-r-----. 1 oracle19 asmadmin   957947 Nov 13 16:38 RORAIMAP1_lms1_3573882_3573897.trc
+-rw-r-----. 1 oracle19 asmadmin    29096 Nov 13 16:38 RORAIMAP1_lms4_3573889_3573904.trm
+-rw-r-----. 1 oracle19 asmadmin   151151 Nov 13 16:38 RORAIMAP1_lms4_3573889_3573904.trc
+-rw-r-----. 1 oracle19 asmadmin   206912 Nov 13 16:38 RORAIMAP1_lmsd_3573931_3573960.trm
+-rw-r-----. 1 oracle19 asmadmin  1111504 Nov 13 16:38 RORAIMAP1_lmsd_3573931_3573960.trc
+-rw-r-----. 1 oracle19 asmadmin    25675 Nov 13 16:38 RORAIMAP1_lms3_3573886_3573905.trm
+-rw-r-----. 1 oracle19 asmadmin   133031 Nov 13 16:38 RORAIMAP1_lms3_3573886_3573905.trc
+-rw-r-----. 1 oracle19 asmadmin   273554 Nov 13 16:38 RORAIMAP1_lmse_3573935_3573963.trm
+-rw-r-----. 1 oracle19 asmadmin  1473143 Nov 13 16:38 RORAIMAP1_lmse_3573935_3573963.trc
+-rw-r-----. 1 oracle19 asmadmin   113146 Nov 13 16:38 RORAIMAP1_lmsj_3573957_3573989.trm
+-rw-r-----. 1 oracle19 asmadmin   601930 Nov 13 16:38 RORAIMAP1_lmsj_3573957_3573989.trc
+-rw-r-----. 1 oracle19 asmadmin   281422 Nov 13 16:38 RORAIMAP1_lmsm_3573974_3574008.trm
+-rw-r-----. 1 oracle19 asmadmin  1512064 Nov 13 16:38 RORAIMAP1_lmsm_3573974_3574008.trc
+-rw-r-----. 1 oracle19 asmadmin   273456 Nov 13 16:38 RORAIMAP1_lmsp_3573985_3574072.trm
+-rw-r-----. 1 oracle19 asmadmin  1465029 Nov 13 16:38 RORAIMAP1_lmsp_3573985_3574072.trc
+-rw-r-----. 1 oracle19 asmadmin    80951 Nov 13 16:38 RORAIMAP1_lmsl_3573966_3574005.trm
+-rw-r-----. 1 oracle19 asmadmin   432058 Nov 13 16:38 RORAIMAP1_lmsl_3573966_3574005.trc
+-rw-r-----. 1 oracle19 asmadmin    75325 Nov 13 16:38 RORAIMAP1_lmsk_3573964_3573992.trm
+-rw-r-----. 1 oracle19 asmadmin   400610 Nov 13 16:38 RORAIMAP1_lmsk_3573964_3573992.trc
+-rw-r-----. 1 oracle19 asmadmin    19166 Nov 13 16:38 RORAIMAP1_lmd4_3574178.trm
+-rw-r-----. 1 oracle19 asmadmin    85971 Nov 13 16:38 RORAIMAP1_lmd4_3574178.trc
+-rw-r-----. 1 oracle19 asmadmin    46984 Nov 13 16:38 RORAIMAP1_lmd1_3574012.trm
+-rw-r-----. 1 oracle19 asmadmin   214824 Nov 13 16:38 RORAIMAP1_lmd1_3574012.trc
+-rw-r-----. 1 oracle19 asmadmin    24124 Nov 13 16:39 RORAIMAP1_lmd2_3574165.trm
+-rw-r-----. 1 oracle19 asmadmin   112934 Nov 13 16:39 RORAIMAP1_lmd2_3574165.trc
+-rw-r-----. 1 oracle19 asmadmin   153970 Nov 13 16:39 RORAIMAP1_dbrm_3573854.trm
+-rw-r-----. 1 oracle19 asmadmin  1967572 Nov 13 16:39 RORAIMAP1_dbrm_3573854.trc
+-rw-r-----. 1 oracle19 asmadmin      888 Nov 13 16:40 RORAIMAP1_ora_1487829.trm
+-rw-r-----. 1 oracle19 asmadmin     1156 Nov 13 16:40 RORAIMAP1_ora_1487829.trc
+-rw-r-----. 1 oracle19 asmadmin      956 Nov 13 16:41 RORAIMAP1_dm00_1487852.trm
+-rw-r-----. 1 oracle19 asmadmin     2166 Nov 13 16:41 RORAIMAP1_dm00_1487852.trc
+-rw-r-----. 1 oracle19 asmadmin    12443 Nov 13 16:41 alert_RORAIMAP1.log
+-rw-r-----. 1 oracle19 asmadmin  1363604 Nov 13 16:42 RORAIMAP1_lmhb_3574186.trm
+-rw-r-----. 1 oracle19 asmadmin 11473760 Nov 13 16:42 RORAIMAP1_lmhb_3574186.trc
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$ tail -1000f alert_RORAIMAP1.log
+---
+2026-11-08T02:00:00.008133-04:00
+Closing scheduler window
+Closing Resource Manager plan via scheduler window
+2026-11-08T06:00:02.667135-04:00
+TABLE SYS.WRI$_OPTSTAT_HISTHEAD_HISTORY: ADDED INTERVAL PARTITION SYS_P3003 (46333) VALUES LESS THAN (TO_DATE(' 2026-11-09 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDA                             R=GREGORIAN'))
+TABLE SYS.WRI$_OPTSTAT_HISTGRM_HISTORY: ADDED INTERVAL PARTITION SYS_P3006 (46333) VALUES LESS THAN (TO_DATE(' 2026-11-09 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR                             =GREGORIAN'))
+2026-11-08T06:01:00.741397-04:00
+TABLE SYS.WRP$_REPORTS: ADDED INTERVAL PARTITION SYS_P3007 (6156) VALUES LESS THAN (TO_DATE(' 2026-11-09 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+TABLE SYS.WRP$_REPORTS_DETAILS: ADDED INTERVAL PARTITION SYS_P3008 (6156) VALUES LESS THAN (TO_DATE(' 2026-11-09 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIA                             N'))
+TABLE SYS.WRP$_REPORTS_TIME_BANDS: ADDED INTERVAL PARTITION SYS_P3011 (6155) VALUES LESS THAN (TO_DATE(' 2026-11-08 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGO                             RIAN'))
+2026-11-08T22:04:53.965364-04:00
+Thread 1 advanced to log sequence 202 (LGWR switch),  current SCN: 62897306
+  Current log# 104 seq# 202 mem# 0: +REDO01_RORAIMA/RORAIMAP/ONLINELOG/group_104.259.1227007361
+  Current log# 104 seq# 202 mem# 1: +REDO02_RORAIMA/RORAIMAP/ONLINELOG/group_104.259.1227007363
+2026-11-08T22:04:55.930895-04:00
+ARC0 (PID:3575497): Archived Log entry 176 added for B-1226934733.T-1.S-201 LOS:0x0000000003af18bf NXS:0x0000000003bfbc9a NAB:2987750 ID 0x84eed44b LAD:1
+2026-11-09T02:00:00.074379-04:00
+Closing Resource Manager plan via scheduler window
+2026-11-09T22:00:00.009938-04:00
+Setting Resource Manager plan SCHEDULER[0x4D52]:DEFAULT_MAINTENANCE_PLAN via scheduler window
+2026-11-10T02:00:00.042006-04:00
+Closing Resource Manager plan via scheduler window
+2026-11-11T02:00:00.075196-04:00
+Closing Resource Manager plan via scheduler window
+2026-11-11T22:00:00.075040-04:00
+Setting Resource Manager plan SCHEDULER[0x4D54]:DEFAULT_MAINTENANCE_PLAN via scheduler window
+2026-11-12T02:00:00.039940-04:00
+Closing scheduler window
+Closing Resource Manager plan via scheduler window
+2026-11-12T15:16:38.111094-04:00
+DROP TABLESPACE DATA INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:16:40.212264-04:00
+Deleted Oracle managed file +DATA_RORAIMA/RORAIMAP/DATAFILE/data.270.1227021265
+Tablespace dropped: DATA ts# 7
+Completed: DROP TABLESPACE DATA INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:16:48.424573-04:00
+DROP TABLESPACE INDX INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:16:50.221607-04:00
+Deleted Oracle managed file +DATA_RORAIMA/RORAIMAP/DATAFILE/indx.269.1227021281
+Tablespace dropped: INDX ts# 8
+Completed: DROP TABLESPACE INDX INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:17:01.524486-04:00
+DROP TABLESPACE AUDITORIA_RORAP INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:17:03.543572-04:00
+Deleted Oracle managed file +DATA_RORAIMA/RORAIMAP/DATAFILE/auditoria_rorap.268.1227492429
+Tablespace dropped: AUDITORIA_RORAP ts# 9
+Completed: DROP TABLESPACE AUDITORIA_RORAP INCLUDING CONTENTS AND DATAFILES
+2026-11-12T15:17:15.311955-04:00
+CREATE TABLESPACE DATA_RORAIMA
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:17:28.925141-04:00
+Tablespace created: DATA_RORAIMA ts# 11
+Completed: CREATE TABLESPACE DATA_RORAIMA
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:19:30.934356-04:00
+CREATE TABLESPACE INDEX_RORAIMA
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:19:44.528486-04:00
+Tablespace created: INDEX_RORAIMA ts# 12
+Completed: CREATE TABLESPACE INDEX_RORAIMA
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:20:20.171557-04:00
+CREATE TABLESPACE DATA_RORAIMA_AUDIT
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:20:33.933759-04:00
+Tablespace created: DATA_RORAIMA_AUDIT ts# 13
+Completed: CREATE TABLESPACE DATA_RORAIMA_AUDIT
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:21:26.842278-04:00
+CREATE TABLESPACE INDEX_RORAIMA_AUDIT
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:21:40.644501-04:00
+Tablespace created: INDEX_RORAIMA_AUDIT ts# 14
+Completed: CREATE TABLESPACE INDEX_RORAIMA_AUDIT
+DATAFILE
+  '+DATA_RORAIMA' SIZE 32767M AUTOEXTEND ON NEXT 8K MAXSIZE UNLIMITED
+LOGGING
+DEFAULT
+  NO INMEMORY
+ONLINE
+EXTENT MANAGEMENT LOCAL AUTOALLOCATE
+BLOCKSIZE 8K
+SEGMENT SPACE MANAGEMENT AUTO
+FLASHBACK ON
+2026-11-12T15:28:29.993604-04:00
+Control autobackup written to DISK device
+
+handle '+FRA_RORAIMA/RORAIMAP/AUTOBACKUP/2026_11_12/s_1249140509.369.1249140509'
+
+2026-11-13T02:00:00.010257-04:00
+Closing Resource Manager plan via scheduler window
+2026-11-13T15:42:36.636022-04:00
+
+
+***********************************************************************
+
+Fatal NI connect error 12637, connecting to:
+ (ADDRESS=(PROTOCOL=tcp)(HOST=172.18.68.161)(PORT=58522))
+
+  VERSION INFORMATION:
+        TNS for Linux: Version 19.0.0.0.0 - Production
+        Oracle Bequeath NT Protocol Adapter for Linux: Version 19.0.0.0.0 - Production
+        TCP/IP NT Protocol Adapter for Linux: Version 19.0.0.0.0 - Production
+  Version 19.28.0.0.0
+  Time: 13-NOV-2026 15:42:36
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12637
+
+TNS-12637: Packet receive failed
+    ns secondary err code: 12532
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+2026-11-13T15:42:36.636619-04:00
+opiodr aborting process unknown ospid (1349553) as a result of ORA-609
+2026-11-13T15:48:42.338480-04:00
+ALTER DATABASE DATAFILE '+DATA_RORAIMA/RORAIMAP/DATAFILE/system.257.1226934623'
+RESIZE 2G
+2026-11-13T15:48:42.784049-04:00
+Resize operation completed for file# 1, fname +DATA_RORAIMA/RORAIMAP/DATAFILE/system.257.1226934623, old size 1361920K, new size 2097152K
+Completed: ALTER DATABASE DATAFILE '+DATA_RORAIMA/RORAIMAP/DATAFILE/system.257.1226934623'
+RESIZE 2G
+ALTER DATABASE DATAFILE '+DATA_RORAIMA/RORAIMAP/DATAFILE/system.257.1226934623'
+AUTOEXTEND ON
+NEXT 2G
+MAXSIZE UNLIMITED
+Completed: ALTER DATABASE DATAFILE '+DATA_RORAIMA/RORAIMAP/DATAFILE/system.257.1226934623'
+AUTOEXTEND ON
+NEXT 2G
+MAXSIZE UNLIMITED
+2026-11-13T15:59:06.924442-04:00
+ALTER TABLESPACE DATA_RORAIMA ADD DATAFILE '+DATA_RORAIMA' SIZE 16200M AUTOEXTEND ON NEXT 2G MAXSIZE UNLIMITED
+2026-11-13T15:59:14.406319-04:00
+Completed: ALTER TABLESPACE DATA_RORAIMA ADD DATAFILE '+DATA_RORAIMA' SIZE 16200M AUTOEXTEND ON NEXT 2G MAXSIZE UNLIMITED
+2026-11-13T15:59:14.701237-04:00
+Buffer Cache Full DB Caching mode changing from FULL CACHING ENABLED to FULL CACHING DISABLED
+Full DB Caching disabled: DEFAULT_CACHE_SIZE should be at least 5133 MBs bigger than current size.
+2026-11-13T16:04:25.895063-04:00
+Control autobackup written to DISK device
+
+handle '+FRA_RORAIMA/RORAIMAP/AUTOBACKUP/2026_11_13/s_1249229065.370.1249229065'
+
+2026-11-13T16:06:58.284815-04:00
+Started service SYS.KUPC$C_1_20261113160657_0/SYS$SYS.KUPC$C_1_20261113160657_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113160657_0.RORAIMAP
+2026-11-13T16:06:58.334934-04:00
+Started service SYS.KUPC$S_1_20261113160657_0/SYS$SYS.KUPC$S_1_20261113160657_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113160657_0.RORAIMAP
+2026-11-13T16:06:58.559129-04:00
+DM00 started with pid=679, OS id=1406120, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:06:59.265306-04:00
+
+DW00 started with pid=681, OS id=1406141, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.047508-04:00
+
+DW03 started with pid=682, OS id=1406294, wid=4, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.129712-04:00
+
+DW06 started with pid=683, OS id=1406296, wid=7, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.207257-04:00
+
+DW09 started with pid=684, OS id=1406298, wid=10, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.291206-04:00
+
+DW0C started with pid=685, OS id=1406300, wid=13, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.369238-04:00
+
+DW0F started with pid=686, OS id=1406316, wid=16, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.433159-04:00
+
+DW0I started with pid=687, OS id=1406318, wid=19, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.509151-04:00
+
+DW0L started with pid=688, OS id=1406320, wid=22, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.587169-04:00
+
+DW0O started with pid=689, OS id=1406322, wid=25, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.665347-04:00
+
+DW0R started with pid=690, OS id=1406325, wid=28, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:03.742232-04:00
+
+DW0U started with pid=691, OS id=1406327, wid=31, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:07:31.238056-04:00
+TABLE SYS.WRP$_REPORTS: ADDED INTERVAL PARTITION SYS_P11850 (6161) VALUES LESS THAN (TO_DATE(' 2026-11-14 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+TABLE SYS.WRP$_REPORTS_DETAILS: ADDED INTERVAL PARTITION SYS_P11851 (6161) VALUES LESS THAN (TO_DATE(' 2026-11-14 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORI                             AN'))
+TABLE SYS.WRP$_REPORTS_TIME_BANDS: ADDED INTERVAL PARTITION SYS_P11854 (6160) VALUES LESS THAN (TO_DATE(' 2026-11-13 01:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREG                             ORIAN'))
+2026-11-13T16:07:54.391259-04:00
+Stopped service SYS.KUPC$C_1_20261113160657_0
+2026-11-13T16:07:54.550063-04:00
+Stopped service SYS.KUPC$S_1_20261113160657_0
+DM00 stopped with pid=679, OS id=1406120, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:27:53.707615-04:00
+JIT: pid 1457549 requesting full stop
+2026-11-13T16:40:25.394200-04:00
+Started service SYS.KUPC$C_1_20261113164025_0/SYS$SYS.KUPC$C_1_20261113164025_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113164025_0.RORAIMAP
+2026-11-13T16:40:25.444102-04:00
+Started service SYS.KUPC$S_1_20261113164025_0/SYS$SYS.KUPC$S_1_20261113164025_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113164025_0.RORAIMAP
+2026-11-13T16:40:25.534072-04:00
+DM00 started with pid=639, OS id=1487852, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:25.931177-04:00
+
+DW00 started with pid=644, OS id=1487856, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.022467-04:00
+
+DW03 started with pid=651, OS id=1487961, wid=4, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.091395-04:00
+
+DW06 started with pid=652, OS id=1487996, wid=7, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.178561-04:00
+
+DW09 started with pid=653, OS id=1487998, wid=10, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.259499-04:00
+
+DW0C started with pid=654, OS id=1488050, wid=13, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.340274-04:00
+
+DW0F started with pid=658, OS id=1488085, wid=16, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.422290-04:00
+
+DW0I started with pid=660, OS id=1488088, wid=19, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.504208-04:00
+
+DW0L started with pid=667, OS id=1488090, wid=22, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.587165-04:00
+
+DW0O started with pid=669, OS id=1488093, wid=25, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.666255-04:00
+
+DW0R started with pid=670, OS id=1488095, wid=28, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:40:29.745302-04:00
+
+DW0U started with pid=674, OS id=1488097, wid=31, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:41:20.497300-04:00
+Stopped service SYS.KUPC$C_1_20261113164025_0
+2026-11-13T16:41:20.583496-04:00
+Stopped service SYS.KUPC$S_1_20261113164025_0
+DM00 stopped with pid=639, OS id=1487852, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:44:42.296082-04:00
+Dumping diagnostic data in directory=[cdmp_20261113164442], requested by (instance=1, osid=3575069 (DBWN)), summary=[trace bucket dump request (kjbhistspinc)].
+2026-11-13T16:44:42.715576-04:00
+Dumping diagnostic data in directory=[cdmp_20261113164442], requested by (instance=2, osid=1442430 (DBW4)), summary=[trace bucket dump request (kjbhistspinc)].
+2026-11-13T16:44:43.139976-04:00
+Dumping diagnostic data in directory=[cdmp_20261113164442], requested by (instance=3, osid=2639886 (DBW3)), summary=[trace bucket dump request (kjbhistspinc)].
+2026-11-13T16:45:10.313279-04:00
+Started service SYS.KUPC$C_1_20261113164510_0/SYS$SYS.KUPC$C_1_20261113164510_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113164510_0.RORAIMAP
+2026-11-13T16:45:10.361005-04:00
+Started service SYS.KUPC$S_1_20261113164510_0/SYS$SYS.KUPC$S_1_20261113164510_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113164510_0.RORAIMAP
+2026-11-13T16:45:10.451109-04:00
+DM00 started with pid=815, OS id=1499396, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:10.842083-04:00
+
+DW00 started with pid=816, OS id=1499399, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:13.939675-04:00
+
+DW03 started with pid=818, OS id=1499514, wid=4, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.022356-04:00
+
+DW06 started with pid=819, OS id=1499516, wid=7, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.102079-04:00
+
+DW09 started with pid=820, OS id=1499518, wid=10, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.183119-04:00
+
+DW0C started with pid=821, OS id=1499520, wid=13, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.262109-04:00
+
+DW0F started with pid=822, OS id=1499522, wid=16, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.340035-04:00
+
+DW0I started with pid=823, OS id=1499524, wid=19, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.420389-04:00
+
+DW0L started with pid=824, OS id=1499526, wid=22, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.498141-04:00
+
+DW0O started with pid=825, OS id=1499541, wid=25, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.580253-04:00
+
+DW0R started with pid=826, OS id=1499543, wid=28, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:45:14.644903-04:00
+
+DW0U started with pid=827, OS id=1499545, wid=31, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:46:06.320499-04:00
+Stopped service SYS.KUPC$C_1_20261113164510_0
+2026-11-13T16:46:06.406055-04:00
+Stopped service SYS.KUPC$S_1_20261113164510_0
+DM00 stopped with pid=815, OS id=1499396, job SYSTEM.SYS_IMPORT_SCHEMA_01
+2026-11-13T16:50:40.319424-04:00
+JIT: pid 1511709 requesting full stop
+2026-11-13T16:55:39.542992-04:00
+Started service SYS.KUPC$C_1_20261113165539_0/SYS$SYS.KUPC$C_1_20261113165539_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113165539_0.RORAIMAP
+2026-11-13T16:55:39.591643-04:00
+Started service SYS.KUPC$S_1_20261113165539_0/SYS$SYS.KUPC$S_1_20261113165539_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113165539_0.RORAIMAP
+2026-11-13T16:55:39.677971-04:00
+DM00 started with pid=657, OS id=1523754, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:40.078253-04:00
+
+DW00 started with pid=741, OS id=1523760, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.320193-04:00
+
+DW03 started with pid=678, OS id=1523852, wid=4, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.403421-04:00
+
+DW06 started with pid=746, OS id=1523855, wid=7, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.480291-04:00
+
+DW09 started with pid=758, OS id=1523857, wid=10, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.553885-04:00
+
+DW0C started with pid=814, OS id=1523859, wid=13, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.620117-04:00
+
+DW0F started with pid=815, OS id=1523861, wid=16, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.697201-04:00
+
+DW0I started with pid=816, OS id=1523863, wid=19, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.779345-04:00
+
+DW0L started with pid=818, OS id=1523865, wid=22, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.858309-04:00
+
+DW0O started with pid=819, OS id=1523867, wid=25, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:43.940324-04:00
+
+DW0R started with pid=820, OS id=1523869, wid=28, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:44.020039-04:00
+
+DW0U started with pid=734, OS id=1523872, wid=31, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T16:55:52.318057-04:00
+Thread 1 advanced to log sequence 203 (LGWR switch),  current SCN: 64252629
+  Current log# 105 seq# 203 mem# 0: +REDO01_RORAIMA/RORAIMAP/ONLINELOG/group_105.260.1227007365
+  Current log# 105 seq# 203 mem# 1: +REDO02_RORAIMA/RORAIMAP/ONLINELOG/group_105.260.1227007367
+2026-11-13T16:55:54.742893-04:00
+ARC1 (PID:3575527): Archived Log entry 178 added for B-1226934733.T-1.S-202 LOS:0x0000000003bfbc9a NXS:0x0000000003d46ad4 NAB:2924879 ID 0x84                                                            eed44b LAD:1
+2026-11-13T16:56:34.800662-04:00
+Stopped service SYS.KUPC$C_1_20261113165539_0
+2026-11-13T16:56:34.887352-04:00
+Stopped service SYS.KUPC$S_1_20261113165539_0
+DM00 stopped with pid=657, OS id=1523754, job SYSTEM.SYS_IMPORT_SCHEMA_02
+2026-11-13T17:00:52.182929-04:00
+JIT: pid 1535658 requesting full stop
+2026-11-13T17:01:41.784096-04:00
+Started service SYS.KUPC$C_1_20261113170141_0/SYS$SYS.KUPC$C_1_20261113170141_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113170141_0.RORAIMAP
+2026-11-13T17:01:41.832045-04:00
+Started service SYS.KUPC$S_1_20261113170141_0/SYS$SYS.KUPC$S_1_20261113170141_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113170141_0.RORAIMAP
+2026-11-13T17:01:41.921180-04:00
+DM00 started with pid=730, OS id=1537883, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:01:42.309118-04:00
+
+DW00 started with pid=866, OS id=1537905, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:02:12.874718-04:00
+Stopped service SYS.KUPC$C_1_20261113170141_0
+2026-11-13T17:02:12.940408-04:00
+Stopped service SYS.KUPC$S_1_20261113170141_0
+DM00 stopped with pid=730, OS id=1537883, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:04:08.373204-04:00
+Started service SYS.KUPC$C_1_20261113170408_0/SYS$SYS.KUPC$C_1_20261113170408_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113170408_0.RORAIMAP
+2026-11-13T17:04:08.421911-04:00
+Started service SYS.KUPC$S_1_20261113170408_0/SYS$SYS.KUPC$S_1_20261113170408_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113170408_0.RORAIMAP
+2026-11-13T17:04:08.510225-04:00
+DM00 started with pid=906, OS id=1544108, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:04:08.896370-04:00
+
+DW00 started with pid=907, OS id=1544142, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:08:45.313933-04:00
+Stopped service SYS.KUPC$C_1_20261113170408_0
+2026-11-13T17:08:45.379224-04:00
+Stopped service SYS.KUPC$S_1_20261113170408_0
+DM00 stopped with pid=906, OS id=1544108, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:15:21.330193-04:00
+Started service SYS.KUPC$C_1_20261113171521_0/SYS$SYS.KUPC$C_1_20261113171521_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113171521_0.RORAIMAP
+2026-11-13T17:15:21.379317-04:00
+Started service SYS.KUPC$S_1_20261113171521_0/SYS$SYS.KUPC$S_1_20261113171521_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113171521_0.RORAIMAP
+2026-11-13T17:15:21.464991-04:00
+DM00 started with pid=774, OS id=1570403, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:15:21.882032-04:00
+
+DW00 started with pid=862, OS id=1570435, wid=1, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:15:30.290728-04:00
+Stopped service SYS.KUPC$C_1_20261113171521_0
+2026-11-13T17:15:30.356044-04:00
+Stopped service SYS.KUPC$S_1_20261113171521_0
+DM00 stopped with pid=774, OS id=1570403, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:19:30.528037-04:00
+Started service SYS.KUPC$C_1_20261113171930_0/SYS$SYS.KUPC$C_1_20261113171930_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113171930_0.RORAIMAP
+2026-11-13T17:19:30.576854-04:00
+Started service SYS.KUPC$S_1_20261113171930_0/SYS$SYS.KUPC$S_1_20261113171930_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113171930_0.RORAIMAP
+2026-11-13T17:19:30.665097-04:00
+DM00 started with pid=626, OS id=1580109, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:19:31.124847-04:00
+Stopped service SYS.KUPC$C_1_20261113171930_0
+2026-11-13T17:19:31.189215-04:00
+Stopped service SYS.KUPC$S_1_20261113171930_0
+DM00 stopped with pid=626, OS id=1580109, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:21:00.892741-04:00
+Started service SYS.KUPC$C_1_20261113172100_0/SYS$SYS.KUPC$C_1_20261113172100_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113172100_0.RORAIMAP
+2026-11-13T17:21:00.945085-04:00
+Started service SYS.KUPC$S_1_20261113172100_0/SYS$SYS.KUPC$S_1_20261113172100_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113172100_0.RORAIMAP
+2026-11-13T17:21:01.033132-04:00
+DM00 started with pid=253, OS id=1583410, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:21:01.569201-04:00
+
+DW00 started with pid=518, OS id=1583552, wid=1, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:21:03.686208-04:00
+Stopped service SYS.KUPC$C_1_20261113172100_0
+2026-11-13T17:21:03.752384-04:00
+Stopped service SYS.KUPC$S_1_20261113172100_0
+DM00 stopped with pid=253, OS id=1583410, job SYSTEM.SYS_SQL_FILE_SCHEMA_01
+2026-11-13T17:22:33.336496-04:00
+JIT: pid 1586223 requesting full stop
+2026-11-13T17:24:25.458098-04:00
+Started service SYS.KUPC$C_1_20261113172425_0/SYS$SYS.KUPC$C_1_20261113172425_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113172425_0.RORAIMAP
+2026-11-13T17:24:25.506817-04:00
+Started service SYS.KUPC$S_1_20261113172425_0/SYS$SYS.KUPC$S_1_20261113172425_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113172425_0.RORAIMAP
+2026-11-13T17:24:25.595172-04:00
+DM00 started with pid=253, OS id=1591523, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:24:26.078328-04:00
+
+DW00 started with pid=518, OS id=1591541, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:24:54.698439-04:00
+Stopped service SYS.KUPC$C_1_20261113172425_0
+2026-11-13T17:24:54.763576-04:00
+Stopped service SYS.KUPC$S_1_20261113172425_0
+DM00 stopped with pid=253, OS id=1591523, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:25:28.009257-04:00
+Started service SYS.KUPC$C_1_20261113172527_0/SYS$SYS.KUPC$C_1_20261113172527_0.RORAIMAP/SYS$SYS.KUPC$C_1_20261113172527_0.RORAIMAP
+2026-11-13T17:25:28.058084-04:00
+Started service SYS.KUPC$S_1_20261113172527_0/SYS$SYS.KUPC$S_1_20261113172527_0.RORAIMAP/SYS$SYS.KUPC$S_1_20261113172527_0.RORAIMAP
+2026-11-13T17:25:28.147099-04:00
+DM00 started with pid=657, OS id=1593832, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:25:28.508271-04:00
+
+DW00 started with pid=658, OS id=1593835, wid=1, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:29:46.225896-04:00
+Stopped service SYS.KUPC$C_1_20261113172527_0
+2026-11-13T17:29:46.292518-04:00
+Stopped service SYS.KUPC$S_1_20261113172527_0
+DM00 stopped with pid=657, OS id=1593832, job SYSTEM.SYS_IMPORT_SCHEMA_03
+2026-11-13T17:32:19.005304-04:00
+SERVER COMPONENT id=UTLRP_BGN: timestamp=2026-11-13 17:32:19
+TABLE SYS.WRI$_OPTSTAT_HISTHEAD_HISTORY: ADDED INTERVAL PARTITION SYS_P46895 (46338) VALUES LESS THAN (TO_DATE(' 2026-11-14 00:00:00', 'SYYYY                                                            -MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+TABLE SYS.WRI$_OPTSTAT_HISTGRM_HISTORY: ADDED INTERVAL PARTITION SYS_P46898 (46338) VALUES LESS THAN (TO_DATE(' 2026-11-14 00:00:00', 'SYYYY-                                                            MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'))
+2026-11-13T17:32:20.048542-04:00
+SERVER COMPONENT id=UTLRP_END: timestamp=2026-11-13 17:32:20
+2026-11-13T23:00:45.124243-04:00
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:45 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.CRON_JOB_LOGS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.CRON_JOB_LOGS TRUNCATE PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.CRON_JOB_LOGS DROP PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.CRON_JOB_LOGS ADD PARTITION P20281111 VALUES LESS THAN (TO_DATE('12-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.CRON_JOB_LOGS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.DEPOSITS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.DEPOSITS TRUNCATE PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.DEPOSITS DROP PARTITION P20251112 UPDATE INDEXES
+2026-11-13T23:00:46.122777-04:00
+ALTER TABLE RORAIMA.DEPOSITS ADD PARTITION P20281111 VALUES LESS THAN (TO_DATE('12-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.DEPOSITS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.NOTIFICATION_LOGS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS TRUNCATE PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS DROP PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS ADD PARTITION P20281111 VALUES LESS THAN (TO_DATE('12-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.NOTIFICATION_LOGS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.TRANSACTIONS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.TRANSACTIONS TRUNCATE PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.TRANSACTIONS DROP PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.TRANSACTIONS ADD PARTITION P20281111 VALUES LESS THAN (TO_DATE('12-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.TRANSACTIONS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.USER_LOGINS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.USER_LOGINS TRUNCATE PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.USER_LOGINS DROP PARTITION P20251112 UPDATE INDEXES
+ALTER TABLE RORAIMA.USER_LOGINS ADD PARTITION P20281111 VALUES LESS THAN (TO_DATE('12-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-13 23:00:46 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.USER_LOGINS
+-------------------------------------------------------------------------------------------------
+2026-11-14T02:00:00.056645-04:00
+Closing scheduler window
+Closing Resource Manager plan via scheduler window
+2026-11-14T23:00:44.190044-04:00
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.CRON_JOB_LOGS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.CRON_JOB_LOGS TRUNCATE PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.CRON_JOB_LOGS DROP PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.CRON_JOB_LOGS ADD PARTITION P20281112 VALUES LESS THAN (TO_DATE('13-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.CRON_JOB_LOGS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.DEPOSITS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.DEPOSITS TRUNCATE PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.DEPOSITS DROP PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.DEPOSITS ADD PARTITION P20281112 VALUES LESS THAN (TO_DATE('13-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.DEPOSITS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.NOTIFICATION_LOGS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS TRUNCATE PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS DROP PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.NOTIFICATION_LOGS ADD PARTITION P20281112 VALUES LESS THAN (TO_DATE('13-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.NOTIFICATION_LOGS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.TRANSACTIONS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.TRANSACTIONS TRUNCATE PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.TRANSACTIONS DROP PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.TRANSACTIONS ADD PARTITION P20281112 VALUES LESS THAN (TO_DATE('13-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.TRANSACTIONS
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - INICIO DE MANTEMIENTO DE LA TABLA : RORAIMA.USER_LOGINS
+-------------------------------------------------------------------------------------------------
+ALTER TABLE RORAIMA.USER_LOGINS TRUNCATE PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.USER_LOGINS DROP PARTITION P20251113 UPDATE INDEXES
+ALTER TABLE RORAIMA.USER_LOGINS ADD PARTITION P20281112 VALUES LESS THAN (TO_DATE('13-NOV-2028', 'DD-MON-YYYY')) TABLESPACE DATA_RORAIMA
+-------------------------------------------------------------------------------------------------
+2026-11-14 23:00:44 - FIN DE MANTEMIENTO DE LA TABLA : RORAIMA.USER_LOGINS
+-------------------------------------------------------------------------------------------------
+tail: alert_RORAIMAP1.log: file truncated
+---
+2026-11-15T02:00:00.024866-04:00
+Closing scheduler window
+Closing Resource Manager plan via scheduler window
+2026-11-15T04:00:15.284795-04:00
+Thread 1 advanced to log sequence 204 (LGWR switch),  current SCN: 64999889
+  Current log# 106 seq# 204 mem# 0: +REDO01_RORAIMA/RORAIMAP/ONLINELOG/group_106.261.1227007367
+  Current log# 106 seq# 204 mem# 1: +REDO02_RORAIMA/RORAIMAP/ONLINELOG/group_106.261.1227007369
+2026-11-15T04:00:17.488505-04:00
+ARC2 (PID:3575529): Archived Log entry 179 added for B-1226934733.T-1.S-203 LOS:0x0000000003d46ad4 NXS:0x0000000003dfd1d1 NAB:2923865 ID 0x84eed44b LAD:1
+
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$
+[oracle19@plbdhb01 trace]$

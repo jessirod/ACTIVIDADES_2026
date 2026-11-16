@@ -86,7 +86,7 @@ SOLICITUD_DISCOS
 
 4 discos  de 500GB cada uno para DATA
 2 discos  de 500GB cada uno para FRA
-10 discos de 20GB cada uno para REDO
+10 discos de 20GB cada uno para REDOS
 2 discos  de 10Gb cada uno para OCRVOTE
 2 discos  de 50GB cada uno para MGMT
 
@@ -106,6 +106,11 @@ mokutil --sb-state
 --Debe estar desabilitado.
 
 ***fstab y espacio del tmp
+--Validar que /tmp no tenga la propiedad noexec
+ cat /etc/fstab
+--Los FS /oracle, /exportdb, /tmp y /var configurarlos con defaults.
+--mount | grep /tmp
+
 
 --Validación de memoria
 --SWAP
@@ -115,12 +120,10 @@ grep SwapTotal /proc/meminfo
 grep MemTotal /proc/meminfo
 
 --Verificación del área temporal y espacio en disco
-df -h /tmp
+df -h /tmp --20GB
 df -h
 
 ------------------------------------------------------------------------------------------------
-
-
 --Comprobar la arquitectura del sistema operativo
 
 uname -a
@@ -142,6 +145,7 @@ sudo grubby --default-kernel
 
 -- Verificar el kernel que se esta ejecutando en la maquina
 sudo uname -r
+--En el caso de BDV es 5.14.0-687.42.1.el9_8.x86_64
 
 -- Cambiar el núcleo predeterminado 
 
@@ -155,13 +159,19 @@ reboot
 ------------------------------------------------------------------------------------------------
 --Desactivar el SELinux
 
-sed -i.JR.$(date +'%Y%m%d') \
--e 's/^SELINUX=enforcing$/SELINUX=permissive/' \
--e 's/^SELINUX=disabled$/SELINUX=permissive/' /etc/selinux/config
+--sed -i.jr.$(date +'%Y%m%d') \
+---e 's/^SELINUX=enforcing$/SELINUX=permissive/' \
+---e 's/^SELINUX=disabled$/SELINUX=permissive/' /etc/selinux/config
 
 cat /etc/selinux/config
 
---Reetiquetado del setlinux
+
+cp -p /etc/selinux/config /etc/selinux/config.original
+vi /etc/selinux/config
+	SELINUX=permissive
+
+
+--Reetiquetado del selinux
 restorecon -Rv /
 touch /.autorelabel
 
@@ -179,7 +189,7 @@ rpm -qa | grep ssh
 ------------------------------------------------------------------------------------------------
 Modificar el scp
 
-cp -p /usr/bin/scp /usr/bin/scp.nd.20261012
+cp -p /usr/bin/scp /usr/bin/scp.jr.20261012
 cat <<EOF > /usr/bin/scp
 #!/bin/bash
 /usr/bin/scp-original -T -O "\$@"
@@ -192,9 +202,9 @@ chmod 555 /usr/bin/scp
 Usar "$@" y no $*, para que las rutas con espacios o comillas lleguen intactas.
 Simular lo que hace CVU:
 
-ssh clbdkb02 "mkdir -p /tmp/prueba_scp"
-scp /etc/hosts clbdkb02:"'/tmp/prueba_scp//hosts'" && echo OK
-ssh clbdkb02 "ls -l /tmp/prueba_scp; rm -rf /tmp/prueba_scp"
+ssh plbdmct02 "mkdir -p /tmp/prueba_scp"
+scp /etc/hosts plbdmct02:"'/tmp/prueba_scp//hosts'" && echo OK
+ssh plbdmct02 "ls -l /tmp/prueba_scp; rm -rf /tmp/prueba_scp"
 
 ------------------------------------------------------------------------------------------------
 Validar que perl esté instalado
@@ -437,6 +447,8 @@ EOF
 
 /sbin/sysctl -p
 
+------------------------------------------------------------------------------------------------
+
 -- Agregamos los ajustes de los limits de oracle
 
 --**Si no se ha instalado o no se ha podido instalar** el paquete oracle-database-preinstall-19c
@@ -498,6 +510,249 @@ chmod 644 oracle-*.conf
 ls -ltr
 
 
+------------------------------------------------------------------------------------------------
+--Validar chronyd
+systemctl status chronyd
+chronyc sources
+
+------------------------------------------------------------------------------------------------
+--Configurar rngd
+
+sed -i.jr.$(date +'%Y%m%d') 's|^ExecStart=.*|ExecStart=/sbin/rngd -f -r /dev/urandom|' /usr/lib/systemd/system/rngd.service
+grep -i exec /usr/lib/systemd/system/rngd.service
+
+--Validar
+systemctl daemon-reload
+systemctl start rngd
+systemctl status rngd
+
+------------------------------------------------------------------------------------------------
+-- Apagar el daemon Avahi
+
+systemctl disable avahi-daemon.socket avahi-daemon.service
+systemctl mask avahi-daemon.socket avahi-daemon.service
+systemctl stop avahi-daemon.socket avahi-daemon.service
+systemctl status avahi-daemon
+
+
+------------------------------------------------------------------------------------------------
+--Verificar que session required pam_limits.so exista para garantizar el uso de los limits al iniciar sesión el usuario
+
+cp -p /etc/pam.d/login /etc/pam.d/login.jr.$(date +'%Y%m%d')
+cat /etc/pam.d/login
+
+Si no existe la siguiente línea, proceder a agregarla
+
+# Requerido para la instalacion de Oracle 19C 
+
+grep -q "session required pam_limits.so" /etc/pam.d/login || echo -e "# Requerido para la instalacion de Oracle 19C\nsession required pam_limits.so" >> /etc/pam.d/login
+
+------------------------------------------------------------------------------------------------
+--Verificar hostname 
+hostname
+ping $(hostname)
+
+--Si se desea modificar 
+--cp -p /etc/sysconfig/network /etc/sysconfig/network.original
+--vi /etc/sysconfig/network
+--
+--HOSTNAME=<**nombre_del_nodo**>
+
+------------------------------------------------------------------------------------------------
+--Verificar tarjetas de red
+ifconfig -a
+
+------------------------------------------------------------------------------------------------
+--Desactivar firewall
+systemctl status firewalld
+systemctl stop firewalld
+systemctl disable firewalld
+
+------------------------------------------------------------------------------------------------
+--Detener los iptable
+
+iptables -L
+
+--Si hay entradas de iptables, borrarlas todas con:
+
+iptables -F
+
+------------------------------------------------------------------------------------------------
+--Verificar de la resolución de nombre DNS
+
+nslookup $(hostname)
+
+--Nota: Debe coincidir el resultado con la ip del servidor.
+
+------------------------------------------------------------------------------------------------
+--Configurar el archivo hosts
+
+--Se deben agregar los hostnames con las ip correspondientes
+--Asegurarce que el SCAN reponda por todas las ip, igualmente que el cluster name este configurado
+--PLBDMCT01
+--plbdmct01
+--PLBDMCT02
+--plbdmct02
+
+cp -p /etc/hosts /etc/hosts.original
+vi /etc/hosts
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+# Public
+10.106.2.28 plbdmct01.banvenez.corp plbdmct01
+10.106.2.29 plbdmct02.banvenez.corp plbdmct02
+
+# Vip
+## 10.106.2.34 plbdmct01-vip.banvenez.corp plbdmct01-vip
+## 10.106.2.35 plbdmct02-vip.banvenez.corp plbdmct02-vip
+
+# Private
+## 192.168.1.11 plbdmct01-priv.banvenez.corp plbdmct01-priv
+## 192.168.1.12 plbdmct02-priv.banvenez.corp plbdmct02-priv
+
+# SCAN
+## 10.106.2.36 SENL001SCANQ CLUSTERSENL001Q.banvenez.corp
+## 10.106.2.37 SENL001SCANQ CLUSTERSENL001Q.banvenez.corp
+## 10.106.2.38 SENL001SCANQ CLUSTERSENL001Q.banvenez.corp
+
+-->**Nota:** No debe existir el hostname apuntando a la dirección de loopback, sea la **127.0.0.1** o la **::1**
+
+------------------------------------------------------------------------------------------------
+--Verificar que este configurado el X11
+
+--Verificar que esté configurado el parámetro x11forwarding yes
+
+cp -p /etc/ssh/sshd_config /etc/ssh/sshd_config.original
+
+grep X11Forwarding /etc/ssh/sshd_config
+
+sed -i 's/^#X11Forwarding no$/X11Forwarding yes/' /etc/ssh/sshd_config
+
+grep X11Forwarding /etc/ssh/sshd_config
+
+-->Nota: De no estar descomentado dicho parámetro, descomentarlo y reiniciar el servicio sshd.
+
+systemctl restart sshd
+
+-- Eliminar timeout para el SSH
+
+sed -i.original.jr.$(date +'%Y%m%d') 's/^#\?LoginGraceTime.*/LoginGraceTime 0/' /etc/ssh/sshd_config
+
+grep LoginGraceTime /etc/ssh/sshd_config 
+            
+systemctl restart sshd
+
+
+-- Configurar SSH connection Algorithm negotiation
+
+grep -E "PubkeyAcceptedAlgorithms|HostKeyAlgorithms" /etc/ssh/sshd_config
+vi /etc/ssh/sshd_config
+
+PubkeyAcceptedAlgorithms +ssh-rsa
+HostKeyAlgorithms +ssh-rsa
+
+systemctl restart sshd
+
+------------------------------------------------------------------------------------------------
+
+Crear la estructura de directorios
+
+mkdir -p /u01/app/oraInventory
+mkdir -p /u01/app/grid
+mkdir -p /u01/app/product/19c/grid
+mkdir -p /u01/app/oracle/product/19c/db1
+
+--Asignar owner y permisos a los directorios
+
+chown -R grid:oinstall /u01/
+chown -R oracle:oinstall /u01/app/oracle
+chmod -R 775 /u01/
+
+--Configurar variables de entorno
+
+--Usuario oracle
+
+--Backup del archivo .bash_profile
+
+cp -p .bash_profile .bash_profile.jr.$(date +'%Y%m%d')
+
+--Modificar el archivo .bash_profile
+
+- REDHAT se debe usar la variable `export CV_ASSUME_DISTID=RHEL8`
+- Oracle Linux se debe usar la variable `export CV_ASSUME_DISTID=OL8`
+
+cat <<EOF >> .bash_profile
+if [ -t 0 ];then 
+  stty intr ^C 
+fi
+
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=/u01/app/oracle/product/19c/db1
+# export ORACLE_SID=
+export LD_LIBRARY_PATH=\$ORACLE_HOME/lib
+export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:\$HOME/bin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/openwin/bin:/usr/ucb:\$ORACLE_HOME/bin:\$ORACLE_HOME/OPatch:\$ORACLE_HOME/suptools/oratop:.
+export CV_ASSUME_DISTID=RHEL8
+export SRVM_DISABLE_MTTRANS=true
+export HISTTIMEFORMAT="%G-%m-%dT%T "
+export EDITOR=vim
+export TEMP=/tmp
+export TMPDIR=/tmp
+umask 022
+ulimit -t unlimited
+ulimit -f unlimited
+ulimit -d unlimited
+ulimit -v unlimited
+EOF
+
+--Usuario grid
+
+su - grid
+
+--Backup del archivo .bash_profile
+
+cp -p .bash_profile .bash_profile.jr.$(date +'%Y%m%d')
+
+--Modificar el archivo .bash_profile
+
+- REDHAT se debe usar la variable `export CV_ASSUME_DISTID=RHEL8`
+- Oracle Linux se debe usar la variable `export CV_ASSUME_DISTID=OL8`
+
+cat <<EOF>> .bash_profile
+if [ -t 0 ];then 
+  stty intr ^C 
+fi
+
+export ORACLE_BASE=/u01/app/grid
+export ORACLE_HOME=/u01/app/product/19c/grid
+# export ORACLE_SID=+ASM
+export LD_LIBRARY_PATH=\$ORACLE_HOME/lib
+export PATH=\$PATH:\$HOME/bin:\$HOME/.local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/openwin/bin:/usr/ucb:\$ORACLE_HOME/bin:\$ORACLE_HOME/OPatch:.
+export CV_ASSUME_DISTID=RHEL8
+export SRVM_DISABLE_MTTRANS=true
+export HISTTIMEFORMAT="%G-%m-%dT%T "
+export EDITOR=vim
+export TEMP=/tmp
+export TMPDIR=/tmp
+umask 022
+ulimit -t unlimited
+ulimit -f unlimited
+ulimit -d unlimited
+ulimit -v unlimited
+EOF
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 
 
 
