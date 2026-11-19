@@ -1,0 +1,75 @@
+ 
+
+correr esto con grid en un solo nodo 
+
+# como grid, con el ambiente +ASM cargado
+asmcmd lsdsk -p -G REDO01_TRZSP
+asmcmd lsdsk -p -G REDO02_TRZSP
+
+Si la ruta es /dev/mapper/xxx, sigan con ls -l /dev/mapper/xxx, que devuelve el dm-N.
+Si la ruta es ORCL:xxx (ASMLib), usen oracleasm querydisk -p xxx.
+Si es AFD:xxx (AFD), usen afdtool -getdevlist.
+
+
+
+ 
+informacion de los backups de TX
+
+select session_key, to_char(start_time,'DD-MON HH24:MI:SS') inicio,
+       to_char(end_time,'DD-MON HH24:MI:SS') fin,
+       round(elapsed_seconds/60,1) minutos, input_type, status,
+       input_bytes_display, output_bytes_display,
+       input_bytes_per_sec_display lectura_por_seg, output_device_type, compression_ratio
+from v$rman_backup_job_details
+where start_time >= timestamp '2026-11-13 18:00:00'
+order by start_time;
+
+
+
+
+
+recoleccion de ifnormacion del flashback
+ 
+select flashback_on, log_mode, database_role from v$database;
+
+show parameter db_flashback_retention_target
+show parameter db_recovery_file_dest
+show parameter log_archive_dest_1
+
+
+-- cuánto flashback se escribe por hora frente al redo
+select to_char(begin_time,'DD-MON HH24:MI') hora,
+       round(flashback_data/1024/1024/1024,1) flashback_gb,
+       round(redo_data/1024/1024/1024,1)      redo_gb,
+       round(db_data/1024/1024/1024,1)        db_gb
+from v$flashback_database_stat order by begin_time;
+
+select oldest_flashback_time, retention_target,
+       round(flashback_size/1024/1024/1024) gb_actual,
+       round(estimated_flashback_size/1024/1024/1024) gb_estimado
+from v$flashback_database_log;
+
+select name, guarantee_flashback_database, time from v$restore_point;
+
+select file_type, percent_space_used, percent_space_reclaimable
+from v$recovery_area_usage;
+
+-- ¿hay Data Guard?
+select dest_id, destination, status, target from v$archive_dest
+where status <> 'INACTIVE';
+
+
+
+para ejecutar solo en BDV TX
+
+-- 1. Confirmar que no hay restore points garantizados (si los hay, borrarlos antes)
+select name, guarantee_flashback_database, time from v$restore_point;
+
+-- 2. Desactivar (en 19c se puede con la BD abierta, desde una sola instancia; afecta a todo el RAC)
+alter database flashback off;
+
+-- 3. Verificar
+select flashback_on from v$database;     -- NO
+select file_type, percent_space_used from v$recovery_area_usage;   -- FLASHBACK LOG baja a 0
+eso deberia quitar las esperas en los reportes sobre flashback, como no tenemos retencion configurada y no lo usamos y no tenemos dataguard se peude apagar
+las esperas flashback log file sync y enq: FB - contention

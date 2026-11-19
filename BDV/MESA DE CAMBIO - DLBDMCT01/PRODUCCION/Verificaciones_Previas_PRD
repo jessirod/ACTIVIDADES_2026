@@ -189,10 +189,11 @@ rpm -qa | grep ssh
 ------------------------------------------------------------------------------------------------
 Modificar el scp
 
-cp -p /usr/bin/scp /usr/bin/scp.jr.20261012
+cp -p /usr/bin/scp /usr/bin/scp.jr.20261116
 cat <<EOF > /usr/bin/scp
 #!/bin/bash
 /usr/bin/scp-original -T -O "\$@"
+EOF
 
 
 cat /usr/bin/scp

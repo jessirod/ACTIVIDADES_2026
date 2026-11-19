@@ -1,0 +1,161 @@
+grep -in -C 10 "c38yu1ujtdp3c" alert_*.log
+
+
+ 
+
+select inst_id, wait_time_milli, wait_count
+from gv$event_histogram
+where event = 'log file parallel write' and wait_time_milli >= 64
+order by inst_id, wait_time_milli;
+
+
+set pages 40
+col SAMPLE_TIME format a25
+select sample_time, instance_number, program, nvl(event,'ON CPU') evento, p1, p2, p3, time_waited
+from dba_hist_active_sess_history
+where program like '%(LG%'
+and sample_time between timestamp '2026-11-14 00:28:00' and timestamp '2026-11-14 00:31:00'
+order by sample_time;
+
+
+ 
+
+select g.name dg, d.path, s.writes, round(s.write_time*1000/nullif(s.writes,0),3) ms_por_write
+from v$asm_disk_iostat s
+join v$asm_disk d on d.group_number=s.group_number and d.disk_number=s.disk_number
+join v$asm_diskgroup g on g.group_number=s.group_number
+where g.name like 'REDO%' order by ms_por_write desc;
+
+
+*****************************
+
+
+ 
+
+cd /oracle/app/oracle/diag/rdbms/trzsp/TRZSP1/trace 
+grep -B3 "log write elapsed time" TRZSP1_lgwr_*.trc TRZSP1_lg0*_*.trc | grep -E "^\S*\*\*\*|elapsed time" 
+
+cd /oracle/app/oracle/diag/rdbms/trzsp/TRZSP2/trace 
+
+grep -B3 "log write elapsed time" TRZSP2_lgwr_*.trc TRZSP2_lg0*_*.trc | grep -E "^\S*\*\*\*|elapsed time"
+
+cd /oracle/app/oracle/diag/rdbms/trzsp/TRZSP3/trace 
+
+grep -B3 "log write elapsed time" TRZSP3_lgwr_*.trc TRZSP3_lg0*_*.trc | grep -E "^\S*\*\*\*|elapsed time"
+
+
+
+ 
+
+cd /oracle/app/oracle/diag/rdbms/trzsp/TRZSP1/trace     # TRZSP2 / TRZSP3 en los otros nodos
+grep -B3 "log write elapsed time" TRZSP1_lgwr_*.trc TRZSP1_lg0*_*.trc | grep -E "^\S*\*\*\*|elapsed time" 
+
+
+ 
+escrituras_atipicas_que_poracle_guarda_en_memoria 
+
+⁠  
+
+select inst_id, timestamp, io_size, wait_event, file_name, io_latency
+from gv$lgwrio_outlier order by timestamp desc;
+
+
+spool escrituras_atipicas_que_poracle_guarda_en_memoria.txt
+
+set line 1000
+set pages 600
+col FILE_NAME format a55
+
+SELECT inst_id, 
+function_name, 
+io_size, 
+wait_event, 
+file_name, 
+io_latency
+FROM gv$lgwrio_outlier
+ORDER BY io_latency DESC;
+
+spool off
+
+
+
+
+histograma de escrituras en redo
+
+⁠  
+
+select inst_id, wait_time_milli, wait_count
+from gv$event_histogram
+where event = 'log file parallel write' and wait_time_milli >= 64
+order by inst_id, wait_time_milli;
+
+ ⁠
+que ahce el log writer en un intervalo de tiempo 
+
+spool log_writer_en_intervalo_de_tiempo.txt
+
+⁠select sample_time,
+instance_number, 
+program, 
+nvl(event,'ON CPU') evento, 
+p1, 
+p2, 
+p3, 
+time_waited
+from dba_hist_active_sess_history
+where program like '%(LG%'
+and sample_time 
+between timestamp '2026-11-14 00:28:00' and timestamp '2026-11-14 00:31:00'
+order by sample_time;
+
+
+spool off
+
+
+comparacion de latencia de discos del ASM para ver si hay discos lentos en los diskgroup de REdo
+
+⁠  
+set line 1000
+set pages 600
+col PATH format a55
+select g.name dg, d.path, s.writes, round(s.write_time*1000/nullif(s.writes,0),3) ms_por_write
+from v$asm_disk_iostat s
+join v$asm_disk d on d.group_number=s.group_number and d.disk_number=s.disk_number
+join v$asm_diskgroup g on g.group_number=s.group_number
+where g.name like 'REDO%' order by ms_por_write desc;
+
+ ⁠
+
+
+
+RESOURCE_NAME                            CURRENT_UTILIZATION MAX_UTILIZATION INITIAL_AL LIMIT_VALU     CON_ID
+---------------------------------------- ------------------- --------------- ---------- ---------- ----------
+processes                                               2944            3668      20480      20480          0
+sessions                                                2555            4175      31104      31104          0
+enqueue_locks                                           7281            9353     371572     371572          0
+enqueue_resources                                       6026            7052     140972  UNLIMITED          0
+ges_procs                                               2934            3657      20482      20482          0
+ges_ress                                              170947          242670     673838  UNLIMITED          0
+ges_locks                                              15740           39162     984152  UNLIMITED          0
+ges_cache_ress                                        104280          109647          0  UNLIMITED          0
+ges_reg_msgs                                        44961797        44978762      42996  UNLIMITED          0
+ges_big_msgs                                             734           56516      42996  UNLIMITED          0
+ges_rsv_msgs                                               1               5       1000       1000          0
+gcs_resources                                       33691017        71026944   75541389  UNLIMITED          0
+gcs_shadows                                         25807490        65354568   75541389  UNLIMITED          0
+smartio_overhead_memory                                    0          174104          0  UNLIMITED          0
+smartio_buffer_memory                                      0               0          0  UNLIMITED          0
+smartio_metadata_memory                                    0               0          0  UNLIMITED          0
+smartio_sessions                                           0               1          0  UNLIMITED          0
+dml_locks                                               2627           13369     136856  UNLIMITED          0
+temporary_table_locks                                      0              15  UNLIMITED  UNLIMITED          0
+transactions                                             257            1420      34214  UNLIMITED          0
+branches                                                   0               0      34214  UNLIMITED          0
+cmtcallbk                                                 75            1385      34214  UNLIMITED          0
+max_rollback_segments                                   1306            1954      34214      65535          0
+sort_segment_locks                                      1754            2628  UNLIMITED  UNLIMITED          0
+k2q_locks                                                  0               0      62208  UNLIMITED          0
+max_shared_servers                                         1               2  UNLIMITED  UNLIMITED          0
+parallel_max_servers                                     775             827       7680      32767          0
+
+27 rows selected.
